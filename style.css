@@ -1,0 +1,187 @@
+/* --------------------------------
+   GENERAL PAGE
+-------------------------------- */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #eef4ff, #dce8ff);
+    min-height: 100vh;
+}
+
+
+/* --------------------------------
+   PAGE CONTAINER
+-------------------------------- */
+
+.page {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+}
+
+
+/* --------------------------------
+   MAIN CARD
+-------------------------------- */
+
+.card {
+    width: 100%;
+    max-width: 500px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+
+/* --------------------------------
+   HEADER
+-------------------------------- */
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    margin: 0;
+
+    font-size: 28px;
+
+    color: #1f3c88;
+
+    text-transform: uppercase;
+}
+
+.header p {
+    margin-top: 10px;
+
+    color: #666;
+
+    font-size: 15px;
+}
+
+
+/* --------------------------------
+   FORM
+-------------------------------- */
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form label {
+    margin-bottom: 7px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #333;
+}
+
+.form input,
+.form select {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    background: white;
+
+    outline: none;
+}
+
+
+/* --------------------------------
+   INPUT FOCUS
+-------------------------------- */
+
+.form input:focus,
+.form select:focus {
+    border-color: #3159c9;
+
+    box-shadow: 0 0 0 3px rgba(49, 89, 201, 0.12);
+}
+
+
+/* --------------------------------
+   START BUTTON
+-------------------------------- */
+
+button {
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 14px;
+
+    margin-top: 5px;
+
+    background: #3159c9;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #2448ad;
+
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+
+/* --------------------------------
+   FOOTER
+-------------------------------- */
+
+.footer {
+    text-align: center;
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #eeeeee;
+
+    font-size: 12px;
+
+    color: #999;
+}
