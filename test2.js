@@ -2,7 +2,7 @@
 // TEST II - CODE COMPLETION
 // ==========================================
 
-const CODES_PER_TEST = 2;
+const QUESTIONS_PER_TEST = 2;
 
 
 // ==========================================
@@ -11,196 +11,114 @@ const CODES_PER_TEST = 2;
 
 const codeBank = [
 
-    // --------------------------------------
-    // CODE 1
-    // Input + Numbers + Condition
-    // --------------------------------------
-
     {
         title: "Age Checker",
 
         topic: "Input, Numbers and Conditions",
 
-        lines: [
+        parts: [
+            { text: 'name = ' },
+
             {
-                type: "text",
-                text: 'name = '
-            },
-            {
-                type: "blank",
-                answer: "input",
+                blank: true,
+                answer: 'input',
                 explanation:
-                    "The input() function allows the program to receive information from the user."
-            },
-            {
-                type: "text",
-                text: '("Enter your name: ")'
-            },
-            {
-                type: "newline"
+                    'The input() function allows the program to receive information from the user.'
             },
 
+            { text: '("Enter your name: ")' },
+
+            { newline: true },
+
+            { text: 'age = ' },
+
             {
-                type: "text",
-                text: 'age = '
-            },
-            {
-                type: "blank",
-                answer: "int",
+                blank: true,
+                answer: 'int',
                 explanation:
-                    "The int() function converts the input into a whole number."
-            },
-            {
-                type: "text",
-                text: '(input("Enter your age: "))'
-            },
-            {
-                type: "newline"
+                    'The int() function converts input into a whole number.'
             },
 
+            { text: '(input("Enter your age: "))' },
+
+            { newline: true },
+
+            { text: 'if age ' },
+
             {
-                type: "text",
-                text: "if age "
-            },
-            {
-                type: "blank",
-                answer: ">=",
+                blank: true,
+                answer: '>=',
                 explanation:
-                    "The >= operator means greater than or equal to."
-            },
-            {
-                type: "text",
-                text: " 18:"
-            },
-            {
-                type: "newline"
+                    'The >= operator means greater than or equal to.'
             },
 
-            {
-                type: "text",
-                text: '    print(name, "is an adult")'
-            },
-            {
-                type: "newline"
-            },
+            { text: ' 18:' },
+
+            { newline: true },
+
+            { text: '    print(name, "is an adult")' },
+
+            { newline: true },
 
             {
-                type: "blank",
-                answer: "else",
+                blank: true,
+                answer: 'else',
                 explanation:
-                    "The else block runs when the if condition is false."
-            },
-            {
-                type: "text",
-                text: ":"
-            },
-            {
-                type: "newline"
+                    'The else block runs when the if condition is false.'
             },
 
-            {
-                type: "text",
-                text: '    print(name, "is a minor")'
-            }
+            { text: ':' },
+
+            { newline: true },
+
+            { text: '    print(name, "is a minor")' }
         ]
     },
 
-
-    // --------------------------------------
-    // CODE 2
-    // Loop + String + Input
-    // --------------------------------------
 
     {
         title: "Name Repeater",
 
         topic: "Input, Strings and Loops",
 
-        lines: [
+        parts: [
+
+            { text: 'name = ' },
 
             {
-                type: "text",
-                text: "name = "
-            },
-
-            {
-                type: "blank",
-                answer: "input",
+                blank: true,
+                answer: 'input',
                 explanation:
-                    "The input() function gets information from the user."
+                    'The input() function gets information from the user.'
             },
 
-            {
-                type: "text",
-                text: '("Enter your name: ")'
-            },
+            { text: '("Enter your name: ")' },
+
+            { newline: true },
+
+            { text: 'for i in ' },
 
             {
-                type: "newline"
-            },
-
-
-            {
-                type: "text",
-                text: "for i in "
-            },
-
-            {
-                type: "blank",
-                answer: "range",
+                blank: true,
+                answer: 'range',
                 explanation:
-                    "The range() function generates a sequence of numbers that can be used by a loop."
+                    'The range() function generates a sequence of numbers that can be used by a loop.'
             },
 
-            {
-                type: "text",
-                text: "(3):"
-            },
+            { text: '(3):' },
+
+            { newline: true },
+
+            { text: '    ' },
 
             {
-                type: "newline"
-            },
-
-
-            {
-                type: "text",
-                text: "    "
-            },
-
-            {
-                type: "blank",
-                answer: "print",
+                blank: true,
+                answer: 'print',
                 explanation:
-                    "The print() function displays information on the screen."
+                    'The print() function displays information on the screen.'
             },
 
-            {
-                type: "text",
-                text: "(name)"
-            },
-
-            {
-                type: "newline"
-            },
-
-
-            {
-                type: "text",
-                text: "    "
-            },
-
-            {
-                type: "blank",
-                answer: "+",
-                explanation:
-                    "The + operator can be used to join strings together."
-            },
-
-            {
-                type: "text",
-                text: ' "!"'
-            }
-
+            { text: '(name)' }
         ]
     }
 
@@ -208,21 +126,21 @@ const codeBank = [
 
 
 // ==========================================
-// TEST VARIABLES
+// VARIABLES
 // ==========================================
 
 let selectedCodes = [];
 
 let studentAnswers = [];
 
-let test2Submitted = false;
+let submitted = false;
 
 
 // ==========================================
 // SHUFFLE
 // ==========================================
 
-function shuffleArray(array) {
+function shuffle(array) {
 
     for (
         let i = array.length - 1;
@@ -243,7 +161,6 @@ function shuffleArray(array) {
             array[j],
             array[i]
         ];
-
     }
 
     return array;
@@ -251,67 +168,50 @@ function shuffleArray(array) {
 
 
 // ==========================================
-// START TEST II
+// START TEST
 // ==========================================
 
 function startTest2() {
 
-    let shuffled =
-        [...codeBank];
-
-    shuffleArray(shuffled);
-
+    const shuffled =
+        shuffle([...codeBank]);
 
     selectedCodes =
         shuffled.slice(
             0,
-            CODES_PER_TEST
+            QUESTIONS_PER_TEST
         );
-
 
     studentAnswers = [];
 
 
-    selectedCodes.forEach(
-        code => {
+    selectedCodes.forEach(code => {
 
-            const answers =
-                code.lines
-                    .filter(
-                        item =>
-                            item.type === "blank"
-                    )
-                    .map(
-                        () => ""
-                    );
+        const answers =
+            code.parts
+                .filter(part => part.blank)
+                .map(() => "");
 
-            studentAnswers.push(
-                answers
-            );
+        studentAnswers.push(answers);
 
-        }
-    );
+    });
 
 
-    test2Submitted = false;
-
-
-    displayCodeQuestions();
+    displayQuestions();
 
 }
 
 
 // ==========================================
-// DISPLAY CODE QUESTIONS
+// DISPLAY QUESTIONS
 // ==========================================
 
-function displayCodeQuestions() {
+function displayQuestions() {
 
     const container =
         document.getElementById(
             "codeQuestionsContainer"
         );
-
 
     container.innerHTML = "";
 
@@ -326,8 +226,6 @@ function displayCodeQuestions() {
                 "code-question-card";
 
 
-            // TITLE
-
             const title =
                 document.createElement("h3");
 
@@ -337,11 +235,8 @@ function displayCodeQuestions() {
                 " — " +
                 code.title;
 
-
             card.appendChild(title);
 
-
-            // TOPIC
 
             const topic =
                 document.createElement("div");
@@ -352,11 +247,8 @@ function displayCodeQuestions() {
             topic.textContent =
                 code.topic;
 
-
             card.appendChild(topic);
 
-
-            // CODE BOX
 
             const codeBox =
                 document.createElement("div");
@@ -368,108 +260,74 @@ function displayCodeQuestions() {
             let blankIndex = 0;
 
 
-            code.lines.forEach(
-                item => {
+            code.parts.forEach(part => {
 
-                    if (
-                        item.type ===
-                        "newline"
-                    ) {
+                if (part.newline) {
 
-                        codeBox.appendChild(
-                            document.createElement(
-                                "br"
-                            )
-                        );
+                    codeBox.appendChild(
+                        document.createElement("br")
+                    );
 
-                        return;
-
-                    }
+                    return;
+                }
 
 
-                    if (
-                        item.type ===
-                        "text"
-                    ) {
+                if (part.text) {
 
-                        codeBox.appendChild(
-                            document.createTextNode(
-                                item.text
-                            )
-                        );
+                    codeBox.appendChild(
+                        document.createTextNode(
+                            part.text
+                        )
+                    );
 
-                        return;
-
-                    }
+                    return;
+                }
 
 
-                    if (
-                        item.type ===
-                        "blank"
-                    ) {
+                if (part.blank) {
 
-                        const input =
-                            document.createElement(
-                                "input"
-                            );
+                    const input =
+                        document.createElement("input");
 
+                    input.type = "text";
 
-                        input.type =
-                            "text";
+                    input.className =
+                        "code-blank";
 
+                    input.dataset.code =
+                        codeIndex;
 
-                        input.className =
-                            "code-blank";
+                    input.dataset.blank =
+                        blankIndex;
 
 
-                        input.dataset.code =
-                            codeIndex;
+                    input.addEventListener(
+                        "input",
+                        function() {
+
+                            studentAnswers[
+                                codeIndex
+                            ][
+                                blankIndex
+                            ] =
+                                input.value.trim();
+
+                        }
+                    );
 
 
-                        input.dataset.blank =
-                            blankIndex;
+                    codeBox.appendChild(input);
 
-
-                        input.autocomplete =
-                            "off";
-
-
-                        input.addEventListener(
-                            "input",
-                            function() {
-
-                                studentAnswers[
-                                    codeIndex
-                                ][
-                                    blankIndex
-                                ] =
-                                    this.value.trim();
-
-                            }
-                        );
-
-
-                        codeBox.appendChild(
-                            input
-                        );
-
-
-                        blankIndex++;
-
-                    }
+                    blankIndex++;
 
                 }
-            );
+
+            });
 
 
-            card.appendChild(
-                codeBox
-            );
+            card.appendChild(codeBox);
 
-
-            container.appendChild(
-                card
-            );
+            container.appendChild(card);
 
         }
     );
@@ -478,12 +336,15 @@ function displayCodeQuestions() {
 
 
 // ==========================================
-// SUBMIT TEST II
+// SUBMIT
 // ==========================================
 
 function submitTest2() {
 
-    // Check unanswered blanks
+    console.log("SUBMIT TEST II CLICKED");
+
+
+    // Check blanks
 
     let unanswered = 0;
 
@@ -516,7 +377,6 @@ function submitTest2() {
         );
 
         return;
-
     }
 
 
@@ -529,11 +389,7 @@ function submitTest2() {
     if (!confirmed) {
 
         return;
-
     }
-
-
-    test2Submitted = true;
 
 
     let score = 0;
@@ -547,52 +403,37 @@ function submitTest2() {
             let blankIndex = 0;
 
 
-            code.lines.forEach(
-                item => {
+            code.parts.forEach(part => {
 
-                    if (
-                        item.type !==
-                        "blank"
-                    ) {
-
-                        return;
-
-                    }
+                if (!part.blank) {
+                    return;
+                }
 
 
-                    total++;
+                total++;
 
 
-                    const studentAnswer =
-                        studentAnswers[
-                            codeIndex
-                        ][
-                            blankIndex
-                        ];
+                const studentAnswer =
+                    studentAnswers[
+                        codeIndex
+                    ][
+                        blankIndex
+                    ];
 
 
-                    const correctAnswer =
-                        item.answer;
+                if (
+                    normalize(studentAnswer) ===
+                    normalize(part.answer)
+                ) {
 
-
-                    if (
-                        normalizeAnswer(
-                            studentAnswer
-                        ) ===
-                        normalizeAnswer(
-                            correctAnswer
-                        )
-                    ) {
-
-                        score++;
-
-                    }
-
-
-                    blankIndex++;
+                    score++;
 
                 }
-            );
+
+
+                blankIndex++;
+
+            });
 
         }
     );
@@ -605,7 +446,6 @@ function submitTest2() {
             "scoreArea"
         );
 
-
     scoreArea.style.display =
         "block";
 
@@ -613,93 +453,56 @@ function submitTest2() {
     document.getElementById(
         "finalScore"
     ).textContent =
-        score +
-        " / " +
-        total;
-
-
-    let message;
-
-
-    if (score === total) {
-
-        message =
-            "Excellent! Perfect score.";
-
-    }
-    else if (
-        score >= total * 0.8
-    ) {
-
-        message =
-            "Very good work!";
-
-    }
-    else if (
-        score >= total * 0.5
-    ) {
-
-        message =
-            "Good effort. Review the items you missed.";
-
-    }
-    else {
-
-        message =
-            "Keep practicing and review the concepts.";
-
-    }
+        score + " / " + total;
 
 
     document.getElementById(
         "scoreMessage"
     ).textContent =
-        message;
+        "Review the RED answers to see the concepts you missed.";
 
 
     // Display completed code
 
-    displaySubmittedCodes();
-    document.querySelectorAll(".code-blank")
-    .forEach(input => {
-
-        input.disabled = true;
-
-    });
+    displayResults();
 
 
-    // Disable submit
+    submitted = true;
+
+
+    // Disable button
 
     const button =
         document.getElementById(
             "submitBtn"
         );
 
-
-    button.disabled =
-        true;
-
+    button.disabled = true;
 
     button.textContent =
         "TEST SUBMITTED";
 
 
-    // Scroll to score
-
     scoreArea.scrollIntoView({
         behavior: "smooth"
     });
+
+
+    console.log(
+        "Test II submitted:",
+        score + " / " + total
+    );
 
 }
 
 
 // ==========================================
-// NORMALIZE ANSWERS
+// NORMALIZE
 // ==========================================
 
-function normalizeAnswer(answer) {
+function normalize(value) {
 
-    return answer
+    return value
         .trim()
         .toLowerCase();
 
@@ -707,18 +510,30 @@ function normalizeAnswer(answer) {
 
 
 // ==========================================
-// DISPLAY SUBMITTED CODES
+// DISPLAY RESULTS
 // ==========================================
 
-function displaySubmittedCodes() {
+function displayResults() {
 
     const container =
         document.getElementById(
             "codeQuestionsContainer"
         );
 
-
     container.innerHTML = "";
+
+
+    const instruction =
+        document.createElement("div");
+
+    instruction.className =
+        "review-instruction";
+
+    instruction.textContent =
+        "Click the RED answers to review the concepts you missed.";
+
+
+    container.appendChild(instruction);
 
 
     selectedCodes.forEach(
@@ -740,7 +555,6 @@ function displaySubmittedCodes() {
                 " — " +
                 code.title;
 
-
             card.appendChild(title);
 
 
@@ -752,7 +566,6 @@ function displaySubmittedCodes() {
 
             topic.textContent =
                 code.topic;
-
 
             card.appendChild(topic);
 
@@ -767,242 +580,179 @@ function displaySubmittedCodes() {
             let blankIndex = 0;
 
 
-            code.lines.forEach(
-                item => {
+            code.parts.forEach(part => {
 
-                    if (
-                        item.type ===
-                        "newline"
-                    ) {
+                if (part.newline) {
 
-                        codeBox.appendChild(
-                            document.createElement(
-                                "br"
-                            )
+                    codeBox.appendChild(
+                        document.createElement("br")
+                    );
+
+                    return;
+                }
+
+
+                if (part.text) {
+
+                    codeBox.appendChild(
+                        document.createTextNode(
+                            part.text
+                        )
+                    );
+
+                    return;
+                }
+
+
+                if (part.blank) {
+
+                    const answer =
+                        studentAnswers[
+                            codeIndex
+                        ][
+                            blankIndex
+                        ];
+
+
+                    const answerSpan =
+                        document.createElement("span");
+
+                    answerSpan.className =
+                        "submitted-answer";
+
+
+                    answerSpan.textContent =
+                        answer;
+
+
+                    const correct =
+                        normalize(answer) ===
+                        normalize(part.answer);
+
+
+                    if (correct) {
+
+                        answerSpan.classList.add(
+                            "answer-correct"
                         );
 
-                        return;
+                    }
+                    else {
+
+                        answerSpan.classList.add(
+                            "answer-wrong"
+                        );
+
+
+                        answerSpan.addEventListener(
+                            "click",
+                            function() {
+
+                                showExplanation(
+                                    answer,
+                                    part.answer,
+                                    part.explanation
+                                );
+
+                            }
+                        );
 
                     }
 
 
-                    if (
-                        item.type ===
-                        "text"
-                    ) {
-
-                        codeBox.appendChild(
-                            document.createTextNode(
-                                item.text
-                            )
-                        );
-
-                        return;
-
-                    }
+                    codeBox.appendChild(
+                        answerSpan
+                    );
 
 
-                    if (
-                        item.type ===
-                        "blank"
-                    ) {
-
-                        const answer =
-                            studentAnswers[
-                                codeIndex
-                            ][
-                                blankIndex
-                            ];
-
-
-                        const correctAnswer =
-                            item.answer;
-
-
-                        const answerBox =
-                            document.createElement(
-                                "span"
-                            );
-
-
-                        answerBox.className =
-                            "submitted-answer";
-
-
-                        answerBox.textContent =
-                            answer;
-
-
-                        const isCorrect =
-                            normalizeAnswer(
-                                answer
-                            ) ===
-                            normalizeAnswer(
-                                correctAnswer
-                            );
-
-
-                        if (isCorrect) {
-
-                            answerBox.classList.add(
-                                "answer-correct"
-                            );
-
-                        }
-                        else {
-
-                            answerBox.classList.add(
-                                "answer-wrong"
-                            );
-
-
-                            answerBox.dataset.code =
-                                codeIndex;
-
-
-                            answerBox.dataset.blank =
-                                blankIndex;
-
-
-                            answerBox.addEventListener(
-                                "click",
-                                function() {
-
-                                    showCodeExplanation(
-                                        codeIndex,
-                                        blankIndex,
-                                        item
-                                    );
-
-                                }
-                            );
-
-                        }
-
-
-                        codeBox.appendChild(
-                            answerBox
-                        );
-
-
-                        blankIndex++;
-
-                    }
+                    blankIndex++;
 
                 }
-            );
+
+            });
 
 
-            card.appendChild(
-                codeBox
-            );
+            card.appendChild(codeBox);
 
-
-            container.appendChild(
-                card
-            );
+            container.appendChild(card);
 
         }
-    );
-
-
-    // Add instruction
-
-    const instruction =
-        document.createElement(
-            "p"
-        );
-
-
-    instruction.className =
-        "review-instruction";
-
-
-    instruction.textContent =
-        "Click the RED answers to review the concepts you missed.";
-
-
-    container.insertBefore(
-        instruction,
-        container.firstChild
     );
 
 }
 
 
 // ==========================================
-// SHOW EXPLANATION
+// EXPLANATION
 // ==========================================
 
-function showCodeExplanation(
-    codeIndex,
-    blankIndex,
-    item
+function showExplanation(
+    studentAnswer,
+    correctAnswer,
+    explanation
 ) {
 
-    const studentAnswer =
-        studentAnswers[
-            codeIndex
-        ][
-            blankIndex
-        ];
-
-
-    const existing =
+    const old =
         document.getElementById(
             "codeExplanation"
         );
 
 
-    if (existing) {
-
-        existing.remove();
-
+    if (old) {
+        old.remove();
     }
 
 
     const box =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     box.id =
         "codeExplanation";
-
 
     box.className =
         "code-explanation";
 
 
     box.innerHTML = `
+
         <button
             class="close-explanation"
-            onclick="closeCodeExplanation()">
+            onclick="closeExplanation()">
+
             ×
+
         </button>
 
-        <h3>Quick Review</h3>
+
+        <h3>💡 Quick Review</h3>
+
 
         <p>
+
             <strong>Your answer:</strong>
             ${escapeHTML(studentAnswer)}
+
         </p>
+
 
         <p>
+
             <strong>Correct answer:</strong>
-            ${escapeHTML(item.answer)}
+            ${escapeHTML(correctAnswer)}
+
         </p>
 
+
         <div class="explanation-text">
-            ${escapeHTML(item.explanation)}
+
+            ${escapeHTML(explanation)}
+
         </div>
+
     `;
 
 
-    document.body.appendChild(
-        box
-    );
+    document.body.appendChild(box);
 
 }
 
@@ -1011,7 +761,7 @@ function showCodeExplanation(
 // CLOSE EXPLANATION
 // ==========================================
 
-function closeCodeExplanation() {
+function closeExplanation() {
 
     const box =
         document.getElementById(
@@ -1029,7 +779,7 @@ function closeCodeExplanation() {
 
 
 // ==========================================
-// PREVENT HTML IN ANSWERS
+// SECURITY
 // ==========================================
 
 function escapeHTML(text) {
@@ -1045,7 +795,7 @@ function escapeHTML(text) {
 
 
 // ==========================================
-// START
+// PAGE LOAD
 // ==========================================
 
 document.addEventListener(
@@ -1054,12 +804,13 @@ document.addEventListener(
 
         startTest2();
 
+
         document
             .getElementById("submitBtn")
             .addEventListener(
                 "click",
                 submitTest2
             );
+
     }
-);
 );
