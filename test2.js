@@ -1189,7 +1189,6 @@ function submitTest2() {
 
 }
 
-
     // Check unanswered
 
     let unanswered = 0;
