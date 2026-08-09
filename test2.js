@@ -923,37 +923,271 @@ function displayQuestions() {
 
 function submitTest2() {
 
+    console.log("SUBMIT TEST II CLICKED");
+
+
+    // =============================================
+    // GET ALL VISIBLE BLANKS DIRECTLY FROM PAGE
+    // =============================================
+
+    const inputs =
+        document.querySelectorAll(
+            ".code-blank"
+        );
+
+
     console.log(
-        "SUBMIT TEST II CLICKED"
+        "Number of input boxes:",
+        inputs.length
     );
 
 
-    const totalBlanks =
-        countBlanks(selectedCode);
+    // =============================================
+    // READ STUDENT ANSWERS
+    // =============================================
+
+    studentAnswers = [];
 
 
-    console.log(
-        "Total blanks:",
-        totalBlanks
+    inputs.forEach(
+        input => {
+
+            studentAnswers.push(
+                input.value.trim()
+            );
+
+        }
     );
 
 
-    // Safety check
+    console.log(
+        "Student answers:",
+        studentAnswers
+    );
 
-    if (totalBlanks !== 10) {
+
+    // =============================================
+    // CHECK NUMBER OF BLANKS
+    // =============================================
+
+    if (inputs.length !== 10) {
 
         alert(
-            "There is a problem with this question. Please inform your teacher."
+            "There is a problem with this Test II question. Please inform your teacher."
         );
 
         console.error(
-            "ERROR: Selected code has",
-            totalBlanks,
-            "blanks instead of 10."
+            "Expected 10 blanks but found:",
+            inputs.length
         );
 
         return;
     }
+
+
+    // =============================================
+    // CHECK EMPTY ANSWERS
+    // =============================================
+
+    let unanswered = 0;
+
+
+    studentAnswers.forEach(
+        answer => {
+
+            if (
+                answer === ""
+            ) {
+
+                unanswered++;
+
+            }
+
+        }
+    );
+
+
+    console.log(
+        "Unanswered:",
+        unanswered
+    );
+
+
+    if (unanswered > 0) {
+
+        alert(
+            "Please complete all 10 blanks before submitting."
+        );
+
+        return;
+    }
+
+
+    // =============================================
+    // CONFIRM SUBMISSION
+    // =============================================
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to submit Test II?"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+    }
+
+
+    // =============================================
+    // CALCULATE SCORE
+    // =============================================
+
+    let score = 0;
+
+    let blankIndex = 0;
+
+
+    selectedCode.parts.forEach(
+        part => {
+
+            if (!part.blank) {
+
+                return;
+
+            }
+
+
+            const studentAnswer =
+                studentAnswers[
+                    blankIndex
+                ];
+
+
+            const correctAnswer =
+                part.answer;
+
+
+            console.log(
+                "Checking:",
+                studentAnswer,
+                "| Correct:",
+                correctAnswer
+            );
+
+
+            if (
+                normalize(studentAnswer) ===
+                normalize(correctAnswer)
+            ) {
+
+                score++;
+
+            }
+
+
+            blankIndex++;
+
+        }
+    );
+
+
+    console.log(
+        "FINAL SCORE:",
+        score,
+        "/ 10"
+    );
+
+
+    // =============================================
+    // SHOW SCORE
+    // =============================================
+
+    const scoreArea =
+        document.getElementById(
+            "scoreArea"
+        );
+
+
+    if (!scoreArea) {
+
+        console.error(
+            "scoreArea was not found."
+        );
+
+        return;
+    }
+
+
+    scoreArea.style.display =
+        "block";
+
+
+    const finalScore =
+        document.getElementById(
+            "finalScore"
+        );
+
+
+    if (finalScore) {
+
+        finalScore.textContent =
+            score + " / 10";
+
+    }
+
+
+    const scoreMessage =
+        document.getElementById(
+            "scoreMessage"
+        );
+
+
+    if (scoreMessage) {
+
+        scoreMessage.textContent =
+            "Click the RED answers to review the concepts you missed.";
+
+    }
+
+
+    // =============================================
+    // SHOW REVIEW
+    // =============================================
+
+    displayResults();
+
+
+    // =============================================
+    // DISABLE SUBMIT
+    // =============================================
+
+    const button =
+        document.getElementById(
+            "submitBtn"
+        );
+
+
+    if (button) {
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "TEST SUBMITTED";
+
+    }
+
+
+    // =============================================
+    // MOVE TO SCORE
+    // =============================================
+
+    scoreArea.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
 
 
     // Check unanswered
