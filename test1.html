@@ -20,7 +20,9 @@
 <div class="exam-container">
 
 
-    <!-- HEADER -->
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
 
     <div class="exam-header">
 
@@ -49,28 +51,65 @@
 
 
 
-   <div class="test-intro">
+    <!-- ==========================================
+         TEST DIRECTIONS
+         ========================================== -->
 
-    <h2>Test I</h2>
+    <div class="test-intro">
 
-    <p>
-        <strong>Directions:</strong>
-        Select the best answer for each item.
-    </p>
+        <h2>Test I</h2>
 
-</div>
-
-    <!-- QUESTIONS -->
-
-    <div id="questionsContainer">
-
-        <!-- JavaScript will create the 10 questions here -->
+        <p>
+            <strong>Directions:</strong>
+            Select the best answer for each item.
+        </p>
 
     </div>
 
 
 
-    <!-- SUBMIT -->
+    <!-- ==========================================
+         SCORE
+         Hidden until the student submits
+         ========================================== -->
+
+    <div id="scoreArea" class="score-area">
+
+        <div class="score-label">
+            YOUR SCORE
+        </div>
+
+
+        <div id="finalScore"
+             class="final-score">
+
+            0 / 10
+
+        </div>
+
+
+        <p id="scoreMessage"></p>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         QUESTIONS
+         JavaScript will create the 10 questions
+         ========================================== -->
+
+    <div id="questionsContainer">
+
+        <!-- Questions appear here -->
+
+    </div>
+
+
+
+    <!-- ==========================================
+         SUBMIT BUTTON
+         ========================================== -->
 
     <div class="submit-area">
 
@@ -87,6 +126,12 @@
 
 
 </div>
+
+
+
+<!-- ==========================================
+     JAVASCRIPT
+     ========================================== -->
 
 <script src="test1.js"></script>
 
