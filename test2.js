@@ -660,6 +660,12 @@ function submitTest2() {
     // Display completed code
 
     displaySubmittedCodes();
+    document.querySelectorAll(".code-blank")
+    .forEach(input => {
+
+        input.disabled = true;
+
+    });
 
 
     // Disable submit
@@ -1048,5 +1054,12 @@ document.addEventListener(
 
         startTest2();
 
+        document
+            .getElementById("submitBtn")
+            .addEventListener(
+                "click",
+                submitTest2
+            );
     }
+);
 );
