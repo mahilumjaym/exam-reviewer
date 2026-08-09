@@ -335,14 +335,14 @@ function displayQuestions() {
 
 function submitTest2() {
 
-    console.log(
-        "SUBMIT TEST II CLICKED"
-    );
+    console.log("STEP 1: SUBMIT CLICKED");
+
+    console.log("studentAnswers:", studentAnswers);
+
+    console.log("selectedCodes:", selectedCodes);
 
 
-    // --------------------------------------
-    // CHECK EMPTY BLANKS
-    // --------------------------------------
+    // Check unanswered blanks
 
     let unanswered = 0;
 
@@ -352,6 +352,11 @@ function submitTest2() {
 
             answers.forEach(
                 answer => {
+
+                    console.log(
+                        "Checking answer:",
+                        answer
+                    );
 
                     if (
                         answer.trim() === ""
@@ -368,10 +373,20 @@ function submitTest2() {
     );
 
 
+    console.log(
+        "STEP 2: Unanswered =",
+        unanswered
+    );
+
+
     if (unanswered > 0) {
 
         alert(
             "Please complete all blanks before submitting."
+        );
+
+        console.log(
+            "STOPPED: Some blanks are empty."
         );
 
         return;
@@ -379,24 +394,38 @@ function submitTest2() {
     }
 
 
-    // --------------------------------------
-    // CONFIRM
-    // --------------------------------------
+    console.log(
+        "STEP 3: All blanks completed."
+    );
 
-    if (
-        !confirm(
+
+    const confirmed =
+        confirm(
             "Are you sure you want to submit Test II?"
-        )
-    ) {
+        );
+
+
+    console.log(
+        "STEP 4: Confirmation result =",
+        confirmed
+    );
+
+
+    if (!confirmed) {
+
+        console.log(
+            "STOPPED: Student cancelled."
+        );
 
         return;
 
     }
 
 
-    // --------------------------------------
-    // CALCULATE SCORE
-    // --------------------------------------
+    console.log(
+        "STEP 5: Starting score calculation."
+    );
+
 
     let score = 0;
 
@@ -409,58 +438,74 @@ function submitTest2() {
             let blankIndex = 0;
 
 
-            code.parts.forEach(part => {
+            code.parts.forEach(
+                part => {
 
-                if (!part.blank) {
-                    return;
+                    if (!part.blank) {
+
+                        return;
+
+                    }
+
+
+                    total++;
+
+
+                    const studentAnswer =
+                        studentAnswers[
+                            codeIndex
+                        ][
+                            blankIndex
+                        ];
+
+
+                    console.log(
+                        "Answer:",
+                        studentAnswer,
+                        "Correct:",
+                        part.answer
+                    );
+
+
+                    if (
+                        normalize(studentAnswer) ===
+                        normalize(part.answer)
+                    ) {
+
+                        score++;
+
+                    }
+
+
+                    blankIndex++;
+
                 }
-
-
-                total++;
-
-
-                const studentAnswer =
-                    studentAnswers[
-                        codeIndex
-                    ][
-                        blankIndex
-                    ];
-
-
-                if (
-                    normalize(studentAnswer) ===
-                    normalize(part.answer)
-                ) {
-
-                    score++;
-
-                }
-
-
-                blankIndex++;
-
-            });
+            );
 
         }
     );
 
 
     console.log(
-        "SCORE:",
+        "STEP 6: SCORE =",
         score,
         "/",
         total
     );
 
 
-    // --------------------------------------
-    // SHOW SCORE
-    // --------------------------------------
+    // Show score
 
     const scoreArea =
         document.getElementById(
             "scoreArea"
         );
+
+
+    console.log(
+        "STEP 7: scoreArea =",
+        scoreArea
+    );
 
 
     scoreArea.style.display =
@@ -470,25 +515,23 @@ function submitTest2() {
     document.getElementById(
         "finalScore"
     ).textContent =
-        score + " / " + total;
+        score +
+        " / " +
+        total;
 
 
-    document.getElementById(
-        "scoreMessage"
-    ).textContent =
-        "Review the RED answers to see the concepts you missed.";
+    console.log(
+        "STEP 8: Score displayed."
+    );
 
-
-    // --------------------------------------
-    // SHOW REVIEW
-    // --------------------------------------
 
     displayResults();
 
 
-    // --------------------------------------
-    // DISABLE SUBMIT
-    // --------------------------------------
+    console.log(
+        "STEP 9: Results displayed."
+    );
+
 
     const button =
         document.getElementById(
@@ -501,6 +544,12 @@ function submitTest2() {
     button.textContent =
         "TEST SUBMITTED";
 
+
+    console.log(
+        "STEP 10: TEST II COMPLETE."
+    );
+
+}
 
     // --------------------------------------
     // SCROLL TO SCORE
