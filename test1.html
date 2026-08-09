@@ -1,143 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Test I - Python Reviewer</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-    <div class="exam-container">
-
-        <!-- HEADER -->
-        <div class="exam-header">
-            <div>
-                <h1>TEST I</h1>
-                <p>Python Fundamentals</p>
-            </div>
-
-            <div class="student-info">
-                <span id="studentName">Student</span>
-                <span id="studentSection">Section</span>
-            </div>
-        </div>
+<div class="exam-container">
 
 
-        <!-- PROGRESS -->
-        <div class="progress-area">
+    <!-- HEADER -->
 
-            <div class="progress-text">
-                Question <span id="currentNumber">1</span>
-                of
-                <span id="totalQuestions">10</span>
-            </div>
+    <div class="exam-header">
 
-            <div class="progress-bar">
-                <div id="progressFill"></div>
-            </div>
+        <div>
+
+            <h1>TEST I</h1>
+
+            <p>Python Fundamentals</p>
 
         </div>
 
 
-        <!-- QUESTION CARD -->
-        <div class="question-card">
+        <div class="student-info">
 
-            <div class="question-topic" id="questionTopic">
-                Python Basics
-            </div>
+            <span id="studentName">
+                Student
+            </span>
 
-            <h2 id="questionText">
-                Loading question...
-            </h2>
-
-
-            <!-- ANSWERS -->
-            <div id="answersContainer">
-
-                <!-- JavaScript will insert answers here -->
-
-            </div>
-
-        </div>
-
-
-        <!-- NAVIGATION -->
-        <div class="navigation">
-
-            <button
-                id="previousBtn"
-                class="nav-btn secondary"
-                onclick="previousQuestion()">
-                ← Previous
-            </button>
-
-            <button
-                id="nextBtn"
-                class="nav-btn"
-                onclick="nextQuestion()">
-                Next →
-            </button>
-
-        </div>
-
-
-        <!-- SUBMIT -->
-        <div class="submit-area">
-
-            <button
-                id="submitBtn"
-                class="submit-btn"
-                onclick="submitTest()">
-                Submit Test
-            </button>
+            <span id="studentSection">
+                Section
+            </span>
 
         </div>
 
     </div>
 
 
-    <!-- RESULT MODAL -->
 
-    <div id="resultModal" class="modal">
+    <!-- TEST INTRO -->
 
-        <div class="modal-content">
+    <div class="test-intro">
 
-            <h2>Test I Complete</h2>
+        <h2>Test I</h2>
 
-            <p>Your Score</p>
+        <p>
+            Answer all 10 questions.
+            Each test contains randomly selected questions.
+        </p>
 
-            <div class="score" id="scoreDisplay">
-                0 / 10
-            </div>
+        <div class="test-info">
 
-            <p id="resultMessage"></p>
+            <span>10 Questions</span>
 
-            <div class="result-buttons">
-
-                <button
-                    class="nav-btn"
-                    onclick="reviewTest()">
-                    Review Test I
-                </button>
-
-                <button
-                    class="nav-btn secondary"
-                    onclick="retakeTest()">
-                    Retake Test I
-                </button>
-
-            </div>
+            <span>Multiple Choice</span>
 
         </div>
 
     </div>
 
 
-    <script src="test1.js"></script>
+
+    <!-- QUESTIONS -->
+
+    <div id="questionsContainer">
+
+        <!-- JavaScript will create the 10 questions here -->
+
+    </div>
+
+
+
+    <!-- SUBMIT -->
+
+    <div class="submit-area">
+
+        <button
+            id="submitBtn"
+            class="submit-btn"
+            onclick="submitTest()">
+
+            SUBMIT TEST
+
+        </button>
+
+    </div>
+
+
+</div>
+
+<script src="test1.js"></script>
 
 </body>
+
 </html>
