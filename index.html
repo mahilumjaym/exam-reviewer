@@ -1,43 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Interactive Exam Reviewer</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>INTERACTIVE EXAM REVIEWER</h1>
+    <div class="page">
 
-    <h2>Student Sign-Up</h2>
+        <div class="card">
 
-    <p>Enter your information to begin.</p>
+            <div class="header">
+                <div class="icon">📚</div>
 
-    <label>Student Name</label>
-    <br>
-    <input type="text" placeholder="Enter your name">
+                <h1>Interactive Exam Reviewer</h1>
 
-    <br><br>
+                <p>
+                    Welcome! Enter your information to begin.
+                </p>
+            </div>
 
-    <label>Section</label>
-    <br>
 
-    <select>
-        <option>Select your section</option>
-        <option>G10 - St. Berchmans</option>
-        <option>G10 - St. Canisius</option>
-        <option>G10 - St. Chabanel</option>
-        <option>G10 - St. Colombiere</option>
-        <option>G10 - St. Daniel</option>
-        <option>G10 - St. Faber</option>
-        <option>G10 - St. Hurtado</option>
-        <option>G10 - St. Mayer</option>
-        <option>G10 - St. Southwell</option>
-    </select>
+            <div class="form">
 
-    <br><br>
+                <label for="studentName">
+                    Student Name
+                </label>
 
-    <button>START REVIEWER</button>
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Enter your full name"
+                >
+
+
+                <label for="section">
+                    Section
+                </label>
+
+                <select id="section">
+
+                    <option value="">
+                        Select your section
+                    </option>
+
+                    <option>G10 - St. Berchmans</option>
+                    <option>G10 - St. Canisius</option>
+                    <option>G10 - St. Chabanel</option>
+                    <option>G10 - St. Colombiere</option>
+                    <option>G10 - St. Daniel</option>
+                    <option>G10 - St. Faber</option>
+                    <option>G10 - St. Hurtado</option>
+                    <option>G10 - St. Mayer</option>
+                    <option>G10 - St. Southwell</option>
+
+                </select>
+
+
+                <button id="startButton">
+                    START REVIEWER
+                </button>
+
+            </div>
+
+
+            <div class="footer">
+                Grade 10 • Interactive Learning
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
-</html>
 
+</html>
