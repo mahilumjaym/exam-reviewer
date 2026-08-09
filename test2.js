@@ -1,8 +1,9 @@
 // =====================================================
 // TEST II - CODE COMPLETION
-// 5 CODE PROGRAMS
+// 5 PROGRAMS
 // 1 RANDOM PROGRAM
-// 10 BLANKS = 10 POINTS
+// EXACTLY 10 BLANKS
+// SCORE: 10 POINTS
 // =====================================================
 
 
@@ -23,93 +24,123 @@ const codeBank = [
 
         parts: [
 
-            { text: 'name = ' },
+            { text: "name = " },
 
             {
                 blank: true,
-                answer: 'input',
+                answer: "input",
                 explanation:
-                    'The input() function allows the user to enter information into the program.'
+                    "The input() function allows the user to enter information into the program."
             },
 
             { text: '("Enter your name: ")' },
-
             { newline: true },
 
 
-            { text: 'age = ' },
+            { text: "age = " },
 
             {
                 blank: true,
-                answer: 'int',
+                answer: "int",
                 explanation:
-                    'The int() function converts a value into a whole number.'
+                    "The int() function converts a value into a whole number."
             },
 
-            {
-                text: '(input("Enter your age: "))'
-            },
-
+            { text: '(input("Enter your age: "))' },
             { newline: true },
 
 
-            { text: 'section = ' },
+            { text: "section = " },
 
             {
                 blank: true,
-                answer: 'input',
+                answer: "input",
                 explanation:
-                    'input() is used when the program needs to receive information from the user.'
+                    "The input() function is used to receive information from the user."
             },
 
             { text: '("Enter your section: ")' },
-
             { newline: true },
 
 
+            { text: "height = " },
+
             {
-                text: 'print("Name:", name)'
+                blank: true,
+                answer: "float",
+                explanation:
+                    "The float() function converts a value into a number that can contain decimal values."
             },
 
+            { text: '(input("Enter your height: "))' },
             { newline: true },
 
 
             {
                 blank: true,
-                answer: 'print',
+                answer: "print",
                 explanation:
-                    'The print() function displays information on the screen.'
+                    "The print() function displays information on the screen."
+            },
+
+            { text: '("Name:", name)' },
+            { newline: true },
+
+
+            {
+                blank: true,
+                answer: "print",
+                explanation:
+                    "print() is used to display the student's age."
             },
 
             { text: '("Age:", age)' },
-
             { newline: true },
 
-
-            {
-                text: 'print("Section:", section)'
-            },
-
-            { newline: true },
-
-
-            { text: 'next_year = age ' },
 
             {
                 blank: true,
-                answer: '+',
+                answer: "print",
                 explanation:
-                    'The + operator performs addition when used with numbers.'
+                    "The print() function can display variables and text together."
             },
 
-            { text: ' 1' },
-
+            { text: '("Section:", section)' },
             { newline: true },
 
 
             {
-                text: 'print("Next year:", next_year)'
-            }
+                blank: true,
+                answer: "print",
+                explanation:
+                    "print() can also display decimal values stored in a variable."
+            },
+
+            { text: '("Height:", height)' },
+            { newline: true },
+
+
+            { text: "next_year = age " },
+
+            {
+                blank: true,
+                answer: "+",
+                explanation:
+                    "The + operator performs addition when used with numbers."
+            },
+
+            { text: " 1" },
+            { newline: true },
+
+
+            {
+                blank: true,
+                answer: "print",
+                explanation:
+                    "The final print() displays the calculated value."
+            },
+
+            { text: '("Age next year:", next_year)' }
 
         ]
     },
@@ -126,113 +157,125 @@ const codeBank = [
 
         parts: [
 
-            { text: 'grade = ' },
+            { text: "grade = " },
 
             {
                 blank: true,
-                answer: 'float',
+                answer: "float",
                 explanation:
-                    'The float() function converts input into a number that can contain decimal values.'
+                    "The float() function converts input into a number that may contain decimal values."
             },
 
-            {
-                text: '(input("Enter your grade: "))'
-            },
-
+            { text: '(input("Enter your grade: "))' },
             { newline: true },
 
 
-            { text: 'if grade ' },
+            { text: "if grade " },
 
             {
                 blank: true,
-                answer: '>=',
+                answer: ">=",
                 explanation:
-                    'The >= operator means greater than or equal to.'
+                    "The >= operator means greater than or equal to."
             },
 
-            { text: ' 90:' },
-
+            { text: " 90:" },
             { newline: true },
 
 
-            { text: '    ' },
+            { text: "    " },
 
             {
                 blank: true,
-                answer: 'print',
+                answer: "print",
                 explanation:
-                    'The print() function displays the result of the condition.'
+                    "The print() function displays the result when the condition is true."
             },
 
             { text: '("Excellent")' },
-
             { newline: true },
 
 
             {
                 blank: true,
-                answer: 'elif',
+                answer: "elif",
                 explanation:
-                    'elif allows the program to check another condition when the previous if condition is false.'
+                    "elif allows Python to test another condition when the previous condition is false."
             },
 
-            { text: ' grade >= 75:' },
+            { text: " grade " },
 
+            {
+                blank: true,
+                answer: ">=",
+                explanation:
+                    "The >= operator checks whether the grade is at least 75."
+            },
+
+            { text: " 75:" },
             { newline: true },
 
 
-            { text: '    print("Passed")' },
+            { text: "    " },
 
+            {
+                blank: true,
+                answer: "print",
+                explanation:
+                    "print() displays the result of the second condition."
+            },
+
+            { text: '("Passed")' },
             { newline: true },
 
 
             {
                 blank: true,
-                answer: 'else',
+                answer: "else",
                 explanation:
-                    'The else block runs when none of the previous conditions are true.'
+                    "The else block runs when none of the previous conditions are true."
             },
 
-            { text: ':' },
-
+            { text: ":" },
             { newline: true },
 
 
-            { text: '    print("Needs improvement")' },
-
-            { newline: true },
-
-
-            { text: 'if grade ' },
+            { text: "    " },
 
             {
                 blank: true,
-                answer: '<',
+                answer: "print",
                 explanation:
-                    'The < operator checks whether one value is less than another.'
+                    "The print() function displays the message inside the else block."
             },
 
-            { text: ' 75:' },
-
+            { text: '("Needs improvement")' },
             { newline: true },
 
 
-            {
-                text: '    print("Review the lessons.")'
-            },
-
-            { newline: true },
-
-
-            { text: 'result = ' },
+            { text: "if grade " },
 
             {
                 blank: true,
-                answer: '"Passed"',
+                answer: "<",
                 explanation:
-                    'Strings are written inside quotation marks and can be stored in variables.'
-            }
+                    "The < operator checks whether one value is less than another."
+            },
+
+            { text: " 75:" },
+            { newline: true },
+
+
+            { text: "    print(" },
+
+            {
+                blank: true,
+                answer: '"Review the lessons."',
+                explanation:
+                    "Strings are written inside quotation marks and can be used as messages."
+            },
+
+            { text: ")" }
 
         ]
     },
@@ -240,7 +283,7 @@ const codeBank = [
 
     // =================================================
     // CODE 3
-    // LOOPS / STRINGS / NUMBERS
+    // LOOPS / NUMBERS / STRINGS
     // =================================================
 
     {
@@ -250,115 +293,128 @@ const codeBank = [
         parts: [
 
             { text: 'print("Counting from 1 to 5")' },
-
             { newline: true },
 
 
             {
                 blank: true,
-                answer: 'for',
+                answer: "for",
                 explanation:
-                    'A for loop repeats a block of code for each value in a sequence.'
+                    "A for loop repeats a block of code for each value in a sequence."
             },
 
-            { text: ' number in ' },
+            { text: " number in " },
 
             {
                 blank: true,
-                answer: 'range',
+                answer: "range",
                 explanation:
-                    'range() generates a sequence of numbers that can be used by a loop.'
+                    "range() creates a sequence of numbers that can be used by a loop."
             },
 
-            { text: '(1, 6):' },
-
+            { text: "(1, 6):" },
             { newline: true },
 
 
-            { text: '    ' },
+            { text: "    " },
 
             {
                 blank: true,
-                answer: 'print',
+                answer: "print",
                 explanation:
-                    'print() displays the current value of number.'
+                    "print() displays the current value of the loop variable."
             },
 
-            { text: '(number)' },
-
+            { text: "(number)" },
             { newline: true },
 
 
-            { text: 'count = 5' },
-
+            { text: "count = 5" },
             { newline: true },
 
 
             {
                 blank: true,
-                answer: 'while',
+                answer: "while",
                 explanation:
-                    'A while loop repeats code as long as its condition remains true.'
+                    "A while loop continues running as long as its condition is true."
             },
 
-            { text: ' count > 0:' },
-
-            { newline: true },
-
-
-            { text: '    print("Remaining:", count)' },
-
-            { newline: true },
-
-
-            { text: '    count = count ' },
+            { text: " count " },
 
             {
                 blank: true,
-                answer: '-',
+                answer: ">",
                 explanation:
-                    'The - operator subtracts one value from another.'
+                    "The > operator checks whether count is greater than zero."
             },
 
-            { text: ' 1' },
+            { text: " 0:" },
+            { newline: true },
 
+
+            { text: "    " },
+
+            {
+                blank: true,
+                answer: "print",
+                explanation:
+                    "print() displays the current value of count."
+            },
+
+            { text: '("Remaining:", count)' },
+            { newline: true },
+
+
+            { text: "    count = count " },
+
+            {
+                blank: true,
+                answer: "-",
+                explanation:
+                    "The - operator subtracts a value from another number."
+            },
+
+            { text: " 1" },
             { newline: true },
 
 
             { text: 'message = "Done"' },
-
             { newline: true },
 
 
             {
                 blank: true,
-                answer: 'print',
+                answer: "print",
                 explanation:
-                    'The print() function displays the string stored in message.'
+                    "print() displays the string stored in the message variable."
             },
 
-            { text: '(message)' },
-
+            { text: "(message)" },
             { newline: true },
 
 
-            { text: 'total = 10 ' },
+            { text: "total = 10 " },
 
             {
                 blank: true,
-                answer: '+',
+                answer: "+",
                 explanation:
-                    'The + operator adds numeric values together.'
+                    "The + operator adds numeric values together."
             },
 
-            { text: ' 5' },
-
+            { text: " 5" },
             { newline: true },
 
 
             {
-                text: 'print("Total:", total)'
-            }
+                blank: true,
+                answer: "print",
+                explanation:
+                    "print() displays the final value stored in total."
+            },
+
+            { text: '("Total:", total)' }
 
         ]
     },
@@ -370,29 +426,30 @@ const codeBank = [
     // =================================================
 
     {
-        title: "Student Record",
+        title: "Student Records",
         topic: "Lists, Dictionaries and Functions",
 
         parts: [
 
+            { text: "students = " },
+
             {
-                text: 'students = ["Ana", "Ben", "Carlo"]'
+                blank: true,
+                answer: '["Ana", "Ben", "Carlo"]',
+                explanation:
+                    "A list stores multiple values in one variable. Lists use square brackets."
             },
 
             { newline: true },
 
 
-            { text: 'scores = ' },
+            { text: "scores = " },
 
             {
                 blank: true,
-                answer: '{',
+                answer: '{"Ana": 90, "Ben": 85, "Carlo": 88}',
                 explanation:
-                    'A dictionary is written using curly braces and stores data as key-value pairs.'
-            },
-
-            {
-                text: '"Ana": 90, "Ben": 85, "Carlo": 88}'
+                    "A dictionary stores information using key-value pairs and uses curly braces."
             },
 
             { newline: true },
@@ -400,85 +457,101 @@ const codeBank = [
 
             {
                 blank: true,
-                answer: 'def',
+                answer: "def",
                 explanation:
-                    'The def keyword is used to create a function in Python.'
+                    "The def keyword is used to define a function in Python."
             },
 
-            { text: ' show_student(name):' },
-
+            { text: " show_student(name):" },
             { newline: true },
 
 
-            { text: '    ' },
+            { text: "    " },
 
             {
                 blank: true,
-                answer: 'print',
+                answer: "print",
                 explanation:
-                    'print() displays information produced by the function.'
+                    "The print() function displays information on the screen."
             },
 
             { text: '("Student:", name)' },
-
             { newline: true },
 
 
-            { text: '    print("Score:", scores[name])' },
+            { text: "    print(" },
 
+            {
+                blank: true,
+                answer: "scores[name]",
+                explanation:
+                    "Dictionary values can be accessed using their keys inside square brackets."
+            },
+
+            { text: ")" },
             { newline: true },
 
 
-            { text: 'show_student(' },
+            { text: "show_student(" },
 
             {
                 blank: true,
                 answer: '"Ana"',
                 explanation:
-                    'A string value can be passed to a function as an argument.'
+                    "A value passed to a function is called an argument."
             },
 
-            { text: ')' },
-
+            { text: ")" },
             { newline: true },
 
 
-            { text: 'show_student(' },
+            { text: "show_student(" },
 
             {
                 blank: true,
                 answer: '"Ben"',
                 explanation:
-                    'Functions can be called multiple times using different arguments.'
+                    "A function can be called more than once with different arguments."
             },
 
-            { text: ')' },
-
+            { text: ")" },
             { newline: true },
 
 
-            { text: 'first = students[' },
+            { text: "first = students[" },
 
             {
                 blank: true,
-                answer: '0',
+                answer: "0",
                 explanation:
-                    'Python list indexing starts at 0, so the first item is at index 0.'
+                    "Python list indexing starts at 0, so index 0 refers to the first item."
             },
 
-            { text: ']' },
-
+            { text: "]" },
             { newline: true },
 
 
-            { text: 'print(first)' },
+            { text: "count = " },
 
+            {
+                blank: true,
+                answer: "len",
+                explanation:
+                    "The len() function returns the number of items in a list."
+            },
+
+            { text: "(students)" },
             { newline: true },
 
 
             {
-                text: 'print("Number of students:", len(students))'
-            }
+                blank: true,
+                answer: "print",
+                explanation:
+                    "The print() function displays the value stored in count."
+            },
+
+            { text: "(count)" }
 
         ]
     },
@@ -486,7 +559,7 @@ const codeBank = [
 
     // =================================================
     // CODE 5
-    // FUNCTIONS / INPUT / STRINGS / FILE
+    // FUNCTIONS / INPUT / FILE SAVING
     // =================================================
 
     {
@@ -497,123 +570,124 @@ const codeBank = [
 
             {
                 blank: true,
-                answer: 'def',
+                answer: "def",
                 explanation:
-                    'The def keyword is used to define a function.'
+                    "The def keyword is used to define a function."
             },
 
-            { text: ' save_note():' },
-
+            { text: " save_note():" },
             { newline: true },
 
 
-            { text: '    message = ' },
+            { text: "    message = " },
 
             {
                 blank: true,
-                answer: 'input',
+                answer: "input",
                 explanation:
-                    'input() allows the user to enter the message that will be saved.'
+                    "The input() function allows the user to enter the message."
             },
 
             { text: '("Enter a note: ")' },
-
             { newline: true },
 
 
-            { text: '    file = ' },
+            { text: "    file = " },
 
             {
                 blank: true,
-                answer: 'open',
+                answer: "open",
                 explanation:
-                    'The open() function is used to open or create a file.'
+                    "The open() function is used to open or create a file."
             },
 
             { text: '("notes.txt", "w")' },
-
             { newline: true },
 
 
-            { text: '    file.' },
+            { text: "    file." },
 
             {
                 blank: true,
-                answer: 'write',
+                answer: "write",
                 explanation:
-                    'The write() method places text into the opened file.'
+                    "The write() method places text into the opened file."
             },
 
-            { text: '(message)' },
-
+            { text: "(message)" },
             { newline: true },
 
 
-            { text: '    file.' },
+            { text: "    file." },
 
             {
                 blank: true,
-                answer: 'close',
+                answer: "close",
                 explanation:
-                    'The close() method closes the file after the program finishes using it.'
+                    "The close() method closes the file after writing is finished."
             },
 
-            { text: '()' },
-
+            { text: "()" },
             { newline: true },
 
 
+            { text: "    " },
+
             {
                 blank: true,
-                answer: 'print',
+                answer: "print",
                 explanation:
-                    'print() displays a confirmation message to the user.'
+                    "The print() function displays a confirmation message."
             },
 
             { text: '("Note saved.")' },
-
             { newline: true },
 
 
-            { text: 'save_note()' },
-
+            { text: "save_note()" },
             { newline: true },
 
 
-            { text: 'name = ' },
+            { text: "name = " },
 
             {
                 blank: true,
-                answer: 'input',
+                answer: "input",
                 explanation:
-                    'input() is used to receive text from the user.'
+                    "input() receives text from the user."
             },
 
             { text: '("Enter your name: ")' },
-
             { newline: true },
 
 
-            { text: 'print("Hello", name)' },
-
-            { newline: true },
-
-
-            { text: 'number = ' },
+            { text: "print(" },
 
             {
                 blank: true,
-                answer: 'int',
+                answer: '"Hello"',
                 explanation:
-                    'int() converts input into a whole number.'
+                    "Hello is a string value, so it is written inside quotation marks."
             },
 
-            { text: '(input("Enter a number: "))' },
-
+            { text: ", name)" },
             { newline: true },
 
 
-            { text: 'print(number + 1)' }
+            { text: "number = " },
+
+            {
+                blank: true,
+                answer: "int",
+                explanation:
+                    "The int() function converts input into a whole number."
+            },
+
+            { text: '(input("Enter a number: "))' },
+            { newline: true },
+
+
+            { text: "print(number + 1)" }
 
         ]
     }
@@ -626,7 +700,6 @@ const codeBank = [
 // =====================================================
 
 let selectedCode = null;
-
 let studentAnswers = [];
 
 
@@ -659,12 +732,24 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+
+// =====================================================
+// COUNT BLANKS
+// =====================================================
+
+function countBlanks(code) {
+
+    return code.parts.filter(
+        part => part.blank
+    ).length;
 
 }
 
 
 // =====================================================
-// START TEST
+// START TEST II
 // =====================================================
 
 function startTest2() {
@@ -672,13 +757,20 @@ function startTest2() {
     const shuffled =
         shuffle([...codeBank]);
 
-
     selectedCode =
         shuffled[0];
 
+    console.log(
+        "Selected code:",
+        selectedCode.title
+    );
+
+    console.log(
+        "Number of blanks:",
+        countBlanks(selectedCode)
+    );
 
     studentAnswers = [];
-
 
     selectedCode.parts.forEach(
         part => {
@@ -692,14 +784,12 @@ function startTest2() {
         }
     );
 
-
     displayQuestions();
-
 }
 
 
 // =====================================================
-// DISPLAY ONE CODE
+// DISPLAY QUESTION
 // =====================================================
 
 function displayQuestions() {
@@ -709,13 +799,10 @@ function displayQuestions() {
             "codeQuestionsContainer"
         );
 
-
     container.innerHTML = "";
-
 
     const card =
         document.createElement("div");
-
 
     card.className =
         "code-question-card";
@@ -724,10 +811,8 @@ function displayQuestions() {
     const title =
         document.createElement("h3");
 
-
     title.textContent =
         selectedCode.title;
-
 
     card.appendChild(title);
 
@@ -735,21 +820,17 @@ function displayQuestions() {
     const topic =
         document.createElement("div");
 
-
     topic.className =
         "question-topic";
 
-
     topic.textContent =
         selectedCode.topic;
-
 
     card.appendChild(topic);
 
 
     const codeBox =
         document.createElement("div");
-
 
     codeBox.className =
         "code-box";
@@ -768,7 +849,6 @@ function displayQuestions() {
                 );
 
                 return;
-
             }
 
 
@@ -781,7 +861,6 @@ function displayQuestions() {
                 );
 
                 return;
-
             }
 
 
@@ -792,21 +871,17 @@ function displayQuestions() {
                         "input"
                     );
 
-
                 input.type =
                     "text";
-
 
                 input.className =
                     "code-blank";
 
+                input.autocomplete =
+                    "off";
 
                 input.dataset.blank =
                     blankIndex;
-
-
-                input.autocomplete =
-                    "off";
 
 
                 input.addEventListener(
@@ -837,7 +912,6 @@ function displayQuestions() {
 
     card.appendChild(codeBox);
 
-
     container.appendChild(card);
 
 }
@@ -854,9 +928,35 @@ function submitTest2() {
     );
 
 
-    // ---------------------------------------------
-    // CHECK ALL 10 BLANKS
-    // ---------------------------------------------
+    const totalBlanks =
+        countBlanks(selectedCode);
+
+
+    console.log(
+        "Total blanks:",
+        totalBlanks
+    );
+
+
+    // Safety check
+
+    if (totalBlanks !== 10) {
+
+        alert(
+            "There is a problem with this question. Please inform your teacher."
+        );
+
+        console.error(
+            "ERROR: Selected code has",
+            totalBlanks,
+            "blanks instead of 10."
+        );
+
+        return;
+    }
+
+
+    // Check unanswered
 
     let unanswered = 0;
 
@@ -883,13 +983,10 @@ function submitTest2() {
         );
 
         return;
-
     }
 
 
-    // ---------------------------------------------
-    // CONFIRM
-    // ---------------------------------------------
+    // Confirm
 
     const confirmed =
         confirm(
@@ -900,13 +997,10 @@ function submitTest2() {
     if (!confirmed) {
 
         return;
-
     }
 
 
-    // ---------------------------------------------
-    // CALCULATE SCORE
-    // ---------------------------------------------
+    // Calculate score
 
     let score = 0;
 
@@ -919,7 +1013,6 @@ function submitTest2() {
             if (!part.blank) {
 
                 return;
-
             }
 
 
@@ -943,9 +1036,14 @@ function submitTest2() {
     );
 
 
-    // ---------------------------------------------
-    // SHOW SCORE
-    // ---------------------------------------------
+    console.log(
+        "Score:",
+        score,
+        "/ 10"
+    );
+
+
+    // Show score
 
     const scoreArea =
         document.getElementById(
@@ -969,16 +1067,12 @@ function submitTest2() {
         "Click the RED answers to review the concepts you missed.";
 
 
-    // ---------------------------------------------
-    // SHOW COMPLETED CODE
-    // ---------------------------------------------
+    // Display complete code
 
     displayResults();
 
 
-    // ---------------------------------------------
-    // DISABLE SUBMIT
-    // ---------------------------------------------
+    // Disable submit
 
     const button =
         document.getElementById(
@@ -989,14 +1083,9 @@ function submitTest2() {
     button.disabled =
         true;
 
-
     button.textContent =
         "TEST SUBMITTED";
 
-
-    // ---------------------------------------------
-    // SCROLL TO SCORE
-    // ---------------------------------------------
 
     scoreArea.scrollIntoView({
         behavior: "smooth"
@@ -1006,7 +1095,7 @@ function submitTest2() {
 
 
 // =====================================================
-// NORMALIZE ANSWERS
+// NORMALIZE
 // =====================================================
 
 function normalize(value) {
@@ -1029,42 +1118,29 @@ function displayResults() {
             "codeQuestionsContainer"
         );
 
-
     container.innerHTML = "";
 
-
-    // ---------------------------------------------
-    // REVIEW INSTRUCTION
-    // ---------------------------------------------
 
     const instruction =
         document.createElement(
             "div"
         );
 
-
     instruction.className =
         "review-instruction";
 
-
     instruction.textContent =
         "Click the RED answers to review the concepts you missed.";
-
 
     container.appendChild(
         instruction
     );
 
 
-    // ---------------------------------------------
-    // CODE CARD
-    // ---------------------------------------------
-
     const card =
         document.createElement(
             "div"
         );
-
 
     card.className =
         "code-question-card";
@@ -1075,10 +1151,8 @@ function displayResults() {
             "h3"
         );
 
-
     title.textContent =
         selectedCode.title;
-
 
     card.appendChild(title);
 
@@ -1088,14 +1162,11 @@ function displayResults() {
             "div"
         );
 
-
     topic.className =
         "question-topic";
 
-
     topic.textContent =
         selectedCode.topic;
-
 
     card.appendChild(topic);
 
@@ -1104,7 +1175,6 @@ function displayResults() {
         document.createElement(
             "div"
         );
-
 
     codeBox.className =
         "code-box submitted-code";
@@ -1116,8 +1186,6 @@ function displayResults() {
     selectedCode.parts.forEach(
         part => {
 
-            // NEW LINE
-
             if (part.newline) {
 
                 codeBox.appendChild(
@@ -1125,11 +1193,8 @@ function displayResults() {
                 );
 
                 return;
-
             }
 
-
-            // NORMAL CODE
 
             if (part.text) {
 
@@ -1140,11 +1205,8 @@ function displayResults() {
                 );
 
                 return;
-
             }
 
-
-            // ANSWER
 
             if (part.blank) {
 
@@ -1233,7 +1295,7 @@ function displayResults() {
 
 
 // =====================================================
-// SHOW REVIEW POPUP
+// REVIEW POPUP
 // =====================================================
 
 function showExplanation(
@@ -1264,7 +1326,6 @@ function showExplanation(
     box.id =
         "codeExplanation";
 
-
     box.className =
         "code-explanation";
 
@@ -1279,30 +1340,20 @@ function showExplanation(
 
         </button>
 
-
         <h3>Quick Review</h3>
 
-
         <p>
-
             <strong>Your answer:</strong>
             ${escapeHTML(studentAnswer)}
-
         </p>
-
 
         <p>
-
             <strong>Correct answer:</strong>
             ${escapeHTML(correctAnswer)}
-
         </p>
 
-
         <div class="explanation-text">
-
             ${escapeHTML(explanation)}
-
         </div>
 
     `;
@@ -1316,7 +1367,7 @@ function showExplanation(
 
 
 // =====================================================
-// CLOSE REVIEW
+// CLOSE POPUP
 // =====================================================
 
 function closeExplanation() {
@@ -1337,7 +1388,7 @@ function closeExplanation() {
 
 
 // =====================================================
-// PROTECT DISPLAYED ANSWERS
+// ESCAPE HTML
 // =====================================================
 
 function escapeHTML(text) {
@@ -1363,12 +1414,20 @@ document.addEventListener(
         startTest2();
 
 
-        document
-            .getElementById("submitBtn")
-            .addEventListener(
+        const submitButton =
+            document.getElementById(
+                "submitBtn"
+            );
+
+
+        if (submitButton) {
+
+            submitButton.addEventListener(
                 "click",
                 submitTest2
             );
+
+        }
 
     }
 );
