@@ -708,3 +708,246 @@ button:active {
 
 }
 
+/* ==========================================
+   SCORE AFTER SUBMISSION
+   ========================================== */
+
+.score-area {
+    display: none;
+
+    background: white;
+
+    margin-top: 20px;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+
+    border-top: 5px solid #2856a3;
+}
+
+
+.score-label {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    color: #666;
+}
+
+
+.final-score {
+    font-size: 48px;
+
+    font-weight: 800;
+
+    color: #2856a3;
+
+    margin: 5px 0;
+}
+
+
+/* ==========================================
+   REVIEW QUESTIONS
+   ========================================== */
+
+.review-question {
+
+    background: white;
+
+    margin-bottom: 12px;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.06);
+
+    border-left: 5px solid #ccc;
+}
+
+
+.correct-question {
+    border-left-color: #2e7d32;
+}
+
+
+.wrong-question {
+    border-left-color: #c62828;
+}
+
+
+/* QUESTION HEADER */
+
+.review-question-header {
+
+    width: 100%;
+
+    border: none;
+
+    background: white;
+
+    padding: 18px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: default;
+}
+
+
+/* Only wrong questions clickable */
+
+.wrong-question
+.review-question-header {
+
+    cursor: pointer;
+}
+
+
+.wrong-question
+.review-question-header:hover {
+
+    background: #fafafa;
+}
+
+
+/* STATUS */
+
+.review-status {
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.correct-question
+.review-status {
+
+    color: #2e7d32;
+}
+
+
+.wrong-question
+.review-status {
+
+    color: #c62828;
+}
+
+
+/* ARROW */
+
+.review-arrow {
+
+    margin-left: auto;
+
+    font-size: 24px;
+
+    color: #777;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+/* Rotate arrow when opened */
+
+.review-question.open
+.review-arrow {
+
+    transform:
+        rotate(90deg);
+}
+
+
+/* DETAILS */
+
+.review-details {
+
+    display: none;
+
+    padding:
+        0 20px 20px 50px;
+
+    background: #fafafa;
+
+    border-top:
+        1px solid #eee;
+}
+
+
+/* Show details */
+
+.review-question.open
+.review-details {
+
+    display: block;
+}
+
+
+/* ANSWER TEXT */
+
+.review-details p {
+
+    margin: 12px 0;
+
+    line-height: 1.5;
+}
+
+
+/* EXPLANATION */
+
+.review-explanation {
+
+    margin-top: 15px;
+
+    padding: 14px 16px;
+
+    background: #eef4ff;
+
+    border-radius: 9px;
+
+    color: #234;
+}
+
+
+.review-explanation strong {
+
+    color: #2856a3;
+}
+
+
+.review-explanation p {
+
+    margin: 5px 0 0;
+}
+
+
+/* SUBMIT BUTTON */
+
+.submit-btn:disabled {
+
+    background: #9ca3af;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
