@@ -453,14 +453,12 @@ function displayAllQuestions() {
 // ==========================================
 // SUBMIT TEST
 // ==========================================
-
 function submitTest() {
 
-
-    const unanswered =
-        studentAnswers.filter(
-            answer => answer === null
-        ).length;
+    // Check if all questions are answered
+    const unanswered = studentAnswers.filter(
+        answer => answer === null
+    ).length;
 
 
     if (unanswered > 0) {
@@ -470,23 +468,21 @@ function submitTest() {
         );
 
         return;
-
     }
 
 
-    const confirmed =
-        confirm(
-            "Are you sure you want to submit Test I?"
-        );
+    // Confirm submission
+    const confirmed = confirm(
+        "Are you sure you want to submit Test I?"
+    );
 
 
     if (!confirmed) {
-
         return;
-
     }
 
 
+    // Calculate score
     let score = 0;
 
 
@@ -506,72 +502,264 @@ function submitTest() {
     );
 
 
+    // Mark test as submitted
     testSubmitted = true;
 
 
+    // Save the result
     saveTestResult(score);
 
 
-    document.getElementById(
-        "scoreDisplay"
-    ).textContent =
-        score +
-        " / " +
-        QUESTIONS_PER_TEST;
+    // Show score
+    const scoreArea =
+        document.getElementById("scoreArea");
+
+    scoreArea.style.display = "block";
 
 
+    document.getElementById("finalScore")
+        .textContent =
+        score + " / " + QUESTIONS_PER_TEST;
+
+
+    // Score message
     let message;
 
 
     if (score === 10) {
 
         message =
-            "Excellent! You got a perfect score.";
+            "Excellent! Perfect score.";
 
     }
-
     else if (score >= 8) {
 
         message =
-            "Very good! Keep reviewing the concepts.";
+            "Very good work!";
 
     }
-
     else if (score >= 5) {
 
         message =
-            "Good effort. Review the lessons you missed.";
+            "Good effort. Review the items you missed.";
 
     }
-
     else {
 
         message =
-            "Keep practicing. Review the concepts and try again.";
+            "Keep practicing and review the concepts.";
 
     }
 
 
-    document.getElementById(
-        "resultMessage"
-    ).textContent =
-        message;
+    document.getElementById("scoreMessage")
+        .textContent = message;
 
 
-    document.getElementById(
-        "resultModal"
-    ).style.display =
-        "flex";
+    // Change questions to review mode
+    displayReviewMode();
+
+
+    // Disable submit button
+    const submitButton =
+        document.getElementById("submitBtn");
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+        "TEST SUBMITTED";
+
+
+    // Move screen to the score
+    scoreArea.scrollIntoView({
+        behavior: "smooth"
+    });
 
 }
 
+// ==========================================
+// REVIEW MODE
+// ==========================================
+
+function displayReviewMode() {
+
+    const container =
+        document.getElementById(
+            "questionsContainer"
+        );
+
+
+    container.innerHTML = "";
+
+
+    selectedQuestions.forEach(
+        (question, questionIndex) => {
+
+            const studentAnswer =
+                studentAnswers[questionIndex];
+
+
+            const isCorrect =
+                studentAnswer ===
+                question.answer;
+
+
+            // Create question review card
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "review-question";
+
+
+            if (isCorrect) {
+
+                card.classList.add(
+                    "correct-question"
+                );
+
+            }
+            else {
+
+                card.classList.add(
+                    "wrong-question"
+                );
+
+            }
+
+
+            // ----------------------------------
+            // QUESTION HEADER
+            // ----------------------------------
+
+            const header =
+                document.createElement("button");
+
+            header.className =
+                "review-question-header";
+
+
+            const status =
+                isCorrect ? "✓" : "✗";
+
+
+            header.innerHTML = `
+                <span class="review-status">
+                    ${status}
+                </span>
+
+                <span>
+                    Question ${questionIndex + 1}
+                </span>
+
+                <span class="review-arrow">
+                    ${isCorrect ? "" : "›"}
+                </span>
+            `;
+
+
+            card.appendChild(header);
+
+
+            // ----------------------------------
+            // WRONG QUESTION DETAILS
+            // ----------------------------------
+
+            if (!isCorrect) {
+
+                const details =
+                    document.createElement("div");
+
+                details.className =
+                    "review-details";
+
+
+                // Student answer
+                const studentAnswerText =
+                    document.createElement("p");
+
+                studentAnswerText.innerHTML = `
+                    <strong>Your answer:</strong>
+                    ${String.fromCharCode(
+                        65 + studentAnswer
+                    )}.
+                    ${question.options[studentAnswer]}
+                `;
+
+
+                // Correct answer
+                const correctAnswerText =
+                    document.createElement("p");
+
+                correctAnswerText.innerHTML = `
+                    <strong>Correct answer:</strong>
+                    ${String.fromCharCode(
+                        65 + question.answer
+                    )}.
+                    ${question.options[question.answer]}
+                `;
+
+
+                // Explanation
+                const explanation =
+                    document.createElement("div");
+
+                explanation.className =
+                    "review-explanation";
+
+
+                explanation.innerHTML = `
+                    <strong>💡 Quick Review</strong>
+
+                    <p>
+                        ${question.explanation}
+                    </p>
+                `;
+
+
+                details.appendChild(
+                    studentAnswerText
+                );
+
+                details.appendChild(
+                    correctAnswerText
+                );
+
+                details.appendChild(
+                    explanation
+                );
+
+
+                card.appendChild(details);
+
+
+                // Click to open
+                header.addEventListener(
+                    "click",
+                    function() {
+
+                        card.classList.toggle(
+                            "open"
+                        );
+
+                    }
+                );
+
+            }
+
+
+            container.appendChild(card);
+
+        }
+    );
+
+}
 
 // ==========================================
 // SAVE RESULT
 // ==========================================
 
 function saveTestResult(score) {
-
 
     const result = {
 
