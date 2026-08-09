@@ -15,7 +15,6 @@ const codeBank = [
 
     // =================================================
     // CODE 1
-    // VARIABLES / INPUT / OUTPUT / DATA TYPES
     // =================================================
 
     {
@@ -56,7 +55,7 @@ const codeBank = [
                 blank: true,
                 answer: "input",
                 explanation:
-                    "The input() function is used to receive information from the user."
+                    "The input() function receives information from the user."
             },
 
             { text: '("Enter your section: ")' },
@@ -69,7 +68,7 @@ const codeBank = [
                 blank: true,
                 answer: "float",
                 explanation:
-                    "The float() function converts a value into a number that can contain decimal values."
+                    "The float() function converts input into a decimal number."
             },
 
             { text: '(input("Enter your height: "))' },
@@ -91,7 +90,7 @@ const codeBank = [
                 blank: true,
                 answer: "print",
                 explanation:
-                    "print() is used to display the student's age."
+                    "The print() function displays the student's age."
             },
 
             { text: '("Age:", age)' },
@@ -102,7 +101,7 @@ const codeBank = [
                 blank: true,
                 answer: "print",
                 explanation:
-                    "The print() function can display variables and text together."
+                    "The print() function can display text and variables together."
             },
 
             { text: '("Section:", section)' },
@@ -113,7 +112,7 @@ const codeBank = [
                 blank: true,
                 answer: "print",
                 explanation:
-                    "print() can also display decimal values stored in a variable."
+                    "The print() function can display decimal values."
             },
 
             { text: '("Height:", height)' },
@@ -137,7 +136,7 @@ const codeBank = [
                 blank: true,
                 answer: "print",
                 explanation:
-                    "The final print() displays the calculated value."
+                    "The print() function displays the calculated result."
             },
 
             { text: '("Age next year:", next_year)' }
@@ -148,7 +147,6 @@ const codeBank = [
 
     // =================================================
     // CODE 2
-    // CONDITIONS
     // =================================================
 
     {
@@ -163,7 +161,7 @@ const codeBank = [
                 blank: true,
                 answer: "float",
                 explanation:
-                    "The float() function converts input into a number that may contain decimal values."
+                    "The float() function converts input into a number that may contain decimals."
             },
 
             { text: '(input("Enter your grade: "))' },
@@ -189,7 +187,7 @@ const codeBank = [
                 blank: true,
                 answer: "print",
                 explanation:
-                    "The print() function displays the result when the condition is true."
+                    "The print() function displays a message when the condition is true."
             },
 
             { text: '("Excellent")' },
@@ -222,7 +220,7 @@ const codeBank = [
                 blank: true,
                 answer: "print",
                 explanation:
-                    "print() displays the result of the second condition."
+                    "The print() function displays the result of the second condition."
             },
 
             { text: '("Passed")' },
@@ -272,7 +270,7 @@ const codeBank = [
                 blank: true,
                 answer: '"Review the lessons."',
                 explanation:
-                    "Strings are written inside quotation marks and can be used as messages."
+                    "Strings are written inside quotation marks."
             },
 
             { text: ")" }
@@ -283,7 +281,6 @@ const codeBank = [
 
     // =================================================
     // CODE 3
-    // LOOPS / NUMBERS / STRINGS
     // =================================================
 
     {
@@ -300,16 +297,17 @@ const codeBank = [
                 blank: true,
                 answer: "for",
                 explanation:
-                    "A for loop repeats a block of code for each value in a sequence."
+                    "A for loop repeats code for each value in a sequence."
             },
 
             { text: " number in " },
+
 
             {
                 blank: true,
                 answer: "range",
                 explanation:
-                    "range() creates a sequence of numbers that can be used by a loop."
+                    "range() creates a sequence of numbers used by loops."
             },
 
             { text: "(1, 6):" },
@@ -322,7 +320,7 @@ const codeBank = [
                 blank: true,
                 answer: "print",
                 explanation:
-                    "print() displays the current value of the loop variable."
+                    "The print() function displays the current loop value."
             },
 
             { text: "(number)" },
@@ -337,10 +335,11 @@ const codeBank = [
                 blank: true,
                 answer: "while",
                 explanation:
-                    "A while loop continues running as long as its condition is true."
+                    "A while loop continues as long as its condition is true."
             },
 
             { text: " count " },
+
 
             {
                 blank: true,
@@ -359,7 +358,7 @@ const codeBank = [
                 blank: true,
                 answer: "print",
                 explanation:
-                    "print() displays the current value of count."
+                    "The print() function displays the current value of count."
             },
 
             { text: '("Remaining:", count)' },
@@ -372,7 +371,7 @@ const codeBank = [
                 blank: true,
                 answer: "-",
                 explanation:
-                    "The - operator subtracts a value from another number."
+                    "The - operator subtracts one value from another."
             },
 
             { text: " 1" },
@@ -387,7 +386,7 @@ const codeBank = [
                 blank: true,
                 answer: "print",
                 explanation:
-                    "print() displays the string stored in the message variable."
+                    "The print() function displays the string stored in message."
             },
 
             { text: "(message)" },
@@ -400,7 +399,7 @@ const codeBank = [
                 blank: true,
                 answer: "+",
                 explanation:
-                    "The + operator adds numeric values together."
+                    "The + operator adds numeric values."
             },
 
             { text: " 5" },
@@ -411,7 +410,7 @@ const codeBank = [
                 blank: true,
                 answer: "print",
                 explanation:
-                    "print() displays the final value stored in total."
+                    "The print() function displays the final total."
             },
 
             { text: '("Total:", total)' }
@@ -422,7 +421,6 @@ const codeBank = [
 
     // =================================================
     // CODE 4
-    // LISTS / DICTIONARIES / FUNCTIONS
     // =================================================
 
     {
@@ -437,7 +435,7 @@ const codeBank = [
                 blank: true,
                 answer: '["Ana", "Ben", "Carlo"]',
                 explanation:
-                    "A list stores multiple values in one variable. Lists use square brackets."
+                    "A list stores multiple values and uses square brackets."
             },
 
             { newline: true },
@@ -449,7 +447,7 @@ const codeBank = [
                 blank: true,
                 answer: '{"Ana": 90, "Ben": 85, "Carlo": 88}',
                 explanation:
-                    "A dictionary stores information using key-value pairs and uses curly braces."
+                    "A dictionary stores information using key-value pairs and curly braces."
             },
 
             { newline: true },
@@ -459,7 +457,7 @@ const codeBank = [
                 blank: true,
                 answer: "def",
                 explanation:
-                    "The def keyword is used to define a function in Python."
+                    "The def keyword is used to define a function."
             },
 
             { text: " show_student(name):" },
@@ -511,7 +509,7 @@ const codeBank = [
                 blank: true,
                 answer: '"Ben"',
                 explanation:
-                    "A function can be called more than once with different arguments."
+                    "A function can be called more than once using different arguments."
             },
 
             { text: ")" },
@@ -524,7 +522,7 @@ const codeBank = [
                 blank: true,
                 answer: "0",
                 explanation:
-                    "Python list indexing starts at 0, so index 0 refers to the first item."
+                    "Python list indexing starts at 0, so index 0 is the first item."
             },
 
             { text: "]" },
@@ -559,7 +557,6 @@ const codeBank = [
 
     // =================================================
     // CODE 5
-    // FUNCTIONS / INPUT / FILE SAVING
     // =================================================
 
     {
@@ -585,7 +582,7 @@ const codeBank = [
                 blank: true,
                 answer: "input",
                 explanation:
-                    "The input() function allows the user to enter the message."
+                    "The input() function allows the user to enter a message."
             },
 
             { text: '("Enter a note: ")' },
@@ -624,7 +621,7 @@ const codeBank = [
                 blank: true,
                 answer: "close",
                 explanation:
-                    "The close() method closes the file after writing is finished."
+                    "The close() method closes the file after writing."
             },
 
             { text: "()" },
@@ -654,7 +651,7 @@ const codeBank = [
                 blank: true,
                 answer: "input",
                 explanation:
-                    "input() receives text from the user."
+                    "The input() function receives text from the user."
             },
 
             { text: '("Enter your name: ")' },
@@ -709,11 +706,7 @@ let studentAnswers = [];
 
 function shuffle(array) {
 
-    for (
-        let i = array.length - 1;
-        i > 0;
-        i--
-    ) {
+    for (let i = array.length - 1; i > 0; i--) {
 
         const j =
             Math.floor(
@@ -728,7 +721,6 @@ function shuffle(array) {
             array[j],
             array[i]
         ];
-
     }
 
     return array;
@@ -744,7 +736,6 @@ function countBlanks(code) {
     return code.parts.filter(
         part => part.blank
     ).length;
-
 }
 
 
@@ -754,11 +745,8 @@ function countBlanks(code) {
 
 function startTest2() {
 
-    const shuffled =
-        shuffle([...codeBank]);
-
     selectedCode =
-        shuffled[0];
+        shuffle([...codeBank])[0];
 
     console.log(
         "Selected code:",
@@ -772,24 +760,12 @@ function startTest2() {
 
     studentAnswers = [];
 
-    selectedCode.parts.forEach(
-        part => {
-
-            if (part.blank) {
-
-                studentAnswers.push("");
-
-            }
-
-        }
-    );
-
     displayQuestions();
 }
 
 
 // =====================================================
-// DISPLAY QUESTION
+// DISPLAY QUESTIONS
 // =====================================================
 
 function displayQuestions() {
@@ -798,6 +774,15 @@ function displayQuestions() {
         document.getElementById(
             "codeQuestionsContainer"
         );
+
+    if (!container) {
+
+        console.error(
+            "codeQuestionsContainer was not found."
+        );
+
+        return;
+    }
 
     container.innerHTML = "";
 
@@ -884,36 +869,25 @@ function displayQuestions() {
                     blankIndex;
 
 
-                input.addEventListener(
-                    "input",
-                    function() {
-
-                        studentAnswers[
-                            blankIndex
-                        ] =
-                            input.value.trim();
-
-                    }
-                );
-
-
                 codeBox.appendChild(
                     input
                 );
 
 
                 blankIndex++;
-
             }
 
         }
     );
 
 
-    card.appendChild(codeBox);
+    card.appendChild(
+        codeBox
+    );
 
-    container.appendChild(card);
-
+    container.appendChild(
+        card
+    );
 }
 
 
@@ -923,12 +897,14 @@ function displayQuestions() {
 
 function submitTest2() {
 
-    console.log("SUBMIT TEST II CLICKED");
+    console.log(
+        "SUBMIT TEST II CLICKED"
+    );
 
 
-    // =============================================
-    // GET ALL VISIBLE BLANKS DIRECTLY FROM PAGE
-    // =============================================
+    // ---------------------------------------------
+    // FIND ALL BLANKS
+    // ---------------------------------------------
 
     const inputs =
         document.querySelectorAll(
@@ -942,9 +918,28 @@ function submitTest2() {
     );
 
 
-    // =============================================
-    // READ STUDENT ANSWERS
-    // =============================================
+    // ---------------------------------------------
+    // MUST HAVE EXACTLY 10
+    // ---------------------------------------------
+
+    if (inputs.length !== 10) {
+
+        alert(
+            "There is a problem with this Test II question. Please inform your teacher."
+        );
+
+        console.error(
+            "Expected 10 blanks but found:",
+            inputs.length
+        );
+
+        return;
+    }
+
+
+    // ---------------------------------------------
+    // READ ANSWERS DIRECTLY FROM INPUTS
+    // ---------------------------------------------
 
     studentAnswers = [];
 
@@ -966,45 +961,14 @@ function submitTest2() {
     );
 
 
-    // =============================================
-    // CHECK NUMBER OF BLANKS
-    // =============================================
-
-    if (inputs.length !== 10) {
-
-        alert(
-            "There is a problem with this Test II question. Please inform your teacher."
-        );
-
-        console.error(
-            "Expected 10 blanks but found:",
-            inputs.length
-        );
-
-        return;
-    }
-
-
-    // =============================================
+    // ---------------------------------------------
     // CHECK EMPTY ANSWERS
-    // =============================================
+    // ---------------------------------------------
 
-    let unanswered = 0;
-
-
-    studentAnswers.forEach(
-        answer => {
-
-            if (
-                answer === ""
-            ) {
-
-                unanswered++;
-
-            }
-
-        }
-    );
+    const unanswered =
+        studentAnswers.filter(
+            answer => answer === ""
+        ).length;
 
 
     console.log(
@@ -1023,9 +987,9 @@ function submitTest2() {
     }
 
 
-    // =============================================
-    // CONFIRM SUBMISSION
-    // =============================================
+    // ---------------------------------------------
+    // CONFIRM
+    // ---------------------------------------------
 
     const confirmed =
         confirm(
@@ -1039,9 +1003,9 @@ function submitTest2() {
     }
 
 
-    // =============================================
+    // ---------------------------------------------
     // CALCULATE SCORE
-    // =============================================
+    // ---------------------------------------------
 
     let score = 0;
 
@@ -1054,7 +1018,6 @@ function submitTest2() {
             if (!part.blank) {
 
                 return;
-
             }
 
 
@@ -1099,9 +1062,9 @@ function submitTest2() {
     );
 
 
-    // =============================================
+    // ---------------------------------------------
     // SHOW SCORE
-    // =============================================
+    // ---------------------------------------------
 
     const scoreArea =
         document.getElementById(
@@ -1133,7 +1096,6 @@ function submitTest2() {
 
         finalScore.textContent =
             score + " / 10";
-
     }
 
 
@@ -1147,20 +1109,19 @@ function submitTest2() {
 
         scoreMessage.textContent =
             "Click the RED answers to review the concepts you missed.";
-
     }
 
 
-    // =============================================
-    // SHOW REVIEW
-    // =============================================
+    // ---------------------------------------------
+    // SHOW COMPLETE CODE
+    // ---------------------------------------------
 
     displayResults();
 
 
-    // =============================================
+    // ---------------------------------------------
     // DISABLE SUBMIT
-    // =============================================
+    // ---------------------------------------------
 
     const button =
         document.getElementById(
@@ -1175,168 +1136,28 @@ function submitTest2() {
 
         button.textContent =
             "TEST SUBMITTED";
-
     }
 
 
-    // =============================================
-    // MOVE TO SCORE
-    // =============================================
+    // ---------------------------------------------
+    // SCROLL TO SCORE
+    // ---------------------------------------------
 
     scoreArea.scrollIntoView({
         behavior: "smooth"
     });
-
-}
-
-    // Check unanswered
-
-    let unanswered = 0;
-
-
-    studentAnswers.forEach(
-        answer => {
-
-            if (
-                answer.trim() === ""
-            ) {
-
-                unanswered++;
-
-            }
-
-        }
-    );
-
-
-    if (unanswered > 0) {
-
-        alert(
-            "Please complete all 10 blanks before submitting."
-        );
-
-        return;
-    }
-
-
-    // Confirm
-
-    const confirmed =
-        confirm(
-            "Are you sure you want to submit Test II?"
-        );
-
-
-    if (!confirmed) {
-
-        return;
-    }
-
-
-    // Calculate score
-
-    let score = 0;
-
-    let blankIndex = 0;
-
-
-    selectedCode.parts.forEach(
-        part => {
-
-            if (!part.blank) {
-
-                return;
-            }
-
-
-            if (
-                normalize(
-                    studentAnswers[blankIndex]
-                ) ===
-                normalize(
-                    part.answer
-                )
-            ) {
-
-                score++;
-
-            }
-
-
-            blankIndex++;
-
-        }
-    );
-
-
-    console.log(
-        "Score:",
-        score,
-        "/ 10"
-    );
-
-
-    // Show score
-
-    const scoreArea =
-        document.getElementById(
-            "scoreArea"
-        );
-
-
-    scoreArea.style.display =
-        "block";
-
-
-    document.getElementById(
-        "finalScore"
-    ).textContent =
-        score + " / 10";
-
-
-    document.getElementById(
-        "scoreMessage"
-    ).textContent =
-        "Click the RED answers to review the concepts you missed.";
-
-
-    // Display complete code
-
-    displayResults();
-
-
-    // Disable submit
-
-    const button =
-        document.getElementById(
-            "submitBtn"
-        );
-
-
-    button.disabled =
-        true;
-
-    button.textContent =
-        "TEST SUBMITTED";
-
-
-    scoreArea.scrollIntoView({
-        behavior: "smooth"
-    });
-
 }
 
 
 // =====================================================
-// NORMALIZE
+// NORMALIZE ANSWERS
 // =====================================================
 
 function normalize(value) {
 
-    return value
+    return String(value)
         .trim()
         .toLowerCase();
-
 }
 
 
@@ -1351,29 +1172,42 @@ function displayResults() {
             "codeQuestionsContainer"
         );
 
+
     container.innerHTML = "";
 
+
+    // ---------------------------------------------
+    // INSTRUCTION
+    // ---------------------------------------------
 
     const instruction =
         document.createElement(
             "div"
         );
 
+
     instruction.className =
         "review-instruction";
 
+
     instruction.textContent =
         "Click the RED answers to review the concepts you missed.";
+
 
     container.appendChild(
         instruction
     );
 
 
+    // ---------------------------------------------
+    // CARD
+    // ---------------------------------------------
+
     const card =
         document.createElement(
             "div"
         );
+
 
     card.className =
         "code-question-card";
@@ -1384,10 +1218,14 @@ function displayResults() {
             "h3"
         );
 
+
     title.textContent =
         selectedCode.title;
 
-    card.appendChild(title);
+
+    card.appendChild(
+        title
+    );
 
 
     const topic =
@@ -1395,19 +1233,29 @@ function displayResults() {
             "div"
         );
 
+
     topic.className =
         "question-topic";
+
 
     topic.textContent =
         selectedCode.topic;
 
-    card.appendChild(topic);
 
+    card.appendChild(
+        topic
+    );
+
+
+    // ---------------------------------------------
+    // CODE
+    // ---------------------------------------------
 
     const codeBox =
         document.createElement(
             "div"
         );
+
 
     codeBox.className =
         "code-box submitted-code";
@@ -1443,10 +1291,14 @@ function displayResults() {
 
             if (part.blank) {
 
-                const answer =
+                const studentAnswer =
                     studentAnswers[
                         blankIndex
                     ];
+
+
+                const correctAnswer =
+                    part.answer;
 
 
                 const answerSpan =
@@ -1460,12 +1312,16 @@ function displayResults() {
 
 
                 answerSpan.textContent =
-                    answer;
+                    studentAnswer;
 
 
                 const correct =
-                    normalize(answer) ===
-                    normalize(part.answer);
+                    normalize(
+                        studentAnswer
+                    ) ===
+                    normalize(
+                        correctAnswer
+                    );
 
 
                 if (correct) {
@@ -1481,18 +1337,17 @@ function displayResults() {
                         "answer-wrong"
                     );
 
-
                     answerSpan.title =
                         "Click to review";
 
 
                     answerSpan.addEventListener(
                         "click",
-                        function() {
+                        function () {
 
                             showExplanation(
-                                answer,
-                                part.answer,
+                                studentAnswer,
+                                correctAnswer,
                                 part.explanation
                             );
 
@@ -1508,7 +1363,6 @@ function displayResults() {
 
 
                 blankIndex++;
-
             }
 
         }
@@ -1523,7 +1377,6 @@ function displayResults() {
     container.appendChild(
         card
     );
-
 }
 
 
@@ -1546,7 +1399,6 @@ function showExplanation(
     if (old) {
 
         old.remove();
-
     }
 
 
@@ -1558,6 +1410,7 @@ function showExplanation(
 
     box.id =
         "codeExplanation";
+
 
     box.className =
         "code-explanation";
@@ -1586,7 +1439,9 @@ function showExplanation(
         </p>
 
         <div class="explanation-text">
+
             ${escapeHTML(explanation)}
+
         </div>
 
     `;
@@ -1595,12 +1450,11 @@ function showExplanation(
     document.body.appendChild(
         box
     );
-
 }
 
 
 // =====================================================
-// CLOSE POPUP
+// CLOSE REVIEW POPUP
 // =====================================================
 
 function closeExplanation() {
@@ -1614,9 +1468,7 @@ function closeExplanation() {
     if (box) {
 
         box.remove();
-
     }
-
 }
 
 
@@ -1626,13 +1478,27 @@ function closeExplanation() {
 
 function escapeHTML(text) {
 
-    return text
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
+    return String(text)
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 }
 
 
@@ -1642,7 +1508,7 @@ function escapeHTML(text) {
 
 document.addEventListener(
     "DOMContentLoaded",
-    function() {
+    function () {
 
         startTest2();
 
@@ -1658,6 +1524,13 @@ document.addEventListener(
             submitButton.addEventListener(
                 "click",
                 submitTest2
+            );
+
+        }
+        else {
+
+            console.error(
+                "submitBtn was not found."
             );
 
         }
