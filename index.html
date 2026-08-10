@@ -2,81 +2,410 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Interactive Exam Reviewer</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>Python Reviewer</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <div class="page">
 
-        <div class="card">
+    <div class="container">
 
-            <div class="header">
-                <div class="icon">📚</div>
 
-                <h1>Interactive Exam Reviewer</h1>
+        <!-- ==========================================
+             HEADER
+        =========================================== -->
 
-                <p>
-                    Welcome! Enter your information to begin.
-                </p>
+        <header class="header">
+
+            <div class="python-icon">
+                🐍
             </div>
 
+            <h1>
+                Python Reviewer
+            </h1>
 
-            <div class="form">
+            <p>
+                Test your Python knowledge
+            </p>
+
+        </header>
+
+
+        <!-- ==========================================
+             LOGIN CARD
+        =========================================== -->
+
+        <div class="login-card">
+
+
+            <h2>
+                Welcome!
+            </h2>
+
+
+            <p class="login-instruction">
+
+                Enter your information before
+                starting the reviewer.
+
+            </p>
+
+
+            <!-- STUDENT NAME -->
+
+            <div class="form-group">
 
                 <label for="studentName">
+
                     Student Name
+
                 </label>
+
 
                 <input
                     type="text"
                     id="studentName"
                     placeholder="Enter your full name"
+                    autocomplete="name"
                 >
 
+            </div>
+
+
+            <!-- SECTION -->
+
+            <div class="form-group">
 
                 <label for="section">
+
                     Section
+
                 </label>
 
-                <select id="section">
 
-                    <option value="">
-                        Select your section
-                    </option>
-
-                    <option>G10 - St. Berchmans</option>
-                    <option>G10 - St. Canisius</option>
-                    <option>G10 - St. Chabanel</option>
-                    <option>G10 - St. Colombiere</option>
-                    <option>G10 - St. Daniel</option>
-                    <option>G10 - St. Faber</option>
-                    <option>G10 - St. Hurtado</option>
-                    <option>G10 - St. Mayer</option>
-                    <option>G10 - St. Southwell</option>
-
-                </select>
-
-
-                <button id="startButton">
-                    START REVIEWER
-                </button>
+                <input
+                    type="text"
+                    id="section"
+                    placeholder="Enter your section"
+                >
 
             </div>
 
 
-            <div class="footer">
-                Grade 10 • Interactive Learning
-            </div>
+            <!-- START BUTTON -->
+
+            <button
+                type="button"
+                class="start-button"
+                id="startReviewerBtn"
+            >
+
+                START REVIEWER
+
+            </button>
+
+
+            <!-- ERROR MESSAGE -->
+
+            <div
+                id="loginError"
+                class="login-error"
+            ></div>
+
 
         </div>
 
+
+        <!-- ==========================================
+             INFORMATION
+        =========================================== -->
+
+        <div class="info-card">
+
+            <h3>
+                Reviewer Structure
+            </h3>
+
+
+            <div class="info-item">
+
+                <span class="info-number">
+                    1
+                </span>
+
+                <div>
+
+                    <strong>
+                        Test I
+                    </strong>
+
+                    <p>
+                        Multiple Choice
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-number">
+                    2
+                </span>
+
+                <div>
+
+                    <strong>
+                        Test II
+                    </strong>
+
+                    <p>
+                        Code Completion
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <p class="info-note">
+
+                Answer each test carefully.
+                Review your mistakes and learn
+                from the feedback.
+
+            </p>
+
+        </div>
+
+
     </div>
+
+
+    <!-- ==========================================
+         LOGIN SCRIPT
+    =========================================== -->
+
+    <script>
+
+        // ==========================================
+        // GENERATE ATTEMPT ID
+        // ==========================================
+
+        function generateAttemptId() {
+
+            const now =
+                new Date();
+
+
+            const date =
+                now.getFullYear() +
+                String(
+                    now.getMonth() + 1
+                ).padStart(2, "0") +
+                String(
+                    now.getDate()
+                ).padStart(2, "0");
+
+
+            const randomPart =
+                Math.random()
+                    .toString(36)
+                    .substring(2, 8)
+                    .toUpperCase();
+
+
+            return (
+                "ATT-" +
+                date +
+                "-" +
+                randomPart
+            );
+
+        }
+
+
+        // ==========================================
+        // START REVIEWER
+        // ==========================================
+
+        function startReviewer() {
+
+            const nameInput =
+                document.getElementById(
+                    "studentName"
+                );
+
+
+            const sectionInput =
+                document.getElementById(
+                    "section"
+                );
+
+
+            const error =
+                document.getElementById(
+                    "loginError"
+                );
+
+
+            const studentName =
+                nameInput.value.trim();
+
+
+            const section =
+                sectionInput.value.trim();
+
+
+            // --------------------------------------
+            // VALIDATE NAME
+            // --------------------------------------
+
+            if (!studentName) {
+
+                error.textContent =
+                    "Please enter your name.";
+
+                nameInput.focus();
+
+                return;
+
+            }
+
+
+            // --------------------------------------
+            // VALIDATE SECTION
+            // --------------------------------------
+
+            if (!section) {
+
+                error.textContent =
+                    "Please enter your section.";
+
+                sectionInput.focus();
+
+                return;
+
+            }
+
+
+            // --------------------------------------
+            // CREATE ATTEMPT ID
+            // --------------------------------------
+
+            const attemptId =
+                generateAttemptId();
+
+
+            // --------------------------------------
+            // SAVE SESSION INFORMATION
+            // --------------------------------------
+
+            localStorage.setItem(
+                "studentName",
+                studentName
+            );
+
+
+            localStorage.setItem(
+                "studentSection",
+                section
+            );
+
+
+            localStorage.setItem(
+                "attemptId",
+                attemptId
+            );
+
+
+            localStorage.setItem(
+                "reviewerStartTime",
+                new Date().toISOString()
+            );
+
+
+            // --------------------------------------
+            // CLEAR OLD RESULTS
+            // --------------------------------------
+
+            localStorage.removeItem(
+                "test1Result"
+            );
+
+
+            localStorage.removeItem(
+                "test2Result"
+            );
+
+
+            // --------------------------------------
+            // OPEN TEST I
+            // --------------------------------------
+
+            window.location.href =
+                "test1.html";
+
+        }
+
+
+        // ==========================================
+        // BUTTON EVENT
+        // ==========================================
+
+        document
+            .getElementById(
+                "startReviewerBtn"
+            )
+            .addEventListener(
+                "click",
+                startReviewer
+            );
+
+
+        // ==========================================
+        // ENTER KEY SUPPORT
+        // ==========================================
+
+        document
+            .getElementById(
+                "section"
+            )
+            .addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        startReviewer();
+
+                    }
+
+                }
+            );
+
+
+    </script>
+
 
 </body>
 
