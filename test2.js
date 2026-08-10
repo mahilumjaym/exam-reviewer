@@ -10,68 +10,43 @@
 // =====================================================
 // QUESTION BANK
 // =====================================================
-// Every program contains:
-// • Lists
-// • Dictionaries
-// • Conditionals
-// • for loops
-// • Functions
-// • Parameters
-// • return
-// • Function calls
-// • File handling
-// • open()
-// • write()
-// • close()
 //
-// The themes and program logic are intentionally
-// different from the quarterly examination.
+// Every program contains the Test II competencies:
+//
+// 1. Function definition
+// 2. Function name
+// 3. Parameter
+// 4. Function body
+// 5. return statement
+// 6. Function call
+// 7. Conditional statement
+// 8. Comparison operator
+// 9. for loop
+// 10. range()
+// 11. while loop
+//
+// There are exactly 10 blanks per program.
+//
+// The contexts are intentionally different from
+// the quarterly examination.
 // =====================================================
 
 const codeBank = [
 
     // =================================================
     // CODE 1
-    // FESTIVAL PLANNER
+    // MOVIE TICKET BOOTH
     // =================================================
 
     {
-        title: "Festival Planner",
+        title: "Movie Ticket Booth",
+
         topic:
-            "Lists, Dictionaries, Loops, Conditionals, Functions and File Handling",
+            "Functions, Parameters, Conditionals and Loops",
 
         parts: [
 
-            // 1
-            {
-                blank: true,
-                answer: "append",
-                explanation:
-                    "The append() method adds a new item to the end of a list."
-            },
-
-            { text: "events = [\"Opening\", \"Workshop\", \"Closing\"]" },
-            { newline: true },
-
-            { text: "events." },
-
-            {
-                blank: true,
-                answer: "append",
-                explanation:
-                    "append() adds one new value to the existing list."
-            },
-
-            { text: "(\"Games\")" },
-            { newline: true },
-
-            {
-                text:
-                    "times = {\"Opening\": 8, \"Workshop\": 10, \"Closing\": 15, \"Games\": 17}"
-            },
-            { newline: true },
-
-            // 2
+            // BLANK 1
             {
                 blank: true,
                 answer: "def",
@@ -79,110 +54,115 @@ const codeBank = [
                     "The def keyword begins a function definition in Python."
             },
 
-            { text: " show_event(name):" },
+            { text: " " },
+
+            // BLANK 2
+            {
+                blank: true,
+                answer: "ticket_price",
+                explanation:
+                    "ticket_price is the name of the function. A function name should describe the task performed by the function."
+            },
+
+            { text: "(age):" },
             { newline: true },
+
 
             { text: "    " },
 
-            // 3
-            {
-                blank: true,
-                answer: "print",
-                explanation:
-                    "The print() function displays information on the screen."
-            },
-
-            { text: "(\"Event:\", name)" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 4
-            {
-                blank: true,
-                answer: "return",
-                explanation:
-                    "The return statement sends a value back from a function."
-            },
-
-            { text: " times[name]" },
-            { newline: true },
-
-            // 5
-            {
-                blank: true,
-                answer: "for",
-                explanation:
-                    "A for loop processes each item in a sequence such as a list."
-            },
-
-            { text: " event in events:" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 6
+            // BLANK 3
             {
                 blank: true,
                 answer: "if",
                 explanation:
-                    "The if statement allows the program to perform an action only when a condition is true."
+                    "The if keyword begins a conditional statement. It allows the program to make a decision based on age."
             },
 
-            { text: " event in times:" },
-            { newline: true },
+            { text: " age " },
 
-            { text: "        print(event, times[event])" },
-            { newline: true },
-
-            // 7
-            { text: "file = " },
-
+            // BLANK 4
             {
                 blank: true,
-                answer: "open",
+                answer: "<",
                 explanation:
-                    "The open() function opens or creates a file."
+                    "The < operator checks whether age is less than 13."
             },
 
-            { text: "(\"festival_plan.txt\", \"w\")" },
+            { text: " 13:" },
             { newline: true },
 
-            // 8
-            { text: "file." },
 
+            { text: "        " },
+
+            // BLANK 5
             {
                 blank: true,
-                answer: "write",
+                answer: "return",
                 explanation:
-                    "The write() method places text into an opened file."
+                    "The return statement sends a value back to the part of the program that called the function."
             },
 
-            { text: "(event + \"\\n\")" },
+            { text: " 120" },
             { newline: true },
 
-            // 9
-            { text: "file." },
 
-            {
-                blank: true,
-                answer: "close",
-                explanation:
-                    "The close() method closes the file after the program finishes writing."
-            },
-
-            { text: "()" },
+            { text: "    return 180" },
             { newline: true },
 
-            // 10
+
+            { text: "tickets = 3" },
+            { newline: true },
+
+
+            { text: "for show in " },
+
+            // BLANK 6
             {
                 blank: true,
-                answer: "show_event",
+                answer: "range",
                 explanation:
-                    "A function call uses the function name followed by parentheses and supplies the required argument."
+                    "range() produces a sequence of numbers that can be used by a for loop."
             },
 
-            { text: "(\"Opening\")" }
+            { text: "(1, 4):" },
+            { newline: true },
+
+
+            { text: "    print(\"Show\", show)" },
+            { newline: true },
+
+
+            { text: "remaining = 2" },
+            { newline: true },
+
+
+            { text: "while remaining > 0:" },
+            { newline: true },
+
+
+            { text: "    print(\"Remaining tickets:\", remaining)" },
+            { newline: true },
+
+
+            { text: "    remaining = remaining - 1" },
+            { newline: true },
+
+
+            { text: "price = " },
+
+            // BLANK 7
+            {
+                blank: true,
+                answer: "ticket_price",
+                explanation:
+                    "Writing ticket_price(15) is a function call. The value 15 is passed to the function's age parameter."
+            },
+
+            { text: "(15)" },
+            { newline: true },
+
+
+            { text: "print(\"Ticket price:\", price)" }
 
         ]
     },
@@ -190,492 +170,18 @@ const codeBank = [
 
     // =================================================
     // CODE 2
-    // PET ADOPTION TRACKER
+    // GARDEN WATERING SCHEDULER
     // =================================================
 
     {
-        title: "Pet Adoption Tracker",
+        title: "Garden Watering Scheduler",
+
         topic:
-            "Lists, Dictionaries, Loops, Conditionals, Functions and File Handling",
+            "Functions, Parameters, Conditionals and Loops",
 
         parts: [
 
-            // 1
-            { text: "pets = [\"Milo\", \"Luna\", \"Coco\"]" },
-            { newline: true },
-
-            { text: "pets." },
-
-            {
-                blank: true,
-                answer: "append",
-                explanation:
-                    "append() adds another pet name to the list."
-            },
-
-            { text: "(\"Max\")" },
-            { newline: true },
-
-            {
-                text:
-                    "status = {\"Milo\": \"Ready\", \"Luna\": \"Pending\", \"Coco\": \"Ready\", \"Max\": \"Ready\"}"
-            },
-            { newline: true },
-
-            // 2
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "The def keyword is used to define a function."
-            },
-
-            { text: " check_pet(name):" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 3
-            {
-                blank: true,
-                answer: "print",
-                explanation:
-                    "print() displays the result of checking the pet."
-            },
-
-            { text: "(\"Checking:\", name)" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 4
-            {
-                blank: true,
-                answer: "return",
-                explanation:
-                    "return sends the dictionary value back to the calling code."
-            },
-
-            { text: " status[name]" },
-            { newline: true },
-
-            // 5
-            {
-                blank: true,
-                answer: "for",
-                explanation:
-                    "The for loop goes through each pet stored in the list."
-            },
-
-            { text: " pet in pets:" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 6
-            {
-                blank: true,
-                answer: "if",
-                explanation:
-                    "The if statement checks whether the pet is currently ready."
-            },
-
-            { text: " status[pet] == \"Ready\":" },
-            { newline: true },
-
-            { text: "        print(pet, \"is ready for adoption.\")" },
-            { newline: true },
-
-            // 7
-            { text: "file = " },
-
-            {
-                blank: true,
-                answer: "open",
-                explanation:
-                    "open() opens or creates the file where the adoption list will be stored."
-            },
-
-            { text: "(\"adoption_list.txt\", \"w\")" },
-            { newline: true },
-
-            // 8
-            { text: "file." },
-
-            {
-                blank: true,
-                answer: "write",
-                explanation:
-                    "write() stores text inside the opened file."
-            },
-
-            { text: "(pet + \"\\n\")" },
-            { newline: true },
-
-            // 9
-            { text: "file." },
-
-            {
-                blank: true,
-                answer: "close",
-                explanation:
-                    "close() finishes the file operation and closes the file."
-            },
-
-            { text: "()" },
-            { newline: true },
-
-            // 10
-            {
-                blank: true,
-                answer: "check_pet",
-                explanation:
-                    "check_pet(\"Milo\") is a function call. It sends \"Milo\" as the argument for the name parameter."
-            },
-
-            { text: "(\"Milo\")" }
-
-        ]
-    },
-
-
-    // =================================================
-    // CODE 3
-    // STUDY PLANNER
-    // =================================================
-
-    {
-        title: "Study Planner",
-        topic:
-            "Lists, Dictionaries, Loops, Conditionals, Functions and File Handling",
-
-        parts: [
-
-            // 1
-            { text: "subjects = [\"Math\", \"Science\", \"English\"]" },
-            { newline: true },
-
-            { text: "subjects." },
-
-            {
-                blank: true,
-                answer: "append",
-                explanation:
-                    "append() places a new subject at the end of the list."
-            },
-
-            { text: "(\"Python\")" },
-            { newline: true },
-
-            {
-                text:
-                    "minutes = {\"Math\": 30, \"Science\": 45, \"English\": 20, \"Python\": 60}"
-            },
-            { newline: true },
-
-            // 2
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "The def keyword starts a function definition."
-            },
-
-            { text: " study_time(subject):" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 3
-            {
-                blank: true,
-                answer: "print",
-                explanation:
-                    "print() displays the subject being processed."
-            },
-
-            { text: "(\"Subject:\", subject)" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 4
-            {
-                blank: true,
-                answer: "return",
-                explanation:
-                    "The return statement sends the number of minutes back to the caller."
-            },
-
-            { text: " minutes[subject]" },
-            { newline: true },
-
-            // 5
-            {
-                blank: true,
-                answer: "for",
-                explanation:
-                    "The for loop processes every subject in the list."
-            },
-
-            { text: " subject in subjects:" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 6
-            {
-                blank: true,
-                answer: "if",
-                explanation:
-                    "The if statement checks whether the subject requires a long study session."
-            },
-
-            { text: " minutes[subject] >= 45:" },
-            { newline: true },
-
-            { text: "        print(\"Long study session\")" },
-            { newline: true },
-
-            // 7
-            { text: "file = " },
-
-            {
-                blank: true,
-                answer: "open",
-                explanation:
-                    "open() opens the study-plan file in write mode."
-            },
-
-            { text: "(\"study_plan.txt\", \"w\")" },
-            { newline: true },
-
-            // 8
-            { text: "file." },
-
-            {
-                blank: true,
-                answer: "write",
-                explanation:
-                    "write() places the study information into the file."
-            },
-
-            { text: "(subject + \"\\n\")" },
-            { newline: true },
-
-            // 9
-            { text: "file." },
-
-            {
-                blank: true,
-                answer: "close",
-                explanation:
-                    "close() closes the file after writing is completed."
-            },
-
-            { text: "()" },
-            { newline: true },
-
-            // 10
-            {
-                blank: true,
-                answer: "study_time",
-                explanation:
-                    "study_time(\"Python\") calls the function and passes \"Python\" to its subject parameter."
-            },
-
-            { text: "(\"Python\")" }
-
-        ]
-    },
-
-
-    // =================================================
-    // CODE 4
-    // GAME QUEST TRACKER
-    // =================================================
-
-    {
-        title: "Game Quest Tracker",
-        topic:
-            "Lists, Dictionaries, Loops, Conditionals, Functions and File Handling",
-
-        parts: [
-
-            // 1
-            { text: "quests = [\"Forest\", \"Cave\", \"Castle\"]" },
-            { newline: true },
-
-            { text: "quests." },
-
-            {
-                blank: true,
-                answer: "append",
-                explanation:
-                    "append() adds another quest to the existing list."
-            },
-
-            { text: "(\"Harbor\")" },
-            { newline: true },
-
-            {
-                text:
-                    "rewards = {\"Forest\": 100, \"Cave\": 250, \"Castle\": 500, \"Harbor\": 150}"
-            },
-            { newline: true },
-
-            // 2
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "The def keyword defines a reusable function."
-            },
-
-            { text: " get_reward(quest):" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 3
-            {
-                blank: true,
-                answer: "print",
-                explanation:
-                    "print() displays the reward information."
-            },
-
-            { text: "(\"Quest:\", quest)" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 4
-            {
-                blank: true,
-                answer: "return",
-                explanation:
-                    "return sends the reward value back from the function."
-            },
-
-            { text: " rewards[quest]" },
-            { newline: true },
-
-            // 5
-            {
-                blank: true,
-                answer: "for",
-                explanation:
-                    "The for loop processes every quest in the list."
-            },
-
-            { text: " quest in quests:" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 6
-            {
-                blank: true,
-                answer: "if",
-                explanation:
-                    "The if statement checks whether a quest has a reward of at least 200."
-            },
-
-            { text: " rewards[quest] >= 200:" },
-            { newline: true },
-
-            { text: "        print(\"High reward quest\")" },
-            { newline: true },
-
-            // 7
-            { text: "file = " },
-
-            {
-                blank: true,
-                answer: "open",
-                explanation:
-                    "open() opens or creates the quest file in write mode."
-            },
-
-            { text: "(\"quest_rewards.txt\", \"w\")" },
-            { newline: true },
-
-            // 8
-            { text: "file." },
-
-            {
-                blank: true,
-                answer: "write",
-                explanation:
-                    "write() saves the quest name into the file."
-            },
-
-            { text: "(quest + \"\\n\")" },
-            { newline: true },
-
-            // 9
-            { text: "file." },
-
-            {
-                blank: true,
-                answer: "close",
-                explanation:
-                    "close() closes the file after writing."
-            },
-
-            { text: "()" },
-            { newline: true },
-
-            // 10
-            {
-                blank: true,
-                answer: "get_reward",
-                explanation:
-                    "get_reward(\"Castle\") is a function call. \"Castle\" is passed to the quest parameter."
-            },
-
-            { text: "(\"Castle\")" }
-
-        ]
-    },
-
-
-    // =================================================
-    // CODE 5
-    // TRAVEL CHECKLIST
-    // =================================================
-
-    {
-        title: "Travel Checklist",
-        topic:
-            "Lists, Dictionaries, Loops, Conditionals, Functions and File Handling",
-
-        parts: [
-
-            // 1
-            { text: "places = [\"Manila\", \"Cebu\", \"Davao\"]" },
-            { newline: true },
-
-            { text: "places." },
-
-            {
-                blank: true,
-                answer: "append",
-                explanation:
-                    "append() adds a new destination to the list."
-            },
-
-            { text: "(\"Iloilo\")" },
-            { newline: true },
-
-            {
-                text:
-                    "days = {\"Manila\": 3, \"Cebu\": 2, \"Davao\": 4, \"Iloilo\": 3}"
-            },
-            { newline: true },
-
-            // 2
+            // BLANK 1
             {
                 blank: true,
                 answer: "def",
@@ -683,110 +189,504 @@ const codeBank = [
                     "The def keyword begins the definition of a function."
             },
 
-            { text: " trip_days(city):" },
+            { text: " " },
+
+            // BLANK 2
+            {
+                blank: true,
+                answer: "water_needed",
+                explanation:
+                    "water_needed is the function name. It identifies the task performed by the function."
+            },
+
+            { text: "(moisture):" },
             { newline: true },
+
 
             { text: "    " },
 
-            // 3
-            {
-                blank: true,
-                answer: "print",
-                explanation:
-                    "print() displays the destination being processed."
-            },
-
-            { text: "(\"Destination:\", city)" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 4
-            {
-                blank: true,
-                answer: "return",
-                explanation:
-                    "return sends the number of travel days back to the calling code."
-            },
-
-            { text: " days[city]" },
-            { newline: true },
-
-            // 5
-            {
-                blank: true,
-                answer: "for",
-                explanation:
-                    "The for loop processes each destination stored in the list."
-            },
-
-            { text: " city in places:" },
-            { newline: true },
-
-            { text: "    " },
-
-            // 6
+            // BLANK 3
             {
                 blank: true,
                 answer: "if",
                 explanation:
-                    "The if statement checks whether the trip lasts at least three days."
+                    "The if statement allows the program to check whether the soil moisture is low."
             },
 
-            { text: " days[city] >= 3:" },
-            { newline: true },
+            { text: " moisture " },
 
-            { text: "        print(\"Extended trip\")" },
-            { newline: true },
-
-            // 7
-            { text: "file = " },
-
+            // BLANK 4
             {
                 blank: true,
-                answer: "open",
+                answer: "<=",
                 explanation:
-                    "open() creates or opens the travel checklist file."
+                    "The <= operator means less than or equal to. The condition is true when moisture is 30 or lower."
             },
 
-            { text: "(\"travel_plan.txt\", \"w\")" },
+            { text: " 30:" },
             { newline: true },
 
-            // 8
-            { text: "file." },
 
+            { text: "        " },
+
+            // BLANK 5
             {
                 blank: true,
-                answer: "write",
+                answer: "return",
                 explanation:
-                    "write() stores each destination in the file."
+                    "return sends the value 5 back to the code that calls the function."
             },
 
-            { text: "(city + \"\\n\")" },
+            { text: " 5" },
             { newline: true },
 
-            // 9
-            { text: "file." },
 
-            {
-                blank: true,
-                answer: "close",
-                explanation:
-                    "close() closes the file after all information has been written."
-            },
-
-            { text: "()" },
+            { text: "    return 0" },
             { newline: true },
 
-            // 10
+
+            { text: "for zone in " },
+
+            // BLANK 6
             {
                 blank: true,
-                answer: "trip_days",
+                answer: "range",
                 explanation:
-                    "trip_days(\"Davao\") calls the function and passes Davao as the argument."
+                    "range(1, 5) creates the sequence 1, 2, 3, and 4 for the for loop."
             },
 
-            { text: "(\"Davao\")" }
+            { text: "(1, 5):" },
+            { newline: true },
+
+
+            { text: "    print(\"Checking garden zone\", zone)" },
+            { newline: true },
+
+
+            { text: "water = 3" },
+            { newline: true },
+
+
+            { text: "while water > 0:" },
+            { newline: true },
+
+
+            { text: "    print(\"Watering...\")" },
+            { newline: true },
+
+
+            { text: "    water = water - 1" },
+            { newline: true },
+
+
+            { text: "amount = " },
+
+            // BLANK 7
+            {
+                blank: true,
+                answer: "water_needed",
+                explanation:
+                    "water_needed(25) is a function call. The value 25 is passed to the moisture parameter."
+            },
+
+            { text: "(25)" },
+            { newline: true },
+
+
+            { text: "print(\"Water needed:\", amount)" }
+
+        ]
+    },
+
+
+    // =================================================
+    // CODE 3
+    // ARCADE PRIZE COUNTER
+    // =================================================
+
+    {
+        title: "Arcade Prize Counter",
+
+        topic:
+            "Functions, Parameters, Conditionals and Loops",
+
+        parts: [
+
+            // BLANK 1
+            {
+                blank: true,
+                answer: "def",
+                explanation:
+                    "The def keyword is required to define a function."
+            },
+
+            { text: " " },
+
+            // BLANK 2
+            {
+                blank: true,
+                answer: "prize_level",
+                explanation:
+                    "prize_level is the name of the function that determines the prize level."
+            },
+
+            { text: "(points):" },
+            { newline: true },
+
+
+            { text: "    " },
+
+            // BLANK 3
+            {
+                blank: true,
+                answer: "if",
+                explanation:
+                    "The if keyword begins the decision that checks the player's points."
+            },
+
+            { text: " points " },
+
+            // BLANK 4
+            {
+                blank: true,
+                answer: ">=",
+                explanation:
+                    "The >= operator checks whether points are greater than or equal to 100."
+            },
+
+            { text: " 100:" },
+            { newline: true },
+
+
+            { text: "        " },
+
+            // BLANK 5
+            {
+                blank: true,
+                answer: "return",
+                explanation:
+                    "The return statement sends the text 'Gold' back to the caller."
+            },
+
+            { text: " \"Gold\"" },
+            { newline: true },
+
+
+            { text: "    return \"Silver\"" },
+            { newline: true },
+
+
+            { text: "for round_number in " },
+
+            // BLANK 6
+            {
+                blank: true,
+                answer: "range",
+                explanation:
+                    "range() creates the sequence used to repeat the loop for several rounds."
+            },
+
+            { text: "(1, 4):" },
+            { newline: true },
+
+
+            { text: "    print(\"Round\", round_number)" },
+            { newline: true },
+
+
+            { text: "tokens = 3" },
+            { newline: true },
+
+
+            { text: "while tokens > 0:" },
+            { newline: true },
+
+
+            { text: "    print(\"Token used\")" },
+            { newline: true },
+
+
+            { text: "    tokens = tokens - 1" },
+            { newline: true },
+
+
+            { text: "prize = " },
+
+            // BLANK 7
+            {
+                blank: true,
+                answer: "prize_level",
+                explanation:
+                    "prize_level(120) is a function call. The value 120 is passed to the points parameter."
+            },
+
+            { text: "(120)" },
+            { newline: true },
+
+
+            { text: "print(\"Prize:\", prize)" }
+
+        ]
+    },
+
+
+    // =================================================
+    // CODE 4
+    // LIBRARY LATE FEE CALCULATOR
+    // =================================================
+
+    {
+        title: "Library Late Fee Calculator",
+
+        topic:
+            "Functions, Parameters, Conditionals and Loops",
+
+        parts: [
+
+            // BLANK 1
+            {
+                blank: true,
+                answer: "def",
+                explanation:
+                    "The def keyword begins a function definition."
+            },
+
+            { text: " " },
+
+            // BLANK 2
+            {
+                blank: true,
+                answer: "late_fee",
+                explanation:
+                    "late_fee is the function name. It describes what the function calculates."
+            },
+
+            { text: "(days):" },
+            { newline: true },
+
+
+            { text: "    " },
+
+            // BLANK 3
+            {
+                blank: true,
+                answer: "if",
+                explanation:
+                    "The if keyword begins the condition that checks whether a book is overdue."
+            },
+
+            { text: " days " },
+
+            // BLANK 4
+            {
+                blank: true,
+                answer: ">",
+                explanation:
+                    "The > operator checks whether the number of overdue days is greater than 7."
+            },
+
+            { text: " 7:" },
+            { newline: true },
+
+
+            { text: "        " },
+
+            // BLANK 5
+            {
+                blank: true,
+                answer: "return",
+                explanation:
+                    "The return statement sends the calculated fee back to the calling code."
+            },
+
+            { text: " 50" },
+            { newline: true },
+
+
+            { text: "    return 0" },
+            { newline: true },
+
+
+            { text: "for shelf in " },
+
+            // BLANK 6
+            {
+                blank: true,
+                answer: "range",
+                explanation:
+                    "range() creates the sequence of shelf numbers processed by the for loop."
+            },
+
+            { text: "(1, 4):" },
+            { newline: true },
+
+
+            { text: "    print(\"Checking shelf\", shelf)" },
+            { newline: true },
+
+
+            { text: "books = 3" },
+            { newline: true },
+
+
+            { text: "while books > 0:" },
+            { newline: true },
+
+
+            { text: "    print(\"Processing book\")" },
+            { newline: true },
+
+
+            { text: "    books = books - 1" },
+            { newline: true },
+
+
+            { text: "fee = " },
+
+            // BLANK 7
+            {
+                blank: true,
+                answer: "late_fee",
+                explanation:
+                    "late_fee(10) is a function call. The value 10 is passed to the days parameter."
+            },
+
+            { text: "(10)" },
+            { newline: true },
+
+
+            { text: "print(\"Late fee:\", fee)" }
+
+        ]
+    },
+
+
+    // =================================================
+    // CODE 5
+    // HIKING GEAR CHECK
+    // =================================================
+
+    {
+        title: "Hiking Gear Check",
+
+        topic:
+            "Functions, Parameters, Conditionals and Loops",
+
+        parts: [
+
+            // BLANK 1
+            {
+                blank: true,
+                answer: "def",
+                explanation:
+                    "The def keyword is used to define a function."
+            },
+
+            { text: " " },
+
+            // BLANK 2
+            {
+                blank: true,
+                answer: "gear_status",
+                explanation:
+                    "gear_status is the function name. It describes the purpose of the function."
+            },
+
+            { text: "(temperature):" },
+            { newline: true },
+
+
+            { text: "    " },
+
+            // BLANK 3
+            {
+                blank: true,
+                answer: "if",
+                explanation:
+                    "The if keyword begins the conditional check."
+            },
+
+            { text: " temperature " },
+
+            // BLANK 4
+            {
+                blank: true,
+                answer: "<=",
+                explanation:
+                    "The <= operator checks whether the temperature is 10 or lower."
+            },
+
+            { text: " 10:" },
+            { newline: true },
+
+
+            { text: "        " },
+
+            // BLANK 5
+            {
+                blank: true,
+                answer: "return",
+                explanation:
+                    "return sends the result of the function back to the calling code."
+            },
+
+            { text: " \"Bring a jacket\"" },
+            { newline: true },
+
+
+            { text: "    return \"Light gear is enough\"" },
+            { newline: true },
+
+
+            { text: "for item in " },
+
+            // BLANK 6
+            {
+                blank: true,
+                answer: "range",
+                explanation:
+                    "range() produces the sequence of item numbers used by the for loop."
+            },
+
+            { text: "(1, 6):" },
+            { newline: true },
+
+
+            { text: "    print(\"Checking item\", item)" },
+            { newline: true },
+
+
+            { text: "miles = 3" },
+            { newline: true },
+
+
+            { text: "while miles > 0:" },
+            { newline: true },
+
+
+            { text: "    print(\"Miles remaining:\", miles)" },
+            { newline: true },
+
+
+            { text: "    miles = miles - 1" },
+            { newline: true },
+
+
+            { text: "advice = " },
+
+            // BLANK 7
+            {
+                blank: true,
+                answer: "gear_status",
+                explanation:
+                    "gear_status(8) is a function call. The value 8 is passed to the temperature parameter."
+            },
+
+            { text: "(8)" },
+            { newline: true },
+
+
+            { text: "print(\"Gear advice:\", advice)" }
 
         ]
     }
@@ -799,6 +699,7 @@ const codeBank = [
 // =====================================================
 
 let selectedCode = null;
+
 let studentAnswers = [];
 
 
@@ -808,7 +709,11 @@ let studentAnswers = [];
 
 function shuffle(array) {
 
-    for (let i = array.length - 1; i > 0; i--) {
+    for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ) {
 
         const j =
             Math.floor(
@@ -823,6 +728,7 @@ function shuffle(array) {
             array[j],
             array[i]
         ];
+
     }
 
     return array;
@@ -848,9 +754,10 @@ function countBlanks(code) {
 
 function startTest2() {
 
-    // Randomly select ONE complete program
     selectedCode =
-        shuffle([...codeBank])[0];
+        shuffle(
+            [...codeBank]
+        )[0];
 
 
     console.log(
@@ -874,7 +781,7 @@ function startTest2() {
 
 
 // =====================================================
-// DISPLAY QUESTION
+// DISPLAY QUESTIONS
 // =====================================================
 
 function displayQuestions() {
@@ -899,7 +806,10 @@ function displayQuestions() {
 
 
     const card =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     card.className =
         "code-question-card";
@@ -910,12 +820,18 @@ function displayQuestions() {
     // ---------------------------------------------
 
     const title =
-        document.createElement("h3");
+        document.createElement(
+            "h3"
+        );
+
 
     title.textContent =
         selectedCode.title;
 
-    card.appendChild(title);
+
+    card.appendChild(
+        title
+    );
 
 
     // ---------------------------------------------
@@ -923,23 +839,33 @@ function displayQuestions() {
     // ---------------------------------------------
 
     const topic =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     topic.className =
         "question-topic";
 
+
     topic.textContent =
         selectedCode.topic;
 
-    card.appendChild(topic);
+
+    card.appendChild(
+        topic
+    );
 
 
     // ---------------------------------------------
-    // CODE BOX
+    // CODE AREA
     // ---------------------------------------------
 
     const codeBox =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     codeBox.className =
         "code-box";
@@ -951,11 +877,15 @@ function displayQuestions() {
     selectedCode.parts.forEach(
         part => {
 
+
             // NEW LINE
+
             if (part.newline) {
 
                 codeBox.appendChild(
-                    document.createElement("br")
+                    document.createElement(
+                        "br"
+                    )
                 );
 
                 return;
@@ -963,6 +893,7 @@ function displayQuestions() {
 
 
             // NORMAL TEXT
+
             if (part.text) {
 
                 codeBox.appendChild(
@@ -976,6 +907,7 @@ function displayQuestions() {
 
 
             // BLANK
+
             if (part.blank) {
 
                 const input =
@@ -998,6 +930,13 @@ function displayQuestions() {
 
                 input.dataset.blank =
                     blankIndex;
+
+
+                input.setAttribute(
+                    "aria-label",
+                    "Code blank " +
+                    (blankIndex + 1)
+                );
 
 
                 codeBox.appendChild(
@@ -1031,29 +970,14 @@ function displayQuestions() {
 
 function submitTest2() {
 
-    console.log(
-        "SUBMIT TEST II CLICKED"
-    );
-
-
-    // ---------------------------------------------
-    // FIND ALL BLANKS
-    // ---------------------------------------------
-
     const inputs =
         document.querySelectorAll(
             ".code-blank"
         );
 
 
-    console.log(
-        "Number of input boxes:",
-        inputs.length
-    );
-
-
     // ---------------------------------------------
-    // CHECK FOR 10 BLANKS
+    // VERIFY NUMBER OF BLANKS
     // ---------------------------------------------
 
     if (
@@ -1061,7 +985,7 @@ function submitTest2() {
     ) {
 
         alert(
-            "There is a problem with this Test II question. Please inform your teacher."
+            "There is a problem with this reviewer. Please inform your teacher."
         );
 
 
@@ -1072,12 +996,11 @@ function submitTest2() {
 
 
         return;
-
     }
 
 
     // ---------------------------------------------
-    // READ ANSWERS
+    // COLLECT ANSWERS
     // ---------------------------------------------
 
     studentAnswers = [];
@@ -1100,7 +1023,8 @@ function submitTest2() {
 
     const unanswered =
         studentAnswers.filter(
-            answer => answer === ""
+            answer =>
+                answer === ""
         ).length;
 
 
@@ -1114,12 +1038,11 @@ function submitTest2() {
 
 
         return;
-
     }
 
 
     // ---------------------------------------------
-    // CONFIRM
+    // CONFIRM SUBMISSION
     // ---------------------------------------------
 
     const confirmed =
@@ -1131,7 +1054,6 @@ function submitTest2() {
     if (!confirmed) {
 
         return;
-
     }
 
 
@@ -1150,7 +1072,6 @@ function submitTest2() {
             if (!part.blank) {
 
                 return;
-
             }
 
 
@@ -1164,17 +1085,13 @@ function submitTest2() {
                 part.answer;
 
 
-            console.log(
-                "Checking:",
-                studentAnswer,
-                "| Correct:",
-                correctAnswer
-            );
-
-
             if (
-                normalize(studentAnswer) ===
-                normalize(correctAnswer)
+                normalize(
+                    studentAnswer
+                ) ===
+                normalize(
+                    correctAnswer
+                )
             ) {
 
                 score++;
@@ -1185,13 +1102,6 @@ function submitTest2() {
             blankIndex++;
 
         }
-    );
-
-
-    console.log(
-        "FINAL SCORE:",
-        score,
-        "/ 10"
     );
 
 
@@ -1212,7 +1122,6 @@ function submitTest2() {
         );
 
         return;
-
     }
 
 
@@ -1242,21 +1151,46 @@ function submitTest2() {
 
     if (scoreMessage) {
 
-        scoreMessage.textContent =
-            "Click the RED answers to review the concepts you missed.";
+        if (score === 10) {
+
+            scoreMessage.textContent =
+                "Excellent! You completed the code correctly.";
+
+        }
+
+        else if (score >= 8) {
+
+            scoreMessage.textContent =
+                "Very good! Review the items you missed.";
+
+        }
+
+        else if (score >= 5) {
+
+            scoreMessage.textContent =
+                "Good effort. Use the review explanations to strengthen your understanding.";
+
+        }
+
+        else {
+
+            scoreMessage.textContent =
+                "Keep practicing. Review each incorrect blank carefully.";
+
+        }
 
     }
 
 
     // ---------------------------------------------
-    // DISPLAY RESULTS
+    // SHOW REVIEW
     // ---------------------------------------------
 
     displayResults();
 
 
     // ---------------------------------------------
-    // DISABLE SUBMIT BUTTON
+    // DISABLE SUBMIT
     // ---------------------------------------------
 
     const button =
@@ -1331,7 +1265,7 @@ function displayResults() {
 
 
     instruction.textContent =
-        "Click the RED answers to review the concepts you missed.";
+        "Correct answers are shown in green. Click a RED answer to see the explanation.";
 
 
     container.appendChild(
@@ -1415,19 +1349,23 @@ function displayResults() {
     selectedCode.parts.forEach(
         part => {
 
+
             // NEW LINE
+
             if (part.newline) {
 
                 codeBox.appendChild(
-                    document.createElement("br")
+                    document.createElement(
+                        "br"
+                    )
                 );
 
                 return;
-
             }
 
 
             // NORMAL TEXT
+
             if (part.text) {
 
                 codeBox.appendChild(
@@ -1437,11 +1375,11 @@ function displayResults() {
                 );
 
                 return;
-
             }
 
 
             // ANSWER
+
             if (part.blank) {
 
                 const studentAnswer =
@@ -1477,9 +1415,9 @@ function displayResults() {
                     );
 
 
-                // --------------------------------
+                // ---------------------------------
                 // CORRECT
-                // --------------------------------
+                // ---------------------------------
 
                 if (correct) {
 
@@ -1490,9 +1428,9 @@ function displayResults() {
                 }
 
 
-                // --------------------------------
+                // ---------------------------------
                 // WRONG
-                // --------------------------------
+                // ---------------------------------
 
                 else {
 
@@ -1547,7 +1485,7 @@ function displayResults() {
 
 
 // =====================================================
-// REVIEW POPUP
+// SHOW EXPLANATION
 // =====================================================
 
 function showExplanation(
@@ -1628,7 +1566,7 @@ function showExplanation(
 
 
 // =====================================================
-// CLOSE REVIEW POPUP
+// CLOSE EXPLANATION
 // =====================================================
 
 function closeExplanation() {
