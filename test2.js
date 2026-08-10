@@ -2277,7 +2277,23 @@ function addTest2Styles() {
 
 }
 
+// =====================================================
+// PROCEED TO TEST III
+// =====================================================
 
+function proceedToTest3() {
+
+    // Save that the student completed Test II
+    localStorage.setItem(
+        "test2Completed",
+        "true"
+    );
+
+    // Go to Test III
+    window.location.href =
+        "test3.html";
+
+}
 // =====================================================
 // PAGE LOAD
 // =====================================================
