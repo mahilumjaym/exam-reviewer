@@ -1959,7 +1959,50 @@ function addTest3Styles() {
 // =====================================================
 // PAGE LOAD
 // =====================================================
+const studentName =
+    localStorage.getItem(
+        "studentName"
+    );
 
+
+const studentSection =
+    localStorage.getItem(
+        "studentSection"
+    );
+
+
+const nameElement =
+    document.getElementById(
+        "studentName"
+    );
+
+
+if (
+    nameElement &&
+    studentName
+) {
+
+    nameElement.textContent =
+        studentName;
+
+}
+
+
+const sectionElement =
+    document.getElementById(
+        "studentSection"
+    );
+
+
+if (
+    sectionElement &&
+    studentSection
+) {
+
+    sectionElement.textContent =
+        studentSection;
+
+}
 document.addEventListener(
     "DOMContentLoaded",
     function() {
