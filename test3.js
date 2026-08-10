@@ -940,7 +940,6 @@ const codeBank = [
 
 ];
 
-
 // =====================================================
 // VARIABLES
 // =====================================================
@@ -950,6 +949,8 @@ let selectedProgram = null;
 let studentAnswers = [];
 
 let testSubmitted = false;
+
+let test3Score = 0;
 
 
 // =====================================================
@@ -996,16 +997,24 @@ function startTest3() {
             [...codeBank]
         );
 
+
     selectedProgram =
         programs[0];
+
 
     studentAnswers =
         new Array(
             selectedProgram.questions.length
         ).fill("");
 
+
     testSubmitted =
         false;
+
+
+    test3Score =
+        0;
+
 
     displayProgram();
 
@@ -1013,36 +1022,39 @@ function startTest3() {
 
 
 // =====================================================
-// PYTHON IDE RENDERER
+// PYTHON TEXT RENDERER
+// SAME SYSTEM USED BY TEST II
 // =====================================================
 
-function escapeIDEText(value) {
-
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
-}
-
-
-function highlightPythonLine(value) {
+function renderPythonText(
+    value
+) {
 
     const fragment =
         document.createDocumentFragment();
 
-    const pattern =
-        /(#.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|\b(def|return|if|elif|else|for|while|in|and|or|not|True|False|None)\b|\b(print|len|range|open|int|float|str|list|dict|append)\b|\b(\d+(?:\.\d+)?)\b/gi;
 
-    let lastIndex = 0;
+    const pattern =
+        /(#.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|\b(def|if|elif|else|for|while|in|range|return|open|print|input|int|float|str|len|write|close|append)\b|\b(True|False|None)\b|\b(\d+(?:\.\d+)?)\b/g;
+
+
+    let lastIndex =
+        0;
+
     let match;
 
 
     while (
-        (match = pattern.exec(value)) !== null
+        (
+            match =
+            pattern.exec(
+                value
+            )
+        ) !== null
     ) {
+
+
+        // Text before token
 
         if (
             match.index >
@@ -1054,14 +1066,17 @@ function highlightPythonLine(value) {
                     "span"
                 );
 
+
             normal.className =
-                "ide-normal";
+                "py-normal";
+
 
             normal.textContent =
                 value.slice(
                     lastIndex,
                     match.index
                 );
+
 
             fragment.appendChild(
                 normal
@@ -1076,40 +1091,67 @@ function highlightPythonLine(value) {
             );
 
 
-        if (match[1]) {
+        // Comment
+
+        if (
+            match[1]
+        ) {
 
             token.className =
-                "ide-comment";
+                "py-comment";
 
         }
-        else if (match[2]) {
+
+
+        // String
+
+        else if (
+            match[2]
+        ) {
 
             token.className =
-                "ide-string";
+                "py-string";
 
         }
-        else if (match[3]) {
+
+
+        // Python keyword
+
+        else if (
+            match[3]
+        ) {
 
             token.className =
-                "ide-keyword";
+                "py-keyword";
 
         }
-        else if (match[4]) {
+
+
+        // Boolean / None
+
+        else if (
+            match[4]
+        ) {
 
             token.className =
-                "ide-builtin";
+                "py-constant";
 
         }
+
+
+        // Number
+
         else {
 
             token.className =
-                "ide-number";
+                "py-number";
 
         }
 
 
         token.textContent =
             match[0];
+
 
         fragment.appendChild(
             token
@@ -1122,6 +1164,8 @@ function highlightPythonLine(value) {
     }
 
 
+    // Remaining text
+
     if (
         lastIndex <
         value.length
@@ -1132,13 +1176,16 @@ function highlightPythonLine(value) {
                 "span"
             );
 
+
         remaining.className =
-            "ide-normal";
+            "py-normal";
+
 
         remaining.textContent =
             value.slice(
                 lastIndex
             );
+
 
         fragment.appendChild(
             remaining
@@ -1152,183 +1199,54 @@ function highlightPythonLine(value) {
 }
 
 
+// =====================================================
+// DISPLAY PYTHON IDE
+// SAME VISUAL SYSTEM AS TEST II
+// =====================================================
+
 function createPythonIDE(
     codeLines
 ) {
 
-    const editor =
+    const codeBox =
         document.createElement(
             "div"
         );
 
-    editor.className =
-        "python-ide";
 
-
-    // ---------------------------------------------
-    // IDE TOP BAR
-    // ---------------------------------------------
-
-    const topBar =
-        document.createElement(
-            "div"
-        );
-
-    topBar.className =
-        "ide-topbar";
-
-
-    const dots =
-        document.createElement(
-            "div"
-        );
-
-    dots.className =
-        "ide-dots";
-
-
-    [
-        "ide-red",
-        "ide-yellow",
-        "ide-green"
-    ].forEach(
-        className => {
-
-            const dot =
-                document.createElement(
-                    "span"
-                );
-
-            dot.className =
-                "ide-dot " +
-                className;
-
-            dots.appendChild(
-                dot
-            );
-
-        }
-    );
-
-
-    const tab =
-        document.createElement(
-            "div"
-        );
-
-    tab.className =
-        "ide-tab";
-
-    tab.textContent =
-        "main.py";
-
-
-    const language =
-        document.createElement(
-            "div"
-        );
-
-    language.className =
-        "ide-language";
-
-    language.textContent =
-        "PYTHON";
-
-
-    topBar.appendChild(
-        dots
-    );
-
-    topBar.appendChild(
-        tab
-    );
-
-    topBar.appendChild(
-        language
-    );
-
-
-    editor.appendChild(
-        topBar
-    );
-
-
-    // ---------------------------------------------
-    // EDITOR BODY
-    // ---------------------------------------------
-
-    const body =
-        document.createElement(
-            "div"
-        );
-
-    body.className =
-        "ide-body";
+    codeBox.className =
+        "code-box test3-code-box";
 
 
     codeLines.forEach(
-        (lineText, index) => {
+        line => {
 
-            const row =
+            const lineElement =
                 document.createElement(
                     "div"
                 );
 
-            row.className =
-                "ide-line";
+
+            lineElement.className =
+                "python-line";
 
 
-            const number =
-                document.createElement(
-                    "span"
-                );
-
-            number.className =
-                "ide-line-number";
-
-            number.textContent =
-                index + 1;
-
-
-            const code =
-                document.createElement(
-                    "span"
-                );
-
-            code.className =
-                "ide-line-code";
-
-
-            code.appendChild(
-                highlightPythonLine(
-                    lineText
+            lineElement.appendChild(
+                renderPythonText(
+                    line
                 )
             );
 
 
-            row.appendChild(
-                number
-            );
-
-            row.appendChild(
-                code
-            );
-
-
-            body.appendChild(
-                row
+            codeBox.appendChild(
+                lineElement
             );
 
         }
     );
 
 
-    editor.appendChild(
-        body
-    );
-
-
-    return editor;
+    return codeBox;
 
 }
 
@@ -1371,12 +1289,13 @@ function displayProgram() {
             "div"
         );
 
+
     card.className =
         "tracing-card";
 
 
     // ---------------------------------------------
-    // TITLE
+    // PROGRAM TITLE
     // ---------------------------------------------
 
     const title =
@@ -1384,8 +1303,10 @@ function displayProgram() {
             "h3"
         );
 
+
     title.textContent =
         selectedProgram.title;
+
 
     card.appendChild(
         title
@@ -1396,19 +1317,19 @@ function displayProgram() {
     // PYTHON IDE
     // ---------------------------------------------
 
-    const codeBox =
+    const ide =
         createPythonIDE(
             selectedProgram.code
         );
 
 
     card.appendChild(
-        codeBox
+        ide
     );
 
 
     // ---------------------------------------------
-    // QUESTIONS
+    // QUESTIONS TITLE
     // ---------------------------------------------
 
     const questionTitle =
@@ -1416,8 +1337,10 @@ function displayProgram() {
             "h3"
         );
 
+
     questionTitle.className =
         "tracing-question-title";
+
 
     questionTitle.textContent =
         "Trace the Program";
@@ -1428,56 +1351,79 @@ function displayProgram() {
     );
 
 
+    // ---------------------------------------------
+    // QUESTIONS
+    // ---------------------------------------------
+
     selectedProgram.questions.forEach(
-        (question, index) => {
+        (
+            question,
+            index
+        ) => {
+
 
             const questionCard =
                 document.createElement(
                     "div"
                 );
 
+
             questionCard.className =
                 "tracing-question";
 
+
+            // Question number
 
             const number =
                 document.createElement(
                     "div"
                 );
 
+
             number.className =
                 "tracing-number";
+
 
             number.textContent =
                 "Question " +
                 (index + 1);
 
 
+            // Question
+
             const questionText =
                 document.createElement(
                     "p"
                 );
 
+
             questionText.textContent =
                 question.question;
 
+
+            // Answer box
 
             const input =
                 document.createElement(
                     "input"
                 );
 
+
             input.type =
                 "text";
+
 
             input.className =
                 "tracing-answer";
 
+
             input.placeholder =
                 "Enter your answer";
 
+
             input.autocomplete =
                 "off";
+
 
             input.dataset.index =
                 index;
@@ -1498,9 +1444,11 @@ function displayProgram() {
                 number
             );
 
+
             questionCard.appendChild(
                 questionText
             );
+
 
             questionCard.appendChild(
                 input
@@ -1580,6 +1528,10 @@ function submitTest3() {
     }
 
 
+    // ---------------------------------------------
+    // GET STUDENT ANSWERS
+    // ---------------------------------------------
+
     studentAnswers =
         Array.from(
             inputs
@@ -1589,15 +1541,35 @@ function submitTest3() {
         );
 
 
+    // ---------------------------------------------
+    // CALCULATE INTERNAL REVIEW SCORE
+    // ---------------------------------------------
+
+    test3Score =
+        calculateTraceScore();
+
+
     testSubmitted =
         true;
 
 
+    // ---------------------------------------------
+    // SAVE RESULT
+    // ---------------------------------------------
+
     saveTest3Result();
 
 
+    // ---------------------------------------------
+    // SHOW REVIEW
+    // ---------------------------------------------
+
     displayReview();
 
+
+    // ---------------------------------------------
+    // DISABLE SUBMIT BUTTON
+    // ---------------------------------------------
 
     const button =
         document.getElementById(
@@ -1612,10 +1584,78 @@ function submitTest3() {
         button.disabled =
             true;
 
+
         button.textContent =
             "REVIEW COMPLETE";
 
     }
+
+}
+
+
+// =====================================================
+// CALCULATE INTERNAL TRACE SCORE
+// =====================================================
+
+function calculateTraceScore() {
+
+    let score =
+        0;
+
+
+    selectedProgram.questions.forEach(
+        (
+            question,
+            index
+        ) => {
+
+            const student =
+                normalizeAnswer(
+                    studentAnswers[index]
+                );
+
+
+            const correct =
+                normalizeAnswer(
+                    question.answer
+                );
+
+
+            if (
+                student ===
+                correct
+            ) {
+
+                score++;
+
+            }
+
+        }
+    );
+
+
+    return score;
+
+}
+
+
+// =====================================================
+// NORMALIZE ANSWERS
+// =====================================================
+
+function normalizeAnswer(
+    value
+) {
+
+    return String(
+        value
+    )
+        .trim()
+        .toLowerCase()
+        .replace(
+            /\s+/g,
+            " "
+        );
 
 }
 
@@ -1646,7 +1686,7 @@ function displayReview() {
 
 
     // ---------------------------------------------
-    // MESSAGE
+    // REVIEW MESSAGE
     // ---------------------------------------------
 
     const message =
@@ -1654,13 +1694,15 @@ function displayReview() {
             "div"
         );
 
+
     message.className =
         "tracing-review-message";
 
+
     message.innerHTML =
         "<strong>Tracing Review</strong><br>" +
-        "There is no score for this activity. " +
-        "Compare your reasoning with the suggested answers.";
+        "This activity is for analysis. " +
+        "Compare your answers with the suggested answers and explanations.";
 
 
     container.appendChild(
@@ -1677,14 +1719,18 @@ function displayReview() {
             "div"
         );
 
+
     card.className =
         "tracing-card";
 
+
+    // Title
 
     const title =
         document.createElement(
             "h3"
         );
+
 
     title.textContent =
         selectedProgram.title;
@@ -1699,28 +1745,33 @@ function displayReview() {
     // PYTHON IDE
     // ---------------------------------------------
 
-    const codeBox =
+    const ide =
         createPythonIDE(
             selectedProgram.code
         );
 
 
     card.appendChild(
-        codeBox
+        ide
     );
 
 
     // ---------------------------------------------
-    // ANSWERS
+    // ANSWER REVIEW
     // ---------------------------------------------
 
     selectedProgram.questions.forEach(
-        (question, index) => {
+        (
+            question,
+            index
+        ) => {
+
 
             const review =
                 document.createElement(
                     "div"
                 );
+
 
             review.className =
                 "tracing-review-question";
@@ -1731,6 +1782,7 @@ function displayReview() {
                     "h4"
                 );
 
+
             header.textContent =
                 "Question " +
                 (index + 1);
@@ -1740,6 +1792,7 @@ function displayReview() {
                 document.createElement(
                     "p"
                 );
+
 
             yourAnswer.innerHTML =
                 "<strong>Your answer:</strong> " +
@@ -1753,6 +1806,7 @@ function displayReview() {
                     "p"
                 );
 
+
             suggested.innerHTML =
                 "<strong>Suggested answer:</strong> " +
                 escapeHTML(
@@ -1765,6 +1819,7 @@ function displayReview() {
                     "div"
                 );
 
+
             explanation.className =
                 "tracing-explanation";
 
@@ -1773,6 +1828,7 @@ function displayReview() {
                 document.createElement(
                     "strong"
                 );
+
 
             explanationTitle.textContent =
                 "Why:";
@@ -1783,6 +1839,7 @@ function displayReview() {
                     "span"
                 );
 
+
             explanationText.textContent =
                 " " +
                 question.explanation;
@@ -1791,6 +1848,7 @@ function displayReview() {
             explanation.appendChild(
                 explanationTitle
             );
+
 
             explanation.appendChild(
                 explanationText
@@ -1801,13 +1859,16 @@ function displayReview() {
                 header
             );
 
+
             review.appendChild(
                 yourAnswer
             );
 
+
             review.appendChild(
                 suggested
             );
+
 
             review.appendChild(
                 explanation
@@ -1827,10 +1888,91 @@ function displayReview() {
     );
 
 
+    // ---------------------------------------------
+    // EXIT AREA
+    // ---------------------------------------------
+
+    const exitArea =
+        document.createElement(
+            "div"
+        );
+
+
+    exitArea.className =
+        "test3-exit-area";
+
+
+    const exitButton =
+        document.createElement(
+            "button"
+        );
+
+
+    exitButton.type =
+        "button";
+
+
+    exitButton.className =
+        "test3-exit-button";
+
+
+    exitButton.textContent =
+        "EXIT REVIEWER";
+
+
+    exitButton.addEventListener(
+        "click",
+        exitReviewer
+    );
+
+
+    exitArea.appendChild(
+        exitButton
+    );
+
+
+    container.appendChild(
+        exitArea
+    );
+
+
     container.scrollIntoView({
         behavior:
             "smooth"
     });
+
+}
+
+
+// =====================================================
+// EXIT REVIEWER
+// =====================================================
+
+function exitReviewer() {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to exit the reviewer?"
+        );
+
+
+    if (
+        !confirmed
+    ) {
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "reviewerCompleted",
+        "true"
+    );
+
+
+    window.location.href =
+        "index.html";
 
 }
 
@@ -1843,7 +1985,9 @@ function escapeHTML(
     value
 ) {
 
-    return String(value)
+    return String(
+        value
+    )
         .replaceAll(
             "&",
             "&amp;"
@@ -1869,7 +2013,7 @@ function escapeHTML(
 
 
 // =====================================================
-// SAVE RESULT
+// SAVE TEST III RESULT
 // =====================================================
 
 function saveTest3Result() {
@@ -1877,7 +2021,8 @@ function saveTest3Result() {
     const result = {
 
         date:
-            new Date().toLocaleString(),
+            new Date()
+                .toLocaleString(),
 
         studentName:
             localStorage.getItem(
@@ -1889,8 +2034,17 @@ function saveTest3Result() {
                 "studentSection"
             ) || "",
 
+        test:
+            "Test III",
+
         program:
             selectedProgram.title,
+
+        score:
+            test3Score,
+
+        total:
+            selectedProgram.questions.length,
 
         answers:
             studentAnswers,
@@ -1899,10 +2053,20 @@ function saveTest3Result() {
             selectedProgram.questions.map(
                 question =>
                     question.answer
+            ),
+
+        explanations:
+            selectedProgram.questions.map(
+                question =>
+                    question.explanation
             )
 
     };
 
+
+    // ---------------------------------------------
+    // LOCAL STORAGE
+    // ---------------------------------------------
 
     localStorage.setItem(
         "test3Result",
@@ -1911,11 +2075,30 @@ function saveTest3Result() {
         )
     );
 
+
+    // ---------------------------------------------
+    // ALSO STORE THE SCORE SEPARATELY
+    // ---------------------------------------------
+
+    localStorage.setItem(
+        "test3Score",
+        String(
+            test3Score
+        )
+    );
+
+
+    console.log(
+        "Test III result saved:",
+        result
+    );
+
 }
 
 
 // =====================================================
 // ADD TEST III STYLES
+// SAME CODE STYLE AS TEST II
 // =====================================================
 
 function addTest3Styles() {
@@ -1936,252 +2119,170 @@ function addTest3Styles() {
             "style"
         );
 
+
     style.id =
         "test3ExtraStyles";
 
 
     style.textContent = `
 
+        /* ==========================================
+           TEST III CARD
+           ========================================== */
+
         .tracing-card {
 
-            background: #ffffff;
-            margin-top: 20px;
-            padding: 28px;
-            border-radius: 15px;
+            background:
+                #ffffff;
+
+            margin-top:
+                20px;
+
+            padding:
+                28px;
+
+            border-radius:
+                15px;
+
             box-shadow:
                 0 5px 20px
-                rgba(0,0,0,0.08);
+                rgba(0,0,0,0.07);
+
             border-left:
-                5px solid #2856a3;
+                5px solid
+                #2856a3;
 
         }
 
 
         .tracing-card h3 {
 
-            color: #183b70;
-            margin-top: 0;
-            margin-bottom: 20px;
+            color:
+                #183b70;
+
+            margin-top:
+                0;
+
+            margin-bottom:
+                20px;
 
         }
 
 
         /* ==========================================
-           PYTHON IDE
+           PYTHON CODE
+           SAME RENDERING AS TEST II
            ========================================== */
 
-        .python-ide {
+        .test3-code-box {
 
-            width: 100%;
-            overflow: hidden;
-            border-radius: 10px;
-            background: #1e1e1e;
-            box-shadow:
-                0 8px 22px
-                rgba(0,0,0,0.22);
-            border:
-                1px solid #333333;
-            text-align: left;
+            background:
+                #1e1e1e;
 
-        }
+            color:
+                #d4d4d4;
 
-
-        .ide-topbar {
-
-            height: 44px;
-            display: flex;
-            align-items: center;
-            background: #252526;
-            border-bottom:
-                1px solid #3b3b3b;
-            position: relative;
-
-        }
-
-
-        .ide-dots {
-
-            display: flex;
-            gap: 7px;
-            padding-left: 14px;
-            min-width: 75px;
-
-        }
-
-
-        .ide-dot {
-
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            display: inline-block;
-
-        }
-
-
-        .ide-red {
-
-            background: #ff5f57;
-
-        }
-
-
-        .ide-yellow {
-
-            background: #febc2e;
-
-        }
-
-
-        .ide-green {
-
-            background: #28c840;
-
-        }
-
-
-        .ide-tab {
-
-            height: 44px;
-            display: flex;
-            align-items: center;
-            padding: 0 18px;
-            background: #1e1e1e;
-            color: #d4d4d4;
             font-family:
                 Consolas,
                 "Courier New",
                 monospace;
-            font-size: 13px;
-            border-left:
-                1px solid #333333;
-            border-right:
-                1px solid #333333;
 
-        }
+            font-size:
+                16px;
 
+            line-height:
+                1.9;
 
-        .ide-tab::before {
+            white-space:
+                pre-wrap;
 
-            content: "🐍";
-            margin-right: 8px;
-            font-size: 13px;
-
-        }
-
-
-        .ide-language {
-
-            margin-left: auto;
-            padding-right: 16px;
-            color: #9cdcfe;
-            font-family:
-                Consolas,
-                "Courier New",
-                monospace;
-            font-size: 11px;
-            letter-spacing: 1px;
-
-        }
-
-
-        .ide-body {
+            overflow-x:
+                auto;
 
             padding:
-                14px 0 18px;
-            overflow-x: auto;
-            background: #1e1e1e;
+                24px;
+
+            border-radius:
+                10px;
+
+            text-align:
+                left;
+
+            margin:
+                0;
 
         }
 
 
-        .ide-line {
+        .python-line {
 
-            display: flex;
-            min-height: 25px;
-            line-height: 25px;
-            font-family:
-                Consolas,
-                "Courier New",
-                monospace;
-            font-size: 14px;
-            white-space: pre;
-            width: max-content;
-            min-width: 100%;
+            display:
+                block;
+
+            min-height:
+                30px;
+
+            white-space:
+                pre;
 
         }
 
 
-        .ide-line:hover {
+        .python-line:hover {
 
-            background: #252526;
-
-        }
-
-
-        .ide-line-number {
-
-            display: inline-block;
-            width: 48px;
-            padding-right: 14px;
-            box-sizing: border-box;
-            text-align: right;
-            color: #858585;
-            user-select: none;
-            flex-shrink: 0;
+            background:
+                #252526;
 
         }
 
 
-        .ide-line-code {
+        .py-normal {
 
-            display: inline-block;
-            padding-left: 10px;
-            padding-right: 28px;
-            color: #d4d4d4;
+            color:
+                #d4d4d4;
 
         }
 
 
-        .ide-normal {
+        .py-comment {
 
-            color: #d4d4d4;
-
-        }
-
-
-        .ide-comment {
-
-            color: #6a9955;
-            font-style: italic;
+            color:
+                #6a9955;
 
         }
 
 
-        .ide-keyword {
+        .py-keyword {
 
-            color: #569cd6;
+            color:
+                #569cd6;
 
-        }
-
-
-        .ide-builtin {
-
-            color: #dcdcaa;
+            font-weight:
+                600;
 
         }
 
 
-        .ide-string {
+        .py-string {
 
-            color: #ce9178;
+            color:
+                #ce9178;
 
         }
 
 
-        .ide-number {
+        .py-number {
 
-            color: #b5cea8;
+            color:
+                #b5cea8;
+
+        }
+
+
+        .py-constant {
+
+            color:
+                #569cd6;
 
         }
 
@@ -2200,21 +2301,35 @@ function addTest3Styles() {
 
         .tracing-question {
 
-            background: #f8fafc;
+            background:
+                #f8fafc;
+
             border:
-                1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 18px;
-            margin-top: 14px;
+                1px solid
+                #e2e8f0;
+
+            border-radius:
+                10px;
+
+            padding:
+                18px;
+
+            margin-top:
+                14px;
 
         }
 
 
         .tracing-number {
 
-            color: #2856a3;
-            font-weight: 700;
-            margin-bottom: 6px;
+            color:
+                #2856a3;
+
+            font-weight:
+                700;
+
+            margin-bottom:
+                6px;
 
         }
 
@@ -2223,21 +2338,36 @@ function addTest3Styles() {
 
             margin:
                 6px 0 12px;
-            line-height: 1.5;
+
+            line-height:
+                1.5;
 
         }
 
 
         .tracing-answer {
 
-            width: 100%;
-            box-sizing: border-box;
-            padding: 11px 13px;
+            width:
+                100%;
+
+            box-sizing:
+                border-box;
+
+            padding:
+                11px 13px;
+
             border:
-                1px solid #cbd5e1;
-            border-radius: 7px;
-            font-size: 15px;
-            outline: none;
+                1px solid
+                #cbd5e1;
+
+            border-radius:
+                7px;
+
+            font-size:
+                15px;
+
+            outline:
+                none;
 
         }
 
@@ -2249,7 +2379,12 @@ function addTest3Styles() {
 
             box-shadow:
                 0 0 0 2px
-                rgba(40,86,163,0.12);
+                rgba(
+                    40,
+                    86,
+                    163,
+                    0.12
+                );
 
         }
 
@@ -2284,7 +2419,8 @@ function addTest3Styles() {
                 #ffffff;
 
             border:
-                1px solid #e2e8f0;
+                1px solid
+                #e2e8f0;
 
             border-radius:
                 10px;
@@ -2338,6 +2474,64 @@ function addTest3Styles() {
 
 
         /* ==========================================
+           EXIT
+           ========================================== */
+
+        .test3-exit-area {
+
+            text-align:
+                center;
+
+            margin-top:
+                35px;
+
+            padding:
+                25px;
+
+        }
+
+
+        .test3-exit-button {
+
+            background:
+                #64748b;
+
+            color:
+                #ffffff;
+
+            border:
+                none;
+
+            padding:
+                14px 35px;
+
+            border-radius:
+                8px;
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+            letter-spacing:
+                0.5px;
+
+        }
+
+
+        .test3-exit-button:hover {
+
+            background:
+                #475569;
+
+        }
+
+
+        /* ==========================================
            MOBILE
            ========================================== */
 
@@ -2353,29 +2547,21 @@ function addTest3Styles() {
             }
 
 
-            .ide-line {
+            .test3-code-box {
 
                 font-size:
-                    12px;
+                    13px;
+
+                padding:
+                    16px;
 
             }
 
 
-            .ide-line-number {
+            .python-line {
 
-                width:
-                    38px;
-
-                padding-right:
-                    10px;
-
-            }
-
-
-            .ide-line-code {
-
-                padding-left:
-                    8px;
+                min-height:
+                    25px;
 
             }
 
@@ -2399,11 +2585,13 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
 
+        // Add IDE styles
+
         addTest3Styles();
 
 
         // ---------------------------------------------
-        // LOAD STUDENT INFORMATION
+        // LOAD STUDENT CREDENTIALS
         // ---------------------------------------------
 
         const studentName =
@@ -2453,7 +2641,7 @@ document.addEventListener(
 
 
         // ---------------------------------------------
-        // START TEST III
+        // START TEST
         // ---------------------------------------------
 
         startTest3();
