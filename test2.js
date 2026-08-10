@@ -11,41 +11,12 @@
 // =====================================================
 
 const pythonKeywords = new Set([
-
-    "and",
-    "as",
-    "assert",
-    "break",
-    "class",
-    "continue",
-    "def",
-    "del",
-    "elif",
-    "else",
-    "except",
-    "False",
-    "finally",
-    "for",
-    "from",
-    "global",
-    "if",
-    "import",
-    "in",
-    "is",
-    "lambda",
-    "None",
-    "nonlocal",
-    "not",
-    "or",
-    "pass",
-    "raise",
-    "return",
-    "True",
-    "try",
-    "while",
-    "with",
-    "yield"
-
+    "and", "as", "assert", "break", "class", "continue",
+    "def", "del", "elif", "else", "except", "False",
+    "finally", "for", "from", "global", "if", "import",
+    "in", "is", "lambda", "None", "nonlocal", "not",
+    "or", "pass", "raise", "return", "True", "try",
+    "while", "with", "yield"
 ]);
 
 
@@ -54,100 +25,56 @@ const pythonKeywords = new Set([
 // =====================================================
 
 function txt(value) {
-
     return {
         type: "text",
         value: value
     };
-
 }
 
 
 function note(value) {
-
     return {
         type: "comment",
         value: value
     };
-
 }
 
 
 function line() {
-
     return {
         type: "newline"
     };
-
 }
 
 
-// Fixed answer blank
-
-function blank(
-    answer,
-    explanation,
-    width = "short"
-) {
-
+function blank(answer, explanation, width = "short") {
     return {
-
         type: "blank",
-
         kind: "fixed",
-
         answer: answer,
-
         explanation: explanation,
-
         width: width
-
     };
-
 }
 
 
-// Student creates a name
-
-function defineName(
-    name,
-    explanation
-) {
-
+function defineName(name, explanation) {
     return {
-
         type: "blank",
-
         kind: "define",
-
         name: name,
-
         explanation: explanation,
-
         width: "name"
-
     };
-
 }
 
 
-// Student-defined name shown later
-
-function reference(
-    name,
-    defaultText
-) {
-
+function reference(name, defaultText) {
     return {
-
         type: "reference",
-
         name: name,
-
         defaultText: defaultText
-
     };
-
 }
 
 
@@ -158,17 +85,14 @@ function reference(
 const codeBank = [
 
     // =================================================
-    // SET 1
-    // WORKOUT SESSION CHECKER
+    // SET 1 - WORKOUT SESSION CHECKER
     // =================================================
 
     {
-
         title: "Workout Session Checker",
 
         parts: [
 
-            // 1
             note("# Define the function"),
             line(),
 
@@ -190,7 +114,6 @@ const codeBank = [
             line(),
 
 
-            // 3
             note("# Check the activity time"),
             line(),
 
@@ -212,7 +135,6 @@ const codeBank = [
             line(),
 
 
-            // 4
             note("# Give the result"),
             line(),
 
@@ -234,7 +156,6 @@ const codeBank = [
             line(),
 
 
-            // 5
             note("# Repeat the sessions"),
             line(),
 
@@ -252,7 +173,6 @@ const codeBank = [
             line(),
 
 
-            // 6
             note("# Check remaining sessions"),
             line(),
 
@@ -273,7 +193,6 @@ const codeBank = [
             line(),
 
 
-            // 7
             note("# Open the workout file"),
             line(),
 
@@ -288,7 +207,6 @@ const codeBank = [
             line(),
 
 
-            // 8
             note("# Save the workout"),
             line(),
 
@@ -302,7 +220,18 @@ const codeBank = [
             txt('("Workout completed\\n")'),
             line(),
 
-            txt("file.close()"),
+
+            note("# Close the file"),
+            line(),
+
+            txt("file."),
+
+            blank(
+                "close",
+                "close() closes the file after saving."
+            ),
+
+            txt("()"),
             line(),
 
 
@@ -318,7 +247,6 @@ const codeBank = [
 
             txt("("),
 
-            // 9
             blank(
                 "45",
                 "The function receives a numeric argument."
@@ -328,29 +256,24 @@ const codeBank = [
             line(),
 
 
-            // 10
             note("# Display the result"),
             line(),
 
             txt("print(result)")
 
         ]
-
     },
 
 
     // =================================================
-    // SET 2
-    // BOOKSTORE ORDER CHECKER
+    // SET 2 - BOOKSTORE ORDER CHECKER
     // =================================================
 
     {
-
         title: "Bookstore Order Checker",
 
         parts: [
 
-            // 1 and 2
             note("# Define the function"),
             line(),
 
@@ -372,7 +295,6 @@ const codeBank = [
             line(),
 
 
-            // 3
             note("# Check the order"),
             line(),
 
@@ -394,7 +316,6 @@ const codeBank = [
             line(),
 
 
-            // 4
             note("# Accept the order"),
             line(),
 
@@ -416,7 +337,6 @@ const codeBank = [
             line(),
 
 
-            // 5
             note("# Repeat the orders"),
             line(),
 
@@ -434,7 +354,6 @@ const codeBank = [
             line(),
 
 
-            // 6
             note("# Check remaining orders"),
             line(),
 
@@ -455,7 +374,6 @@ const codeBank = [
             line(),
 
 
-            // 7
             note("# Open the order file"),
             line(),
 
@@ -470,7 +388,6 @@ const codeBank = [
             line(),
 
 
-            // 8
             note("# Save the order"),
             line(),
 
@@ -484,7 +401,18 @@ const codeBank = [
             txt('("Order processed\\n")'),
             line(),
 
-            txt("file.close()"),
+
+            note("# Close the file"),
+            line(),
+
+            txt("file."),
+
+            blank(
+                "close",
+                "close() closes the file after saving."
+            ),
+
+            txt("()"),
             line(),
 
 
@@ -500,7 +428,6 @@ const codeBank = [
 
             txt("("),
 
-            // 9
             blank(
                 "2",
                 "The function receives the order quantity."
@@ -510,29 +437,24 @@ const codeBank = [
             line(),
 
 
-            // 10
             note("# Display the result"),
             line(),
 
             txt("print(message)")
 
         ]
-
     },
 
 
     // =================================================
-    // SET 3
-    // PLANT WATERING CHECKER
+    // SET 3 - PLANT WATERING CHECKER
     // =================================================
 
     {
-
         title: "Plant Watering Checker",
 
         parts: [
 
-            // 1 and 2
             note("# Define the function"),
             line(),
 
@@ -554,7 +476,6 @@ const codeBank = [
             line(),
 
 
-            // 3
             note("# Check the water level"),
             line(),
 
@@ -576,7 +497,6 @@ const codeBank = [
             line(),
 
 
-            // 4
             note("# Give the warning"),
             line(),
 
@@ -598,7 +518,6 @@ const codeBank = [
             line(),
 
 
-            // 5
             note("# Visit each plant"),
             line(),
 
@@ -616,7 +535,6 @@ const codeBank = [
             line(),
 
 
-            // 6
             note("# Check remaining plants"),
             line(),
 
@@ -637,7 +555,6 @@ const codeBank = [
             line(),
 
 
-            // 7
             note("# Open the plant file"),
             line(),
 
@@ -652,7 +569,6 @@ const codeBank = [
             line(),
 
 
-            // 8
             note("# Save the record"),
             line(),
 
@@ -666,7 +582,18 @@ const codeBank = [
             txt('("Plant checked\\n")'),
             line(),
 
-            txt("file.close()"),
+
+            note("# Close the file"),
+            line(),
+
+            txt("file."),
+
+            blank(
+                "close",
+                "close() closes the file after saving."
+            ),
+
+            txt("()"),
             line(),
 
 
@@ -682,7 +609,6 @@ const codeBank = [
 
             txt("("),
 
-            // 9
             blank(
                 "15",
                 "The function receives the water-level value."
@@ -692,29 +618,24 @@ const codeBank = [
             line(),
 
 
-            // 10
             note("# Display the result"),
             line(),
 
             txt("print(status)")
 
         ]
-
     },
 
 
     // =================================================
-    // SET 4
-    // TRAVEL BUDGET CHECKER
+    // SET 4 - TRAVEL BUDGET CHECKER
     // =================================================
 
     {
-
         title: "Travel Budget Checker",
 
         parts: [
 
-            // 1 and 2
             note("# Define the function"),
             line(),
 
@@ -736,7 +657,6 @@ const codeBank = [
             line(),
 
 
-            // 3
             note("# Check the budget"),
             line(),
 
@@ -758,7 +678,6 @@ const codeBank = [
             line(),
 
 
-            // 4
             note("# Approve the trip"),
             line(),
 
@@ -780,7 +699,6 @@ const codeBank = [
             line(),
 
 
-            // 5
             note("# Display each day"),
             line(),
 
@@ -798,7 +716,6 @@ const codeBank = [
             line(),
 
 
-            // 6
             note("# Check remaining days"),
             line(),
 
@@ -819,7 +736,6 @@ const codeBank = [
             line(),
 
 
-            // 7
             note("# Open the travel file"),
             line(),
 
@@ -834,7 +750,6 @@ const codeBank = [
             line(),
 
 
-            // 8
             note("# Save the travel plan"),
             line(),
 
@@ -848,7 +763,18 @@ const codeBank = [
             txt('("Trip planned\\n")'),
             line(),
 
-            txt("file.close()"),
+
+            note("# Close the file"),
+            line(),
+
+            txt("file."),
+
+            blank(
+                "close",
+                "close() closes the file after saving."
+            ),
+
+            txt("()"),
             line(),
 
 
@@ -864,7 +790,6 @@ const codeBank = [
 
             txt("("),
 
-            // 9
             blank(
                 "1500",
                 "The function receives the travel budget."
@@ -874,29 +799,24 @@ const codeBank = [
             line(),
 
 
-            // 10
             note("# Display the result"),
             line(),
 
             txt("print(decision)")
 
         ]
-
     },
 
 
     // =================================================
-    // SET 5
-    // EVENT SIZE CHECKER
+    // SET 5 - EVENT SIZE CHECKER
     // =================================================
 
     {
-
         title: "Event Size Checker",
 
         parts: [
 
-            // 1 and 2
             note("# Define the function"),
             line(),
 
@@ -918,7 +838,6 @@ const codeBank = [
             line(),
 
 
-            // 3
             note("# Check the number of guests"),
             line(),
 
@@ -940,7 +859,6 @@ const codeBank = [
             line(),
 
 
-            // 4
             note("# Identify the event"),
             line(),
 
@@ -962,7 +880,6 @@ const codeBank = [
             line(),
 
 
-            // 5
             note("# Repeat the activities"),
             line(),
 
@@ -980,7 +897,6 @@ const codeBank = [
             line(),
 
 
-            // 6
             note("# Check remaining activities"),
             line(),
 
@@ -1001,7 +917,6 @@ const codeBank = [
             line(),
 
 
-            // 7
             note("# Open the event file"),
             line(),
 
@@ -1016,7 +931,6 @@ const codeBank = [
             line(),
 
 
-            // 8
             note("# Save the event"),
             line(),
 
@@ -1030,7 +944,18 @@ const codeBank = [
             txt('("Event prepared\\n")'),
             line(),
 
-            txt("file.close()"),
+
+            note("# Close the file"),
+            line(),
+
+            txt("file."),
+
+            blank(
+                "close",
+                "close() closes the file after saving."
+            ),
+
+            txt("()"),
             line(),
 
 
@@ -1046,7 +971,6 @@ const codeBank = [
 
             txt("("),
 
-            // 9
             blank(
                 "65",
                 "The function receives the number of guests."
@@ -1056,14 +980,12 @@ const codeBank = [
             line(),
 
 
-            // 10
             note("# Display the result"),
             line(),
 
             txt("print(result)")
 
         ]
-
     }
 
 ];
@@ -1074,9 +996,7 @@ const codeBank = [
 // =====================================================
 
 let selectedCode = null;
-
 let studentAnswers = [];
-
 let testSubmitted = false;
 
 
@@ -1084,13 +1004,10 @@ let testSubmitted = false;
 // COUNT BLANKS
 // =====================================================
 
-function countBlanks(
-    program
-) {
+function countBlanks(program) {
 
     return program.parts.filter(
-        part =>
-            part.type === "blank"
+        part => part.type === "blank"
     ).length;
 
 }
@@ -1104,15 +1021,10 @@ function validateCodeBank() {
 
     let valid = true;
 
-
     codeBank.forEach(
         (program, index) => {
 
-            const count =
-                countBlanks(
-                    program
-                );
-
+            const count = countBlanks(program);
 
             console.log(
                 "Set " +
@@ -1124,10 +1036,7 @@ function validateCodeBank() {
                 " blanks"
             );
 
-
-            if (
-                count !== 10
-            ) {
+            if (count !== 10) {
 
                 console.error(
                     program.title +
@@ -1136,14 +1045,11 @@ function validateCodeBank() {
                     " blanks. Expected exactly 10."
                 );
 
-
                 valid = false;
-
             }
 
         }
     );
-
 
     return valid;
 
@@ -1154,31 +1060,19 @@ function validateCodeBank() {
 // VALID PYTHON NAME
 // =====================================================
 
-function isValidPythonName(
-    value
-) {
+function isValidPythonName(value) {
 
     if (
-        !/^[A-Za-z_][A-Za-z0-9_]*$/.test(
-            value
-        )
+        !/^[A-Za-z_][A-Za-z0-9_]*$/.test(value)
     ) {
-
         return false;
-
     }
-
 
     if (
-        pythonKeywords.has(
-            value
-        )
+        pythonKeywords.has(value)
     ) {
-
         return false;
-
     }
-
 
     return true;
 
@@ -1189,13 +1083,9 @@ function isValidPythonName(
 // NORMALIZE ANSWER
 // =====================================================
 
-function normalize(
-    value
-) {
+function normalize(value) {
 
-    return String(
-        value
-    )
+    return String(value)
         .trim()
         .toLowerCase();
 
@@ -1206,33 +1096,14 @@ function normalize(
 // ESCAPE HTML
 // =====================================================
 
-function escapeHTML(
-    value
-) {
+function escapeHTML(value) {
 
-    return String(
-        value
-    )
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
 }
 
@@ -1241,44 +1112,28 @@ function escapeHTML(
 // RENDER PYTHON TEXT
 // =====================================================
 
-function renderPythonText(
-    value
-) {
+function renderPythonText(value) {
 
     const fragment =
         document.createDocumentFragment();
 
-
     const pattern =
         /(#.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|\b(def|if|elif|else|for|while|in|range|return|open|print|input|int|float|write|close)\b|\b(\d+(?:\.\d+)?)\b/g;
 
-
     let lastIndex = 0;
-
     let match;
 
-
     while (
-        (match =
-            pattern.exec(
-                value
-            )) !== null
+        (match = pattern.exec(value)) !== null
     ) {
 
-        if (
-            match.index >
-            lastIndex
-        ) {
+        if (match.index > lastIndex) {
 
             const normal =
-                document.createElement(
-                    "span"
-                );
-
+                document.createElement("span");
 
             normal.className =
                 "py-normal";
-
 
             normal.textContent =
                 value.slice(
@@ -1286,47 +1141,31 @@ function renderPythonText(
                     match.index
                 );
 
-
-            fragment.appendChild(
-                normal
-            );
+            fragment.appendChild(normal);
 
         }
 
-
         const token =
-            document.createElement(
-                "span"
-            );
+            document.createElement("span");
 
-
-        if (
-            match[1]
-        ) {
+        if (match[1]) {
 
             token.className =
                 "py-comment";
 
         }
-
-        else if (
-            match[2]
-        ) {
+        else if (match[2]) {
 
             token.className =
                 "py-string";
 
         }
-
-        else if (
-            match[3]
-        ) {
+        else if (match[3]) {
 
             token.className =
                 "py-keyword";
 
         }
-
         else {
 
             token.className =
@@ -1334,49 +1173,30 @@ function renderPythonText(
 
         }
 
-
         token.textContent =
             match[0];
 
-
-        fragment.appendChild(
-            token
-        );
-
+        fragment.appendChild(token);
 
         lastIndex =
             pattern.lastIndex;
 
     }
 
-
-    if (
-        lastIndex <
-        value.length
-    ) {
+    if (lastIndex < value.length) {
 
         const remaining =
-            document.createElement(
-                "span"
-            );
-
+            document.createElement("span");
 
         remaining.className =
             "py-normal";
 
-
         remaining.textContent =
-            value.slice(
-                lastIndex
-            );
+            value.slice(lastIndex);
 
-
-        fragment.appendChild(
-            remaining
-        );
+        fragment.appendChild(remaining);
 
     }
-
 
     return fragment;
 
@@ -1393,55 +1213,38 @@ function startTest2() {
         "Checking Test II code bank..."
     );
 
-
-    if (
-        !validateCodeBank()
-    ) {
+    if (!validateCodeBank()) {
 
         alert(
             "There is a problem with this reviewer. Please inform your teacher."
         );
 
-
         return;
 
     }
 
-
     const randomIndex =
         Math.floor(
-            Math.random() *
-            codeBank.length
+            Math.random() * codeBank.length
         );
 
-
     selectedCode =
-        codeBank[
-            randomIndex
-        ];
-
+        codeBank[randomIndex];
 
     studentAnswers =
         new Array(10).fill("");
 
-
-    testSubmitted =
-        false;
-
+    testSubmitted = false;
 
     console.log(
         "Selected set:",
         selectedCode.title
     );
 
-
     console.log(
         "Number of blanks:",
-        countBlanks(
-            selectedCode
-        )
+        countBlanks(selectedCode)
     );
-
 
     displayProgram();
 
@@ -1459,177 +1262,93 @@ function displayProgram() {
             "codeQuestionsContainer"
         );
 
-
     if (!container) {
 
         console.error(
             "codeQuestionsContainer was not found."
         );
 
-
         return;
 
     }
 
-
     container.innerHTML = "";
 
-
-    // ---------------------------------------------
-    // PROGRAM CARD
-    // ---------------------------------------------
-
     const card =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     card.className =
         "code-question-card";
 
-
-    // ---------------------------------------------
-    // PROGRAM TITLE
-    // ---------------------------------------------
-
     const title =
-        document.createElement(
-            "h3"
-        );
-
+        document.createElement("h3");
 
     title.textContent =
         selectedCode.title;
 
-
-    card.appendChild(
-        title
-    );
-
-
-    // ---------------------------------------------
-    // CODE BOX
-    // ---------------------------------------------
+    card.appendChild(title);
 
     const codeBox =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     codeBox.className =
         "code-box";
 
-
     let blankIndex = 0;
-
 
     selectedCode.parts.forEach(
         part => {
 
-
-            // -----------------------------------------
-            // NEW LINE
-            // -----------------------------------------
-
             if (
-                part.type ===
-                "newline"
+                part.type === "newline"
             ) {
 
                 codeBox.appendChild(
-                    document.createElement(
-                        "br"
-                    )
+                    document.createElement("br")
                 );
 
-
                 return;
-
             }
 
 
-            // -----------------------------------------
-            // TEXT
-            // -----------------------------------------
-
             if (
-                part.type ===
-                "text"
+                part.type === "text" ||
+                part.type === "comment"
             ) {
 
                 codeBox.appendChild(
-                    renderPythonText(
-                        part.value
-                    )
+                    renderPythonText(part.value)
                 );
 
-
                 return;
-
             }
 
 
-            // -----------------------------------------
-            // COMMENT
-            // -----------------------------------------
-
             if (
-                part.type ===
-                "comment"
-            ) {
-
-                codeBox.appendChild(
-                    renderPythonText(
-                        part.value
-                    )
-                );
-
-
-                return;
-
-            }
-
-
-            // -----------------------------------------
-            // ANSWER BLANK
-            // -----------------------------------------
-
-            if (
-                part.type ===
-                "blank"
+                part.type === "blank"
             ) {
 
                 const input =
-                    document.createElement(
-                        "input"
-                    );
-
+                    document.createElement("input");
 
                 input.type =
                     "text";
 
-
                 input.className =
                     "code-blank";
-
 
                 input.autocomplete =
                     "off";
 
-
                 input.spellcheck =
                     false;
-
 
                 input.dataset.blankIndex =
                     blankIndex;
 
 
                 if (
-                    part.width ===
-                    "name"
+                    part.width === "name"
                 ) {
 
                     input.classList.add(
@@ -1637,7 +1356,6 @@ function displayProgram() {
                     );
 
                 }
-
                 else {
 
                     input.classList.add(
@@ -1647,13 +1365,12 @@ function displayProgram() {
                 }
 
 
-                // Update linked code when a
-                // student creates a name.
-
                 if (
-                    part.kind ===
-                    "define"
+                    part.kind === "define"
                 ) {
+
+                    input.dataset.role =
+                        part.name;
 
                     input.addEventListener(
                         "input",
@@ -1670,52 +1387,36 @@ function displayProgram() {
                 }
 
 
-                codeBox.appendChild(
-                    input
-                );
-
+                codeBox.appendChild(input);
 
                 blankIndex++;
 
-
                 return;
-
             }
 
 
-            // -----------------------------------------
-            // LINKED NAME
-            // -----------------------------------------
-
             if (
-                part.type ===
-                "reference"
+                part.type === "reference"
             ) {
 
                 const referenceSpan =
-                    document.createElement(
-                        "span"
-                    );
-
+                    document.createElement("span");
 
                 referenceSpan.className =
                     "code-reference";
 
-
                 referenceSpan.dataset.reference =
                     part.name;
 
+                referenceSpan.dataset.default =
+                    part.defaultText;
 
                 referenceSpan.textContent =
                     part.defaultText;
 
-
                 codeBox.appendChild(
                     referenceSpan
                 );
-
-
-                return;
 
             }
 
@@ -1723,15 +1424,9 @@ function displayProgram() {
     );
 
 
-    card.appendChild(
-        codeBox
-    );
+    card.appendChild(codeBox);
 
-
-    container.appendChild(
-        card
-    );
-
+    container.appendChild(card);
 
     console.log(
         "Displayed answer blanks:",
@@ -1745,10 +1440,7 @@ function displayProgram() {
 // UPDATE LINKED NAMES
 // =====================================================
 
-function updateReferences(
-    name,
-    value
-) {
+function updateReferences(name, value) {
 
     const references =
         document.querySelectorAll(
@@ -1757,26 +1449,11 @@ function updateReferences(
             '"]'
         );
 
-
     references.forEach(
         reference => {
 
-            if (
-                value === ""
-            ) {
-
-                reference.textContent =
-                    reference.dataset.default ||
-                    "name";
-
-            }
-
-            else {
-
-                reference.textContent =
-                    value;
-
-            }
+            reference.textContent =
+                value || reference.dataset.default;
 
         }
     );
@@ -1785,7 +1462,7 @@ function updateReferences(
 
 
 // =====================================================
-// READ STUDENT ANSWERS
+// READ ANSWERS
 // =====================================================
 
 function readAnswers() {
@@ -1795,12 +1472,10 @@ function readAnswers() {
             ".code-blank"
         );
 
-
     console.log(
         "Answer boxes found:",
         inputs.length
     );
-
 
     if (
         inputs.length !== 10
@@ -1810,26 +1485,19 @@ function readAnswers() {
             "There is a problem with this reviewer. Please inform your teacher."
         );
 
-
         console.error(
             "Expected 10 blanks but found " +
             inputs.length
         );
 
-
         return null;
 
     }
 
-
     studentAnswers =
-        Array.from(
-            inputs
-        ).map(
-            input =>
-                input.value.trim()
+        Array.from(inputs).map(
+            input => input.value.trim()
         );
-
 
     return studentAnswers;
 
@@ -1840,57 +1508,33 @@ function readAnswers() {
 // EVALUATE ANSWERS
 // =====================================================
 
-function evaluateAnswers(
-    answers
-) {
+function evaluateAnswers(answers) {
 
     const results = [];
 
-
-    const definedNames = {};
-
-
     let blankIndex = 0;
-
 
     selectedCode.parts.forEach(
         part => {
 
             if (
-                part.type !==
-                "blank"
+                part.type !== "blank"
             ) {
-
                 return;
-
             }
 
-
             const studentAnswer =
-                answers[
-                    blankIndex
-                ];
+                answers[blankIndex];
 
-
-            let correct =
-                false;
-
-
-            let correctAnswer =
-                "";
-
-
+            let correct = false;
+            let correctAnswer = "";
             let explanation =
                 part.explanation;
 
 
-            // -----------------------------------------
-            // STUDENT-DEFINED NAME
-            // -----------------------------------------
-
+            // Student-created names
             if (
-                part.kind ===
-                "define"
+                part.kind === "define"
             ) {
 
                 correct =
@@ -1898,31 +1542,19 @@ function evaluateAnswers(
                         studentAnswer
                     );
 
-
-                if (
-                    correct
-                ) {
-
-                    definedNames[
-                        part.name
-                    ] =
-                        studentAnswer;
-
+                if (correct) {
 
                     correctAnswer =
                         studentAnswer;
-
 
                     explanation =
                         "Valid Python identifier.";
 
                 }
-
                 else {
 
                     correctAnswer =
                         "Any valid Python identifier";
-
 
                     explanation =
                         "Use a valid Python name. It may contain letters, numbers, and underscores, but it cannot begin with a number or be a Python keyword.";
@@ -1932,23 +1564,15 @@ function evaluateAnswers(
             }
 
 
-            // -----------------------------------------
-            // FIXED ANSWER
-            // -----------------------------------------
-
+            // Fixed answers
             else {
 
                 correctAnswer =
                     part.answer;
 
-
                 correct =
-                    normalize(
-                        studentAnswer
-                    ) ===
-                    normalize(
-                        correctAnswer
-                    );
+                    normalize(studentAnswer) ===
+                    normalize(correctAnswer);
 
             }
 
@@ -1969,12 +1593,10 @@ function evaluateAnswers(
 
             });
 
-
             blankIndex++;
 
         }
     );
-
 
     return results;
 
@@ -1987,91 +1609,57 @@ function evaluateAnswers(
 
 function submitTest2() {
 
-    if (
-        testSubmitted
-    ) {
-
+    if (testSubmitted) {
         return;
-
     }
-
 
     const answers =
         readAnswers();
 
-
-    if (
-        answers === null
-    ) {
-
+    if (answers === null) {
         return;
-
     }
-
 
     const unanswered =
         answers.filter(
-            answer =>
-                answer === ""
+            answer => answer === ""
         ).length;
 
-
-    if (
-        unanswered > 0
-    ) {
+    if (unanswered > 0) {
 
         alert(
             "Please complete all 10 blanks before submitting."
         );
 
-
         return;
 
     }
-
 
     const confirmed =
         confirm(
             "Are you sure you want to submit Test II?"
         );
 
-
-    if (
-        !confirmed
-    ) {
-
+    if (!confirmed) {
         return;
-
     }
 
-
     const results =
-        evaluateAnswers(
-            answers
-        );
-
+        evaluateAnswers(answers);
 
     let score = 0;
-
 
     results.forEach(
         result => {
 
-            if (
-                result.correct
-            ) {
-
+            if (result.correct) {
                 score++;
-
             }
 
         }
     );
 
-
-    testSubmitted =
-        true;
-
+    testSubmitted = true;
 
     saveTest2Result(
         score,
@@ -2079,23 +1667,15 @@ function submitTest2() {
     );
 
 
-    // ---------------------------------------------
-    // SHOW SCORE
-    // ---------------------------------------------
-
+    // Score
     const scoreArea =
         document.getElementById(
             "scoreArea"
         );
 
-
-    if (
-        scoreArea
-    ) {
-
+    if (scoreArea) {
         scoreArea.style.display =
             "block";
-
     }
 
 
@@ -2104,14 +1684,9 @@ function submitTest2() {
             "finalScore"
         );
 
-
-    if (
-        finalScore
-    ) {
-
+    if (finalScore) {
         finalScore.textContent =
             score + " / 10";
-
     }
 
 
@@ -2120,38 +1695,26 @@ function submitTest2() {
             "scoreMessage"
         );
 
+    if (scoreMessage) {
 
-    if (
-        scoreMessage
-    ) {
-
-        if (
-            score === 10
-        ) {
+        if (score === 10) {
 
             scoreMessage.textContent =
                 "Excellent! All 10 code completions are correct.";
 
         }
-
-        else if (
-            score >= 8
-        ) {
+        else if (score >= 8) {
 
             scoreMessage.textContent =
                 "Very good work. Review the items you missed.";
 
         }
-
-        else if (
-            score >= 5
-        ) {
+        else if (score >= 5) {
 
             scoreMessage.textContent =
                 "Good effort. Study the feedback on the incorrect items.";
 
         }
-
         else {
 
             scoreMessage.textContent =
@@ -2162,32 +1725,18 @@ function submitTest2() {
     }
 
 
-    // ---------------------------------------------
-    // SHOW REVIEW
-    // ---------------------------------------------
+    displayResults(results);
 
-    displayResults(
-        results
-    );
-
-
-    // ---------------------------------------------
-    // DISABLE BUTTON
-    // ---------------------------------------------
 
     const submitButton =
         document.getElementById(
             "submitBtn"
         );
 
-
-    if (
-        submitButton
-    ) {
+    if (submitButton) {
 
         submitButton.disabled =
             true;
-
 
         submitButton.textContent =
             "TEST SUBMITTED";
@@ -2195,13 +1744,10 @@ function submitTest2() {
     }
 
 
-    if (
-        scoreArea
-    ) {
+    if (scoreArea) {
 
         scoreArea.scrollIntoView({
-            behavior:
-                "smooth"
+            behavior: "smooth"
         });
 
     }
@@ -2210,94 +1756,55 @@ function submitTest2() {
 
 
 // =====================================================
-// DISPLAY REVIEW RESULTS
+// DISPLAY RESULTS
 // =====================================================
 
-function displayResults(
-    results
-) {
+function displayResults(results) {
 
     const container =
         document.getElementById(
             "codeQuestionsContainer"
         );
 
-
     if (!container) {
-
         return;
-
     }
-
 
     container.innerHTML = "";
 
-
-    // ---------------------------------------------
-    // TITLE
-    // ---------------------------------------------
-
     const card =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     card.className =
         "code-question-card";
 
 
     const title =
-        document.createElement(
-            "h3"
-        );
-
+        document.createElement("h3");
 
     title.textContent =
         selectedCode.title;
 
+    card.appendChild(title);
 
-    card.appendChild(
-        title
-    );
-
-
-    // ---------------------------------------------
-    // INSTRUCTION
-    // ---------------------------------------------
 
     const instruction =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     instruction.className =
         "review-instruction";
 
-
     instruction.textContent =
         "Correct answers are shown in green. Click a red answer to review it.";
 
+    card.appendChild(instruction);
 
-    card.appendChild(
-        instruction
-    );
-
-
-    // ---------------------------------------------
-    // CODE BOX
-    // ---------------------------------------------
 
     const codeBox =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     codeBox.className =
         "code-box submitted-code";
-
 
     let blankIndex = 0;
 
@@ -2305,109 +1812,64 @@ function displayResults(
     selectedCode.parts.forEach(
         part => {
 
-
             if (
-                part.type ===
-                "newline"
+                part.type === "newline"
             ) {
 
                 codeBox.appendChild(
-                    document.createElement(
-                        "br"
-                    )
+                    document.createElement("br")
                 );
 
-
                 return;
-
             }
 
 
             if (
-                part.type ===
-                "text"
+                part.type === "text" ||
+                part.type === "comment"
             ) {
 
                 codeBox.appendChild(
-                    renderPythonText(
-                        part.value
-                    )
+                    renderPythonText(part.value)
                 );
 
-
                 return;
-
             }
 
 
             if (
-                part.type ===
-                "comment"
-            ) {
-
-                codeBox.appendChild(
-                    renderPythonText(
-                        part.value
-                    )
-                );
-
-
-                return;
-
-            }
-
-
-            if (
-                part.type ===
-                "reference"
+                part.type === "reference"
             ) {
 
                 const referenceSpan =
-                    document.createElement(
-                        "span"
-                    );
-
+                    document.createElement("span");
 
                 referenceSpan.className =
                     "code-reference";
 
-
                 referenceSpan.textContent =
-                    getReferenceValue(
-                        part.name
-                    );
-
+                    getReferenceValue(part.name);
 
                 codeBox.appendChild(
                     referenceSpan
                 );
 
-
                 return;
-
             }
 
 
             if (
-                part.type ===
-                "blank"
+                part.type === "blank"
             ) {
 
                 const result =
-                    results[
-                        blankIndex
-                    ];
-
+                    results[blankIndex];
 
                 const answerSpan =
-                    document.createElement(
-                        "span"
-                    );
-
+                    document.createElement("span");
 
                 answerSpan.className =
                     "submitted-answer";
-
 
                 answerSpan.textContent =
                     result.studentAnswer;
@@ -2422,17 +1884,14 @@ function displayResults(
                     );
 
                 }
-
                 else {
 
                     answerSpan.classList.add(
                         "answer-wrong"
                     );
 
-
                     answerSpan.title =
                         "Click to review";
-
 
                     answerSpan.addEventListener(
                         "click",
@@ -2452,7 +1911,6 @@ function displayResults(
                     answerSpan
                 );
 
-
                 blankIndex++;
 
             }
@@ -2461,25 +1919,18 @@ function displayResults(
     );
 
 
-    card.appendChild(
-        codeBox
-    );
+    card.appendChild(codeBox);
 
-
-    container.appendChild(
-        card
-    );
+    container.appendChild(card);
 
 }
 
 
 // =====================================================
-// GET CURRENT LINKED VALUE
+// GET LINKED VALUE
 // =====================================================
 
-function getReferenceValue(
-    name
-) {
+function getReferenceValue(name) {
 
     const input =
         document.querySelector(
@@ -2488,13 +1939,8 @@ function getReferenceValue(
             '"]'
         );
 
-
-    if (
-        input
-    ) {
-
+    if (input) {
         return input.value.trim();
-
     }
 
 
@@ -2505,13 +1951,8 @@ function getReferenceValue(
             '"]'
         );
 
-
-    if (
-        reference
-    ) {
-
+    if (reference) {
         return reference.textContent;
-
     }
 
 
@@ -2524,86 +1965,56 @@ function getReferenceValue(
 // FEEDBACK
 // =====================================================
 
-function showExplanation(
-    result
-) {
+function showExplanation(result) {
 
     const old =
         document.getElementById(
             "codeExplanation"
         );
 
-
-    if (
-        old
-    ) {
-
+    if (old) {
         old.remove();
-
     }
 
 
     const box =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     box.id =
         "codeExplanation";
-
 
     box.className =
         "code-explanation";
 
 
     const close =
-        document.createElement(
-            "button"
-        );
-
+        document.createElement("button");
 
     close.className =
         "close-explanation";
 
-
     close.textContent =
         "×";
 
-
     close.onclick =
         function() {
-
             box.remove();
-
         };
 
-
-    box.appendChild(
-        close
-    );
+    box.appendChild(close);
 
 
     const heading =
-        document.createElement(
-            "h3"
-        );
-
+        document.createElement("h3");
 
     heading.textContent =
         "Quick Review";
 
-
-    box.appendChild(
-        heading
-    );
+    box.appendChild(heading);
 
 
     const yourAnswer =
-        document.createElement(
-            "p"
-        );
-
+        document.createElement("p");
 
     yourAnswer.innerHTML =
         "<strong>Your answer:</strong> " +
@@ -2611,17 +2022,11 @@ function showExplanation(
             result.studentAnswer
         );
 
-
-    box.appendChild(
-        yourAnswer
-    );
+    box.appendChild(yourAnswer);
 
 
     const correctAnswer =
-        document.createElement(
-            "p"
-        );
-
+        document.createElement("p");
 
     correctAnswer.innerHTML =
         "<strong>Expected answer:</strong> " +
@@ -2629,34 +2034,22 @@ function showExplanation(
             result.correctAnswer
         );
 
-
-    box.appendChild(
-        correctAnswer
-    );
+    box.appendChild(correctAnswer);
 
 
     const explanation =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     explanation.className =
         "explanation-text";
 
-
     explanation.textContent =
         result.explanation;
 
-
-    box.appendChild(
-        explanation
-    );
+    box.appendChild(explanation);
 
 
-    document.body.appendChild(
-        box
-    );
+    document.body.appendChild(box);
 
 }
 
@@ -2665,10 +2058,7 @@ function showExplanation(
 // SAVE TEST II RESULT
 // =====================================================
 
-function saveTest2Result(
-    score,
-    results
-) {
+function saveTest2Result(score, results) {
 
     const result = {
 
@@ -2702,9 +2092,7 @@ function saveTest2Result(
 
     localStorage.setItem(
         "test2Result",
-        JSON.stringify(
-            result
-        )
+        JSON.stringify(result)
     );
 
 }
@@ -2721,17 +2109,12 @@ function addTest2Styles() {
             "test2ExtraStyles"
         )
     ) {
-
         return;
-
     }
 
 
     const style =
-        document.createElement(
-            "style"
-        );
-
+        document.createElement("style");
 
     style.id =
         "test2ExtraStyles";
@@ -2740,328 +2123,149 @@ function addTest2Styles() {
     style.textContent = `
 
         .code-question-card h3 {
-
-            margin-bottom:
-                18px;
-
+            margin-bottom: 18px;
         }
-
 
         .code-box {
-
-            background:
-                #1e1e1e;
-
-            color:
-                #d4d4d4;
-
+            background: #1e1e1e;
+            color: #d4d4d4;
             font-family:
                 Consolas,
                 "Courier New",
                 monospace;
-
-            font-size:
-                16px;
-
-            line-height:
-                1.9;
-
-            white-space:
-                pre-wrap;
-
-            overflow-x:
-                auto;
-
+            font-size: 16px;
+            line-height: 1.9;
+            white-space: pre-wrap;
+            overflow-x: auto;
         }
-
 
         .py-normal {
-
-            color:
-                #d4d4d4;
-
+            color: #d4d4d4;
         }
-
 
         .py-comment {
-
-            color:
-                #6a9955;
-
+            color: #6a9955;
         }
-
 
         .py-keyword {
-
-            color:
-                #569cd6;
-
-            font-weight:
-                600;
-
+            color: #569cd6;
+            font-weight: 600;
         }
-
 
         .py-string {
-
-            color:
-                #ce9178;
-
+            color: #ce9178;
         }
-
 
         .py-number {
-
-            color:
-                #b5cea8;
-
+            color: #b5cea8;
         }
-
 
         .code-reference {
-
-            color:
-                #9cdcfe;
-
-            font-weight:
-                600;
-
+            color: #9cdcfe;
+            font-weight: 600;
         }
 
-
         .code-blank {
-
-            display:
-                inline-block;
-
-            width:
-                58px;
-
-            height:
-                30px;
-
-            padding:
-                2px 7px;
-
-            margin:
-                0 3px;
-
-            vertical-align:
-                middle;
-
-            border:
-                2px solid
-                #93c5fd;
-
-            border-radius:
-                5px;
-
-            background:
-                #334155;
-
-            color:
-                #ffffff;
-
+            display: inline-block;
+            width: 58px;
+            height: 30px;
+            padding: 2px 7px;
+            margin: 0 3px;
+            vertical-align: middle;
+            border: 2px solid #93c5fd;
+            border-radius: 5px;
+            background: #334155;
+            color: #ffffff;
             font-family:
                 Consolas,
                 "Courier New",
                 monospace;
-
-            font-size:
-                14px;
-
-            text-align:
-                center;
-
-            outline:
-                none;
-
+            font-size: 14px;
+            text-align: center;
+            outline: none;
         }
-
 
         .code-blank.name-blank {
-
-            width:
-                125px;
-
+            width: 125px;
         }
 
-
         .code-blank:focus {
-
-            border-color:
-                #ffffff;
-
-            background:
-                #475569;
-
+            border-color: #ffffff;
+            background: #475569;
             box-shadow:
                 0 0 0 2px
                 rgba(147,197,253,0.25);
-
         }
-
 
         .submitted-answer {
-
-            display:
-                inline-block;
-
-            padding:
-                1px 7px;
-
-            margin:
-                0 3px;
-
-            border-radius:
-                4px;
-
-            font-weight:
-                700;
-
+            display: inline-block;
+            padding: 1px 7px;
+            margin: 0 3px;
+            border-radius: 4px;
+            font-weight: 700;
         }
-
 
         .answer-correct {
-
-            background:
-                #166534;
-
-            color:
-                #dcfce7;
-
+            background: #166534;
+            color: #dcfce7;
         }
-
 
         .answer-wrong {
-
-            background:
-                #991b1b;
-
-            color:
-                #fee2e2;
-
-            cursor:
-                pointer;
-
+            background: #991b1b;
+            color: #fee2e2;
+            cursor: pointer;
         }
-
 
         .answer-wrong:hover {
-
-            background:
-                #dc2626;
-
+            background: #dc2626;
         }
 
-
         .code-explanation {
-
-            position:
-                fixed;
-
-            right:
-                25px;
-
-            bottom:
-                25px;
-
-            width:
-                360px;
-
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 360px;
             max-width:
                 calc(100vw - 40px);
-
-            padding:
-                20px;
-
-            background:
-                #ffffff;
-
-            color:
-                #222222;
-
-            border-radius:
-                12px;
-
+            padding: 20px;
+            background: #ffffff;
+            color: #222222;
+            border-radius: 12px;
             box-shadow:
                 0 8px 30px
                 rgba(0,0,0,0.25);
-
-            z-index:
-                9999;
-
+            z-index: 9999;
         }
-
 
         .close-explanation {
-
-            float:
-                right;
-
-            border:
-                none;
-
-            background:
-                transparent;
-
-            font-size:
-                24px;
-
-            cursor:
-                pointer;
-
+            float: right;
+            border: none;
+            background: transparent;
+            font-size: 24px;
+            cursor: pointer;
         }
-
 
         .explanation-text {
-
-            margin-top:
-                12px;
-
-            padding:
-                12px;
-
-            background:
-                #eef4ff;
-
-            border-radius:
-                8px;
-
-            line-height:
-                1.5;
-
+            margin-top: 12px;
+            padding: 12px;
+            background: #eef4ff;
+            border-radius: 8px;
+            line-height: 1.5;
         }
 
-
-        @media (
-            max-width: 650px
-        ) {
+        @media (max-width: 650px) {
 
             .code-box {
-
-                font-size:
-                    13px;
-
-                padding:
-                    16px;
-
+                font-size: 13px;
+                padding: 16px;
             }
-
 
             .code-blank.name-blank {
-
-                width:
-                    95px;
-
+                width: 95px;
             }
 
-
             .code-blank {
-
-                width:
-                    48px;
-
+                width: 48px;
             }
 
         }
@@ -3069,60 +2273,7 @@ function addTest2Styles() {
     `;
 
 
-    document.head.appendChild(
-        style
-    );
-
-}
-
-
-// =====================================================
-// FIX LINKED NAME REFERENCES
-// =====================================================
-
-function setupReferenceRoles() {
-
-    const inputs =
-        document.querySelectorAll(
-            ".code-blank"
-        );
-
-
-    let defineIndex = 0;
-
-
-    selectedCode.parts.forEach(
-        part => {
-
-            if (
-                part.type ===
-                "blank" &&
-                part.kind ===
-                "define"
-            ) {
-
-                const input =
-                    inputs[
-                        defineIndex
-                    ];
-
-
-                if (
-                    input
-                ) {
-
-                    input.dataset.role =
-                        part.name;
-
-                }
-
-
-                defineIndex++;
-
-            }
-
-        }
-    );
+    document.head.appendChild(style);
 
 }
 
@@ -3143,7 +2294,6 @@ document.addEventListener(
                 "studentName"
             );
 
-
         const studentSection =
             localStorage.getItem(
                 "studentSection"
@@ -3154,7 +2304,6 @@ document.addEventListener(
             document.getElementById(
                 "studentName"
             );
-
 
         if (
             nameElement &&
@@ -3172,7 +2321,6 @@ document.addEventListener(
                 "studentSection"
             );
 
-
         if (
             sectionElement &&
             studentSection
@@ -3187,18 +2335,13 @@ document.addEventListener(
         startTest2();
 
 
-        setupReferenceRoles();
-
-
         const submitButton =
             document.getElementById(
                 "submitBtn"
             );
 
 
-        if (
-            submitButton
-        ) {
+        if (submitButton) {
 
             submitButton.addEventListener(
                 "click",
@@ -3206,7 +2349,6 @@ document.addEventListener(
             );
 
         }
-
         else {
 
             console.error(
