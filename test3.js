@@ -1883,9 +1883,80 @@ function displayReview() {
     );
 
 
-    container.appendChild(
-        card
+   container.appendChild(
+    card
+);
+
+
+// =====================================================
+// EXIT REVIEWER
+// =====================================================
+
+const exitArea =
+    document.createElement(
+        "div"
     );
+
+exitArea.className =
+    "test3-exit-area";
+
+
+const exitButton =
+    document.createElement(
+        "button"
+    );
+
+exitButton.type =
+    "button";
+
+exitButton.className =
+    "test3-exit-button";
+
+exitButton.textContent =
+    "EXIT REVIEWER";
+
+
+exitButton.addEventListener(
+    "click",
+    function() {
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to exit the reviewer?"
+            );
+
+        if (
+            confirmed
+        ) {
+
+            localStorage.setItem(
+                "reviewerCompleted",
+                "true"
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    }
+);
+
+
+exitArea.appendChild(
+    exitButton
+);
+
+
+container.appendChild(
+    exitArea
+);
+
+
+container.scrollIntoView({
+    behavior:
+        "smooth"
+});
 
 
     // ---------------------------------------------
