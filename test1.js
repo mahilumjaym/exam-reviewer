@@ -767,13 +767,83 @@ function displayReviewMode() {
             }
 
 
-            container.appendChild(card);
+                   container.appendChild(card);
+
+    }
+    );
+
+
+    // ==========================================
+    // PROCEED TO TEST II BUTTON
+    // ==========================================
+
+    const nextArea =
+        document.createElement("div");
+
+
+    nextArea.className =
+        "next-test-area";
+
+
+    const nextButton =
+        document.createElement("button");
+
+
+    nextButton.type =
+        "button";
+
+
+    nextButton.className =
+        "submit-btn";
+
+
+    nextButton.textContent =
+        "PROCEED TO TEST II →";
+
+
+    nextButton.addEventListener(
+        "click",
+        function () {
+
+            // Make sure Test I has been completed
+            // before allowing the student to continue.
+
+            const test1Result =
+                localStorage.getItem(
+                    "test1Result"
+                );
+
+
+            if (!test1Result) {
+
+                alert(
+                    "Please complete Test I first."
+                );
+
+                return;
+
+            }
+
+
+            // Go to Test II
+
+            window.location.href =
+                "test2.html";
 
         }
     );
 
-}
 
+    nextArea.appendChild(
+        nextButton
+    );
+
+
+    container.appendChild(
+        nextArea
+    );
+
+}
 // ==========================================
 // SAVE RESULT
 // ==========================================
