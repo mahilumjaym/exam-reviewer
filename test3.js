@@ -1013,6 +1013,327 @@ function startTest3() {
 
 
 // =====================================================
+// PYTHON IDE RENDERER
+// =====================================================
+
+function escapeIDEText(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+function highlightPythonLine(value) {
+
+    const fragment =
+        document.createDocumentFragment();
+
+    const pattern =
+        /(#.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|\b(def|return|if|elif|else|for|while|in|and|or|not|True|False|None)\b|\b(print|len|range|open|int|float|str|list|dict|append)\b|\b(\d+(?:\.\d+)?)\b/gi;
+
+    let lastIndex = 0;
+    let match;
+
+
+    while (
+        (match = pattern.exec(value)) !== null
+    ) {
+
+        if (
+            match.index >
+            lastIndex
+        ) {
+
+            const normal =
+                document.createElement(
+                    "span"
+                );
+
+            normal.className =
+                "ide-normal";
+
+            normal.textContent =
+                value.slice(
+                    lastIndex,
+                    match.index
+                );
+
+            fragment.appendChild(
+                normal
+            );
+
+        }
+
+
+        const token =
+            document.createElement(
+                "span"
+            );
+
+
+        if (match[1]) {
+
+            token.className =
+                "ide-comment";
+
+        }
+        else if (match[2]) {
+
+            token.className =
+                "ide-string";
+
+        }
+        else if (match[3]) {
+
+            token.className =
+                "ide-keyword";
+
+        }
+        else if (match[4]) {
+
+            token.className =
+                "ide-builtin";
+
+        }
+        else {
+
+            token.className =
+                "ide-number";
+
+        }
+
+
+        token.textContent =
+            match[0];
+
+        fragment.appendChild(
+            token
+        );
+
+
+        lastIndex =
+            pattern.lastIndex;
+
+    }
+
+
+    if (
+        lastIndex <
+        value.length
+    ) {
+
+        const remaining =
+            document.createElement(
+                "span"
+            );
+
+        remaining.className =
+            "ide-normal";
+
+        remaining.textContent =
+            value.slice(
+                lastIndex
+            );
+
+        fragment.appendChild(
+            remaining
+        );
+
+    }
+
+
+    return fragment;
+
+}
+
+
+function createPythonIDE(
+    codeLines
+) {
+
+    const editor =
+        document.createElement(
+            "div"
+        );
+
+    editor.className =
+        "python-ide";
+
+
+    // ---------------------------------------------
+    // IDE TOP BAR
+    // ---------------------------------------------
+
+    const topBar =
+        document.createElement(
+            "div"
+        );
+
+    topBar.className =
+        "ide-topbar";
+
+
+    const dots =
+        document.createElement(
+            "div"
+        );
+
+    dots.className =
+        "ide-dots";
+
+
+    [
+        "ide-red",
+        "ide-yellow",
+        "ide-green"
+    ].forEach(
+        className => {
+
+            const dot =
+                document.createElement(
+                    "span"
+                );
+
+            dot.className =
+                "ide-dot " +
+                className;
+
+            dots.appendChild(
+                dot
+            );
+
+        }
+    );
+
+
+    const tab =
+        document.createElement(
+            "div"
+        );
+
+    tab.className =
+        "ide-tab";
+
+    tab.textContent =
+        "main.py";
+
+
+    const language =
+        document.createElement(
+            "div"
+        );
+
+    language.className =
+        "ide-language";
+
+    language.textContent =
+        "PYTHON";
+
+
+    topBar.appendChild(
+        dots
+    );
+
+    topBar.appendChild(
+        tab
+    );
+
+    topBar.appendChild(
+        language
+    );
+
+
+    editor.appendChild(
+        topBar
+    );
+
+
+    // ---------------------------------------------
+    // EDITOR BODY
+    // ---------------------------------------------
+
+    const body =
+        document.createElement(
+            "div"
+        );
+
+    body.className =
+        "ide-body";
+
+
+    codeLines.forEach(
+        (lineText, index) => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "ide-line";
+
+
+            const number =
+                document.createElement(
+                    "span"
+                );
+
+            number.className =
+                "ide-line-number";
+
+            number.textContent =
+                index + 1;
+
+
+            const code =
+                document.createElement(
+                    "span"
+                );
+
+            code.className =
+                "ide-line-code";
+
+
+            code.appendChild(
+                highlightPythonLine(
+                    lineText
+                )
+            );
+
+
+            row.appendChild(
+                number
+            );
+
+            row.appendChild(
+                code
+            );
+
+
+            body.appendChild(
+                row
+            );
+
+        }
+    );
+
+
+    editor.appendChild(
+        body
+    );
+
+
+    return editor;
+
+}
+
+
+// =====================================================
 // DISPLAY PROGRAM
 // =====================================================
 
@@ -1023,7 +1344,10 @@ function displayProgram() {
             "codeTracingContainer"
         );
 
-    if (!container) {
+
+    if (
+        !container
+    ) {
 
         console.error(
             "codeTracingContainer was not found."
@@ -1033,7 +1357,9 @@ function displayProgram() {
 
     }
 
-    container.innerHTML = "";
+
+    container.innerHTML =
+        "";
 
 
     // ---------------------------------------------
@@ -1067,41 +1393,13 @@ function displayProgram() {
 
 
     // ---------------------------------------------
-    // CODE BOX
+    // PYTHON IDE
     // ---------------------------------------------
 
     const codeBox =
-        document.createElement(
-            "pre"
+        createPythonIDE(
+            selectedProgram.code
         );
-
-    codeBox.className =
-        "python-code";
-
-
-    selectedProgram.code.forEach(
-        line => {
-
-            const codeLine =
-                document.createElement(
-                    "code"
-                );
-
-            codeLine.textContent =
-                line;
-
-            codeBox.appendChild(
-                codeLine
-            );
-
-            codeBox.appendChild(
-                document.createTextNode(
-                    "\n"
-                )
-            );
-
-        }
-    );
 
 
     card.appendChild(
@@ -1123,6 +1421,7 @@ function displayProgram() {
 
     questionTitle.textContent =
         "Trace the Program";
+
 
     card.appendChild(
         questionTitle
@@ -1245,7 +1544,9 @@ function submitTest3() {
 
 
     const unanswered =
-        Array.from(inputs).filter(
+        Array.from(
+            inputs
+        ).filter(
             input =>
                 input.value.trim() === ""
         );
@@ -1331,14 +1632,17 @@ function displayReview() {
         );
 
 
-    if (!container) {
+    if (
+        !container
+    ) {
 
         return;
 
     }
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     // ---------------------------------------------
@@ -1358,13 +1662,14 @@ function displayReview() {
         "There is no score for this activity. " +
         "Compare your reasoning with the suggested answers.";
 
+
     container.appendChild(
         message
     );
 
 
     // ---------------------------------------------
-    // PROGRAM
+    // PROGRAM CARD
     // ---------------------------------------------
 
     const card =
@@ -1384,47 +1689,20 @@ function displayReview() {
     title.textContent =
         selectedProgram.title;
 
+
     card.appendChild(
         title
     );
 
 
     // ---------------------------------------------
-    // CODE
+    // PYTHON IDE
     // ---------------------------------------------
 
     const codeBox =
-        document.createElement(
-            "pre"
+        createPythonIDE(
+            selectedProgram.code
         );
-
-    codeBox.className =
-        "python-code";
-
-
-    selectedProgram.code.forEach(
-        line => {
-
-            const codeLine =
-                document.createElement(
-                    "code"
-                );
-
-            codeLine.textContent =
-                line;
-
-            codeBox.appendChild(
-                codeLine
-            );
-
-            codeBox.appendChild(
-                document.createTextNode(
-                    "\n"
-                )
-            );
-
-        }
-    );
 
 
     card.appendChild(
@@ -1628,7 +1906,9 @@ function saveTest3Result() {
 
     localStorage.setItem(
         "test3Result",
-        JSON.stringify(result)
+        JSON.stringify(
+            result
+        )
     );
 
 }
@@ -1664,90 +1944,251 @@ function addTest3Styles() {
 
         .tracing-card {
 
-            background:
-                #ffffff;
-
-            margin-top:
-                20px;
-
-            padding:
-                28px;
-
-            border-radius:
-                15px;
-
+            background: #ffffff;
+            margin-top: 20px;
+            padding: 28px;
+            border-radius: 15px;
             box-shadow:
                 0 5px 20px
-                rgba(0,0,0,0.07);
-
+                rgba(0,0,0,0.08);
             border-left:
-                5px solid
-                #2856a3;
+                5px solid #2856a3;
 
         }
 
 
         .tracing-card h3 {
 
-            color:
-                #183b70;
-
-            margin-top:
-                0;
-
-            margin-bottom:
-                20px;
+            color: #183b70;
+            margin-top: 0;
+            margin-bottom: 20px;
 
         }
 
 
-        .python-code {
+        /* ==========================================
+           PYTHON IDE
+           ========================================== */
 
-            background:
-                #1e1e1e;
+        .python-ide {
 
-            color:
-                #d4d4d4;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #1e1e1e;
+            box-shadow:
+                0 8px 22px
+                rgba(0,0,0,0.22);
+            border:
+                1px solid #333333;
+            text-align: left;
 
-            padding:
-                24px;
+        }
 
-            border-radius:
-                10px;
 
+        .ide-topbar {
+
+            height: 44px;
+            display: flex;
+            align-items: center;
+            background: #252526;
+            border-bottom:
+                1px solid #3b3b3b;
+            position: relative;
+
+        }
+
+
+        .ide-dots {
+
+            display: flex;
+            gap: 7px;
+            padding-left: 14px;
+            min-width: 75px;
+
+        }
+
+
+        .ide-dot {
+
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            display: inline-block;
+
+        }
+
+
+        .ide-red {
+
+            background: #ff5f57;
+
+        }
+
+
+        .ide-yellow {
+
+            background: #febc2e;
+
+        }
+
+
+        .ide-green {
+
+            background: #28c840;
+
+        }
+
+
+        .ide-tab {
+
+            height: 44px;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            background: #1e1e1e;
+            color: #d4d4d4;
             font-family:
                 Consolas,
                 "Courier New",
                 monospace;
-
-            font-size:
-                15px;
-
-            line-height:
-                1.7;
-
-            text-align:
-                left;
-
-            overflow-x:
-                auto;
-
-            margin:
-                0;
-
-            white-space:
-                pre;
+            font-size: 13px;
+            border-left:
+                1px solid #333333;
+            border-right:
+                1px solid #333333;
 
         }
 
 
-        .python-code code {
+        .ide-tab::before {
 
+            content: "🐍";
+            margin-right: 8px;
+            font-size: 13px;
+
+        }
+
+
+        .ide-language {
+
+            margin-left: auto;
+            padding-right: 16px;
+            color: #9cdcfe;
             font-family:
-                inherit;
+                Consolas,
+                "Courier New",
+                monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
 
         }
 
+
+        .ide-body {
+
+            padding:
+                14px 0 18px;
+            overflow-x: auto;
+            background: #1e1e1e;
+
+        }
+
+
+        .ide-line {
+
+            display: flex;
+            min-height: 25px;
+            line-height: 25px;
+            font-family:
+                Consolas,
+                "Courier New",
+                monospace;
+            font-size: 14px;
+            white-space: pre;
+            width: max-content;
+            min-width: 100%;
+
+        }
+
+
+        .ide-line:hover {
+
+            background: #252526;
+
+        }
+
+
+        .ide-line-number {
+
+            display: inline-block;
+            width: 48px;
+            padding-right: 14px;
+            box-sizing: border-box;
+            text-align: right;
+            color: #858585;
+            user-select: none;
+            flex-shrink: 0;
+
+        }
+
+
+        .ide-line-code {
+
+            display: inline-block;
+            padding-left: 10px;
+            padding-right: 28px;
+            color: #d4d4d4;
+
+        }
+
+
+        .ide-normal {
+
+            color: #d4d4d4;
+
+        }
+
+
+        .ide-comment {
+
+            color: #6a9955;
+            font-style: italic;
+
+        }
+
+
+        .ide-keyword {
+
+            color: #569cd6;
+
+        }
+
+
+        .ide-builtin {
+
+            color: #dcdcaa;
+
+        }
+
+
+        .ide-string {
+
+            color: #ce9178;
+
+        }
+
+
+        .ide-number {
+
+            color: #b5cea8;
+
+        }
+
+
+        /* ==========================================
+           QUESTIONS
+           ========================================== */
 
         .tracing-question-title {
 
@@ -1759,35 +2200,21 @@ function addTest3Styles() {
 
         .tracing-question {
 
-            background:
-                #f8fafc;
-
+            background: #f8fafc;
             border:
-                1px solid
-                #e2e8f0;
-
-            border-radius:
-                10px;
-
-            padding:
-                18px;
-
-            margin-top:
-                14px;
+                1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 14px;
 
         }
 
 
         .tracing-number {
 
-            color:
-                #2856a3;
-
-            font-weight:
-                700;
-
-            margin-bottom:
-                6px;
+            color: #2856a3;
+            font-weight: 700;
+            margin-bottom: 6px;
 
         }
 
@@ -1796,36 +2223,21 @@ function addTest3Styles() {
 
             margin:
                 6px 0 12px;
-
-            line-height:
-                1.5;
+            line-height: 1.5;
 
         }
 
 
         .tracing-answer {
 
-            width:
-                100%;
-
-            box-sizing:
-                border-box;
-
-            padding:
-                11px 13px;
-
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px 13px;
             border:
-                1px solid
-                #cbd5e1;
-
-            border-radius:
-                7px;
-
-            font-size:
-                15px;
-
-            outline:
-                none;
+                1px solid #cbd5e1;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
 
         }
 
@@ -1841,6 +2253,10 @@ function addTest3Styles() {
 
         }
 
+
+        /* ==========================================
+           REVIEW
+           ========================================== */
 
         .tracing-review-message {
 
@@ -1868,8 +2284,7 @@ function addTest3Styles() {
                 #ffffff;
 
             border:
-                1px solid
-                #e2e8f0;
+                1px solid #e2e8f0;
 
             border-radius:
                 10px;
@@ -1922,6 +2337,10 @@ function addTest3Styles() {
         }
 
 
+        /* ==========================================
+           MOBILE
+           ========================================== */
+
         @media (
             max-width: 650px
         ) {
@@ -1934,13 +2353,29 @@ function addTest3Styles() {
             }
 
 
-            .python-code {
+            .ide-line {
 
                 font-size:
                     12px;
 
-                padding:
-                    16px;
+            }
+
+
+            .ide-line-number {
+
+                width:
+                    38px;
+
+                padding-right:
+                    10px;
+
+            }
+
+
+            .ide-line-code {
+
+                padding-left:
+                    8px;
 
             }
 
@@ -1965,53 +2400,68 @@ document.addEventListener(
     function() {
 
         addTest3Styles();
+
+
+        // ---------------------------------------------
+        // LOAD STUDENT INFORMATION
+        // ---------------------------------------------
+
         const studentName =
-    localStorage.getItem(
-        "studentName"
-    );
+            localStorage.getItem(
+                "studentName"
+            );
 
 
-const studentSection =
-    localStorage.getItem(
-        "studentSection"
-    );
+        const studentSection =
+            localStorage.getItem(
+                "studentSection"
+            );
 
 
-const nameElement =
-    document.getElementById(
-        "studentName"
-    );
+        const nameElement =
+            document.getElementById(
+                "studentName"
+            );
 
 
-if (
-    nameElement &&
-    studentName
-) {
+        if (
+            nameElement &&
+            studentName
+        ) {
 
-    nameElement.textContent =
-        studentName;
+            nameElement.textContent =
+                studentName;
 
-}
-
-
-const sectionElement =
-    document.getElementById(
-        "studentSection"
-    );
+        }
 
 
-if (
-    sectionElement &&
-    studentSection
-) {
+        const sectionElement =
+            document.getElementById(
+                "studentSection"
+            );
 
-    sectionElement.textContent =
-        studentSection;
 
-}
+        if (
+            sectionElement &&
+            studentSection
+        ) {
+
+            sectionElement.textContent =
+                studentSection;
+
+        }
+
+
+        // ---------------------------------------------
+        // START TEST III
+        // ---------------------------------------------
 
         startTest3();
 
+
+        // ---------------------------------------------
+        // SUBMIT BUTTON
+        // ---------------------------------------------
 
         const submitButton =
             document.getElementById(
