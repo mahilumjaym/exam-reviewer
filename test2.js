@@ -1925,7 +1925,42 @@ function displayResults(results) {
 
 }
 
+// ---------------------------------------------
+// PROCEED TO TEST III BUTTON
+// ---------------------------------------------
 
+const nextArea =
+    document.createElement(
+        "div"
+    );
+
+nextArea.className =
+    "next-test-area";
+
+
+const nextButton =
+    document.createElement(
+        "button"
+    );
+
+nextButton.className =
+    "next-test-btn";
+
+nextButton.textContent =
+    "PROCEED TO TEST III";
+
+nextButton.onclick =
+    proceedToTest3;
+
+
+nextArea.appendChild(
+    nextButton
+);
+
+
+container.appendChild(
+    nextArea
+);
 // =====================================================
 // GET LINKED VALUE
 // =====================================================
