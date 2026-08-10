@@ -2304,6 +2304,58 @@ function addTest2Styles() {
             }
 
         }
+        .next-test-area {
+
+    text-align:
+        center;
+
+    margin-top:
+        35px;
+
+    padding:
+        20px;
+
+}
+
+
+.next-test-btn {
+
+    background:
+        #1f4b87;
+
+    color:
+        white;
+
+    border:
+        none;
+
+    padding:
+        15px 32px;
+
+    border-radius:
+        8px;
+
+    font-size:
+        16px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    letter-spacing:
+        0.5px;
+
+}
+
+
+.next-test-btn:hover {
+
+    background:
+        #163b6d;
+
+}
 
     `;
 
