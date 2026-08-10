@@ -1959,7 +1959,13 @@ function addTest3Styles() {
 // =====================================================
 // PAGE LOAD
 // =====================================================
-const studentName =
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        addTest3Styles();
+        const studentName =
     localStorage.getItem(
         "studentName"
     );
@@ -2003,11 +2009,6 @@ if (
         studentSection;
 
 }
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        addTest3Styles();
 
         startTest3();
 
