@@ -1,33 +1,42 @@
 // =====================================================
-// TEST II - CODE COMPLETION REVIEWER
+// TEST II - PYTHON CODE COMPLETION REVIEWER
 // =====================================================
-// 5 different Python programs
-// 1 program is randomly selected per session
-// Each program contains EXACTLY 10 blanks
-// Each blank is worth 1 point
+// Five different Python programs are available.
+//
+// One program is randomly selected for each session.
+//
+// Each program contains EXACTLY 10 blanks.
+//
+// Each blank = 1 point
 // Total = 10 points
 //
-// The reviewer practices:
-// • Functions
-// • Parameters
-// • Return statements
-// • Function calls
-// • Conditionals
-// • Comparison operators
-// • for loops
-// • range()
-// • while loops
+// Skills reviewed:
+// 1. Function definition
+// 2. Function name
+// 3. Function parameter
+// 4. Conditional statement
+// 5. Comparison operator
+// 6. Return statement
+// 7. For loop
+// 8. range()
+// 9. While loop
+// 10. Function call
+//
+// IMPORTANT:
+// Every line of sample code contains a comment
+// explaining what the line is doing.
 // =====================================================
 
 
 // =====================================================
-// CODE BANK
+// QUESTION BANK
 // =====================================================
 
 const codeBank = [
 
     // =================================================
-    // PROGRAM 1 - MOVIE TICKET BOOTH
+    // PROGRAM 1
+    // MOVIE TICKET BOOTH
     // =================================================
 
     {
@@ -38,36 +47,70 @@ const codeBank = [
 
         parts: [
 
-            // BLANK 1
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "The def keyword is used to create or define a function in Python."
-            },
+            // -------------------------------------------------
+            // LINE 1
+            // BLANK 1 = def
+            // -------------------------------------------------
 
             {
-                text:
-                    " "
-            },
-
-            // BLANK 2
-            {
-                blank: true,
-                answer: "ticket_price",
-                explanation:
-                    "ticket_price is the name of the function. A function name should describe what the function does."
-            },
-
-            {
-                text:
-                    "(age):    # This function determines the ticket price based on age."
+                text: "# Define a function that determines a ticket price."
             },
 
             {
                 newline: true
             },
 
+            {
+                blank: true,
+                answer: "def",
+                explanation:
+                    "The def keyword tells Python that you are defining a function."
+            },
+
+            {
+                text: " "
+            },
+
+            // -------------------------------------------------
+            // BLANK 2 = FUNCTION NAME
+            // -------------------------------------------------
+
+            {
+                blank: true,
+                answer: "ticket_price",
+                explanation:
+                    "ticket_price is the name of the function. A good function name describes what the function does."
+            },
+
+            // -------------------------------------------------
+            // BLANK 3 = PARAMETER
+            // -------------------------------------------------
+
+            {
+                text: "("
+            },
+
+            {
+                blank: true,
+                answer: "age",
+                explanation:
+                    "age is the parameter. It is the variable that receives the value passed into the function."
+            },
+
+            {
+                text:
+                    "):    # The age parameter will receive the customer's age."
+            },
+
+            {
+                newline: true
+            },
+
+
+            // -------------------------------------------------
+            // LINE 2
+            // BLANK 4 = IF
+            // -------------------------------------------------
 
             {
                 text:
@@ -78,18 +121,21 @@ const codeBank = [
                 newline: true
             },
 
+            {
+                text:
+                    "    "
+            },
 
-            // BLANK 3
             {
                 blank: true,
                 answer: "if",
                 explanation:
-                    "The if keyword begins a conditional statement."
+                    "The if keyword begins a conditional statement that allows the program to make a decision."
             },
 
             {
                 text:
-                    " age < 13:    # Children below 13 receive the lower price."
+                    " age < 13:    # Children younger than 13 receive the child price."
             },
 
             {
@@ -97,9 +143,22 @@ const codeBank = [
             },
 
 
+            // -------------------------------------------------
+            // BLANK 5 = COMPARISON OPERATOR
+            // -------------------------------------------------
+
             {
                 text:
-                    "        # Send the child ticket price back."
+                    "        # The comparison checks whether the age is below 13."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "        # The less-than operator is used in the condition above."
             },
 
             {
@@ -107,12 +166,29 @@ const codeBank = [
             },
 
 
-            // BLANK 4
+            // -------------------------------------------------
+            // BLANK 6 = RETURN
+            // -------------------------------------------------
+
+            {
+                text:
+                    "        # Send the child ticket price back to the caller."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "        "
+            },
+
             {
                 blank: true,
                 answer: "return",
                 explanation:
-                    "The return statement sends a value back to the code that called the function."
+                    "The return statement sends a value from the function back to the code that called it."
             },
 
             {
@@ -127,7 +203,7 @@ const codeBank = [
 
             {
                 text:
-                    "    # All other customers receive the regular price."
+                    "    return 180    # The regular ticket price is 180."
             },
 
             {
@@ -135,48 +211,51 @@ const codeBank = [
             },
 
 
+            // -------------------------------------------------
+            // BLANK 7 = FOR
+            // -------------------------------------------------
+
             {
                 text:
-                    "    return 180    # The regular ticket costs 180."
+                    "# Display the numbers of three available shows."
             },
 
             {
                 newline: true
             },
 
+            {
+                blank: true,
+                answer: "for",
+                explanation:
+                    "The for keyword begins a loop that repeats for each value in a sequence."
+            },
 
             {
                 text:
-                    "# Display three show numbers."
-            },
-
-            {
-                newline: true
+                    " show in "
             },
 
 
-            {
-                text:
-                    "for show in "
-            },
+            // -------------------------------------------------
+            // BLANK 8 = RANGE
+            // -------------------------------------------------
 
-            // BLANK 5
             {
                 blank: true,
                 answer: "range",
                 explanation:
-                    "range() creates a sequence of numbers that can be used by a for loop."
+                    "range() creates a sequence of numbers for the for loop."
             },
 
             {
                 text:
-                    "(1, 4):    # The loop displays show numbers 1, 2 and 3."
+                    "(1, 4):    # This produces the numbers 1, 2 and 3."
             },
 
             {
                 newline: true
             },
-
 
             {
                 text:
@@ -188,6 +267,10 @@ const codeBank = [
             },
 
 
+            // -------------------------------------------------
+            // BLANK 9 = WHILE
+            // -------------------------------------------------
+
             {
                 text:
                     "# Count down the remaining tickets."
@@ -197,18 +280,34 @@ const codeBank = [
                 newline: true
             },
 
-
-            // BLANK 6
             {
                 blank: true,
                 answer: "while",
                 explanation:
-                    "The while keyword repeats a block of code while its condition is true."
+                    "The while keyword repeats code as long as its condition is true."
             },
 
             {
                 text:
-                    " tickets > 0:    # Continue while tickets remain."
+                    " tickets > 0:    # Continue while at least one ticket remains."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "    print(\"Ticket available\")    # Tell the customer that a ticket remains."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "    tickets = tickets - 1    # Reduce the number of remaining tickets."
             },
 
             {
@@ -216,62 +315,43 @@ const codeBank = [
             },
 
 
+            // -------------------------------------------------
+            // BLANK 10 = FUNCTION CALL
+            // -------------------------------------------------
+
             {
                 text:
-                    "    print(\"Ticket available\")    # Tell the customer a ticket is available."
+                    "# Call the function to calculate the price for a 15-year-old."
             },
 
             {
                 newline: true
             },
-
-
-            {
-                text:
-                    "    tickets = tickets - 1    # Reduce the number of tickets by one."
-            },
-
-            {
-                newline: true
-            },
-
-
-            {
-                text:
-                    "# Call the function and store the returned price."
-            },
-
-            {
-                newline: true
-            },
-
 
             {
                 text:
                     "price = "
             },
 
-            // BLANK 7
             {
                 blank: true,
                 answer: "ticket_price",
                 explanation:
-                    "Writing ticket_price(15) calls the function. The value 15 is passed to the age parameter."
+                    "ticket_price(15) is a function call. The value 15 is passed to the age parameter."
             },
 
             {
                 text:
-                    "(15)    # Ask for the ticket price of a 15-year-old customer."
+                    "(15)    # The function receives 15 as the customer's age."
             },
 
             {
                 newline: true
             },
 
-
             {
                 text:
-                    "print(\"Ticket price:\", price)    # Display the returned price."
+                    "print(\"Ticket price:\", price)    # Display the price returned by the function."
             }
 
         ]
@@ -279,7 +359,8 @@ const codeBank = [
 
 
     // =================================================
-    // PROGRAM 2 - GARDEN WATERING
+    // PROGRAM 2
+    // GARDEN WATERING
     // =================================================
 
     {
@@ -290,37 +371,63 @@ const codeBank = [
 
         parts: [
 
-            // BLANK 1
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "def begins the definition of a function."
-            },
+            // BLANK 1 = DEF
 
             {
                 text:
-                    " "
-            },
-
-
-            // BLANK 2
-            {
-                blank: true,
-                answer: "water_needed",
-                explanation:
-                    "water_needed is the function name because the function determines how much water is needed."
-            },
-
-            {
-                text:
-                    "(moisture):    # The moisture parameter receives the soil moisture value."
+                    "# Define a function that determines how much water is needed."
             },
 
             {
                 newline: true
             },
 
+            {
+                blank: true,
+                answer: "def",
+                explanation:
+                    "def is used to define a function in Python."
+            },
+
+            {
+                text: " "
+            },
+
+
+            // BLANK 2 = FUNCTION NAME
+
+            {
+                blank: true,
+                answer: "water_needed",
+                explanation:
+                    "water_needed is the function name because the function determines the amount of water needed."
+            },
+
+            {
+                text: "("
+            },
+
+
+            // BLANK 3 = PARAMETER
+
+            {
+                blank: true,
+                answer: "moisture",
+                explanation:
+                    "moisture is the parameter. It receives the soil moisture value when the function is called."
+            },
+
+            {
+                text:
+                    "):    # The moisture parameter stores the soil moisture value."
+            },
+
+            {
+                newline: true
+            },
+
+
+            // BLANK 4 = IF
 
             {
                 text:
@@ -331,13 +438,16 @@ const codeBank = [
                 newline: true
             },
 
+            {
+                text:
+                    "    "
+            },
 
-            // BLANK 3
             {
                 blank: true,
                 answer: "if",
                 explanation:
-                    "if begins a condition that allows the program to make a decision."
+                    "The if keyword begins the condition that checks whether the soil needs water."
             },
 
             {
@@ -350,9 +460,20 @@ const codeBank = [
             },
 
 
+            // BLANK 5 = COMPARISON OPERATOR
+
             {
                 text:
-                    "        # Send the amount of water needed back."
+                    "        # The condition uses a comparison operator."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "        # The chosen operator means 'less than or equal to'."
             },
 
             {
@@ -360,17 +481,41 @@ const codeBank = [
             },
 
 
-            // BLANK 4
+            // BLANK 6 = RETURN
+
+            {
+                text:
+                    "        # Send the amount of water back to the caller."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "        "
+            },
+
             {
                 blank: true,
                 answer: "return",
                 explanation:
-                    "return sends a result from the function back to the calling code."
+                    "return sends the result of the function back to the code that called it."
             },
 
             {
                 text:
-                    " 5    # Return 5 liters of water."
+                    " 5    # Return 5 liters when the soil is dry."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "    return 0    # No extra water is needed when the soil is moist."
             },
 
             {
@@ -378,15 +523,7 @@ const codeBank = [
             },
 
 
-            {
-                text:
-                    "    return 0    # No extra water is needed."
-            },
-
-            {
-                newline: true
-            },
-
+            // BLANK 7 = FOR
 
             {
                 text:
@@ -397,24 +534,40 @@ const codeBank = [
                 newline: true
             },
 
+            {
+                blank: true,
+                answer: "for",
+                explanation:
+                    "for starts a loop that repeats for each value in a sequence."
+            },
 
             {
                 text:
-                    "for zone in "
+                    " zone in "
             },
 
 
-            // BLANK 5
+            // BLANK 8 = RANGE
+
             {
                 blank: true,
                 answer: "range",
                 explanation:
-                    "range() produces the numbers used by the for loop."
+                    "range() creates the sequence of zone numbers used by the for loop."
             },
 
             {
                 text:
-                    "(1, 5):    # The loop checks zones 1 through 4."
+                    "(1, 5):    # The loop checks zones 1, 2, 3 and 4."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "    print(\"Checking zone\", zone)    # Display the current garden zone."
             },
 
             {
@@ -422,32 +575,22 @@ const codeBank = [
             },
 
 
+            // BLANK 9 = WHILE
+
             {
                 text:
-                    "    print(\"Checking zone\", zone)    # Display the current zone."
+                    "# Repeat watering while there are cycles remaining."
             },
 
             {
                 newline: true
             },
 
-
-            {
-                text:
-                    "# Count down the watering cycles."
-            },
-
-            {
-                newline: true
-            },
-
-
-            // BLANK 6
             {
                 blank: true,
                 answer: "while",
                 explanation:
-                    "while repeats the code while its condition remains true."
+                    "while repeats a block of code while its condition remains true."
             },
 
             {
@@ -459,10 +602,18 @@ const codeBank = [
                 newline: true
             },
 
+            {
+                text:
+                    "    print(\"Watering garden\")    # Tell the user that watering is happening."
+            },
+
+            {
+                newline: true
+            },
 
             {
                 text:
-                    "    print(\"Watering garden\")    # Tell the user the garden is being watered."
+                    "    cycles = cycles - 1    # Reduce the remaining watering cycles."
             },
 
             {
@@ -470,15 +621,7 @@ const codeBank = [
             },
 
 
-            {
-                text:
-                    "    cycles = cycles - 1    # Reduce the remaining cycles."
-            },
-
-            {
-                newline: true
-            },
-
+            // BLANK 10 = FUNCTION CALL
 
             {
                 text:
@@ -489,30 +632,26 @@ const codeBank = [
                 newline: true
             },
 
-
             {
                 text:
                     "amount = "
             },
 
-
-            // BLANK 7
             {
                 blank: true,
                 answer: "water_needed",
                 explanation:
-                    "water_needed(25) calls the function and passes 25 as the moisture argument."
+                    "water_needed(25) calls the function and passes 25 to the moisture parameter."
             },
 
             {
                 text:
-                    "(25)    # Check the garden when the moisture level is 25."
+                    "(25)    # Check the amount of water needed when moisture is 25."
             },
 
             {
                 newline: true
             },
-
 
             {
                 text:
@@ -524,7 +663,8 @@ const codeBank = [
 
 
     // =================================================
-    // PROGRAM 3 - ARCADE PRIZE
+    // PROGRAM 3
+    // ARCADE PRIZE
     // =================================================
 
     {
@@ -536,36 +676,62 @@ const codeBank = [
         parts: [
 
             // BLANK 1
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "def is used to define a function."
-            },
 
             {
                 text:
-                    " "
-            },
-
-
-            // BLANK 2
-            {
-                blank: true,
-                answer: "prize_level",
-                explanation:
-                    "prize_level is the name of the function that determines the player's prize level."
-            },
-
-            {
-                text:
-                    "(points):    # points is the value received by the function."
+                    "# Define a function that determines the player's prize."
             },
 
             {
                 newline: true
             },
 
+            {
+                blank: true,
+                answer: "def",
+                explanation:
+                    "def begins the definition of a Python function."
+            },
+
+            {
+                text: " "
+            },
+
+
+            // BLANK 2
+
+            {
+                blank: true,
+                answer: "prize_level",
+                explanation:
+                    "prize_level is the name of the function."
+            },
+
+            {
+                text: "("
+            },
+
+
+            // BLANK 3
+
+            {
+                blank: true,
+                answer: "points",
+                explanation:
+                    "points is the parameter that receives the player's score."
+            },
+
+            {
+                text:
+                    "):    # The points parameter stores the player's score."
+            },
+
+            {
+                newline: true
+            },
+
+
+            // BLANK 4
 
             {
                 text:
@@ -576,13 +742,16 @@ const codeBank = [
                 newline: true
             },
 
+            {
+                text:
+                    "    "
+            },
 
-            // BLANK 3
             {
                 blank: true,
                 answer: "if",
                 explanation:
-                    "if begins the decision-making statement."
+                    "if begins a conditional statement."
             },
 
             {
@@ -595,6 +764,29 @@ const codeBank = [
             },
 
 
+            // BLANK 5
+
+            {
+                text:
+                    "        # The comparison checks whether the score reaches 100."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "        # The comparison operator means 'greater than or equal to'."
+            },
+
+            {
+                newline: true
+            },
+
+
+            // BLANK 6
+
             {
                 text:
                     "        # Send the Gold result back to the caller."
@@ -604,18 +796,30 @@ const codeBank = [
                 newline: true
             },
 
+            {
+                text:
+                    "        "
+            },
 
-            // BLANK 4
             {
                 blank: true,
                 answer: "return",
                 explanation:
-                    "return sends the result from the function back to the program."
+                    "return sends the result of the function back to the code that called it."
             },
 
             {
                 text:
-                    " \"Gold\"    # The player receives the Gold level."
+                    " \"Gold\"    # Gold is returned when the player has enough points."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "    return \"Silver\"    # Players below 100 points receive Silver."
             },
 
             {
@@ -623,33 +827,32 @@ const codeBank = [
             },
 
 
+            // BLANK 7
+
             {
                 text:
-                    "    return \"Silver\"    # Other players receive Silver."
+                    "# Display three arcade rounds."
             },
 
             {
                 newline: true
             },
 
+            {
+                blank: true,
+                answer: "for",
+                explanation:
+                    "for starts a loop that repeats for every value in the sequence."
+            },
 
             {
                 text:
-                    "# Run three arcade rounds."
-            },
-
-            {
-                newline: true
+                    " round_number in "
             },
 
 
-            {
-                text:
-                    "for round_number in "
-            },
+            // BLANK 8
 
-
-            // BLANK 5
             {
                 blank: true,
                 answer: "range",
@@ -666,7 +869,6 @@ const codeBank = [
                 newline: true
             },
 
-
             {
                 text:
                     "    print(\"Round\", round_number)    # Display the current round."
@@ -677,43 +879,41 @@ const codeBank = [
             },
 
 
+            // BLANK 9
+
             {
                 text:
-                    "# Use three tokens."
+                    "# Use three tokens in the arcade game."
             },
 
             {
                 newline: true
             },
 
-
-            // BLANK 6
             {
                 blank: true,
                 answer: "while",
                 explanation:
-                    "while repeats the instructions while tokens are greater than zero."
+                    "while repeats the instructions while tokens remain."
             },
 
             {
                 text:
-                    " tokens > 0:    # Continue while tokens remain."
+                    " tokens > 0:    # Continue while there are tokens available."
             },
 
             {
                 newline: true
             },
 
-
             {
                 text:
-                    "    print(\"Token used\")    # Display a message for each token."
+                    "    print(\"Token used\")    # Tell the player that a token was used."
             },
 
             {
                 newline: true
             },
-
 
             {
                 text:
@@ -725,28 +925,27 @@ const codeBank = [
             },
 
 
+            // BLANK 10
+
             {
                 text:
-                    "# Determine the player's prize."
+                    "# Call the function to determine the prize."
             },
 
             {
                 newline: true
             },
 
-
             {
                 text:
                     "prize = "
             },
 
-
-            // BLANK 7
             {
                 blank: true,
                 answer: "prize_level",
                 explanation:
-                    "prize_level(120) calls the function and passes 120 as the points argument."
+                    "prize_level(120) is a function call. The value 120 is passed to the points parameter."
             },
 
             {
@@ -758,7 +957,6 @@ const codeBank = [
                 newline: true
             },
 
-
             {
                 text:
                     "print(\"Prize:\", prize)    # Display the returned prize."
@@ -769,7 +967,8 @@ const codeBank = [
 
 
     // =================================================
-    // PROGRAM 4 - LIBRARY FEE
+    // PROGRAM 4
+    // LIBRARY LATE FEE
     // =================================================
 
     {
@@ -781,20 +980,30 @@ const codeBank = [
         parts: [
 
             // BLANK 1
+
+            {
+                text:
+                    "# Define a function that calculates a library late fee."
+            },
+
+            {
+                newline: true
+            },
+
             {
                 blank: true,
                 answer: "def",
                 explanation:
-                    "def begins a function definition."
+                    "def is used to define a function."
             },
 
             {
-                text:
-                    " "
+                text: " "
             },
 
 
             // BLANK 2
+
             {
                 blank: true,
                 answer: "late_fee",
@@ -803,14 +1012,30 @@ const codeBank = [
             },
 
             {
+                text: "("
+            },
+
+
+            // BLANK 3
+
+            {
+                blank: true,
+                answer: "days",
+                explanation:
+                    "days is the parameter that receives the number of overdue days."
+            },
+
+            {
                 text:
-                    "(days):    # days receives the number of overdue days."
+                    "):    # The days parameter stores how late the book is."
             },
 
             {
                 newline: true
             },
 
+
+            // BLANK 4
 
             {
                 text:
@@ -821,13 +1046,16 @@ const codeBank = [
                 newline: true
             },
 
+            {
+                text:
+                    "    "
+            },
 
-            // BLANK 3
             {
                 blank: true,
                 answer: "if",
                 explanation:
-                    "if begins a conditional statement."
+                    "if begins the condition used to decide whether a fee should be charged."
             },
 
             {
@@ -840,9 +1068,20 @@ const codeBank = [
             },
 
 
+            // BLANK 5
+
             {
                 text:
-                    "        # Return the late fee."
+                    "        # The comparison checks whether the number of days is greater than 7."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "        # The comparison operator is greater-than."
             },
 
             {
@@ -850,12 +1089,27 @@ const codeBank = [
             },
 
 
-            // BLANK 4
+            // BLANK 6
+
+            {
+                text:
+                    "        # Return the late fee to the caller."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "        "
+            },
+
             {
                 blank: true,
                 answer: "return",
                 explanation:
-                    "return sends the fee value back to the code that called the function."
+                    "return sends the calculated result back to the calling code."
             },
 
             {
@@ -867,10 +1121,9 @@ const codeBank = [
                 newline: true
             },
 
-
             {
                 text:
-                    "    return 0    # Books seven days or less late have no fee."
+                    "    return 0    # No fee is charged when the book is not more than seven days late."
             },
 
             {
@@ -878,28 +1131,37 @@ const codeBank = [
             },
 
 
+            // BLANK 7
+
             {
                 text:
-                    "# Check three shelves."
+                    "# Check three library shelves."
             },
 
             {
                 newline: true
             },
 
+            {
+                blank: true,
+                answer: "for",
+                explanation:
+                    "for starts a loop that goes through each value in a sequence."
+            },
 
             {
                 text:
-                    "for shelf in "
+                    " shelf in "
             },
 
 
-            // BLANK 5
+            // BLANK 8
+
             {
                 blank: true,
                 answer: "range",
                 explanation:
-                    "range() creates the sequence of shelf numbers."
+                    "range() creates the sequence of shelf numbers used by the loop."
             },
 
             {
@@ -911,10 +1173,9 @@ const codeBank = [
                 newline: true
             },
 
-
             {
                 text:
-                    "    print(\"Checking shelf\", shelf)    # Display the shelf number."
+                    "    print(\"Checking shelf\", shelf)    # Display the current shelf."
             },
 
             {
@@ -922,27 +1183,45 @@ const codeBank = [
             },
 
 
+            // BLANK 9
+
             {
                 text:
-                    "# Process three books."
+                    "# Process the books while books remain."
             },
 
             {
                 newline: true
             },
 
-
-            // BLANK 6
             {
                 blank: true,
                 answer: "while",
                 explanation:
-                    "while repeats the code while books remain."
+                    "while repeats the code while its condition remains true."
             },
 
             {
                 text:
-                    " books > 0:    # Continue while books are left."
+                    " books > 0:    # Continue while there are books to process."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "    print(\"Processing book\")    # Display a processing message."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "    books = books - 1    # Reduce the number of books remaining."
             },
 
             {
@@ -950,43 +1229,22 @@ const codeBank = [
             },
 
 
+            // BLANK 10
+
             {
                 text:
-                    "    print(\"Processing book\")    # Display a message."
+                    "# Calculate the fee for a book that is ten days late."
             },
 
             {
                 newline: true
             },
-
-
-            {
-                text:
-                    "    books = books - 1    # Reduce the number of books."
-            },
-
-            {
-                newline: true
-            },
-
-
-            {
-                text:
-                    "# Calculate the fee for a book ten days late."
-            },
-
-            {
-                newline: true
-            },
-
 
             {
                 text:
                     "fee = "
             },
 
-
-            // BLANK 7
             {
                 blank: true,
                 answer: "late_fee",
@@ -1003,7 +1261,6 @@ const codeBank = [
                 newline: true
             },
 
-
             {
                 text:
                     "print(\"Late fee:\", fee)    # Display the returned fee."
@@ -1014,7 +1271,8 @@ const codeBank = [
 
 
     // =================================================
-    // PROGRAM 5 - HIKING GEAR
+    // PROGRAM 5
+    // HIKING GEAR CHECK
     // =================================================
 
     {
@@ -1026,36 +1284,62 @@ const codeBank = [
         parts: [
 
             // BLANK 1
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "def begins a function definition."
-            },
 
             {
                 text:
-                    " "
-            },
-
-
-            // BLANK 2
-            {
-                blank: true,
-                answer: "gear_status",
-                explanation:
-                    "gear_status is the function name because the function determines the gear advice."
-            },
-
-            {
-                text:
-                    "(temperature):    # temperature receives the current temperature."
+                    "# Define a function that gives hiking gear advice."
             },
 
             {
                 newline: true
             },
 
+            {
+                blank: true,
+                answer: "def",
+                explanation:
+                    "def begins the definition of a function."
+            },
+
+            {
+                text: " "
+            },
+
+
+            // BLANK 2
+
+            {
+                blank: true,
+                answer: "gear_status",
+                explanation:
+                    "gear_status is the function name because the function determines the recommended gear."
+            },
+
+            {
+                text: "("
+            },
+
+
+            // BLANK 3
+
+            {
+                blank: true,
+                answer: "temperature",
+                explanation:
+                    "temperature is the parameter that receives the current temperature."
+            },
+
+            {
+                text:
+                    "):    # The temperature parameter stores the current temperature."
+            },
+
+            {
+                newline: true
+            },
+
+
+            // BLANK 4
 
             {
                 text:
@@ -1066,24 +1350,50 @@ const codeBank = [
                 newline: true
             },
 
+            {
+                text:
+                    "    "
+            },
 
-            // BLANK 3
             {
                 blank: true,
                 answer: "if",
                 explanation:
-                    "if begins the conditional statement."
+                    "if begins a conditional statement."
             },
 
             {
                 text:
-                    " temperature <= 10:    # Ten degrees or lower requires extra clothing."
+                    " temperature <= 10:    # Ten degrees or lower requires a jacket."
             },
 
             {
                 newline: true
             },
 
+
+            // BLANK 5
+
+            {
+                text:
+                    "        # The comparison checks whether the temperature is 10 or below."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "        # The comparison operator means 'less than or equal to'."
+            },
+
+            {
+                newline: true
+            },
+
+
+            // BLANK 6
 
             {
                 text:
@@ -1094,8 +1404,11 @@ const codeBank = [
                 newline: true
             },
 
+            {
+                text:
+                    "        "
+            },
 
-            // BLANK 4
             {
                 blank: true,
                 answer: "return",
@@ -1105,13 +1418,12 @@ const codeBank = [
 
             {
                 text:
-                    " \"Bring a jacket\"    # Give advice for cold weather."
+                    " \"Bring a jacket\"    # Tell the hiker to bring a jacket."
             },
 
             {
                 newline: true
             },
-
 
             {
                 text:
@@ -1123,6 +1435,8 @@ const codeBank = [
             },
 
 
+            // BLANK 7
+
             {
                 text:
                     "# Check five pieces of hiking gear."
@@ -1132,19 +1446,26 @@ const codeBank = [
                 newline: true
             },
 
+            {
+                blank: true,
+                answer: "for",
+                explanation:
+                    "for begins a loop that repeats for every value in a sequence."
+            },
 
             {
                 text:
-                    "for item in "
+                    " item in "
             },
 
 
-            // BLANK 5
+            // BLANK 8
+
             {
                 blank: true,
                 answer: "range",
                 explanation:
-                    "range() produces the sequence of item numbers."
+                    "range() creates the sequence of item numbers used by the for loop."
             },
 
             {
@@ -1156,7 +1477,6 @@ const codeBank = [
                 newline: true
             },
 
-
             {
                 text:
                     "    print(\"Checking item\", item)    # Display the current item number."
@@ -1167,27 +1487,45 @@ const codeBank = [
             },
 
 
+            // BLANK 9
+
             {
                 text:
-                    "# Count down three hiking miles."
+                    "# Count down the remaining hiking miles."
             },
 
             {
                 newline: true
             },
 
-
-            // BLANK 6
             {
                 blank: true,
                 answer: "while",
                 explanation:
-                    "while repeats the code while miles remain."
+                    "while repeats the code while its condition remains true."
             },
 
             {
                 text:
-                    " miles > 0:    # Continue while there are miles left."
+                    " miles > 0:    # Continue while there are miles remaining."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "    print(\"Miles remaining:\", miles)    # Display the remaining distance."
+            },
+
+            {
+                newline: true
+            },
+
+            {
+                text:
+                    "    miles = miles - 1    # Reduce the remaining distance by one mile."
             },
 
             {
@@ -1195,43 +1533,22 @@ const codeBank = [
             },
 
 
+            // BLANK 10
+
             {
                 text:
-                    "    print(\"Miles remaining:\", miles)    # Display the remaining miles."
+                    "# Ask the function for advice when the temperature is 8 degrees."
             },
 
             {
                 newline: true
             },
-
-
-            {
-                text:
-                    "    miles = miles - 1    # Reduce the remaining miles."
-            },
-
-            {
-                newline: true
-            },
-
-
-            {
-                text:
-                    "# Ask the function for hiking advice."
-            },
-
-            {
-                newline: true
-            },
-
 
             {
                 text:
                     "advice = "
             },
 
-
-            // BLANK 7
             {
                 blank: true,
                 answer: "gear_status",
@@ -1241,39 +1558,22 @@ const codeBank = [
 
             {
                 text:
-                    "(8)    # Check the gear needed for 8 degrees."
+                    "(8)    # The function receives 8 as the temperature."
             },
 
             {
                 newline: true
             },
 
-
             {
                 text:
-                    "print(\"Gear advice:\", advice)    # Display the returned advice."
+                    "print(\"Gear advice:\", advice)    # Display the advice returned by the function."
             }
 
         ]
     }
 
 ];
-
-
-// =====================================================
-// IMPORTANT
-// =====================================================
-// The programs above contain 7 blanks in their original
-// design. To make the reviewer beginner-friendly while
-// still requiring 10 answers, the system below adds
-// three additional guided blanks to each generated
-// program.
-//
-// These additional blanks focus on:
-// • function parameter
-// • comparison operator
-// • function call
-// =====================================================
 
 
 // =====================================================
@@ -1291,17 +1591,20 @@ let studentAnswers = [];
 
 function shuffle(array) {
 
+    // Go through the array from the end toward the beginning.
     for (
         let i = array.length - 1;
         i > 0;
         i--
     ) {
 
+        // Choose a random position.
         const j =
             Math.floor(
                 Math.random() * (i + 1)
             );
 
+        // Exchange the two items.
         [
             array[i],
             array[j]
@@ -1313,7 +1616,9 @@ function shuffle(array) {
 
     }
 
+    // Return the shuffled array.
     return array;
+
 }
 
 
@@ -1323,6 +1628,7 @@ function shuffle(array) {
 
 function countBlanks(code) {
 
+    // Count every part marked as a blank.
     return code.parts.filter(
         part => part.blank
     ).length;
@@ -1336,27 +1642,32 @@ function countBlanks(code) {
 
 function startTest2() {
 
+    // Randomly select one program.
     selectedCode =
         shuffle(
             [...codeBank]
         )[0];
 
 
+    // Display the selected program in the console.
     console.log(
         "Selected program:",
         selectedCode.title
     );
 
 
+    // Verify that exactly 10 blanks exist.
     console.log(
         "Number of blanks:",
         countBlanks(selectedCode)
     );
 
 
+    // Clear previous student answers.
     studentAnswers = [];
 
 
+    // Display the selected program.
     displayQuestions();
 
 }
@@ -1368,12 +1679,14 @@ function startTest2() {
 
 function displayQuestions() {
 
+    // Find the container in test2.html.
     const container =
         document.getElementById(
             "codeQuestionsContainer"
         );
 
 
+    // Stop if the container does not exist.
     if (!container) {
 
         console.error(
@@ -1384,9 +1697,11 @@ function displayQuestions() {
     }
 
 
+    // Clear the container.
     container.innerHTML = "";
 
 
+    // Create the main question card.
     const card =
         document.createElement(
             "div"
@@ -1397,10 +1712,7 @@ function displayQuestions() {
         "code-question-card";
 
 
-    // ---------------------------------------------
-    // TITLE
-    // ---------------------------------------------
-
+    // Create the title.
     const title =
         document.createElement(
             "h3"
@@ -1416,10 +1728,7 @@ function displayQuestions() {
     );
 
 
-    // ---------------------------------------------
-    // TOPIC
-    // ---------------------------------------------
-
+    // Create the topic label.
     const topic =
         document.createElement(
             "div"
@@ -1439,10 +1748,7 @@ function displayQuestions() {
     );
 
 
-    // ---------------------------------------------
-    // CODE AREA
-    // ---------------------------------------------
-
+    // Create the code display area.
     const codeBox =
         document.createElement(
             "div"
@@ -1453,15 +1759,18 @@ function displayQuestions() {
         "code-box";
 
 
+    // Keep track of the blank number.
     let blankIndex = 0;
 
 
+    // Go through every part of the program.
     selectedCode.parts.forEach(
         part => {
 
-            // -------------------------------------
+
+            // -----------------------------------------
             // NEW LINE
-            // -------------------------------------
+            // -----------------------------------------
 
             if (part.newline) {
 
@@ -1475,9 +1784,9 @@ function displayQuestions() {
             }
 
 
-            // -------------------------------------
+            // -----------------------------------------
             // NORMAL TEXT
-            // -------------------------------------
+            // -----------------------------------------
 
             if (part.text) {
 
@@ -1491,34 +1800,40 @@ function displayQuestions() {
             }
 
 
-            // -------------------------------------
-            // BLANK
-            // -------------------------------------
+            // -----------------------------------------
+            // BLANK INPUT
+            // -----------------------------------------
 
             if (part.blank) {
 
+                // Create an input box.
                 const input =
                     document.createElement(
                         "input"
                     );
 
 
+                // Make the input a text field.
                 input.type =
                     "text";
 
 
+                // Apply the CSS class.
                 input.className =
                     "code-blank";
 
 
+                // Prevent browser autocomplete.
                 input.autocomplete =
                     "off";
 
 
+                // Store the blank number.
                 input.dataset.blank =
                     blankIndex;
 
 
+                // Add an accessible label.
                 input.setAttribute(
                     "aria-label",
                     "Code blank " +
@@ -1526,11 +1841,13 @@ function displayQuestions() {
                 );
 
 
+                // Add the input to the code.
                 codeBox.appendChild(
                     input
                 );
 
 
+                // Move to the next blank.
                 blankIndex++;
 
             }
@@ -1539,11 +1856,13 @@ function displayQuestions() {
     );
 
 
+    // Add the code area to the card.
     card.appendChild(
         codeBox
     );
 
 
+    // Add the card to the page.
     container.appendChild(
         card
     );
@@ -1557,16 +1876,14 @@ function displayQuestions() {
 
 function submitTest2() {
 
+    // Find all answer boxes.
     const inputs =
         document.querySelectorAll(
             ".code-blank"
         );
 
 
-    // ---------------------------------------------
-    // CHECK NUMBER OF BLANKS
-    // ---------------------------------------------
-
+    // Verify that there are exactly 10 blanks.
     if (
         inputs.length !== 10
     ) {
@@ -1586,13 +1903,11 @@ function submitTest2() {
     }
 
 
-    // ---------------------------------------------
-    // COLLECT ANSWERS
-    // ---------------------------------------------
-
+    // Clear the previous answers.
     studentAnswers = [];
 
 
+    // Store each student's answer.
     inputs.forEach(
         input => {
 
@@ -1604,10 +1919,7 @@ function submitTest2() {
     );
 
 
-    // ---------------------------------------------
-    // CHECK EMPTY ANSWERS
-    // ---------------------------------------------
-
+    // Count unanswered blanks.
     const unanswered =
         studentAnswers.filter(
             answer =>
@@ -1615,6 +1927,7 @@ function submitTest2() {
         ).length;
 
 
+    // Do not allow submission with empty blanks.
     if (
         unanswered > 0
     ) {
@@ -1628,50 +1941,52 @@ function submitTest2() {
     }
 
 
-    // ---------------------------------------------
-    // CONFIRM SUBMISSION
-    // ---------------------------------------------
-
+    // Ask the student to confirm submission.
     const confirmed =
         confirm(
             "Are you sure you want to submit Test II?"
         );
 
 
+    // Stop if the student cancels.
     if (!confirmed) {
 
         return;
     }
 
 
-    // ---------------------------------------------
-    // CALCULATE SCORE
-    // ---------------------------------------------
-
+    // Start the score at zero.
     let score = 0;
 
+
+    // Keep track of which blank is being checked.
     let blankIndex = 0;
 
 
+    // Check every blank.
     selectedCode.parts.forEach(
         part => {
 
+            // Ignore normal text.
             if (!part.blank) {
 
                 return;
             }
 
 
+            // Get the student's answer.
             const studentAnswer =
                 studentAnswers[
                     blankIndex
                 ];
 
 
+            // Get the correct answer.
             const correctAnswer =
                 part.answer;
 
 
+            // Compare the answers.
             if (
                 normalize(
                     studentAnswer
@@ -1681,30 +1996,26 @@ function submitTest2() {
                 )
             ) {
 
+                // Add one point for a correct answer.
                 score++;
 
             }
 
 
+            // Move to the next blank.
             blankIndex++;
 
         }
     );
 
 
-    // ---------------------------------------------
-    // SAVE TEST II RESULT
-    // ---------------------------------------------
-
+    // Save the result locally.
     saveTest2Result(
         score
     );
 
 
-    // ---------------------------------------------
-    // SHOW SCORE
-    // ---------------------------------------------
-
+    // Display the score.
     const scoreArea =
         document.getElementById(
             "scoreArea"
@@ -1721,16 +2032,19 @@ function submitTest2() {
     }
 
 
+    // Make the score visible.
     scoreArea.style.display =
         "block";
 
 
+    // Find the score display.
     const finalScore =
         document.getElementById(
             "finalScore"
         );
 
 
+    // Display the score.
     if (finalScore) {
 
         finalScore.textContent =
@@ -1739,12 +2053,14 @@ function submitTest2() {
     }
 
 
+    // Find the score message.
     const scoreMessage =
         document.getElementById(
             "scoreMessage"
         );
 
 
+    // Display an appropriate message.
     if (scoreMessage) {
 
         if (score === 10) {
@@ -1764,31 +2080,25 @@ function submitTest2() {
         else if (score >= 5) {
 
             scoreMessage.textContent =
-                "Good effort. Use the review explanations to strengthen your understanding.";
+                "Good effort. Review the feedback for the items you missed.";
 
         }
 
         else {
 
             scoreMessage.textContent =
-                "Keep practicing. Review each incorrect blank carefully.";
+                "Keep practicing. Study the feedback for each incorrect blank.";
 
         }
 
     }
 
 
-    // ---------------------------------------------
-    // DISPLAY REVIEW
-    // ---------------------------------------------
-
+    // Replace the answer form with the review.
     displayResults();
 
 
-    // ---------------------------------------------
-    // DISABLE SUBMIT
-    // ---------------------------------------------
-
+    // Disable the submit button.
     const button =
         document.getElementById(
             "submitBtn"
@@ -1807,10 +2117,7 @@ function submitTest2() {
     }
 
 
-    // ---------------------------------------------
-    // SCROLL TO SCORE
-    // ---------------------------------------------
-
+    // Scroll back to the score.
     scoreArea.scrollIntoView({
         behavior: "smooth"
     });
@@ -1824,20 +2131,26 @@ function submitTest2() {
 
 function saveTest2Result(score) {
 
+    // Create the result object.
     const result = {
 
+        // Record the date and time.
         date:
             new Date().toLocaleString(),
 
+        // Record the score.
         score:
             score,
 
+        // Test II always has 10 points.
         total:
             10,
 
+        // Record which program was shown.
         program:
             selectedCode.title,
 
+        // Store each blank and its feedback.
         questions:
             selectedCode.parts
                 .filter(
@@ -1867,6 +2180,7 @@ function saveTest2Result(score) {
     };
 
 
+    // Save the result in the browser.
     localStorage.setItem(
         "test2Result",
         JSON.stringify(result)
@@ -1881,6 +2195,7 @@ function saveTest2Result(score) {
 
 function normalize(value) {
 
+    // Remove unnecessary spaces and ignore capitalization.
     return String(value)
         .trim()
         .toLowerCase();
@@ -1894,19 +2209,18 @@ function normalize(value) {
 
 function displayResults() {
 
+    // Find the code container.
     const container =
         document.getElementById(
             "codeQuestionsContainer"
         );
 
 
+    // Clear the original input form.
     container.innerHTML = "";
 
 
-    // ---------------------------------------------
-    // REVIEW INSTRUCTION
-    // ---------------------------------------------
-
+    // Create the review instruction.
     const instruction =
         document.createElement(
             "div"
@@ -1926,10 +2240,7 @@ function displayResults() {
     );
 
 
-    // ---------------------------------------------
-    // CREATE CARD
-    // ---------------------------------------------
-
+    // Create the review card.
     const card =
         document.createElement(
             "div"
@@ -1940,10 +2251,7 @@ function displayResults() {
         "code-question-card";
 
 
-    // ---------------------------------------------
-    // TITLE
-    // ---------------------------------------------
-
+    // Display the program title.
     const title =
         document.createElement(
             "h3"
@@ -1959,10 +2267,7 @@ function displayResults() {
     );
 
 
-    // ---------------------------------------------
-    // TOPIC
-    // ---------------------------------------------
-
+    // Display the topic.
     const topic =
         document.createElement(
             "div"
@@ -1982,10 +2287,7 @@ function displayResults() {
     );
 
 
-    // ---------------------------------------------
-    // CODE
-    // ---------------------------------------------
-
+    // Create the reviewed code area.
     const codeBox =
         document.createElement(
             "div"
@@ -1996,15 +2298,18 @@ function displayResults() {
         "code-box submitted-code";
 
 
+    // Track the current blank.
     let blankIndex = 0;
 
 
+    // Rebuild the program with the student's answers.
     selectedCode.parts.forEach(
         part => {
 
-            // -------------------------------------
+
+            // -----------------------------------------
             // NEW LINE
-            // -------------------------------------
+            // -----------------------------------------
 
             if (part.newline) {
 
@@ -2018,9 +2323,9 @@ function displayResults() {
             }
 
 
-            // -------------------------------------
+            // -----------------------------------------
             // NORMAL TEXT
-            // -------------------------------------
+            // -----------------------------------------
 
             if (part.text) {
 
@@ -2034,22 +2339,25 @@ function displayResults() {
             }
 
 
-            // -------------------------------------
-            // ANSWER
-            // -------------------------------------
+            // -----------------------------------------
+            // STUDENT ANSWER
+            // -----------------------------------------
 
             if (part.blank) {
 
+                // Get the student's answer.
                 const studentAnswer =
                     studentAnswers[
                         blankIndex
                     ];
 
 
+                // Get the correct answer.
                 const correctAnswer =
                     part.answer;
 
 
+                // Create the answer display.
                 const answerSpan =
                     document.createElement(
                         "span"
@@ -2064,6 +2372,7 @@ function displayResults() {
                     studentAnswer;
 
 
+                // Check the answer.
                 const correct =
                     normalize(
                         studentAnswer
@@ -2073,9 +2382,9 @@ function displayResults() {
                     );
 
 
-                // ---------------------------------
+                // -------------------------------------
                 // CORRECT ANSWER
-                // ---------------------------------
+                // -------------------------------------
 
                 if (correct) {
 
@@ -2086,9 +2395,9 @@ function displayResults() {
                 }
 
 
-                // ---------------------------------
+                // -------------------------------------
                 // WRONG ANSWER
-                // ---------------------------------
+                // -------------------------------------
 
                 else {
 
@@ -2101,6 +2410,7 @@ function displayResults() {
                         "Click to review";
 
 
+                    // Show feedback when clicked.
                     answerSpan.addEventListener(
                         "click",
                         function() {
@@ -2117,11 +2427,13 @@ function displayResults() {
                 }
 
 
+                // Add the answer to the code.
                 codeBox.appendChild(
                     answerSpan
                 );
 
 
+                // Move to the next blank.
                 blankIndex++;
 
             }
@@ -2130,11 +2442,13 @@ function displayResults() {
     );
 
 
+    // Add the reviewed code to the card.
     card.appendChild(
         codeBox
     );
 
 
+    // Add the card to the page.
     container.appendChild(
         card
     );
@@ -2152,6 +2466,7 @@ function showExplanation(
     explanation
 ) {
 
+    // Remove an existing explanation if one is open.
     const old =
         document.getElementById(
             "codeExplanation"
@@ -2165,6 +2480,7 @@ function showExplanation(
     }
 
 
+    // Create the explanation box.
     const box =
         document.createElement(
             "div"
@@ -2179,6 +2495,7 @@ function showExplanation(
         "code-explanation";
 
 
+    // Add the feedback content.
     box.innerHTML = `
 
         <button
@@ -2216,6 +2533,7 @@ function showExplanation(
     `;
 
 
+    // Display the explanation.
     document.body.appendChild(
         box
     );
@@ -2229,12 +2547,14 @@ function showExplanation(
 
 function closeExplanation() {
 
+    // Find the explanation box.
     const box =
         document.getElementById(
             "codeExplanation"
         );
 
 
+    // Remove it if it exists.
     if (box) {
 
         box.remove();
@@ -2250,6 +2570,7 @@ function closeExplanation() {
 
 function escapeHTML(text) {
 
+    // Prevent user-entered text from being interpreted as HTML.
     return String(text)
 
         .replaceAll(
@@ -2306,18 +2627,12 @@ document.addEventListener(
 
 
         // -----------------------------------------
-        // DISPLAY STUDENT INFORMATION
+        // DISPLAY STUDENT NAME
         // -----------------------------------------
 
         const nameElement =
             document.getElementById(
                 "studentName"
-            );
-
-
-        const sectionElement =
-            document.getElementById(
-                "studentSection"
             );
 
 
@@ -2330,6 +2645,16 @@ document.addEventListener(
                 studentName;
 
         }
+
+
+        // -----------------------------------------
+        // DISPLAY STUDENT SECTION
+        // -----------------------------------------
+
+        const sectionElement =
+            document.getElementById(
+                "studentSection"
+            );
 
 
         if (
@@ -2351,7 +2676,7 @@ document.addEventListener(
 
 
         // -----------------------------------------
-        // SUBMIT BUTTON
+        // CONNECT SUBMIT BUTTON
         // -----------------------------------------
 
         const submitButton =
