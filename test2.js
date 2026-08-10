@@ -5,27 +5,67 @@
 //
 // One program is randomly selected for each session.
 //
-// Each program contains EXACTLY 10 blanks.
+// Every program contains EXACTLY 10 blanks.
 //
-// Each blank = 1 point
-// Total = 10 points
+// Each blank is worth 1 point.
+// Total score = 10 points.
 //
-// Skills reviewed:
-// 1. Function definition
-// 2. Function name
-// 3. Function parameter
-// 4. Conditional statement
-// 5. Comparison operator
-// 6. Return statement
-// 7. For loop
-// 8. range()
-// 9. While loop
-// 10. Function call
+// The reviewer practices:
+// • Functions
+// • Function names
+// • Parameters
+// • Conditionals
+// • Comparison operators
+// • Return statements
+// • for loops
+// • range()
+// • while loops
+// • Function calls
+// • File handling
 //
-// IMPORTANT:
-// Every line of sample code contains a comment
-// explaining what the line is doing.
+// The Python code displayed to students uses comments
+// on every line to explain what the line is doing.
 // =====================================================
+
+
+// =====================================================
+// HELPER FUNCTIONS FOR BUILDING CODE
+// =====================================================
+
+// Create a normal text part of the Python code.
+function text(value) {
+
+    return {
+        text: value
+    };
+
+}
+
+
+// Create a new-line part of the Python code.
+function newline() {
+
+    return {
+        newline: true
+    };
+
+}
+
+
+// Create a blank that the student must answer.
+function blank(answer, explanation) {
+
+    return {
+
+        blank: true,
+
+        answer: answer,
+
+        explanation: explanation
+
+    };
+
+}
 
 
 // =====================================================
@@ -36,11 +76,12 @@ const codeBank = [
 
     // =================================================
     // PROGRAM 1
-    // MOVIE TICKET BOOTH
+    // ATTENDANCE STATUS
     // =================================================
 
     {
-        title: "Movie Ticket Booth",
+        title:
+            "Attendance Status",
 
         topic:
             "Functions, Conditionals and Loops",
@@ -48,627 +89,459 @@ const codeBank = [
         parts: [
 
             // -------------------------------------------------
-            // LINE 1
-            // BLANK 1 = def
+            // BLANK 1 - def
             // -------------------------------------------------
 
-            {
-                text: "# Define a function that determines a ticket price."
-            },
+            text(
+                "# Define a function that determines an attendance status."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "The def keyword tells Python that you are defining a function."
-            },
+            blank(
+                "def",
+                "The def keyword is used to define a function in Python."
+            ),
 
-            {
-                text: " "
-            },
-
-            // -------------------------------------------------
-            // BLANK 2 = FUNCTION NAME
-            // -------------------------------------------------
-
-            {
-                blank: true,
-                answer: "ticket_price",
-                explanation:
-                    "ticket_price is the name of the function. A good function name describes what the function does."
-            },
-
-            // -------------------------------------------------
-            // BLANK 3 = PARAMETER
-            // -------------------------------------------------
-
-            {
-                text: "("
-            },
-
-            {
-                blank: true,
-                answer: "age",
-                explanation:
-                    "age is the parameter. It is the variable that receives the value passed into the function."
-            },
-
-            {
-                text:
-                    "):    # The age parameter will receive the customer's age."
-            },
-
-            {
-                newline: true
-            },
+            text(
+                " attendance_status("
+            ),
 
 
             // -------------------------------------------------
-            // LINE 2
-            // BLANK 4 = IF
+            // BLANK 3 - parameter
             // -------------------------------------------------
 
-            {
-                text:
-                    "    # Check whether the customer is a child."
-            },
+            blank(
+                "score",
+                "score is the parameter. It receives the attendance score when the function is called."
+            ),
 
-            {
-                newline: true
-            },
+            text(
+                "):    # The score parameter stores the student's attendance score."
+            ),
 
-            {
-                text:
-                    "    "
-            },
-
-            {
-                blank: true,
-                answer: "if",
-                explanation:
-                    "The if keyword begins a conditional statement that allows the program to make a decision."
-            },
-
-            {
-                text:
-                    " age < 13:    # Children younger than 13 receive the child price."
-            },
-
-            {
-                newline: true
-            },
+            newline(),
 
 
             // -------------------------------------------------
-            // BLANK 5 = COMPARISON OPERATOR
+            // BLANK 4 - if
             // -------------------------------------------------
 
-            {
-                text:
-                    "        # The comparison checks whether the age is below 13."
-            },
+            text(
+                "    # Check whether the attendance score is high enough."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "        # The less-than operator is used in the condition above."
-            },
+            text(
+                "    "
+            ),
 
-            {
-                newline: true
-            },
+            blank(
+                "if",
+                "The if keyword begins a conditional statement."
+            ),
 
-
-            // -------------------------------------------------
-            // BLANK 6 = RETURN
-            // -------------------------------------------------
-
-            {
-                text:
-                    "        # Send the child ticket price back to the caller."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                text:
-                    "        "
-            },
-
-            {
-                blank: true,
-                answer: "return",
-                explanation:
-                    "The return statement sends a value from the function back to the code that called it."
-            },
-
-            {
-                text:
-                    " 120    # The child ticket costs 120."
-            },
-
-            {
-                newline: true
-            },
-
-
-            {
-                text:
-                    "    return 180    # The regular ticket price is 180."
-            },
-
-            {
-                newline: true
-            },
+            text(
+                " score "
+            ),
 
 
             // -------------------------------------------------
-            // BLANK 7 = FOR
+            // BLANK 5 - comparison operator
             // -------------------------------------------------
 
-            {
-                text:
-                    "# Display the numbers of three available shows."
-            },
+            blank(
+                ">=",
+                "The >= operator means greater than or equal to."
+            ),
 
-            {
-                newline: true
-            },
+            text(
+                " 75:    # A score of 75 or higher meets the requirement."
+            ),
 
-            {
-                blank: true,
-                answer: "for",
-                explanation:
-                    "The for keyword begins a loop that repeats for each value in a sequence."
-            },
-
-            {
-                text:
-                    " show in "
-            },
+            newline(),
 
 
             // -------------------------------------------------
-            // BLANK 8 = RANGE
+            // BLANK 6 - return
             // -------------------------------------------------
 
-            {
-                blank: true,
-                answer: "range",
-                explanation:
-                    "range() creates a sequence of numbers for the for loop."
-            },
+            text(
+                "        # Return the attendance result when the condition is true."
+            ),
 
-            {
-                text:
-                    "(1, 4):    # This produces the numbers 1, 2 and 3."
-            },
+            newline(),
 
-            {
-                newline: true
-            },
+            text(
+                "        "
+            ),
 
-            {
-                text:
-                    "    print(\"Show\", show)    # Display the current show number."
-            },
+            blank(
+                "return",
+                "The return statement sends a value back to the code that called the function."
+            ),
 
-            {
-                newline: true
-            },
+            text(
+                " \"Good Attendance\"    # Return the message for a passing attendance score."
+            ),
+
+            newline(),
 
 
-            // -------------------------------------------------
-            // BLANK 9 = WHILE
-            // -------------------------------------------------
+            text(
+                "    else:    # This block runs when the first condition is false."
+            ),
 
-            {
-                text:
-                    "# Count down the remaining tickets."
-            },
+            newline(),
 
-            {
-                newline: true
-            },
+            text(
+                "        return \"Needs Improvement\"    # Return the message for a lower score."
+            ),
 
-            {
-                blank: true,
-                answer: "while",
-                explanation:
-                    "The while keyword repeats code as long as its condition is true."
-            },
-
-            {
-                text:
-                    " tickets > 0:    # Continue while at least one ticket remains."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                text:
-                    "    print(\"Ticket available\")    # Tell the customer that a ticket remains."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                text:
-                    "    tickets = tickets - 1    # Reduce the number of remaining tickets."
-            },
-
-            {
-                newline: true
-            },
+            newline(),
 
 
             // -------------------------------------------------
-            // BLANK 10 = FUNCTION CALL
+            // BLANK 7 - for
             // -------------------------------------------------
 
-            {
-                text:
-                    "# Call the function to calculate the price for a 15-year-old."
-            },
+            text(
+                "# Check the attendance of three sample days."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "price = "
-            },
+            blank(
+                "for",
+                "The for keyword begins a loop that repeats for each value in a sequence."
+            ),
 
-            {
-                blank: true,
-                answer: "ticket_price",
-                explanation:
-                    "ticket_price(15) is a function call. The value 15 is passed to the age parameter."
-            },
+            text(
+                " day in "
+            ),
 
-            {
-                text:
-                    "(15)    # The function receives 15 as the customer's age."
-            },
 
-            {
-                newline: true
-            },
+            // -------------------------------------------------
+            // BLANK 8 - range
+            // -------------------------------------------------
 
-            {
-                text:
-                    "print(\"Ticket price:\", price)    # Display the price returned by the function."
-            }
+            blank(
+                "range",
+                "range() creates a sequence of numbers for the for loop."
+            ),
+
+            text(
+                "(1, 4):    # The loop checks days 1, 2 and 3."
+            ),
+
+            newline(),
+
+            text(
+                "    print(\"Checking day:\", day)    # Display the current day number."
+            ),
+
+            newline(),
+
+
+            // -------------------------------------------------
+            // BLANK 9 - while
+            // -------------------------------------------------
+
+            text(
+                "attempts = 3    # Start with three available attendance checks."
+            ),
+
+            newline(),
+
+            blank(
+                "while",
+                "The while keyword repeats code while its condition is true."
+            ),
+
+            text(
+                " attempts > 0:    # Continue while there are attempts remaining."
+            ),
+
+            newline(),
+
+            text(
+                "    print(\"Attendance checked\")    # Display a message for the current check."
+            ),
+
+            newline(),
+
+            text(
+                "    attempts = attempts - 1    # Reduce the remaining attempts by one."
+            ),
+
+            newline(),
+
+
+            // -------------------------------------------------
+            // BLANK 10 - function call
+            // -------------------------------------------------
+
+            text(
+                "# Call the function using an attendance score of 85."
+            ),
+
+            newline(),
+
+            text(
+                "status = "
+            ),
+
+            blank(
+                "attendance_status",
+                "attendance_status(85) calls the function and passes 85 to the score parameter."
+            ),
+
+            text(
+                "(85)    # Pass 85 as the attendance score."
+            ),
+
+            newline(),
+
+            text(
+                "print(\"Status:\", status)    # Display the result returned by the function."
+            )
 
         ]
+
     },
 
 
     // =================================================
     // PROGRAM 2
-    // GARDEN WATERING
+    // CANTEEN ORDER
     // =================================================
 
     {
-        title: "Garden Watering Scheduler",
+        title:
+            "Canteen Order Checker",
 
         topic:
             "Functions, Conditionals and Loops",
 
         parts: [
 
-            // BLANK 1 = DEF
+            // BLANK 1
 
-            {
-                text:
-                    "# Define a function that determines how much water is needed."
-            },
+            text(
+                "# Define a function that determines the order message."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "def is used to define a function in Python."
-            },
+            blank(
+                "def",
+                "The def keyword is used to define a function."
+            ),
 
-            {
-                text: " "
-            },
+            text(
+                " order_status("
+            ),
 
 
-            // BLANK 2 = FUNCTION NAME
+            // BLANK 3
 
-            {
-                blank: true,
-                answer: "water_needed",
-                explanation:
-                    "water_needed is the function name because the function determines the amount of water needed."
-            },
+            blank(
+                "total",
+                "total is the parameter that receives the customer's order amount."
+            ),
 
-            {
-                text: "("
-            },
+            text(
+                "):    # The total parameter stores the order amount."
+            ),
 
+            newline(),
 
-            // BLANK 3 = PARAMETER
 
-            {
-                blank: true,
-                answer: "moisture",
-                explanation:
-                    "moisture is the parameter. It receives the soil moisture value when the function is called."
-            },
-
-            {
-                text:
-                    "):    # The moisture parameter stores the soil moisture value."
-            },
-
-            {
-                newline: true
-            },
+            // BLANK 4
 
+            text(
+                "    # Check whether the order reaches the free-delivery amount."
+            ),
 
-            // BLANK 4 = IF
+            newline(),
 
-            {
-                text:
-                    "    # Check whether the soil is dry."
-            },
+            text(
+                "    "
+            ),
 
-            {
-                newline: true
-            },
+            blank(
+                "if",
+                "The if keyword begins the condition used to make the decision."
+            ),
 
-            {
-                text:
-                    "    "
-            },
+            text(
+                " total "
+            ),
 
-            {
-                blank: true,
-                answer: "if",
-                explanation:
-                    "The if keyword begins the condition that checks whether the soil needs water."
-            },
 
-            {
-                text:
-                    " moisture <= 30:    # Soil at 30 or below needs water."
-            },
+            // BLANK 5
 
-            {
-                newline: true
-            },
+            blank(
+                ">=",
+                "The >= operator checks whether total is greater than or equal to 100."
+            ),
 
+            text(
+                " 100:    # Orders of 100 or more qualify for free delivery."
+            ),
 
-            // BLANK 5 = COMPARISON OPERATOR
+            newline(),
 
-            {
-                text:
-                    "        # The condition uses a comparison operator."
-            },
 
-            {
-                newline: true
-            },
+            // BLANK 6
 
-            {
-                text:
-                    "        # The chosen operator means 'less than or equal to'."
-            },
+            text(
+                "        # Return the message for qualifying orders."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-
-            // BLANK 6 = RETURN
+            text(
+                "        "
+            ),
 
-            {
-                text:
-                    "        # Send the amount of water back to the caller."
-            },
+            blank(
+                "return",
+                "The return statement sends the result back to the code that called the function."
+            ),
 
-            {
-                newline: true
-            },
-
-            {
-                text:
-                    "        "
-            },
-
-            {
-                blank: true,
-                answer: "return",
-                explanation:
-                    "return sends the result of the function back to the code that called it."
-            },
-
-            {
-                text:
-                    " 5    # Return 5 liters when the soil is dry."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                text:
-                    "    return 0    # No extra water is needed when the soil is moist."
-            },
-
-            {
-                newline: true
-            },
-
-
-            // BLANK 7 = FOR
-
-            {
-                text:
-                    "# Check four garden zones."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                blank: true,
-                answer: "for",
-                explanation:
-                    "for starts a loop that repeats for each value in a sequence."
-            },
-
-            {
-                text:
-                    " zone in "
-            },
-
-
-            // BLANK 8 = RANGE
-
-            {
-                blank: true,
-                answer: "range",
-                explanation:
-                    "range() creates the sequence of zone numbers used by the for loop."
-            },
-
-            {
-                text:
-                    "(1, 5):    # The loop checks zones 1, 2, 3 and 4."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                text:
-                    "    print(\"Checking zone\", zone)    # Display the current garden zone."
-            },
-
-            {
-                newline: true
-            },
-
-
-            // BLANK 9 = WHILE
-
-            {
-                text:
-                    "# Repeat watering while there are cycles remaining."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                blank: true,
-                answer: "while",
-                explanation:
-                    "while repeats a block of code while its condition remains true."
-            },
-
-            {
-                text:
-                    " cycles > 0:    # Continue while watering cycles remain."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                text:
-                    "    print(\"Watering garden\")    # Tell the user that watering is happening."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                text:
-                    "    cycles = cycles - 1    # Reduce the remaining watering cycles."
-            },
-
-            {
-                newline: true
-            },
-
-
-            // BLANK 10 = FUNCTION CALL
-
-            {
-                text:
-                    "# Ask the function how much water is needed."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                text:
-                    "amount = "
-            },
-
-            {
-                blank: true,
-                answer: "water_needed",
-                explanation:
-                    "water_needed(25) calls the function and passes 25 to the moisture parameter."
-            },
-
-            {
-                text:
-                    "(25)    # Check the amount of water needed when moisture is 25."
-            },
-
-            {
-                newline: true
-            },
-
-            {
-                text:
-                    "print(\"Water needed:\", amount)    # Display the returned amount."
-            }
+            text(
+                " \"Free Delivery\"    # Return the free-delivery message."
+            ),
+
+            newline(),
+
+
+            text(
+                "    else:    # This block handles orders below 100."
+            ),
+
+            newline(),
+
+            text(
+                "        return \"Regular Delivery\"    # Return the regular delivery message."
+            ),
+
+            newline(),
+
+
+            // BLANK 7
+
+            text(
+                "# Display three sample order numbers."
+            ),
+
+            newline(),
+
+            blank(
+                "for",
+                "The for keyword begins a loop that goes through a sequence."
+            ),
+
+            text(
+                " order_number in "
+            ),
+
+
+            // BLANK 8
+
+            blank(
+                "range",
+                "range() creates the sequence of numbers used by the loop."
+            ),
+
+            text(
+                "(1, 4):    # The loop displays order numbers 1, 2 and 3."
+            ),
+
+            newline(),
+
+            text(
+                "    print(\"Order:\", order_number)    # Display the current order number."
+            ),
+
+            newline(),
+
+
+            // BLANK 9
+
+            text(
+                "orders_left = 2    # Start with two orders waiting to be processed."
+            ),
+
+            newline(),
+
+            blank(
+                "while",
+                "The while keyword repeats the block while orders remain."
+            ),
+
+            text(
+                " orders_left > 0:    # Continue while at least one order remains."
+            ),
+
+            newline(),
+
+            text(
+                "    print(\"Processing order\")    # Display a processing message."
+            ),
+
+            newline(),
+
+            text(
+                "    orders_left = orders_left - 1    # Reduce the number of waiting orders."
+            ),
+
+            newline(),
+
+
+            // BLANK 10
+
+            text(
+                "# Call the function for an order worth 150."
+            ),
+
+            newline(),
+
+            text(
+                "message = "
+            ),
+
+            blank(
+                "order_status",
+                "order_status(150) calls the function and passes 150 to the total parameter."
+            ),
+
+            text(
+                "(150)    # Pass 150 as the order total."
+            ),
+
+            newline(),
+
+            text(
+                "print(\"Order message:\", message)    # Display the returned message."
+            )
 
         ]
+
     },
 
 
     // =================================================
     // PROGRAM 3
-    // ARCADE PRIZE
+    // LIBRARY RETURN CHECKER
     // =================================================
 
     {
-        title: "Arcade Prize Counter",
+        title:
+            "Library Return Checker",
 
         topic:
             "Functions, Conditionals and Loops",
@@ -677,302 +550,219 @@ const codeBank = [
 
             // BLANK 1
 
-            {
-                text:
-                    "# Define a function that determines the player's prize."
-            },
+            text(
+                "# Define a function that checks whether a book is overdue."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "def begins the definition of a Python function."
-            },
+            blank(
+                "def",
+                "The def keyword begins a function definition."
+            ),
 
-            {
-                text: " "
-            },
-
-
-            // BLANK 2
-
-            {
-                blank: true,
-                answer: "prize_level",
-                explanation:
-                    "prize_level is the name of the function."
-            },
-
-            {
-                text: "("
-            },
+            text(
+                " library_status("
+            ),
 
 
             // BLANK 3
 
-            {
-                blank: true,
-                answer: "points",
-                explanation:
-                    "points is the parameter that receives the player's score."
-            },
+            blank(
+                "days",
+                "days is the parameter that receives the number of overdue days."
+            ),
 
-            {
-                text:
-                    "):    # The points parameter stores the player's score."
-            },
+            text(
+                "):    # The days parameter stores the number of days borrowed."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 4
 
-            {
-                text:
-                    "    # Check whether the player earned enough points for Gold."
-            },
+            text(
+                "    # Check whether the book has been borrowed for more than 14 days."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    "
-            },
+            text(
+                "    "
+            ),
 
-            {
-                blank: true,
-                answer: "if",
-                explanation:
-                    "if begins a conditional statement."
-            },
+            blank(
+                "if",
+                "The if keyword begins the condition."
+            ),
 
-            {
-                text:
-                    " points >= 100:    # Players with 100 or more points earn Gold."
-            },
-
-            {
-                newline: true
-            },
+            text(
+                " days "
+            ),
 
 
             // BLANK 5
 
-            {
-                text:
-                    "        # The comparison checks whether the score reaches 100."
-            },
+            blank(
+                ">",
+                "The > operator means greater than."
+            ),
 
-            {
-                newline: true
-            },
+            text(
+                " 14:    # More than 14 days means the book is overdue."
+            ),
 
-            {
-                text:
-                    "        # The comparison operator means 'greater than or equal to'."
-            },
-
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 6
 
-            {
-                text:
-                    "        # Send the Gold result back to the caller."
-            },
+            text(
+                "        # Send the overdue message back to the caller."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "        "
-            },
+            text(
+                "        "
+            ),
 
-            {
-                blank: true,
-                answer: "return",
-                explanation:
-                    "return sends the result of the function back to the code that called it."
-            },
+            blank(
+                "return",
+                "return sends a result from the function back to the calling code."
+            ),
 
-            {
-                text:
-                    " \"Gold\"    # Gold is returned when the player has enough points."
-            },
+            text(
+                " \"Overdue\"    # Return the overdue status."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    return \"Silver\"    # Players below 100 points receive Silver."
-            },
 
-            {
-                newline: true
-            },
+            text(
+                "    else:    # This block handles books that are not overdue."
+            ),
+
+            newline(),
+
+            text(
+                "        return \"On Time\"    # Return the on-time status."
+            ),
+
+            newline(),
 
 
             // BLANK 7
 
-            {
-                text:
-                    "# Display three arcade rounds."
-            },
+            text(
+                "# Check three library shelves."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "for",
-                explanation:
-                    "for starts a loop that repeats for every value in the sequence."
-            },
+            blank(
+                "for",
+                "The for keyword begins a loop that repeats through a sequence."
+            ),
 
-            {
-                text:
-                    " round_number in "
-            },
+            text(
+                " shelf in "
+            ),
 
 
             // BLANK 8
 
-            {
-                blank: true,
-                answer: "range",
-                explanation:
-                    "range() creates the sequence of round numbers."
-            },
+            blank(
+                "range",
+                "range() creates the sequence of shelf numbers."
+            ),
 
-            {
-                text:
-                    "(1, 4):    # The loop runs for rounds 1, 2 and 3."
-            },
+            text(
+                "(1, 4):    # The loop checks shelves 1, 2 and 3."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    print(\"Round\", round_number)    # Display the current round."
-            },
+            text(
+                "    print(\"Checking shelf:\", shelf)    # Display the current shelf number."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 9
 
-            {
-                text:
-                    "# Use three tokens in the arcade game."
-            },
+            text(
+                "books_left = 3    # Start with three books waiting to be processed."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "while",
-                explanation:
-                    "while repeats the instructions while tokens remain."
-            },
+            blank(
+                "while",
+                "The while keyword repeats the block while the condition is true."
+            ),
 
-            {
-                text:
-                    " tokens > 0:    # Continue while there are tokens available."
-            },
+            text(
+                " books_left > 0:    # Continue while books remain."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    print(\"Token used\")    # Tell the player that a token was used."
-            },
+            text(
+                "    print(\"Processing book\")    # Display a processing message."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    tokens = tokens - 1    # Remove one token."
-            },
+            text(
+                "    books_left = books_left - 1    # Reduce the number of books left."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 10
 
-            {
-                text:
-                    "# Call the function to determine the prize."
-            },
+            text(
+                "# Call the function for a book borrowed for 18 days."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "prize = "
-            },
+            text(
+                "status = "
+            ),
 
-            {
-                blank: true,
-                answer: "prize_level",
-                explanation:
-                    "prize_level(120) is a function call. The value 120 is passed to the points parameter."
-            },
+            blank(
+                "library_status",
+                "library_status(18) calls the function and passes 18 to the days parameter."
+            ),
 
-            {
-                text:
-                    "(120)    # Check the prize for a player with 120 points."
-            },
+            text(
+                "(18)    # Pass 18 as the number of days."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "print(\"Prize:\", prize)    # Display the returned prize."
-            }
+            text(
+                "print(\"Book status:\", status)    # Display the result returned by the function."
+            )
 
         ]
+
     },
 
 
     // =================================================
     // PROGRAM 4
-    // LIBRARY LATE FEE
+    // STUDY PROGRESS
     // =================================================
 
     {
-        title: "Library Late Fee Calculator",
+        title:
+            "Study Progress Tracker",
 
         topic:
             "Functions, Conditionals and Loops",
@@ -981,617 +771,469 @@ const codeBank = [
 
             // BLANK 1
 
-            {
-                text:
-                    "# Define a function that calculates a library late fee."
-            },
+            text(
+                "# Define a function that evaluates a student's study score."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "def is used to define a function."
-            },
+            blank(
+                "def",
+                "The def keyword is used to define a function."
+            ),
 
-            {
-                text: " "
-            },
-
-
-            // BLANK 2
-
-            {
-                blank: true,
-                answer: "late_fee",
-                explanation:
-                    "late_fee is the function name because the function calculates a late fee."
-            },
-
-            {
-                text: "("
-            },
+            text(
+                " study_status("
+            ),
 
 
             // BLANK 3
 
-            {
-                blank: true,
-                answer: "days",
-                explanation:
-                    "days is the parameter that receives the number of overdue days."
-            },
+            blank(
+                "score",
+                "score is the parameter that receives the student's study score."
+            ),
 
-            {
-                text:
-                    "):    # The days parameter stores how late the book is."
-            },
+            text(
+                "):    # The score parameter stores the study score."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 4
 
-            {
-                text:
-                    "    # Check whether the book is more than seven days late."
-            },
+            text(
+                "    # Check whether the study score reaches the target."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    "
-            },
+            text(
+                "    "
+            ),
 
-            {
-                blank: true,
-                answer: "if",
-                explanation:
-                    "if begins the condition used to decide whether a fee should be charged."
-            },
+            blank(
+                "if",
+                "The if keyword begins a conditional statement."
+            ),
 
-            {
-                text:
-                    " days > 7:    # A book more than seven days late receives a fee."
-            },
-
-            {
-                newline: true
-            },
+            text(
+                " score "
+            ),
 
 
             // BLANK 5
 
-            {
-                text:
-                    "        # The comparison checks whether the number of days is greater than 7."
-            },
+            blank(
+                ">=",
+                "The >= operator means greater than or equal to."
+            ),
 
-            {
-                newline: true
-            },
+            text(
+                " 80:    # A score of 80 or higher reaches the target."
+            ),
 
-            {
-                text:
-                    "        # The comparison operator is greater-than."
-            },
-
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 6
 
-            {
-                text:
-                    "        # Return the late fee to the caller."
-            },
+            text(
+                "        # Return the message for students who reached the target."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "        "
-            },
+            text(
+                "        "
+            ),
 
-            {
-                blank: true,
-                answer: "return",
-                explanation:
-                    "return sends the calculated result back to the calling code."
-            },
+            blank(
+                "return",
+                "The return statement sends a value back to the code that called the function."
+            ),
 
-            {
-                text:
-                    " 50    # The late fee is 50."
-            },
+            text(
+                " \"Target Reached\"    # Return the successful study status."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    return 0    # No fee is charged when the book is not more than seven days late."
-            },
 
-            {
-                newline: true
-            },
+            text(
+                "    else:    # This block handles scores below the target."
+            ),
+
+            newline(),
+
+            text(
+                "        return \"Keep Practicing\"    # Encourage more study practice."
+            ),
+
+            newline(),
 
 
             // BLANK 7
 
-            {
-                text:
-                    "# Check three library shelves."
-            },
+            text(
+                "# Display four study-session numbers."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "for",
-                explanation:
-                    "for starts a loop that goes through each value in a sequence."
-            },
+            blank(
+                "for",
+                "The for keyword starts a loop that repeats for each value in a sequence."
+            ),
 
-            {
-                text:
-                    " shelf in "
-            },
+            text(
+                " session in "
+            ),
 
 
             // BLANK 8
 
-            {
-                blank: true,
-                answer: "range",
-                explanation:
-                    "range() creates the sequence of shelf numbers used by the loop."
-            },
+            blank(
+                "range",
+                "range() creates the sequence used by the for loop."
+            ),
 
-            {
-                text:
-                    "(1, 4):    # The loop checks shelves 1, 2 and 3."
-            },
+            text(
+                "(1, 5):    # The loop displays sessions 1, 2, 3 and 4."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    print(\"Checking shelf\", shelf)    # Display the current shelf."
-            },
+            text(
+                "    print(\"Study session:\", session)    # Display the current study session."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 9
 
-            {
-                text:
-                    "# Process the books while books remain."
-            },
+            text(
+                "minutes = 3    # Start with three minutes in this sample timer."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "while",
-                explanation:
-                    "while repeats the code while its condition remains true."
-            },
+            blank(
+                "while",
+                "The while keyword repeats the instructions while the condition is true."
+            ),
 
-            {
-                text:
-                    " books > 0:    # Continue while there are books to process."
-            },
+            text(
+                " minutes > 0:    # Continue while study minutes remain."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    print(\"Processing book\")    # Display a processing message."
-            },
+            text(
+                "    print(\"Keep studying\")    # Display a study reminder."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    books = books - 1    # Reduce the number of books remaining."
-            },
+            text(
+                "    minutes = minutes - 1    # Reduce the remaining minutes by one."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 10
 
-            {
-                text:
-                    "# Calculate the fee for a book that is ten days late."
-            },
+            text(
+                "# Call the function with a study score of 85."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "fee = "
-            },
+            text(
+                "result = "
+            ),
 
-            {
-                blank: true,
-                answer: "late_fee",
-                explanation:
-                    "late_fee(10) calls the function and passes 10 to the days parameter."
-            },
+            blank(
+                "study_status",
+                "study_status(85) calls the function and passes 85 to the score parameter."
+            ),
 
-            {
-                text:
-                    "(10)    # Ask the function to calculate the fee for ten overdue days."
-            },
+            text(
+                "(85)    # Pass 85 as the study score."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "print(\"Late fee:\", fee)    # Display the returned fee."
-            }
+            text(
+                "print(\"Study result:\", result)    # Display the returned study status."
+            )
 
         ]
+
     },
 
 
     // =================================================
     // PROGRAM 5
-    // HIKING GEAR CHECK
+    // ATTENDANCE FILE SAVER
     // =================================================
 
     {
-        title: "Hiking Gear Check",
+        title:
+            "Attendance File Saver",
 
         topic:
-            "Functions, Conditionals and Loops",
+            "Functions, Conditionals, Loops and File Handling",
 
         parts: [
 
             // BLANK 1
 
-            {
-                text:
-                    "# Define a function that gives hiking gear advice."
-            },
+            text(
+                "# Define a function that saves an attendance record."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "def",
-                explanation:
-                    "def begins the definition of a function."
-            },
+            blank(
+                "def",
+                "The def keyword is used to define a function."
+            ),
 
-            {
-                text: " "
-            },
-
-
-            // BLANK 2
-
-            {
-                blank: true,
-                answer: "gear_status",
-                explanation:
-                    "gear_status is the function name because the function determines the recommended gear."
-            },
-
-            {
-                text: "("
-            },
+            text(
+                " save_attendance("
+            ),
 
 
             // BLANK 3
 
-            {
-                blank: true,
-                answer: "temperature",
-                explanation:
-                    "temperature is the parameter that receives the current temperature."
-            },
+            blank(
+                "name",
+                "name is the parameter that receives the student's name."
+            ),
 
-            {
-                text:
-                    "):    # The temperature parameter stores the current temperature."
-            },
+            text(
+                "):    # The name parameter stores the student's name."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 4
 
-            {
-                text:
-                    "    # Check whether the weather is cold."
-            },
+            text(
+                "    # Check whether a name was entered."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    "
-            },
+            text(
+                "    "
+            ),
 
-            {
-                blank: true,
-                answer: "if",
-                explanation:
-                    "if begins a conditional statement."
-            },
+            blank(
+                "if",
+                "The if keyword begins a conditional statement."
+            ),
 
-            {
-                text:
-                    " temperature <= 10:    # Ten degrees or lower requires a jacket."
-            },
-
-            {
-                newline: true
-            },
+            text(
+                " name "
+            ),
 
 
             // BLANK 5
 
-            {
-                text:
-                    "        # The comparison checks whether the temperature is 10 or below."
-            },
+            blank(
+                "==",
+                "The == operator checks whether two values are equal."
+            ),
 
-            {
-                newline: true
-            },
+            text(
+                " \"\":    # An empty name means no student name was entered."
+            ),
 
-            {
-                text:
-                    "        # The comparison operator means 'less than or equal to'."
-            },
-
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 6
 
-            {
-                text:
-                    "        # Return advice for cold weather."
-            },
+            text(
+                "        # Stop the function when no name was entered."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "        "
-            },
+            text(
+                "        "
+            ),
 
-            {
-                blank: true,
-                answer: "return",
-                explanation:
-                    "return sends the advice back to the code that called the function."
-            },
+            blank(
+                "return",
+                "return sends a result back to the code that called the function."
+            ),
 
-            {
-                text:
-                    " \"Bring a jacket\"    # Tell the hiker to bring a jacket."
-            },
+            text(
+                " \"No name entered\"    # Tell the caller that the name is missing."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    return \"Light gear is enough\"    # Give advice for warmer weather."
-            },
 
-            {
-                newline: true
-            },
+            // FILE HANDLING
+            // These lines are visible so students can study
+            // the opening, writing, and closing process.
+
+            text(
+                "    file = open(\"attendance.txt\", \"w\")    # Open or create a text file using write mode."
+            ),
+
+            newline(),
+
+            text(
+                "    file.write(\"Student: \" + name + \"\\n\")    # Write the student's name into the file."
+            ),
+
+            newline(),
+
+            text(
+                "    file.close()    # Close the file after writing."
+            ),
+
+            newline(),
+
+
+            text(
+                "    return \"Saved\"    # Tell the program that the record was saved."
+            ),
+
+            newline(),
 
 
             // BLANK 7
 
-            {
-                text:
-                    "# Check five pieces of hiking gear."
-            },
+            text(
+                "# Display three sample attendance-record numbers."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "for",
-                explanation:
-                    "for begins a loop that repeats for every value in a sequence."
-            },
+            blank(
+                "for",
+                "The for keyword begins a loop that repeats through a sequence."
+            ),
 
-            {
-                text:
-                    " item in "
-            },
+            text(
+                " record in "
+            ),
 
 
             // BLANK 8
 
-            {
-                blank: true,
-                answer: "range",
-                explanation:
-                    "range() creates the sequence of item numbers used by the for loop."
-            },
+            blank(
+                "range",
+                "range() creates the sequence of record numbers."
+            ),
 
-            {
-                text:
-                    "(1, 6):    # The loop checks items 1 through 5."
-            },
+            text(
+                "(1, 4):    # The loop displays record numbers 1, 2 and 3."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    print(\"Checking item\", item)    # Display the current item number."
-            },
+            text(
+                "    print(\"Record:\", record)    # Display the current record number."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 9
 
-            {
-                text:
-                    "# Count down the remaining hiking miles."
-            },
+            text(
+                "copies = 2    # Start with two sample file-processing cycles."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                blank: true,
-                answer: "while",
-                explanation:
-                    "while repeats the code while its condition remains true."
-            },
+            blank(
+                "while",
+                "The while keyword repeats the code while the condition is true."
+            ),
 
-            {
-                text:
-                    " miles > 0:    # Continue while there are miles remaining."
-            },
+            text(
+                " copies > 0:    # Continue while processing cycles remain."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    print(\"Miles remaining:\", miles)    # Display the remaining distance."
-            },
+            text(
+                "    print(\"File ready\")    # Display a message that the file is ready."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "    miles = miles - 1    # Reduce the remaining distance by one mile."
-            },
+            text(
+                "    copies = copies - 1    # Reduce the number of remaining cycles."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
 
             // BLANK 10
 
-            {
-                text:
-                    "# Ask the function for advice when the temperature is 8 degrees."
-            },
+            text(
+                "# Call the function and save the name Ana in the text file."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "advice = "
-            },
+            text(
+                "result = "
+            ),
 
-            {
-                blank: true,
-                answer: "gear_status",
-                explanation:
-                    "gear_status(8) calls the function and passes 8 to the temperature parameter."
-            },
+            blank(
+                "save_attendance",
+                "save_attendance(\"Ana\") calls the function and passes Ana to the name parameter."
+            ),
 
-            {
-                text:
-                    "(8)    # The function receives 8 as the temperature."
-            },
+            text(
+                "(\"Ana\")    # Pass the student's name to the function."
+            ),
 
-            {
-                newline: true
-            },
+            newline(),
 
-            {
-                text:
-                    "print(\"Gear advice:\", advice)    # Display the advice returned by the function."
-            }
+            text(
+                "print(\"File result:\", result)    # Display the message returned by the function."
+            )
 
         ]
+
     }
 
 ];
 
 
 // =====================================================
-// VARIABLES
+// TEST VARIABLES
 // =====================================================
 
 let selectedCode = null;
 
 let studentAnswers = [];
 
+let testSubmitted = false;
+
 
 // =====================================================
-// SHUFFLE
+// SHUFFLE FUNCTION
 // =====================================================
 
 function shuffle(array) {
 
-    // Go through the array from the end toward the beginning.
+    // Move through the array from the last item.
     for (
         let i = array.length - 1;
         i > 0;
@@ -1604,6 +1246,7 @@ function shuffle(array) {
                 Math.random() * (i + 1)
             );
 
+
         // Exchange the two items.
         [
             array[i],
@@ -1615,6 +1258,7 @@ function shuffle(array) {
         ];
 
     }
+
 
     // Return the shuffled array.
     return array;
@@ -1632,6 +1276,43 @@ function countBlanks(code) {
     return code.parts.filter(
         part => part.blank
     ).length;
+
+}
+
+
+// =====================================================
+// VALIDATE QUESTION BANK
+// =====================================================
+
+function validateQuestionBank() {
+
+    // Check every program in the question bank.
+    codeBank.forEach(
+        code => {
+
+            // Count the blanks in the program.
+            const numberOfBlanks =
+                countBlanks(code);
+
+
+            // Report an error if the program does not
+            // contain exactly 10 blanks.
+            if (
+                numberOfBlanks !== 10
+            ) {
+
+                console.error(
+                    "QUESTION BANK ERROR:",
+                    code.title,
+                    "contains",
+                    numberOfBlanks,
+                    "blanks instead of 10."
+                );
+
+            }
+
+        }
+    );
 
 }
 
@@ -1656,15 +1337,21 @@ function startTest2() {
     );
 
 
-    // Verify that exactly 10 blanks exist.
+    // Display the number of blanks.
     console.log(
         "Number of blanks:",
-        countBlanks(selectedCode)
+        countBlanks(
+            selectedCode
+        )
     );
 
 
-    // Clear previous student answers.
+    // Clear any previous answers.
     studentAnswers = [];
+
+
+    // Reset submission status.
+    testSubmitted = false;
 
 
     // Display the selected program.
@@ -1679,7 +1366,7 @@ function startTest2() {
 
 function displayQuestions() {
 
-    // Find the container in test2.html.
+    // Find the code container.
     const container =
         document.getElementById(
             "codeQuestionsContainer"
@@ -1694,6 +1381,7 @@ function displayQuestions() {
         );
 
         return;
+
     }
 
 
@@ -1701,7 +1389,7 @@ function displayQuestions() {
     container.innerHTML = "";
 
 
-    // Create the main question card.
+    // Create the question card.
     const card =
         document.createElement(
             "div"
@@ -1712,7 +1400,7 @@ function displayQuestions() {
         "code-question-card";
 
 
-    // Create the title.
+    // Create the program title.
     const title =
         document.createElement(
             "h3"
@@ -1759,11 +1447,11 @@ function displayQuestions() {
         "code-box";
 
 
-    // Keep track of the blank number.
+    // Track the blank number.
     let blankIndex = 0;
 
 
-    // Go through every part of the program.
+    // Display every part of the program.
     selectedCode.parts.forEach(
         part => {
 
@@ -1781,6 +1469,7 @@ function displayQuestions() {
                 );
 
                 return;
+
             }
 
 
@@ -1797,28 +1486,29 @@ function displayQuestions() {
                 );
 
                 return;
+
             }
 
 
             // -----------------------------------------
-            // BLANK INPUT
+            // BLANK
             // -----------------------------------------
 
             if (part.blank) {
 
-                // Create an input box.
+                // Create the input field.
                 const input =
                     document.createElement(
                         "input"
                     );
 
 
-                // Make the input a text field.
+                // Make it a text input.
                 input.type =
                     "text";
 
 
-                // Apply the CSS class.
+                // Apply the existing CSS class.
                 input.className =
                     "code-blank";
 
@@ -1837,7 +1527,9 @@ function displayQuestions() {
                 input.setAttribute(
                     "aria-label",
                     "Code blank " +
-                    (blankIndex + 1)
+                    (
+                        blankIndex + 1
+                    )
                 );
 
 
@@ -1876,20 +1568,20 @@ function displayQuestions() {
 
 function submitTest2() {
 
-    // Find all answer boxes.
+    // Find every blank input.
     const inputs =
         document.querySelectorAll(
             ".code-blank"
         );
 
 
-    // Verify that there are exactly 10 blanks.
+    // Check that exactly 10 blanks exist.
     if (
         inputs.length !== 10
     ) {
 
         alert(
-            "There is a problem with this reviewer. Please inform your teacher."
+            "There is a problem with this Test II question. Please inform your teacher."
         );
 
 
@@ -1900,14 +1592,15 @@ function submitTest2() {
 
 
         return;
+
     }
 
 
-    // Clear the previous answers.
+    // Clear previous answers.
     studentAnswers = [];
 
 
-    // Store each student's answer.
+    // Read every answer from the input fields.
     inputs.forEach(
         input => {
 
@@ -1927,7 +1620,7 @@ function submitTest2() {
         ).length;
 
 
-    // Do not allow submission with empty blanks.
+    // Prevent submission when an answer is missing.
     if (
         unanswered > 0
     ) {
@@ -1938,6 +1631,7 @@ function submitTest2() {
 
 
         return;
+
     }
 
 
@@ -1952,6 +1646,7 @@ function submitTest2() {
     if (!confirmed) {
 
         return;
+
     }
 
 
@@ -1959,18 +1654,20 @@ function submitTest2() {
     let score = 0;
 
 
-    // Keep track of which blank is being checked.
+    // Keep track of the current blank.
     let blankIndex = 0;
 
 
-    // Check every blank.
+    // Check every blank in the selected program.
     selectedCode.parts.forEach(
         part => {
+
 
             // Ignore normal text.
             if (!part.blank) {
 
                 return;
+
             }
 
 
@@ -1996,7 +1693,7 @@ function submitTest2() {
                 )
             ) {
 
-                // Add one point for a correct answer.
+                // Give one point for a correct answer.
                 score++;
 
             }
@@ -2009,92 +1706,23 @@ function submitTest2() {
     );
 
 
-    // Save the result locally.
+    // Mark Test II as submitted.
+    testSubmitted = true;
+
+
+    // Save the result.
     saveTest2Result(
         score
     );
 
 
     // Display the score.
-    const scoreArea =
-        document.getElementById(
-            "scoreArea"
-        );
+    showScore(
+        score
+    );
 
 
-    if (!scoreArea) {
-
-        console.error(
-            "scoreArea was not found."
-        );
-
-        return;
-    }
-
-
-    // Make the score visible.
-    scoreArea.style.display =
-        "block";
-
-
-    // Find the score display.
-    const finalScore =
-        document.getElementById(
-            "finalScore"
-        );
-
-
-    // Display the score.
-    if (finalScore) {
-
-        finalScore.textContent =
-            score + " / 10";
-
-    }
-
-
-    // Find the score message.
-    const scoreMessage =
-        document.getElementById(
-            "scoreMessage"
-        );
-
-
-    // Display an appropriate message.
-    if (scoreMessage) {
-
-        if (score === 10) {
-
-            scoreMessage.textContent =
-                "Excellent! You completed the code correctly.";
-
-        }
-
-        else if (score >= 8) {
-
-            scoreMessage.textContent =
-                "Very good! Review the items you missed.";
-
-        }
-
-        else if (score >= 5) {
-
-            scoreMessage.textContent =
-                "Good effort. Review the feedback for the items you missed.";
-
-        }
-
-        else {
-
-            scoreMessage.textContent =
-                "Keep practicing. Study the feedback for each incorrect blank.";
-
-        }
-
-    }
-
-
-    // Replace the answer form with the review.
+    // Display the review.
     displayResults();
 
 
@@ -2117,10 +1745,117 @@ function submitTest2() {
     }
 
 
-    // Scroll back to the score.
-    scoreArea.scrollIntoView({
-        behavior: "smooth"
-    });
+    // Scroll to the score.
+    const scoreArea =
+        document.getElementById(
+            "scoreArea"
+        );
+
+
+    if (scoreArea) {
+
+        scoreArea.scrollIntoView({
+            behavior:
+                "smooth"
+        });
+
+    }
+
+}
+
+
+// =====================================================
+// SHOW SCORE
+// =====================================================
+
+function showScore(score) {
+
+    // Find the score area.
+    const scoreArea =
+        document.getElementById(
+            "scoreArea"
+        );
+
+
+    // Stop if the score area does not exist.
+    if (!scoreArea) {
+
+        console.error(
+            "scoreArea was not found."
+        );
+
+        return;
+
+    }
+
+
+    // Make the score visible.
+    scoreArea.style.display =
+        "block";
+
+
+    // Find the final score element.
+    const finalScore =
+        document.getElementById(
+            "finalScore"
+        );
+
+
+    // Display the numerical score.
+    if (finalScore) {
+
+        finalScore.textContent =
+            score +
+            " / 10";
+
+    }
+
+
+    // Find the score message.
+    const scoreMessage =
+        document.getElementById(
+            "scoreMessage"
+        );
+
+
+    // Display an appropriate message.
+    if (scoreMessage) {
+
+        if (
+            score === 10
+        ) {
+
+            scoreMessage.textContent =
+                "Excellent! You completed the code correctly.";
+
+        }
+
+        else if (
+            score >= 8
+        ) {
+
+            scoreMessage.textContent =
+                "Very good! Review the items you missed.";
+
+        }
+
+        else if (
+            score >= 5
+        ) {
+
+            scoreMessage.textContent =
+                "Good effort. Click the RED answers to review the concepts you missed.";
+
+        }
+
+        else {
+
+            scoreMessage.textContent =
+                "Keep practicing. Click the RED answers to study the explanations.";
+
+        }
+
+    }
 
 }
 
@@ -2131,33 +1866,70 @@ function submitTest2() {
 
 function saveTest2Result(score) {
 
+    // Get the student's name from the reviewer session.
+    const studentName =
+        localStorage.getItem(
+            "studentName"
+        ) || "";
+
+
+    // Get the student's section.
+    const studentSection =
+        localStorage.getItem(
+            "studentSection"
+        ) || "";
+
+
+    // Get the attempt ID created at login.
+    const attemptId =
+        localStorage.getItem(
+            "attemptId"
+        ) || "";
+
+
     // Create the result object.
     const result = {
 
-        // Record the date and time.
+        // Store the date and time.
         date:
             new Date().toLocaleString(),
 
-        // Record the score.
+        // Store the student name.
+        studentName:
+            studentName,
+
+        // Store the section.
+        studentSection:
+            studentSection,
+
+        // Store the attempt ID.
+        attemptId:
+            attemptId,
+
+        // Store the score.
         score:
             score,
 
-        // Test II always has 10 points.
+        // Test II has 10 points.
         total:
             10,
 
-        // Record which program was shown.
+        // Store the selected program.
         program:
             selectedCode.title,
 
-        // Store each blank and its feedback.
+        // Store each answer and explanation.
         questions:
             selectedCode.parts
                 .filter(
-                    part => part.blank
+                    part =>
+                        part.blank
                 )
                 .map(
-                    (part, index) => {
+                    (
+                        part,
+                        index
+                    ) => {
 
                         return {
 
@@ -2183,7 +1955,9 @@ function saveTest2Result(score) {
     // Save the result in the browser.
     localStorage.setItem(
         "test2Result",
-        JSON.stringify(result)
+        JSON.stringify(
+            result
+        )
     );
 
 }
@@ -2195,9 +1969,15 @@ function saveTest2Result(score) {
 
 function normalize(value) {
 
-    // Remove unnecessary spaces and ignore capitalization.
-    return String(value)
+    // Convert the answer to text.
+    return String(
+        value
+    )
+
+        // Remove spaces at the beginning and end.
         .trim()
+
+        // Ignore capitalization.
         .toLowerCase();
 
 }
@@ -2216,7 +1996,15 @@ function displayResults() {
         );
 
 
-    // Clear the original input form.
+    // Stop if the container does not exist.
+    if (!container) {
+
+        return;
+
+    }
+
+
+    // Clear the original input fields.
     container.innerHTML = "";
 
 
@@ -2232,9 +2020,10 @@ function displayResults() {
 
 
     instruction.textContent =
-        "Correct answers are shown in green. Click a RED answer to see the explanation.";
+        "Correct answers are shown in green. Click the RED answers to review the concepts you missed.";
 
 
+    // Add the instruction to the page.
     container.appendChild(
         instruction
     );
@@ -2302,7 +2091,7 @@ function displayResults() {
     let blankIndex = 0;
 
 
-    // Rebuild the program with the student's answers.
+    // Rebuild the code with the student's answers.
     selectedCode.parts.forEach(
         part => {
 
@@ -2320,6 +2109,7 @@ function displayResults() {
                 );
 
                 return;
+
             }
 
 
@@ -2336,6 +2126,7 @@ function displayResults() {
                 );
 
                 return;
+
             }
 
 
@@ -2364,15 +2155,17 @@ function displayResults() {
                     );
 
 
+                // Apply the submitted-answer style.
                 answerSpan.className =
                     "submitted-answer";
 
 
+                // Display the student's answer.
                 answerSpan.textContent =
                     studentAnswer;
 
 
-                // Check the answer.
+                // Check whether the answer is correct.
                 const correct =
                     normalize(
                         studentAnswer
@@ -2410,7 +2203,7 @@ function displayResults() {
                         "Click to review";
 
 
-                    // Show feedback when clicked.
+                    // Make the wrong answer clickable.
                     answerSpan.addEventListener(
                         "click",
                         function() {
@@ -2466,7 +2259,7 @@ function showExplanation(
     explanation
 ) {
 
-    // Remove an existing explanation if one is open.
+    // Remove an existing explanation.
     const old =
         document.getElementById(
             "codeExplanation"
@@ -2495,7 +2288,7 @@ function showExplanation(
         "code-explanation";
 
 
-    // Add the feedback content.
+    // Create the explanation content.
     box.innerHTML = `
 
         <button
@@ -2533,7 +2326,7 @@ function showExplanation(
     `;
 
 
-    // Display the explanation.
+    // Add the explanation box to the page.
     document.body.appendChild(
         box
     );
@@ -2554,7 +2347,7 @@ function closeExplanation() {
         );
 
 
-    // Remove it if it exists.
+    // Remove the box if it exists.
     if (box) {
 
         box.remove();
@@ -2570,29 +2363,36 @@ function closeExplanation() {
 
 function escapeHTML(text) {
 
-    // Prevent user-entered text from being interpreted as HTML.
-    return String(text)
+    // Convert the value to a string.
+    return String(
+        text
+    )
 
+        // Protect ampersands.
         .replaceAll(
             "&",
             "&amp;"
         )
 
+        // Protect less-than symbols.
         .replaceAll(
             "<",
             "&lt;"
         )
 
+        // Protect greater-than symbols.
         .replaceAll(
             ">",
             "&gt;"
         )
 
+        // Protect quotation marks.
         .replaceAll(
             '"',
             "&quot;"
         )
 
+        // Protect apostrophes.
         .replaceAll(
             "'",
             "&#039;"
@@ -2610,9 +2410,16 @@ document.addEventListener(
     function() {
 
 
-        // -----------------------------------------
-        // GET STUDENT INFORMATION
-        // -----------------------------------------
+        // ---------------------------------------------
+        // VALIDATE QUESTION BANK
+        // ---------------------------------------------
+
+        validateQuestionBank();
+
+
+        // ---------------------------------------------
+        // GET STUDENT NAME
+        // ---------------------------------------------
 
         const studentName =
             localStorage.getItem(
@@ -2620,15 +2427,19 @@ document.addEventListener(
             );
 
 
+        // ---------------------------------------------
+        // GET STUDENT SECTION
+        // ---------------------------------------------
+
         const studentSection =
             localStorage.getItem(
                 "studentSection"
             );
 
 
-        // -----------------------------------------
+        // ---------------------------------------------
         // DISPLAY STUDENT NAME
-        // -----------------------------------------
+        // ---------------------------------------------
 
         const nameElement =
             document.getElementById(
@@ -2647,9 +2458,9 @@ document.addEventListener(
         }
 
 
-        // -----------------------------------------
+        // ---------------------------------------------
         // DISPLAY STUDENT SECTION
-        // -----------------------------------------
+        // ---------------------------------------------
 
         const sectionElement =
             document.getElementById(
@@ -2668,16 +2479,16 @@ document.addEventListener(
         }
 
 
-        // -----------------------------------------
+        // ---------------------------------------------
         // START TEST II
-        // -----------------------------------------
+        // ---------------------------------------------
 
         startTest2();
 
 
-        // -----------------------------------------
+        // ---------------------------------------------
         // CONNECT SUBMIT BUTTON
-        // -----------------------------------------
+        // ---------------------------------------------
 
         const submitButton =
             document.getElementById(
