@@ -1,70 +1,85 @@
 // =====================================================
 // TEST II - PYTHON CODE COMPLETION REVIEWER
 // =====================================================
-// Five different Python programs are available.
-//
-// One program is randomly selected for each session.
-//
-// Every program contains EXACTLY 10 blanks.
-//
-// Each blank is worth 1 point.
-// Total score = 10 points.
-//
-// The reviewer practices:
-// • Functions
-// • Function names
-// • Parameters
-// • Conditionals
-// • Comparison operators
-// • Return statements
-// • for loops
-// • range()
-// • while loops
-// • Function calls
-// • File handling
-//
-// The Python code displayed to students uses comments
-// on every line to explain what the line is doing.
+// 5 programs
+// 10 blanks per program
+// 1 program is randomly selected
 // =====================================================
 
 
 // =====================================================
-// HELPER FUNCTIONS FOR BUILDING CODE
+// CODE BUILDERS
 // =====================================================
 
-// Create a normal text part of the Python code.
-function text(value) {
-
+// Normal code text
+function t(value) {
     return {
-        text: value
+        type: "text",
+        value: value
     };
-
 }
 
 
-// Create a new-line part of the Python code.
-function newline() {
-
+// Python keyword
+function k(value) {
     return {
-        newline: true
+        type: "keyword",
+        value: value
     };
-
 }
 
 
-// Create a blank that the student must answer.
-function blank(answer, explanation) {
-
+// Python string
+function s(value) {
     return {
+        type: "string",
+        value: value
+    };
+}
 
-        blank: true,
 
+// Python number
+function n(value) {
+    return {
+        type: "number",
+        value: value
+    };
+}
+
+
+// Python comment
+function c(value) {
+    return {
+        type: "comment",
+        value: value
+    };
+}
+
+
+// Python function name
+function f(value) {
+    return {
+        type: "function",
+        value: value
+    };
+}
+
+
+// Blank
+function b(answer, explanation) {
+    return {
+        type: "blank",
         answer: answer,
-
         explanation: explanation
-
     };
+}
 
+
+// New line
+function nl() {
+    return {
+        type: "newline"
+    };
 }
 
 
@@ -76,240 +91,188 @@ const codeBank = [
 
     // =================================================
     // PROGRAM 1
-    // ATTENDANCE STATUS
+    // GRADE CHECKER
     // =================================================
 
     {
-        title:
-            "Attendance Status",
+        title: "Grade Checker",
 
-        topic:
-            "Functions, Conditionals and Loops",
+        topic: "Functions and Conditionals",
 
         parts: [
 
-            // -------------------------------------------------
-            // BLANK 1 - def
-            // -------------------------------------------------
+            c("# Define the function"),
+            nl(),
 
-            text(
-                "# Define a function that determines an attendance status."
-            ),
-
-            newline(),
-
-            blank(
+            b(
                 "def",
-                "The def keyword is used to define a function in Python."
+                "def is the keyword used to define a function."
             ),
 
-            text(
-                " attendance_status("
+            t(" "),
+
+            b(
+                "grade_status",
+                "grade_status is the name of the function."
             ),
 
+            t("("),
 
-            // -------------------------------------------------
-            // BLANK 3 - parameter
-            // -------------------------------------------------
-
-            blank(
+            b(
                 "score",
-                "score is the parameter. It receives the attendance score when the function is called."
+                "score is the parameter that receives the student's score."
             ),
 
-            text(
-                "):    # The score parameter stores the student's attendance score."
-            ),
+            t("):"),
 
-            newline(),
+            nl(),
 
 
-            // -------------------------------------------------
-            // BLANK 4 - if
-            // -------------------------------------------------
+            c("# Check the score"),
+            nl(),
 
-            text(
-                "    # Check whether the attendance score is high enough."
-            ),
+            t("    "),
 
-            newline(),
-
-            text(
-                "    "
-            ),
-
-            blank(
+            b(
                 "if",
-                "The if keyword begins a conditional statement."
+                "if begins a conditional statement."
             ),
 
-            text(
-                " score "
-            ),
+            t(" score "),
 
-
-            // -------------------------------------------------
-            // BLANK 5 - comparison operator
-            // -------------------------------------------------
-
-            blank(
+            b(
                 ">=",
-                "The >= operator means greater than or equal to."
+                ">= means greater than or equal to."
             ),
 
-            text(
-                " 75:    # A score of 75 or higher meets the requirement."
-            ),
+            t(" "),
 
-            newline(),
+            n("75"),
+
+            t(":"),
+
+            nl(),
 
 
-            // -------------------------------------------------
-            // BLANK 6 - return
-            // -------------------------------------------------
+            c("# Give the passing result"),
+            nl(),
 
-            text(
-                "        # Return the attendance result when the condition is true."
-            ),
+            t("        "),
 
-            newline(),
-
-            text(
-                "        "
-            ),
-
-            blank(
+            b(
                 "return",
-                "The return statement sends a value back to the code that called the function."
+                "return sends a value back from the function."
             ),
 
-            text(
-                " \"Good Attendance\"    # Return the message for a passing attendance score."
-            ),
+            t(" "),
 
-            newline(),
+            s("\"Passed\""),
 
-
-            text(
-                "    else:    # This block runs when the first condition is false."
-            ),
-
-            newline(),
-
-            text(
-                "        return \"Needs Improvement\"    # Return the message for a lower score."
-            ),
-
-            newline(),
+            nl(),
 
 
-            // -------------------------------------------------
-            // BLANK 7 - for
-            // -------------------------------------------------
+            c("# Give the other result"),
+            nl(),
 
-            text(
-                "# Check the attendance of three sample days."
-            ),
+            t("    else:"),
 
-            newline(),
+            nl(),
 
-            blank(
+            t("        "),
+
+            k("return"),
+
+            t(" "),
+
+            s("\"Needs Practice\""),
+
+            nl(),
+
+
+            c("# Check three sample scores"),
+            nl(),
+
+            b(
                 "for",
-                "The for keyword begins a loop that repeats for each value in a sequence."
+                "for begins a loop that goes through a sequence."
             ),
 
-            text(
-                " day in "
-            ),
+            t(" score_number in "),
 
-
-            // -------------------------------------------------
-            // BLANK 8 - range
-            // -------------------------------------------------
-
-            blank(
+            b(
                 "range",
-                "range() creates a sequence of numbers for the for loop."
+                "range() creates a sequence of numbers."
             ),
 
-            text(
-                "(1, 4):    # The loop checks days 1, 2 and 3."
-            ),
+            t("(1, 4):"),
 
-            newline(),
+            nl(),
 
-            text(
-                "    print(\"Checking day:\", day)    # Display the current day number."
-            ),
+            t("    print("),
 
-            newline(),
+            s("\"Score:\""),
+
+            t(", score_number)"),
+
+            nl(),
 
 
-            // -------------------------------------------------
-            // BLANK 9 - while
-            // -------------------------------------------------
+            c("# Count remaining attempts"),
+            nl(),
 
-            text(
-                "attempts = 3    # Start with three available attendance checks."
-            ),
+            t("attempts = "),
 
-            newline(),
+            n("3"),
 
-            blank(
+            nl(),
+
+            b(
                 "while",
-                "The while keyword repeats code while its condition is true."
+                "while repeats code while its condition is true."
             ),
 
-            text(
-                " attempts > 0:    # Continue while there are attempts remaining."
+            t(" attempts > 0:"),
+
+            nl(),
+
+            t("    print("),
+
+            s("\"Checking\""),
+
+            t(")"),
+
+            nl(),
+
+            t("    attempts = attempts - 1"),
+
+            nl(),
+
+
+            c("# Call the function"),
+            nl(),
+
+            t("result = "),
+
+            b(
+                "grade_status",
+                "grade_status(85) calls the function and passes 85 to score."
             ),
 
-            newline(),
+            t("("),
 
-            text(
-                "    print(\"Attendance checked\")    # Display a message for the current check."
-            ),
+            n("85"),
 
-            newline(),
+            t(")"),
 
-            text(
-                "    attempts = attempts - 1    # Reduce the remaining attempts by one."
-            ),
+            nl(),
 
-            newline(),
+            t("print("),
 
+            s("\"Result:\""),
 
-            // -------------------------------------------------
-            // BLANK 10 - function call
-            // -------------------------------------------------
-
-            text(
-                "# Call the function using an attendance score of 85."
-            ),
-
-            newline(),
-
-            text(
-                "status = "
-            ),
-
-            blank(
-                "attendance_status",
-                "attendance_status(85) calls the function and passes 85 to the score parameter."
-            ),
-
-            text(
-                "(85)    # Pass 85 as the attendance score."
-            ),
-
-            newline(),
-
-            text(
-                "print(\"Status:\", status)    # Display the result returned by the function."
-            )
+            t(", result)")
 
         ]
-
     },
 
 
@@ -319,905 +282,801 @@ const codeBank = [
     // =================================================
 
     {
-        title:
-            "Canteen Order Checker",
+        title: "Canteen Order Checker",
 
-        topic:
-            "Functions, Conditionals and Loops",
+        topic: "Functions, Conditions and Loops",
 
         parts: [
 
-            // BLANK 1
+            c("# Define the function"),
+            nl(),
 
-            text(
-                "# Define a function that determines the order message."
-            ),
-
-            newline(),
-
-            blank(
+            b(
                 "def",
-                "The def keyword is used to define a function."
+                "def begins a function definition."
             ),
 
-            text(
-                " order_status("
-            ),
+            t(" "),
 
-
-            // BLANK 3
-
-            blank(
-                "total",
-                "total is the parameter that receives the customer's order amount."
-            ),
-
-            text(
-                "):    # The total parameter stores the order amount."
-            ),
-
-            newline(),
-
-
-            // BLANK 4
-
-            text(
-                "    # Check whether the order reaches the free-delivery amount."
-            ),
-
-            newline(),
-
-            text(
-                "    "
-            ),
-
-            blank(
-                "if",
-                "The if keyword begins the condition used to make the decision."
-            ),
-
-            text(
-                " total "
-            ),
-
-
-            // BLANK 5
-
-            blank(
-                ">=",
-                "The >= operator checks whether total is greater than or equal to 100."
-            ),
-
-            text(
-                " 100:    # Orders of 100 or more qualify for free delivery."
-            ),
-
-            newline(),
-
-
-            // BLANK 6
-
-            text(
-                "        # Return the message for qualifying orders."
-            ),
-
-            newline(),
-
-            text(
-                "        "
-            ),
-
-            blank(
-                "return",
-                "The return statement sends the result back to the code that called the function."
-            ),
-
-            text(
-                " \"Free Delivery\"    # Return the free-delivery message."
-            ),
-
-            newline(),
-
-
-            text(
-                "    else:    # This block handles orders below 100."
-            ),
-
-            newline(),
-
-            text(
-                "        return \"Regular Delivery\"    # Return the regular delivery message."
-            ),
-
-            newline(),
-
-
-            // BLANK 7
-
-            text(
-                "# Display three sample order numbers."
-            ),
-
-            newline(),
-
-            blank(
-                "for",
-                "The for keyword begins a loop that goes through a sequence."
-            ),
-
-            text(
-                " order_number in "
-            ),
-
-
-            // BLANK 8
-
-            blank(
-                "range",
-                "range() creates the sequence of numbers used by the loop."
-            ),
-
-            text(
-                "(1, 4):    # The loop displays order numbers 1, 2 and 3."
-            ),
-
-            newline(),
-
-            text(
-                "    print(\"Order:\", order_number)    # Display the current order number."
-            ),
-
-            newline(),
-
-
-            // BLANK 9
-
-            text(
-                "orders_left = 2    # Start with two orders waiting to be processed."
-            ),
-
-            newline(),
-
-            blank(
-                "while",
-                "The while keyword repeats the block while orders remain."
-            ),
-
-            text(
-                " orders_left > 0:    # Continue while at least one order remains."
-            ),
-
-            newline(),
-
-            text(
-                "    print(\"Processing order\")    # Display a processing message."
-            ),
-
-            newline(),
-
-            text(
-                "    orders_left = orders_left - 1    # Reduce the number of waiting orders."
-            ),
-
-            newline(),
-
-
-            // BLANK 10
-
-            text(
-                "# Call the function for an order worth 150."
-            ),
-
-            newline(),
-
-            text(
-                "message = "
-            ),
-
-            blank(
+            b(
                 "order_status",
-                "order_status(150) calls the function and passes 150 to the total parameter."
+                "order_status is the function name."
             ),
 
-            text(
-                "(150)    # Pass 150 as the order total."
+            t("("),
+
+            b(
+                "total",
+                "total is the parameter that receives the order amount."
             ),
 
-            newline(),
+            t("):"),
 
-            text(
-                "print(\"Order message:\", message)    # Display the returned message."
-            )
+            nl(),
+
+
+            c("# Check the order amount"),
+            nl(),
+
+            t("    "),
+
+            b(
+                "if",
+                "if begins the decision."
+            ),
+
+            t(" total "),
+
+            b(
+                ">=",
+                ">= means greater than or equal to."
+            ),
+
+            t(" "),
+
+            n("100"),
+
+            t(":"),
+
+            nl(),
+
+
+            c("# Give the delivery result"),
+            nl(),
+
+            t("        "),
+
+            b(
+                "return",
+                "return sends the result back to the caller."
+            ),
+
+            t(" "),
+
+            s("\"Free Delivery\""),
+
+            nl(),
+
+
+            c("# Give the regular result"),
+            nl(),
+
+            t("    else:"),
+
+            nl(),
+
+            t("        "),
+
+            k("return"),
+
+            t(" "),
+
+            s("\"Regular Delivery\""),
+
+            nl(),
+
+
+            c("# Check three orders"),
+            nl(),
+
+            b(
+                "for",
+                "for repeats the code for each number in the sequence."
+            ),
+
+            t(" order in "),
+
+            b(
+                "range",
+                "range() creates the order numbers."
+            ),
+
+            t("(1, 4):"),
+
+            nl(),
+
+            t("    print("),
+
+            s("\"Order:\""),
+
+            t(", order)"),
+
+            nl(),
+
+
+            c("# Process remaining orders"),
+            nl(),
+
+            t("orders = "),
+
+            n("2"),
+
+            nl(),
+
+            b(
+                "while",
+                "while repeats while orders remain."
+            ),
+
+            t(" orders > 0:"),
+
+            nl(),
+
+            t("    print("),
+
+            s("\"Processing\""),
+
+            t(")"),
+
+            nl(),
+
+            t("    orders = orders - 1"),
+
+            nl(),
+
+
+            c("# Call the function"),
+            nl(),
+
+            t("message = "),
+
+            b(
+                "order_status",
+                "order_status(150) calls the function and passes 150 to total."
+            ),
+
+            t("("),
+
+            n("150"),
+
+            t(")"),
+
+            nl(),
+
+            t("print("),
+
+            s("\"Message:\""),
+
+            t(", message)")
 
         ]
-
     },
 
 
     // =================================================
     // PROGRAM 3
-    // LIBRARY RETURN CHECKER
+    // ATTENDANCE CSV SAVER
     // =================================================
 
     {
-        title:
-            "Library Return Checker",
+        title: "Attendance CSV Saver",
 
-        topic:
-            "Functions, Conditionals and Loops",
+        topic: "Functions, File Handling and Loops",
 
         parts: [
 
-            // BLANK 1
+            c("# Define the function"),
+            nl(),
 
-            text(
-                "# Define a function that checks whether a book is overdue."
-            ),
-
-            newline(),
-
-            blank(
+            b(
                 "def",
-                "The def keyword begins a function definition."
+                "def begins the function definition."
             ),
 
-            text(
-                " library_status("
+            t(" "),
+
+            b(
+                "save_record",
+                "save_record is the function name."
             ),
 
+            t("("),
 
-            // BLANK 3
-
-            blank(
-                "days",
-                "days is the parameter that receives the number of overdue days."
+            b(
+                "name",
+                "name is the parameter that receives the student's name."
             ),
 
-            text(
-                "):    # The days parameter stores the number of days borrowed."
-            ),
+            t("):"),
 
-            newline(),
+            nl(),
 
 
-            // BLANK 4
+            c("# Check the name"),
+            nl(),
 
-            text(
-                "    # Check whether the book has been borrowed for more than 14 days."
-            ),
+            t("    "),
 
-            newline(),
-
-            text(
-                "    "
-            ),
-
-            blank(
+            b(
                 "if",
-                "The if keyword begins the condition."
+                "if begins the condition."
             ),
 
-            text(
-                " days "
+            t(" name "),
+
+            b(
+                "==",
+                "== checks whether two values are equal."
             ),
 
+            t(" "),
 
-            // BLANK 5
+            s("\"\""),
 
-            blank(
-                ">",
-                "The > operator means greater than."
-            ),
+            t(":"),
 
-            text(
-                " 14:    # More than 14 days means the book is overdue."
-            ),
-
-            newline(),
+            nl(),
 
 
-            // BLANK 6
+            c("# Stop if the name is empty"),
+            nl(),
 
-            text(
-                "        # Send the overdue message back to the caller."
-            ),
+            t("        "),
 
-            newline(),
-
-            text(
-                "        "
-            ),
-
-            blank(
+            b(
                 "return",
-                "return sends a result from the function back to the calling code."
+                "return sends a result back from the function."
             ),
 
-            text(
-                " \"Overdue\"    # Return the overdue status."
-            ),
+            t(" "),
 
-            newline(),
+            s("\"No name\""),
 
-
-            text(
-                "    else:    # This block handles books that are not overdue."
-            ),
-
-            newline(),
-
-            text(
-                "        return \"On Time\"    # Return the on-time status."
-            ),
-
-            newline(),
+            nl(),
 
 
-            // BLANK 7
+            c("# Open the CSV file"),
+            nl(),
 
-            text(
-                "# Check three library shelves."
-            ),
+            t("    file = open("),
 
-            newline(),
+            s("\"attendance.csv\""),
 
-            blank(
+            t(", "),
+
+            s("\"w\""),
+
+            t(")"),
+
+            nl(),
+
+
+            c("# Save the student name"),
+            nl(),
+
+            t("    file.write(name + "),
+
+            s("\",Present\\n\""),
+
+            t(")"),
+
+            nl(),
+
+
+            c("# Close the file"),
+            nl(),
+
+            t("    file.close()"),
+
+            nl(),
+
+
+            c("# Check three records"),
+            nl(),
+
+            b(
                 "for",
-                "The for keyword begins a loop that repeats through a sequence."
+                "for begins the loop."
             ),
 
-            text(
-                " shelf in "
-            ),
+            t(" record in "),
 
-
-            // BLANK 8
-
-            blank(
+            b(
                 "range",
-                "range() creates the sequence of shelf numbers."
+                "range() creates the record numbers."
             ),
 
-            text(
-                "(1, 4):    # The loop checks shelves 1, 2 and 3."
-            ),
+            t("(1, 4):"),
 
-            newline(),
+            nl(),
 
-            text(
-                "    print(\"Checking shelf:\", shelf)    # Display the current shelf number."
-            ),
+            t("    print("),
 
-            newline(),
+            s("\"Record:\""),
+
+            t(", record)"),
+
+            nl(),
 
 
-            // BLANK 9
+            c("# Process remaining records"),
+            nl(),
 
-            text(
-                "books_left = 3    # Start with three books waiting to be processed."
-            ),
+            t("records = "),
 
-            newline(),
+            n("2"),
 
-            blank(
+            nl(),
+
+            b(
                 "while",
-                "The while keyword repeats the block while the condition is true."
+                "while repeats while records remain."
             ),
 
-            text(
-                " books_left > 0:    # Continue while books remain."
+            t(" records > 0:"),
+
+            nl(),
+
+            t("    print("),
+
+            s("\"Ready\""),
+
+            t(")"),
+
+            nl(),
+
+            t("    records = records - 1"),
+
+            nl(),
+
+
+            c("# Call the function"),
+            nl(),
+
+            t("result = "),
+
+            b(
+                "save_record",
+                "save_record(\"Ana\") calls the function and passes Ana to name."
             ),
 
-            newline(),
+            t("("),
 
-            text(
-                "    print(\"Processing book\")    # Display a processing message."
-            ),
+            s("\"Ana\""),
 
-            newline(),
+            t(")"),
 
-            text(
-                "    books_left = books_left - 1    # Reduce the number of books left."
-            ),
+            nl(),
 
-            newline(),
+            t("print("),
 
+            s("\"Result:\""),
 
-            // BLANK 10
-
-            text(
-                "# Call the function for a book borrowed for 18 days."
-            ),
-
-            newline(),
-
-            text(
-                "status = "
-            ),
-
-            blank(
-                "library_status",
-                "library_status(18) calls the function and passes 18 to the days parameter."
-            ),
-
-            text(
-                "(18)    # Pass 18 as the number of days."
-            ),
-
-            newline(),
-
-            text(
-                "print(\"Book status:\", status)    # Display the result returned by the function."
-            )
+            t(", result)")
 
         ]
-
     },
 
 
     // =================================================
     // PROGRAM 4
-    // STUDY PROGRESS
+    // STUDY LOG
     // =================================================
 
     {
-        title:
-            "Study Progress Tracker",
+        title: "Study Log",
 
-        topic:
-            "Functions, Conditionals and Loops",
+        topic: "Functions, File Handling and Conditions",
 
         parts: [
 
-            // BLANK 1
+            c("# Define the function"),
+            nl(),
 
-            text(
-                "# Define a function that evaluates a student's study score."
-            ),
-
-            newline(),
-
-            blank(
+            b(
                 "def",
-                "The def keyword is used to define a function."
+                "def begins the function definition."
             ),
 
-            text(
-                " study_status("
+            t(" "),
+
+            b(
+                "save_study",
+                "save_study is the function name."
             ),
 
+            t("("),
 
-            // BLANK 3
-
-            blank(
-                "score",
-                "score is the parameter that receives the student's study score."
+            b(
+                "subject",
+                "subject is the parameter that receives the subject name."
             ),
 
-            text(
-                "):    # The score parameter stores the study score."
-            ),
+            t("):"),
 
-            newline(),
+            nl(),
 
 
-            // BLANK 4
+            c("# Check the subject"),
+            nl(),
 
-            text(
-                "    # Check whether the study score reaches the target."
-            ),
+            t("    "),
 
-            newline(),
-
-            text(
-                "    "
-            ),
-
-            blank(
+            b(
                 "if",
-                "The if keyword begins a conditional statement."
+                "if begins the condition."
             ),
 
-            text(
-                " score "
+            t(" subject "),
+
+            b(
+                "==",
+                "== checks whether the subject is equal to an empty string."
             ),
 
+            t(" "),
 
-            // BLANK 5
+            s("\"\""),
 
-            blank(
-                ">=",
-                "The >= operator means greater than or equal to."
-            ),
+            t(":"),
 
-            text(
-                " 80:    # A score of 80 or higher reaches the target."
-            ),
-
-            newline(),
+            nl(),
 
 
-            // BLANK 6
+            c("# Stop if no subject was entered"),
+            nl(),
 
-            text(
-                "        # Return the message for students who reached the target."
-            ),
+            t("        "),
 
-            newline(),
-
-            text(
-                "        "
-            ),
-
-            blank(
+            b(
                 "return",
-                "The return statement sends a value back to the code that called the function."
+                "return sends a result back from the function."
             ),
 
-            text(
-                " \"Target Reached\"    # Return the successful study status."
-            ),
+            t(" "),
 
-            newline(),
+            s("\"No Subject\""),
 
-
-            text(
-                "    else:    # This block handles scores below the target."
-            ),
-
-            newline(),
-
-            text(
-                "        return \"Keep Practicing\"    # Encourage more study practice."
-            ),
-
-            newline(),
+            nl(),
 
 
-            // BLANK 7
+            c("# Open the study file"),
+            nl(),
 
-            text(
-                "# Display four study-session numbers."
-            ),
+            t("    file = open("),
 
-            newline(),
+            s("\"study_log.txt\""),
 
-            blank(
+            t(", "),
+
+            s("\"a\""),
+
+            t(")"),
+
+            nl(),
+
+
+            c("# Save the subject"),
+            nl(),
+
+            t("    file.write(subject + "),
+
+            s("\"\\n\""),
+
+            t(")"),
+
+            nl(),
+
+
+            c("# Close the file"),
+            nl(),
+
+            t("    file.close()"),
+
+            nl(),
+
+
+            c("# Check three study sessions"),
+            nl(),
+
+            b(
                 "for",
-                "The for keyword starts a loop that repeats for each value in a sequence."
+                "for begins a loop."
             ),
 
-            text(
-                " session in "
-            ),
+            t(" session in "),
 
-
-            // BLANK 8
-
-            blank(
+            b(
                 "range",
-                "range() creates the sequence used by the for loop."
+                "range() creates the session numbers."
             ),
 
-            text(
-                "(1, 5):    # The loop displays sessions 1, 2, 3 and 4."
-            ),
+            t("(1, 4):"),
 
-            newline(),
+            nl(),
 
-            text(
-                "    print(\"Study session:\", session)    # Display the current study session."
-            ),
+            t("    print("),
 
-            newline(),
+            s("\"Session:\""),
+
+            t(", session)"),
+
+            nl(),
 
 
-            // BLANK 9
+            c("# Count study sessions"),
+            nl(),
 
-            text(
-                "minutes = 3    # Start with three minutes in this sample timer."
-            ),
+            t("sessions = "),
 
-            newline(),
+            n("2"),
 
-            blank(
+            nl(),
+
+            b(
                 "while",
-                "The while keyword repeats the instructions while the condition is true."
+                "while repeats while sessions remain."
             ),
 
-            text(
-                " minutes > 0:    # Continue while study minutes remain."
+            t(" sessions > 0:"),
+
+            nl(),
+
+            t("    print("),
+
+            s("\"Study\""),
+
+            t(")"),
+
+            nl(),
+
+            t("    sessions = sessions - 1"),
+
+            nl(),
+
+
+            c("# Call the function"),
+            nl(),
+
+            t("result = "),
+
+            b(
+                "save_study",
+                "save_study(\"Python\") calls the function and passes Python to subject."
             ),
 
-            newline(),
+            t("("),
 
-            text(
-                "    print(\"Keep studying\")    # Display a study reminder."
-            ),
+            s("\"Python\""),
 
-            newline(),
+            t(")"),
 
-            text(
-                "    minutes = minutes - 1    # Reduce the remaining minutes by one."
-            ),
+            nl(),
 
-            newline(),
+            t("print("),
 
+            s("\"Result:\""),
 
-            // BLANK 10
-
-            text(
-                "# Call the function with a study score of 85."
-            ),
-
-            newline(),
-
-            text(
-                "result = "
-            ),
-
-            blank(
-                "study_status",
-                "study_status(85) calls the function and passes 85 to the score parameter."
-            ),
-
-            text(
-                "(85)    # Pass 85 as the study score."
-            ),
-
-            newline(),
-
-            text(
-                "print(\"Study result:\", result)    # Display the returned study status."
-            )
+            t(", result)")
 
         ]
-
     },
 
 
     // =================================================
     // PROGRAM 5
-    // ATTENDANCE FILE SAVER
+    // FITNESS TRACKER
     // =================================================
 
     {
-        title:
-            "Attendance File Saver",
+        title: "Fitness Tracker",
 
-        topic:
-            "Functions, Conditionals, Loops and File Handling",
+        topic: "Functions, Lists, Conditions and Loops",
 
         parts: [
 
-            // BLANK 1
+            c("# Define the function"),
+            nl(),
 
-            text(
-                "# Define a function that saves an attendance record."
-            ),
-
-            newline(),
-
-            blank(
+            b(
                 "def",
-                "The def keyword is used to define a function."
+                "def begins a function definition."
             ),
 
-            text(
-                " save_attendance("
+            t(" "),
+
+            b(
+                "activity_status",
+                "activity_status is the function name."
             ),
 
+            t("("),
 
-            // BLANK 3
-
-            blank(
-                "name",
-                "name is the parameter that receives the student's name."
+            b(
+                "minutes",
+                "minutes is the parameter that receives the activity time."
             ),
 
-            text(
-                "):    # The name parameter stores the student's name."
-            ),
+            t("):"),
 
-            newline(),
+            nl(),
 
 
-            // BLANK 4
+            c("# Check the activity time"),
+            nl(),
 
-            text(
-                "    # Check whether a name was entered."
-            ),
+            t("    "),
 
-            newline(),
-
-            text(
-                "    "
-            ),
-
-            blank(
+            b(
                 "if",
-                "The if keyword begins a conditional statement."
+                "if begins the condition."
             ),
 
-            text(
-                " name "
+            t(" minutes "),
+
+            b(
+                ">=",
+                ">= means greater than or equal to."
             ),
 
+            t(" "),
 
-            // BLANK 5
+            n("30"),
 
-            blank(
-                "==",
-                "The == operator checks whether two values are equal."
-            ),
+            t(":"),
 
-            text(
-                " \"\":    # An empty name means no student name was entered."
-            ),
-
-            newline(),
+            nl(),
 
 
-            // BLANK 6
+            c("# Give the active result"),
+            nl(),
 
-            text(
-                "        # Stop the function when no name was entered."
-            ),
+            t("        "),
 
-            newline(),
-
-            text(
-                "        "
-            ),
-
-            blank(
+            b(
                 "return",
-                "return sends a result back to the code that called the function."
+                "return sends the result back to the caller."
             ),
 
-            text(
-                " \"No name entered\"    # Tell the caller that the name is missing."
-            ),
+            t(" "),
 
-            newline(),
+            s("\"Active\""),
 
-
-            // FILE HANDLING
-            // These lines are visible so students can study
-            // the opening, writing, and closing process.
-
-            text(
-                "    file = open(\"attendance.txt\", \"w\")    # Open or create a text file using write mode."
-            ),
-
-            newline(),
-
-            text(
-                "    file.write(\"Student: \" + name + \"\\n\")    # Write the student's name into the file."
-            ),
-
-            newline(),
-
-            text(
-                "    file.close()    # Close the file after writing."
-            ),
-
-            newline(),
+            nl(),
 
 
-            text(
-                "    return \"Saved\"    # Tell the program that the record was saved."
-            ),
+            c("# Give the other result"),
+            nl(),
 
-            newline(),
+            t("    else:"),
+
+            nl(),
+
+            t("        "),
+
+            k("return"),
+
+            t(" "),
+
+            s("\"Keep Moving\""),
+
+            nl(),
 
 
-            // BLANK 7
+            c("# Store activity minutes"),
+            nl(),
 
-            text(
-                "# Display three sample attendance-record numbers."
-            ),
+            t("minutes_list = ["),
 
-            newline(),
+            n("20"),
 
-            blank(
+            t(", "),
+
+            n("30"),
+
+            t(", "),
+
+            n("40"),
+
+            t("]"),
+
+            nl(),
+
+
+            c("# Check each activity"),
+            nl(),
+
+            b(
                 "for",
-                "The for keyword begins a loop that repeats through a sequence."
+                "for begins a loop through the list."
             ),
 
-            text(
-                " record in "
-            ),
+            t(" minute in minutes_list:"),
+
+            nl(),
+
+            t("    print("),
+
+            s("\"Minutes:\""),
+
+            t(", minute)"),
+
+            nl(),
 
 
-            // BLANK 8
+            c("# Count remaining activities"),
+            nl(),
 
-            blank(
-                "range",
-                "range() creates the sequence of record numbers."
-            ),
+            t("activities = "),
 
-            text(
-                "(1, 4):    # The loop displays record numbers 1, 2 and 3."
-            ),
+            n("2"),
 
-            newline(),
+            nl(),
 
-            text(
-                "    print(\"Record:\", record)    # Display the current record number."
-            ),
-
-            newline(),
-
-
-            // BLANK 9
-
-            text(
-                "copies = 2    # Start with two sample file-processing cycles."
-            ),
-
-            newline(),
-
-            blank(
+            b(
                 "while",
-                "The while keyword repeats the code while the condition is true."
+                "while repeats while activities remain."
             ),
 
-            text(
-                " copies > 0:    # Continue while processing cycles remain."
+            t(" activities > 0:"),
+
+            nl(),
+
+            t("    print("),
+
+            s("\"Tracking\""),
+
+            t(")"),
+
+            nl(),
+
+            t("    activities = activities - 1"),
+
+            nl(),
+
+
+            c("# Call the function"),
+            nl(),
+
+            t("result = "),
+
+            b(
+                "activity_status",
+                "activity_status(45) calls the function and passes 45 to minutes."
             ),
 
-            newline(),
+            t("("),
 
-            text(
-                "    print(\"File ready\")    # Display a message that the file is ready."
-            ),
+            n("45"),
 
-            newline(),
+            t(")"),
 
-            text(
-                "    copies = copies - 1    # Reduce the number of remaining cycles."
-            ),
+            nl(),
 
-            newline(),
+            t("print("),
 
+            s("\"Status:\""),
 
-            // BLANK 10
-
-            text(
-                "# Call the function and save the name Ana in the text file."
-            ),
-
-            newline(),
-
-            text(
-                "result = "
-            ),
-
-            blank(
-                "save_attendance",
-                "save_attendance(\"Ana\") calls the function and passes Ana to the name parameter."
-            ),
-
-            text(
-                "(\"Ana\")    # Pass the student's name to the function."
-            ),
-
-            newline(),
-
-            text(
-                "print(\"File result:\", result)    # Display the message returned by the function."
-            )
+            t(", result)")
 
         ]
-
     }
 
 ];
 
 
 // =====================================================
-// TEST VARIABLES
+// VARIABLES
 // =====================================================
 
 let selectedCode = null;
@@ -1228,26 +1087,68 @@ let testSubmitted = false;
 
 
 // =====================================================
-// SHUFFLE FUNCTION
+// CHECK QUESTION BANK
+// =====================================================
+
+function validateQuestionBank() {
+
+    let valid = true;
+
+    codeBank.forEach(
+        code => {
+
+            const count =
+                code.parts.filter(
+                    part =>
+                        part.type === "blank"
+                ).length;
+
+            console.log(
+                code.title +
+                ": " +
+                count +
+                " blanks"
+            );
+
+            if (
+                count !== 10
+            ) {
+
+                console.error(
+                    code.title +
+                    " does not have exactly 10 blanks."
+                );
+
+                valid = false;
+
+            }
+
+        }
+    );
+
+    return valid;
+
+}
+
+
+// =====================================================
+// SHUFFLE
 // =====================================================
 
 function shuffle(array) {
 
-    // Move through the array from the last item.
     for (
         let i = array.length - 1;
         i > 0;
         i--
     ) {
 
-        // Choose a random position.
         const j =
             Math.floor(
-                Math.random() * (i + 1)
+                Math.random() *
+                (i + 1)
             );
 
-
-        // Exchange the two items.
         [
             array[i],
             array[j]
@@ -1259,60 +1160,7 @@ function shuffle(array) {
 
     }
 
-
-    // Return the shuffled array.
     return array;
-
-}
-
-
-// =====================================================
-// COUNT BLANKS
-// =====================================================
-
-function countBlanks(code) {
-
-    // Count every part marked as a blank.
-    return code.parts.filter(
-        part => part.blank
-    ).length;
-
-}
-
-
-// =====================================================
-// VALIDATE QUESTION BANK
-// =====================================================
-
-function validateQuestionBank() {
-
-    // Check every program in the question bank.
-    codeBank.forEach(
-        code => {
-
-            // Count the blanks in the program.
-            const numberOfBlanks =
-                countBlanks(code);
-
-
-            // Report an error if the program does not
-            // contain exactly 10 blanks.
-            if (
-                numberOfBlanks !== 10
-            ) {
-
-                console.error(
-                    "QUESTION BANK ERROR:",
-                    code.title,
-                    "contains",
-                    numberOfBlanks,
-                    "blanks instead of 10."
-                );
-
-            }
-
-        }
-    );
 
 }
 
@@ -1323,30 +1171,24 @@ function validateQuestionBank() {
 
 function startTest2() {
 
-    // Randomly select one program.
+    // Check the question bank.
+    validateQuestionBank();
+
+
+    // Select one random program.
     selectedCode =
         shuffle(
             [...codeBank]
         )[0];
 
 
-    // Display the selected program in the console.
     console.log(
-        "Selected program:",
+        "Selected:",
         selectedCode.title
     );
 
 
-    // Display the number of blanks.
-    console.log(
-        "Number of blanks:",
-        countBlanks(
-            selectedCode
-        )
-    );
-
-
-    // Clear any previous answers.
+    // Clear old answers.
     studentAnswers = [];
 
 
@@ -1354,8 +1196,134 @@ function startTest2() {
     testSubmitted = false;
 
 
-    // Display the selected program.
+    // Display the program.
     displayQuestions();
+
+}
+
+
+// =====================================================
+// CREATE CODE ELEMENT
+// =====================================================
+
+function createCodeElement(part) {
+
+    // Create a span for the code part.
+    const span =
+        document.createElement(
+            "span"
+        );
+
+
+    // Apply the correct syntax class.
+    if (
+        part.type === "keyword"
+    ) {
+
+        span.className =
+            "py-keyword";
+
+    }
+
+    else if (
+        part.type === "string"
+    ) {
+
+        span.className =
+            "py-string";
+
+    }
+
+    else if (
+        part.type === "number"
+    ) {
+
+        span.className =
+            "py-number";
+
+    }
+
+    else if (
+        part.type === "comment"
+    ) {
+
+        span.className =
+            "py-comment";
+
+    }
+
+    else if (
+        part.type === "function"
+    ) {
+
+        span.className =
+            "py-function";
+
+    }
+
+    else {
+
+        span.className =
+            "py-text";
+
+    }
+
+
+    // Add the text.
+    span.textContent =
+        part.value;
+
+
+    return span;
+
+}
+
+
+// =====================================================
+// CREATE BLANK INPUT
+// =====================================================
+
+function createBlankInput(
+    part,
+    blankIndex
+) {
+
+    // Create the input field.
+    const input =
+        document.createElement(
+            "input"
+        );
+
+
+    // Set the input type.
+    input.type =
+        "text";
+
+
+    // Apply the blank style.
+    input.className =
+        "code-blank";
+
+
+    // Prevent autocomplete.
+    input.autocomplete =
+        "off";
+
+
+    // Store the blank number.
+    input.dataset.blank =
+        blankIndex;
+
+
+    // Add accessibility information.
+    input.setAttribute(
+        "aria-label",
+        "Code blank " +
+        (blankIndex + 1)
+    );
+
+
+    return input;
 
 }
 
@@ -1373,11 +1341,10 @@ function displayQuestions() {
         );
 
 
-    // Stop if the container does not exist.
     if (!container) {
 
         console.error(
-            "codeQuestionsContainer was not found."
+            "codeQuestionsContainer not found."
         );
 
         return;
@@ -1389,7 +1356,7 @@ function displayQuestions() {
     container.innerHTML = "";
 
 
-    // Create the question card.
+    // Create the card.
     const card =
         document.createElement(
             "div"
@@ -1400,7 +1367,7 @@ function displayQuestions() {
         "code-question-card";
 
 
-    // Create the program title.
+    // Create the title.
     const title =
         document.createElement(
             "h3"
@@ -1416,7 +1383,7 @@ function displayQuestions() {
     );
 
 
-    // Create the topic label.
+    // Create the topic.
     const topic =
         document.createElement(
             "div"
@@ -1436,33 +1403,61 @@ function displayQuestions() {
     );
 
 
-    // Create the code display area.
-    const codeBox =
+    // Create the code editor.
+    const editor =
         document.createElement(
             "div"
         );
 
 
-    codeBox.className =
-        "code-box";
+    editor.className =
+        "python-editor";
 
 
-    // Track the blank number.
+    // Add a small editor header.
+    const header =
+        document.createElement(
+            "div"
+        );
+
+
+    header.className =
+        "python-editor-header";
+
+
+    header.textContent =
+        "PYTHON";
+
+
+    editor.appendChild(
+        header
+    );
+
+
+    // Create the actual code area.
+    const codeArea =
+        document.createElement(
+            "div"
+        );
+
+
+    codeArea.className =
+        "python-code";
+
+
     let blankIndex = 0;
 
 
-    // Display every part of the program.
+    // Build every code part.
     selectedCode.parts.forEach(
         part => {
 
+            // New line
+            if (
+                part.type === "newline"
+            ) {
 
-            // -----------------------------------------
-            // NEW LINE
-            // -----------------------------------------
-
-            if (part.newline) {
-
-                codeBox.appendChild(
+                codeArea.appendChild(
                     document.createElement(
                         "br"
                     )
@@ -1473,90 +1468,382 @@ function displayQuestions() {
             }
 
 
-            // -----------------------------------------
-            // NORMAL TEXT
-            // -----------------------------------------
+            // Blank
+            if (
+                part.type === "blank"
+            ) {
 
-            if (part.text) {
+                const input =
+                    createBlankInput(
+                        part,
+                        blankIndex
+                    );
 
-                codeBox.appendChild(
-                    document.createTextNode(
-                        part.text
-                    )
+
+                codeArea.appendChild(
+                    input
                 );
+
+
+                blankIndex++;
 
                 return;
 
             }
 
 
-            // -----------------------------------------
-            // BLANK
-            // -----------------------------------------
-
-            if (part.blank) {
-
-                // Create the input field.
-                const input =
-                    document.createElement(
-                        "input"
-                    );
-
-
-                // Make it a text input.
-                input.type =
-                    "text";
-
-
-                // Apply the existing CSS class.
-                input.className =
-                    "code-blank";
-
-
-                // Prevent browser autocomplete.
-                input.autocomplete =
-                    "off";
-
-
-                // Store the blank number.
-                input.dataset.blank =
-                    blankIndex;
-
-
-                // Add an accessible label.
-                input.setAttribute(
-                    "aria-label",
-                    "Code blank " +
-                    (
-                        blankIndex + 1
-                    )
-                );
-
-
-                // Add the input to the code.
-                codeBox.appendChild(
-                    input
-                );
-
-
-                // Move to the next blank.
-                blankIndex++;
-
-            }
+            // Normal highlighted code.
+            codeArea.appendChild(
+                createCodeElement(
+                    part
+                )
+            );
 
         }
     );
 
 
-    // Add the code area to the card.
+    // Add the code to the editor.
+    editor.appendChild(
+        codeArea
+    );
+
+
+    // Add the editor to the card.
     card.appendChild(
-        codeBox
+        editor
     );
 
 
     // Add the card to the page.
     container.appendChild(
         card
+    );
+
+
+    // Add syntax styling.
+    addEditorStyles();
+
+}
+
+
+// =====================================================
+// EDITOR STYLES
+// =====================================================
+
+function addEditorStyles() {
+
+    // Prevent duplicate style elements.
+    if (
+        document.getElementById(
+            "test2SyntaxStyles"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    // Create the style element.
+    const style =
+        document.createElement(
+            "style"
+        );
+
+
+    style.id =
+        "test2SyntaxStyles";
+
+
+    style.textContent = `
+
+        .python-editor {
+
+            background: #1e1e1e;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            margin-top: 18px;
+
+            border: 1px solid #333;
+
+            box-shadow:
+                0 4px 12px rgba(0,0,0,0.18);
+
+        }
+
+
+        .python-editor-header {
+
+            background: #252526;
+
+            color: #aaa;
+
+            padding: 8px 14px;
+
+            font-family:
+                Consolas,
+                "Courier New",
+                monospace;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .python-code {
+
+            padding: 20px;
+
+            font-family:
+                Consolas,
+                "Courier New",
+                monospace;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+
+            color: #d4d4d4;
+
+            white-space: pre-wrap;
+
+            overflow-x: auto;
+
+        }
+
+
+        .py-keyword {
+
+            color: #569cd6;
+
+        }
+
+
+        .py-string {
+
+            color: #ce9178;
+
+        }
+
+
+        .py-number {
+
+            color: #b5cea8;
+
+        }
+
+
+        .py-comment {
+
+            color: #6a9955;
+
+        }
+
+
+        .py-function {
+
+            color: #dcdcaa;
+
+        }
+
+
+        .py-text {
+
+            color: #d4d4d4;
+
+        }
+
+
+        .code-blank {
+
+            width: 82px;
+
+            min-width: 82px;
+
+            height: 27px;
+
+            padding: 2px 6px;
+
+            margin: 0 3px;
+
+            border-radius: 5px;
+
+            border: 2px solid #777;
+
+            background: #ffffff;
+
+            color: #111;
+
+            font-family:
+                Consolas,
+                "Courier New",
+                monospace;
+
+            font-size: 14px;
+
+            text-align: center;
+
+            vertical-align: middle;
+
+            outline: none;
+
+        }
+
+
+        .code-blank:focus {
+
+            border-color: #4da3ff;
+
+            box-shadow:
+                0 0 0 2px rgba(77,163,255,0.2);
+
+        }
+
+
+        .submitted-answer {
+
+            display: inline-block;
+
+            padding: 1px 5px;
+
+            margin: 0 2px;
+
+            border-radius: 4px;
+
+            font-weight: bold;
+
+        }
+
+
+        .answer-correct {
+
+            color: #9be9a8;
+
+            background: rgba(46,160,67,0.25);
+
+        }
+
+
+        .answer-wrong {
+
+            color: #ff8f8f;
+
+            background: rgba(248,81,73,0.25);
+
+            cursor: pointer;
+
+            text-decoration:
+                underline;
+
+        }
+
+
+        .answer-wrong:hover {
+
+            background:
+                rgba(248,81,73,0.4);
+
+        }
+
+
+        .code-explanation {
+
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            max-width: 380px;
+
+            background: #ffffff;
+
+            color: #222;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 30px rgba(0,0,0,0.25);
+
+            z-index: 9999;
+
+        }
+
+
+        .code-explanation h3 {
+
+            margin-top: 0;
+
+        }
+
+
+        .close-explanation {
+
+            position: absolute;
+
+            right: 10px;
+
+            top: 8px;
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .python-code {
+
+                font-size: 13px;
+
+                padding: 14px;
+
+            }
+
+
+            .code-blank {
+
+                width: 65px;
+
+                min-width: 65px;
+
+                font-size: 12px;
+
+            }
+
+
+            .code-explanation {
+
+                left: 15px;
+
+                right: 15px;
+
+                bottom: 15px;
+
+            }
+
+        }
+
+    `;
+
+
+    // Add the styles to the page.
+    document.head.appendChild(
+        style
     );
 
 }
@@ -1568,25 +1855,25 @@ function displayQuestions() {
 
 function submitTest2() {
 
-    // Find every blank input.
+    // Find all blanks.
     const inputs =
         document.querySelectorAll(
             ".code-blank"
         );
 
 
-    // Check that exactly 10 blanks exist.
+    // Make sure there are exactly 10.
     if (
         inputs.length !== 10
     ) {
 
         alert(
-            "There is a problem with this Test II question. Please inform your teacher."
+            "There is a problem with this reviewer. Please inform your teacher."
         );
 
 
         console.error(
-            "Expected 10 blanks but found:",
+            "Expected 10 blanks. Found:",
             inputs.length
         );
 
@@ -1596,11 +1883,10 @@ function submitTest2() {
     }
 
 
-    // Clear previous answers.
+    // Collect student answers.
     studentAnswers = [];
 
 
-    // Read every answer from the input fields.
     inputs.forEach(
         input => {
 
@@ -1612,7 +1898,7 @@ function submitTest2() {
     );
 
 
-    // Count unanswered blanks.
+    // Check for empty answers.
     const unanswered =
         studentAnswers.filter(
             answer =>
@@ -1620,7 +1906,6 @@ function submitTest2() {
         ).length;
 
 
-    // Prevent submission when an answer is missing.
     if (
         unanswered > 0
     ) {
@@ -1635,14 +1920,13 @@ function submitTest2() {
     }
 
 
-    // Ask the student to confirm submission.
+    // Confirm submission.
     const confirmed =
         confirm(
             "Are you sure you want to submit Test II?"
         );
 
 
-    // Stop if the student cancels.
     if (!confirmed) {
 
         return;
@@ -1650,63 +1934,51 @@ function submitTest2() {
     }
 
 
-    // Start the score at zero.
+    // Start the score.
     let score = 0;
 
 
-    // Keep track of the current blank.
+    // Track the blank.
     let blankIndex = 0;
 
 
-    // Check every blank in the selected program.
+    // Check every blank.
     selectedCode.parts.forEach(
         part => {
 
-
-            // Ignore normal text.
-            if (!part.blank) {
+            if (
+                part.type !== "blank"
+            ) {
 
                 return;
 
             }
 
 
-            // Get the student's answer.
-            const studentAnswer =
-                studentAnswers[
-                    blankIndex
-                ];
-
-
-            // Get the correct answer.
-            const correctAnswer =
-                part.answer;
-
-
-            // Compare the answers.
+            // Compare answers.
             if (
                 normalize(
-                    studentAnswer
+                    studentAnswers[
+                        blankIndex
+                    ]
                 ) ===
                 normalize(
-                    correctAnswer
+                    part.answer
                 )
             ) {
 
-                // Give one point for a correct answer.
                 score++;
 
             }
 
 
-            // Move to the next blank.
             blankIndex++;
 
         }
     );
 
 
-    // Mark Test II as submitted.
+    // Mark the test as submitted.
     testSubmitted = true;
 
 
@@ -1716,13 +1988,13 @@ function submitTest2() {
     );
 
 
-    // Display the score.
+    // Show the score.
     showScore(
         score
     );
 
 
-    // Display the review.
+    // Show feedback.
     displayResults();
 
 
@@ -1777,31 +2049,25 @@ function showScore(score) {
         );
 
 
-    // Stop if the score area does not exist.
     if (!scoreArea) {
-
-        console.error(
-            "scoreArea was not found."
-        );
 
         return;
 
     }
 
 
-    // Make the score visible.
+    // Show the score area.
     scoreArea.style.display =
         "block";
 
 
-    // Find the final score element.
+    // Find the score text.
     const finalScore =
         document.getElementById(
             "finalScore"
         );
 
 
-    // Display the numerical score.
     if (finalScore) {
 
         finalScore.textContent =
@@ -1811,49 +2077,52 @@ function showScore(score) {
     }
 
 
-    // Find the score message.
-    const scoreMessage =
+    // Find the message.
+    const message =
         document.getElementById(
             "scoreMessage"
         );
 
 
-    // Display an appropriate message.
-    if (scoreMessage) {
+    if (!message) {
 
-        if (
-            score === 10
-        ) {
+        return;
 
-            scoreMessage.textContent =
-                "Excellent! You completed the code correctly.";
+    }
 
-        }
 
-        else if (
-            score >= 8
-        ) {
+    // Choose the appropriate message.
+    if (
+        score === 10
+    ) {
 
-            scoreMessage.textContent =
-                "Very good! Review the items you missed.";
+        message.textContent =
+            "Excellent! Perfect code completion.";
 
-        }
+    }
 
-        else if (
-            score >= 5
-        ) {
+    else if (
+        score >= 8
+    ) {
 
-            scoreMessage.textContent =
-                "Good effort. Click the RED answers to review the concepts you missed.";
+        message.textContent =
+            "Very good! Review the items you missed.";
 
-        }
+    }
 
-        else {
+    else if (
+        score >= 5
+    ) {
 
-            scoreMessage.textContent =
-                "Keep practicing. Click the RED answers to study the explanations.";
+        message.textContent =
+            "Good effort. Review the red answers.";
 
-        }
+    }
+
+    else {
+
+        message.textContent =
+            "Keep practicing. Study the feedback carefully.";
 
     }
 
@@ -1866,7 +2135,7 @@ function showScore(score) {
 
 function saveTest2Result(score) {
 
-    // Get the student's name from the reviewer session.
+    // Get the student's name.
     const studentName =
         localStorage.getItem(
             "studentName"
@@ -1880,79 +2149,76 @@ function saveTest2Result(score) {
         ) || "";
 
 
-    // Get the attempt ID created at login.
+    // Get the attempt ID.
     const attemptId =
         localStorage.getItem(
             "attemptId"
         ) || "";
 
 
-    // Create the result object.
+    // Create the result.
     const result = {
 
-        // Store the date and time.
         date:
             new Date().toLocaleString(),
 
-        // Store the student name.
         studentName:
             studentName,
 
-        // Store the section.
         studentSection:
             studentSection,
 
-        // Store the attempt ID.
         attemptId:
             attemptId,
 
-        // Store the score.
         score:
             score,
 
-        // Test II has 10 points.
         total:
             10,
 
-        // Store the selected program.
         program:
             selectedCode.title,
 
-        // Store each answer and explanation.
-        questions:
-            selectedCode.parts
-                .filter(
-                    part =>
-                        part.blank
-                )
-                .map(
-                    (
-                        part,
-                        index
-                    ) => {
+        answers:
+            studentAnswers.map(
+                (
+                    answer,
+                    index
+                ) => {
 
-                        return {
+                    const blankParts =
+                        selectedCode.parts.filter(
+                            part =>
+                                part.type ===
+                                "blank"
+                        );
 
-                            studentAnswer:
-                                studentAnswers[
-                                    index
-                                ],
 
-                            correctAnswer:
-                                part.answer,
+                    return {
 
-                            explanation:
-                                part.explanation
+                        studentAnswer:
+                            answer,
 
-                        };
+                        correctAnswer:
+                            blankParts[
+                                index
+                            ].answer,
 
-                    }
-                )
+                        explanation:
+                            blankParts[
+                                index
+                            ].explanation
+
+                    };
+
+                }
+            )
 
     };
 
 
-    // Save the result in the browser.
+    // Save the result locally.
     localStorage.setItem(
         "test2Result",
         JSON.stringify(
@@ -1969,15 +2235,10 @@ function saveTest2Result(score) {
 
 function normalize(value) {
 
-    // Convert the answer to text.
     return String(
         value
     )
-
-        // Remove spaces at the beginning and end.
         .trim()
-
-        // Ignore capitalization.
         .toLowerCase();
 
 }
@@ -1996,7 +2257,6 @@ function displayResults() {
         );
 
 
-    // Stop if the container does not exist.
     if (!container) {
 
         return;
@@ -2004,11 +2264,11 @@ function displayResults() {
     }
 
 
-    // Clear the original input fields.
+    // Clear the original code.
     container.innerHTML = "";
 
 
-    // Create the review instruction.
+    // Create the review message.
     const instruction =
         document.createElement(
             "div"
@@ -2020,16 +2280,15 @@ function displayResults() {
 
 
     instruction.textContent =
-        "Correct answers are shown in green. Click the RED answers to review the concepts you missed.";
+        "Correct answers are green. Click a red answer to review it.";
 
 
-    // Add the instruction to the page.
     container.appendChild(
         instruction
     );
 
 
-    // Create the review card.
+    // Create the card.
     const card =
         document.createElement(
             "div"
@@ -2040,7 +2299,7 @@ function displayResults() {
         "code-question-card";
 
 
-    // Display the program title.
+    // Add title.
     const title =
         document.createElement(
             "h3"
@@ -2056,7 +2315,7 @@ function displayResults() {
     );
 
 
-    // Display the topic.
+    // Add topic.
     const topic =
         document.createElement(
             "div"
@@ -2076,33 +2335,62 @@ function displayResults() {
     );
 
 
-    // Create the reviewed code area.
-    const codeBox =
+    // Create the editor.
+    const editor =
         document.createElement(
             "div"
         );
 
 
-    codeBox.className =
-        "code-box submitted-code";
+    editor.className =
+        "python-editor";
 
 
-    // Track the current blank.
+    // Add editor header.
+    const header =
+        document.createElement(
+            "div"
+        );
+
+
+    header.className =
+        "python-editor-header";
+
+
+    header.textContent =
+        "PYTHON • REVIEW";
+
+
+    editor.appendChild(
+        header
+    );
+
+
+    // Create the code area.
+    const codeArea =
+        document.createElement(
+            "div"
+        );
+
+
+    codeArea.className =
+        "python-code";
+
+
+    // Track blank number.
     let blankIndex = 0;
 
 
-    // Rebuild the code with the student's answers.
+    // Rebuild the code.
     selectedCode.parts.forEach(
         part => {
 
+            // New line
+            if (
+                part.type === "newline"
+            ) {
 
-            // -----------------------------------------
-            // NEW LINE
-            // -----------------------------------------
-
-            if (part.newline) {
-
-                codeBox.appendChild(
+                codeArea.appendChild(
                     document.createElement(
                         "br"
                     )
@@ -2113,104 +2401,68 @@ function displayResults() {
             }
 
 
-            // -----------------------------------------
-            // NORMAL TEXT
-            // -----------------------------------------
+            // Blank answer
+            if (
+                part.type === "blank"
+            ) {
 
-            if (part.text) {
-
-                codeBox.appendChild(
-                    document.createTextNode(
-                        part.text
-                    )
-                );
-
-                return;
-
-            }
-
-
-            // -----------------------------------------
-            // STUDENT ANSWER
-            // -----------------------------------------
-
-            if (part.blank) {
-
-                // Get the student's answer.
-                const studentAnswer =
+                const answer =
                     studentAnswers[
                         blankIndex
                     ];
 
 
-                // Get the correct answer.
-                const correctAnswer =
-                    part.answer;
+                const correct =
+                    normalize(
+                        answer
+                    ) ===
+                    normalize(
+                        part.answer
+                    );
 
 
-                // Create the answer display.
-                const answerSpan =
+                const span =
                     document.createElement(
                         "span"
                     );
 
 
-                // Apply the submitted-answer style.
-                answerSpan.className =
+                span.className =
                     "submitted-answer";
 
 
-                // Display the student's answer.
-                answerSpan.textContent =
-                    studentAnswer;
+                span.textContent =
+                    answer;
 
 
-                // Check whether the answer is correct.
-                const correct =
-                    normalize(
-                        studentAnswer
-                    ) ===
-                    normalize(
-                        correctAnswer
-                    );
-
-
-                // -------------------------------------
-                // CORRECT ANSWER
-                // -------------------------------------
-
+                // Correct answer.
                 if (correct) {
 
-                    answerSpan.classList.add(
+                    span.classList.add(
                         "answer-correct"
                     );
 
                 }
 
-
-                // -------------------------------------
-                // WRONG ANSWER
-                // -------------------------------------
-
+                // Wrong answer.
                 else {
 
-                    answerSpan.classList.add(
+                    span.classList.add(
                         "answer-wrong"
                     );
 
 
-                    answerSpan.title =
+                    span.title =
                         "Click to review";
 
 
-                    // Make the wrong answer clickable.
-                    answerSpan.addEventListener(
+                    span.addEventListener(
                         "click",
                         function() {
 
                             showExplanation(
-                                studentAnswer,
-                                correctAnswer,
+                                answer,
+                                part.answer,
                                 part.explanation
                             );
 
@@ -2220,28 +2472,42 @@ function displayResults() {
                 }
 
 
-                // Add the answer to the code.
-                codeBox.appendChild(
-                    answerSpan
+                codeArea.appendChild(
+                    span
                 );
 
 
-                // Move to the next blank.
                 blankIndex++;
 
+                return;
+
             }
+
+
+            // Normal highlighted code.
+            codeArea.appendChild(
+                createCodeElement(
+                    part
+                )
+            );
 
         }
     );
 
 
-    // Add the reviewed code to the card.
-    card.appendChild(
-        codeBox
+    // Add code area.
+    editor.appendChild(
+        codeArea
     );
 
 
-    // Add the card to the page.
+    // Add editor to card.
+    card.appendChild(
+        editor
+    );
+
+
+    // Add card to page.
     container.appendChild(
         card
     );
@@ -2259,7 +2525,7 @@ function showExplanation(
     explanation
 ) {
 
-    // Remove an existing explanation.
+    // Remove an old explanation.
     const old =
         document.getElementById(
             "codeExplanation"
@@ -2273,7 +2539,7 @@ function showExplanation(
     }
 
 
-    // Create the explanation box.
+    // Create explanation box.
     const box =
         document.createElement(
             "div"
@@ -2288,45 +2554,107 @@ function showExplanation(
         "code-explanation";
 
 
-    // Create the explanation content.
-    box.innerHTML = `
-
-        <button
-            class="close-explanation"
-            onclick="closeExplanation()">
-
-            ×
-
-        </button>
+    // Create close button.
+    const close =
+        document.createElement(
+            "button"
+        );
 
 
-        <h3>
-            Quick Review
-        </h3>
+    close.className =
+        "close-explanation";
 
 
-        <p>
-            <strong>Your answer:</strong>
-            ${escapeHTML(studentAnswer)}
-        </p>
+    close.textContent =
+        "×";
 
 
-        <p>
-            <strong>Correct answer:</strong>
-            ${escapeHTML(correctAnswer)}
-        </p>
+    close.addEventListener(
+        "click",
+        closeExplanation
+    );
 
 
-        <div class="explanation-text">
-
-            ${escapeHTML(explanation)}
-
-        </div>
-
-    `;
+    box.appendChild(
+        close
+    );
 
 
-    // Add the explanation box to the page.
+    // Add heading.
+    const heading =
+        document.createElement(
+            "h3"
+        );
+
+
+    heading.textContent =
+        "Quick Review";
+
+
+    box.appendChild(
+        heading
+    );
+
+
+    // Add student's answer.
+    const yourAnswer =
+        document.createElement(
+            "p"
+        );
+
+
+    yourAnswer.innerHTML =
+        "<strong>Your answer:</strong> " +
+        escapeHTML(
+            studentAnswer
+        );
+
+
+    box.appendChild(
+        yourAnswer
+    );
+
+
+    // Add correct answer.
+    const correctAnswerText =
+        document.createElement(
+            "p"
+        );
+
+
+    correctAnswerText.innerHTML =
+        "<strong>Correct answer:</strong> " +
+        escapeHTML(
+            correctAnswer
+        );
+
+
+    box.appendChild(
+        correctAnswerText
+    );
+
+
+    // Add explanation.
+    const explanationText =
+        document.createElement(
+            "div"
+        );
+
+
+    explanationText.className =
+        "explanation-text";
+
+
+    explanationText.textContent =
+        explanation;
+
+
+    box.appendChild(
+        explanationText
+    );
+
+
+    // Display the explanation.
     document.body.appendChild(
         box
     );
@@ -2340,14 +2668,12 @@ function showExplanation(
 
 function closeExplanation() {
 
-    // Find the explanation box.
     const box =
         document.getElementById(
             "codeExplanation"
         );
 
 
-    // Remove the box if it exists.
     if (box) {
 
         box.remove();
@@ -2363,36 +2689,25 @@ function closeExplanation() {
 
 function escapeHTML(text) {
 
-    // Convert the value to a string.
     return String(
         text
     )
-
-        // Protect ampersands.
         .replaceAll(
             "&",
             "&amp;"
         )
-
-        // Protect less-than symbols.
         .replaceAll(
             "<",
             "&lt;"
         )
-
-        // Protect greater-than symbols.
         .replaceAll(
             ">",
             "&gt;"
         )
-
-        // Protect quotation marks.
         .replaceAll(
             '"',
             "&quot;"
         )
-
-        // Protect apostrophes.
         .replaceAll(
             "'",
             "&#039;"
@@ -2409,38 +2724,21 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-
-        // ---------------------------------------------
-        // VALIDATE QUESTION BANK
-        // ---------------------------------------------
-
-        validateQuestionBank();
-
-
-        // ---------------------------------------------
-        // GET STUDENT NAME
-        // ---------------------------------------------
-
+        // Get the student's name.
         const studentName =
             localStorage.getItem(
                 "studentName"
             );
 
 
-        // ---------------------------------------------
-        // GET STUDENT SECTION
-        // ---------------------------------------------
-
+        // Get the student's section.
         const studentSection =
             localStorage.getItem(
                 "studentSection"
             );
 
 
-        // ---------------------------------------------
-        // DISPLAY STUDENT NAME
-        // ---------------------------------------------
-
+        // Display the name.
         const nameElement =
             document.getElementById(
                 "studentName"
@@ -2458,10 +2756,7 @@ document.addEventListener(
         }
 
 
-        // ---------------------------------------------
-        // DISPLAY STUDENT SECTION
-        // ---------------------------------------------
-
+        // Display the section.
         const sectionElement =
             document.getElementById(
                 "studentSection"
@@ -2479,17 +2774,11 @@ document.addEventListener(
         }
 
 
-        // ---------------------------------------------
-        // START TEST II
-        // ---------------------------------------------
-
+        // Start Test II.
         startTest2();
 
 
-        // ---------------------------------------------
-        // CONNECT SUBMIT BUTTON
-        // ---------------------------------------------
-
+        // Connect the submit button.
         const submitButton =
             document.getElementById(
                 "submitBtn"
