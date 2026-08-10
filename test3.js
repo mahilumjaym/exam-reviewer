@@ -622,7 +622,6 @@ function submitTest3() {
     // SHOW REVIEW
     // ---------------------------------------------
 
-    
     displayReview();
 
 
@@ -1135,163 +1134,24 @@ function saveTest3Result() {
     );
 
 
-// ---------------------------------------------
-// ALSO STORE THE SCORE SEPARATELY
-// ---------------------------------------------
-
-localStorage.setItem(
-    "test3Score",
-    String(
-        test3Score
-    )
-);
-
-
-// ---------------------------------------------
-// SEND RESULT TO GOOGLE SHEETS
-// ---------------------------------------------
-
-sendTest3ResultToGoogleSheets();
-
-
-console.log(
-    "Test III result saved:",
-    result
-);
-
-}
-
-// =====================================================
-// GOOGLE SHEETS RESULT RECORDING
-// =====================================================
-
-const GOOGLE_SHEETS_URL =
-    "https://script.google.com/macros/s/AKfycby-QlBUQfHu_HN1-sh5JRYhP8S8NnFwLCVc6JIjmWynLPc6G5_l8Gmf8ffF212MiQw/exec";
-
-
-// =====================================================
-// SEND TEST III RESULT TO GOOGLE SHEETS
-// =====================================================
-
-function sendTest3ResultToGoogleSheets() {
-
-    const studentName =
-        localStorage.getItem(
-            "studentName"
-        ) || "";
-
-
-    const studentSection =
-        localStorage.getItem(
-            "studentSection"
-        ) || "";
-
-
-    const attemptId =
-        localStorage.getItem(
-            "attemptId"
-        ) || "";
-
-
     // ---------------------------------------------
-    // CHECK STUDENT INFORMATION
+    // ALSO STORE THE SCORE SEPARATELY
     // ---------------------------------------------
 
-    if (
-        !studentName ||
-        !studentSection
-    ) {
-
-        console.warn(
-            "Student credentials were not found."
-        );
-
-        return;
-
-    }
+    localStorage.setItem(
+        "test3Score",
+        String(
+            test3Score
+        )
+    );
 
 
-    // ---------------------------------------------
-    // PREPARE TEST III DATA
-    // ---------------------------------------------
-
-    const data = {
-
-        action:
-            "update",
-
-        studentName:
-            studentName,
-
-        section:
-            studentSection,
-
-        attemptId:
-            attemptId,
-
-        test3Score:
-            test3Score,
-
-        test3Total:
-            selectedProgram.questions.length,
-
-        test3Program:
-            selectedProgram.title
-
-    };
-
-
-    // ---------------------------------------------
-    // SEND TO GOOGLE APPS SCRIPT
-    // ---------------------------------------------
-
-    fetch(
-        GOOGLE_SHEETS_URL,
-        {
-
-            method:
-                "POST",
-
-            mode:
-                "no-cors",
-
-            headers: {
-
-                "Content-Type":
-                    "text/plain;charset=utf-8"
-
-            },
-
-            body:
-                JSON.stringify(
-                    data
-                )
-
-        }
-    )
-    .then(
-        function() {
-
-            console.log(
-                "Test III result sent to Google Sheets."
-            );
-
-        }
-    )
-    .catch(
-        function(error) {
-
-            console.error(
-                "Google Sheets error:",
-                error
-            );
-
-        }
+    console.log(
+        "Test III result saved:",
+        result
     );
 
 }
-
-
 
 
 // =====================================================
