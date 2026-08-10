@@ -3,7 +3,6 @@
 // 5 PROGRAMS
 // 1 RANDOM PROGRAM
 // 10 ANALYSIS QUESTIONS
-// NO SCORE
 // =====================================================
 
 
@@ -155,7 +154,7 @@ const codeBank = [
                     "check_days",
 
                 explanation:
-                    "The program calls check_days(\"Science\") to obtain the dictionary value."
+                    'The program calls check_days("Science") to obtain the dictionary value.'
             },
 
             {
@@ -330,7 +329,7 @@ const codeBank = [
                     "get_price",
 
                 explanation:
-                    "The program calls get_price(\"Chicken\")."
+                    'The program calls get_price("Chicken").'
             },
 
             {
@@ -713,7 +712,7 @@ const codeBank = [
                     "Dan",
 
                 explanation:
-                    'Dan is appended to the members list.'
+                    "Dan is appended to the members list."
             },
 
             {
@@ -899,7 +898,7 @@ const codeBank = [
                     "Marker",
 
                 explanation:
-                    'Marker is appended to supplies.'
+                    "Marker is appended to supplies."
             },
 
             {
@@ -940,6 +939,7 @@ const codeBank = [
 
 ];
 
+
 // =====================================================
 // VARIABLES
 // =====================================================
@@ -973,8 +973,7 @@ function shuffle(array) {
         [
             array[i],
             array[j]
-        ] =
-        [
+        ] = [
             array[j],
             array[i]
         ];
@@ -1022,13 +1021,10 @@ function startTest3() {
 
 
 // =====================================================
-// PYTHON TEXT RENDERER
-// SAME SYSTEM USED BY TEST II
+// PYTHON CODE RENDERER
 // =====================================================
 
-function renderPythonText(
-    value
-) {
+function renderPythonText(value) {
 
     const fragment =
         document.createDocumentFragment();
@@ -1038,8 +1034,7 @@ function renderPythonText(
         /(#.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|\b(def|if|elif|else|for|while|in|range|return|open|print|input|int|float|str|len|write|close|append)\b|\b(True|False|None)\b|\b(\d+(?:\.\d+)?)\b/g;
 
 
-    let lastIndex =
-        0;
+    let lastIndex = 0;
 
     let match;
 
@@ -1047,14 +1042,9 @@ function renderPythonText(
     while (
         (
             match =
-            pattern.exec(
-                value
-            )
+            pattern.exec(value)
         ) !== null
     ) {
-
-
-        // Text before token
 
         if (
             match.index >
@@ -1066,17 +1056,14 @@ function renderPythonText(
                     "span"
                 );
 
-
             normal.className =
                 "py-normal";
-
 
             normal.textContent =
                 value.slice(
                     lastIndex,
                     match.index
                 );
-
 
             fragment.appendChild(
                 normal
@@ -1091,8 +1078,6 @@ function renderPythonText(
             );
 
 
-        // Comment
-
         if (
             match[1]
         ) {
@@ -1101,10 +1086,6 @@ function renderPythonText(
                 "py-comment";
 
         }
-
-
-        // String
-
         else if (
             match[2]
         ) {
@@ -1113,10 +1094,6 @@ function renderPythonText(
                 "py-string";
 
         }
-
-
-        // Python keyword
-
         else if (
             match[3]
         ) {
@@ -1125,10 +1102,6 @@ function renderPythonText(
                 "py-keyword";
 
         }
-
-
-        // Boolean / None
-
         else if (
             match[4]
         ) {
@@ -1137,10 +1110,6 @@ function renderPythonText(
                 "py-constant";
 
         }
-
-
-        // Number
-
         else {
 
             token.className =
@@ -1164,8 +1133,6 @@ function renderPythonText(
     }
 
 
-    // Remaining text
-
     if (
         lastIndex <
         value.length
@@ -1176,16 +1143,13 @@ function renderPythonText(
                 "span"
             );
 
-
         remaining.className =
             "py-normal";
-
 
         remaining.textContent =
             value.slice(
                 lastIndex
             );
-
 
         fragment.appendChild(
             remaining
@@ -1200,13 +1164,10 @@ function renderPythonText(
 
 
 // =====================================================
-// DISPLAY PYTHON IDE
-// SAME VISUAL SYSTEM AS TEST II
+// CREATE PYTHON IDE
 // =====================================================
 
-function createPythonIDE(
-    codeLines
-) {
+function createPythonIDE(codeLines) {
 
     const codeBox =
         document.createElement(
@@ -1280,10 +1241,6 @@ function displayProgram() {
         "";
 
 
-    // ---------------------------------------------
-    // PROGRAM CARD
-    // ---------------------------------------------
-
     const card =
         document.createElement(
             "div"
@@ -1293,10 +1250,6 @@ function displayProgram() {
     card.className =
         "tracing-card";
 
-
-    // ---------------------------------------------
-    // PROGRAM TITLE
-    // ---------------------------------------------
 
     const title =
         document.createElement(
@@ -1313,10 +1266,6 @@ function displayProgram() {
     );
 
 
-    // ---------------------------------------------
-    // PYTHON IDE
-    // ---------------------------------------------
-
     const ide =
         createPythonIDE(
             selectedProgram.code
@@ -1327,10 +1276,6 @@ function displayProgram() {
         ide
     );
 
-
-    // ---------------------------------------------
-    // QUESTIONS TITLE
-    // ---------------------------------------------
 
     const questionTitle =
         document.createElement(
@@ -1351,16 +1296,11 @@ function displayProgram() {
     );
 
 
-    // ---------------------------------------------
-    // QUESTIONS
-    // ---------------------------------------------
-
     selectedProgram.questions.forEach(
         (
             question,
             index
         ) => {
-
 
             const questionCard =
                 document.createElement(
@@ -1371,8 +1311,6 @@ function displayProgram() {
             questionCard.className =
                 "tracing-question";
 
-
-            // Question number
 
             const number =
                 document.createElement(
@@ -1389,8 +1327,6 @@ function displayProgram() {
                 (index + 1);
 
 
-            // Question
-
             const questionText =
                 document.createElement(
                     "p"
@@ -1400,8 +1336,6 @@ function displayProgram() {
             questionText.textContent =
                 question.question;
 
-
-            // Answer box
 
             const input =
                 document.createElement(
@@ -1528,10 +1462,6 @@ function submitTest3() {
     }
 
 
-    // ---------------------------------------------
-    // GET STUDENT ANSWERS
-    // ---------------------------------------------
-
     studentAnswers =
         Array.from(
             inputs
@@ -1541,10 +1471,6 @@ function submitTest3() {
         );
 
 
-    // ---------------------------------------------
-    // CALCULATE INTERNAL REVIEW SCORE
-    // ---------------------------------------------
-
     test3Score =
         calculateTraceScore();
 
@@ -1553,23 +1479,11 @@ function submitTest3() {
         true;
 
 
-    // ---------------------------------------------
-    // SAVE RESULT
-    // ---------------------------------------------
-
     saveTest3Result();
 
 
-    // ---------------------------------------------
-    // SHOW REVIEW
-    // ---------------------------------------------
-
     displayReview();
 
-
-    // ---------------------------------------------
-    // DISABLE SUBMIT BUTTON
-    // ---------------------------------------------
 
     const button =
         document.getElementById(
@@ -1584,7 +1498,6 @@ function submitTest3() {
         button.disabled =
             true;
 
-
         button.textContent =
             "REVIEW COMPLETE";
 
@@ -1594,13 +1507,12 @@ function submitTest3() {
 
 
 // =====================================================
-// CALCULATE INTERNAL TRACE SCORE
+// CALCULATE TRACE SCORE
 // =====================================================
 
 function calculateTraceScore() {
 
-    let score =
-        0;
+    let score = 0;
 
 
     selectedProgram.questions.forEach(
@@ -1643,9 +1555,7 @@ function calculateTraceScore() {
 // NORMALIZE ANSWERS
 // =====================================================
 
-function normalizeAnswer(
-    value
-) {
+function normalizeAnswer(value) {
 
     return String(
         value
@@ -1724,8 +1634,6 @@ function displayReview() {
         "tracing-card";
 
 
-    // Title
-
     const title =
         document.createElement(
             "h3"
@@ -1757,7 +1665,7 @@ function displayReview() {
 
 
     // ---------------------------------------------
-    // ANSWER REVIEW
+    // REVIEW QUESTIONS
     // ---------------------------------------------
 
     selectedProgram.questions.forEach(
@@ -1765,7 +1673,6 @@ function displayReview() {
             question,
             index
         ) => {
-
 
             const review =
                 document.createElement(
@@ -1883,84 +1790,13 @@ function displayReview() {
     );
 
 
-   container.appendChild(
-    card
-);
-
-
-// =====================================================
-// EXIT REVIEWER
-// =====================================================
-
-const exitArea =
-    document.createElement(
-        "div"
+    container.appendChild(
+        card
     );
-
-exitArea.className =
-    "test3-exit-area";
-
-
-const exitButton =
-    document.createElement(
-        "button"
-    );
-
-exitButton.type =
-    "button";
-
-exitButton.className =
-    "test3-exit-button";
-
-exitButton.textContent =
-    "EXIT REVIEWER";
-
-
-exitButton.addEventListener(
-    "click",
-    function() {
-
-        const confirmed =
-            confirm(
-                "Are you sure you want to exit the reviewer?"
-            );
-
-        if (
-            confirmed
-        ) {
-
-            localStorage.setItem(
-                "reviewerCompleted",
-                "true"
-            );
-
-            window.location.href =
-                "index.html";
-
-        }
-
-    }
-);
-
-
-exitArea.appendChild(
-    exitButton
-);
-
-
-container.appendChild(
-    exitArea
-);
-
-
-container.scrollIntoView({
-    behavior:
-        "smooth"
-});
 
 
     // ---------------------------------------------
-    // EXIT AREA
+    // EXIT REVIEWER BUTTON
     // ---------------------------------------------
 
     const exitArea =
@@ -2052,9 +1888,7 @@ function exitReviewer() {
 // ESCAPE HTML
 // =====================================================
 
-function escapeHTML(
-    value
-) {
+function escapeHTML(value) {
 
     return String(
         value
@@ -2147,16 +1981,48 @@ function saveTest3Result() {
     );
 
 
-    // ---------------------------------------------
-    // ALSO STORE THE SCORE SEPARATELY
-    // ---------------------------------------------
-
     localStorage.setItem(
         "test3Score",
         String(
             test3Score
         )
     );
+
+
+    // ---------------------------------------------
+    // GOOGLE SHEETS
+    // ---------------------------------------------
+
+    if (
+        typeof sendResultToGoogleSheets ===
+        "function"
+    ) {
+
+        sendResultToGoogleSheets({
+
+            action:
+                "update",
+
+            test3Score:
+                test3Score,
+
+            test3Total:
+                selectedProgram.questions.length,
+
+            test3Program:
+                selectedProgram.title
+
+        });
+
+    }
+    else {
+
+        console.warn(
+            "sendResultToGoogleSheets() was not found. " +
+            "Make sure sheets.js is loaded before test3.js."
+        );
+
+    }
 
 
     console.log(
@@ -2169,7 +2035,6 @@ function saveTest3Result() {
 
 // =====================================================
 // ADD TEST III STYLES
-// SAME CODE STYLE AS TEST II
 // =====================================================
 
 function addTest3Styles() {
@@ -2241,8 +2106,7 @@ function addTest3Styles() {
 
 
         /* ==========================================
-           PYTHON CODE
-           SAME RENDERING AS TEST II
+           PYTHON IDE
            ========================================== */
 
         .test3-code-box {
@@ -2545,7 +2409,7 @@ function addTest3Styles() {
 
 
         /* ==========================================
-           EXIT
+           EXIT REVIEWER
            ========================================== */
 
         .test3-exit-area {
@@ -2656,7 +2520,9 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        // Add IDE styles
+        // ---------------------------------------------
+        // ADD TEST III STYLES
+        // ---------------------------------------------
 
         addTest3Styles();
 
@@ -2712,7 +2578,7 @@ document.addEventListener(
 
 
         // ---------------------------------------------
-        // START TEST
+        // START TEST III
         // ---------------------------------------------
 
         startTest3();
