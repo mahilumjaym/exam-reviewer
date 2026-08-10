@@ -1,8 +1,8 @@
 // =====================================================
-// TEST II - PYTHON CODE COMPLETION
+// TEST II - PYTHON CODE COMPLETION REVIEWER
 // 5 PROGRAMS
 // 1 RANDOM PROGRAM
-// 10 BLANKS PER PROGRAM
+// EXACTLY 10 BLANKS
 // =====================================================
 
 
@@ -50,65 +50,59 @@ const pythonKeywords = new Set([
 
 
 // =====================================================
-// CODE PART BUILDERS
+// CODE PART HELPERS
 // =====================================================
 
-// Normal Python code
-function text(value) {
+function code(text) {
 
     return {
-        type: "text",
-        value: value
+        type: "code",
+        value: text
     };
 
 }
 
 
-// Python keyword
-function keyword(value) {
+function keyword(text) {
 
     return {
         type: "keyword",
-        value: value
+        value: text
     };
 
 }
 
 
-// Python string
-function string(value) {
+function string(text) {
 
     return {
         type: "string",
-        value: value
+        value: text
     };
 
 }
 
 
-// Python number
-function number(value) {
+function number(text) {
 
     return {
         type: "number",
-        value: value
+        value: text
     };
 
 }
 
 
-// Python comment
-function comment(value) {
+function comment(text) {
 
     return {
         type: "comment",
-        value: value
+        value: text
     };
 
 }
 
 
-// New line
 function newline() {
 
     return {
@@ -118,8 +112,9 @@ function newline() {
 }
 
 
-// Fixed-answer blank
-function fixedBlank(
+// Fixed Python answer
+
+function fixed(
     answer,
     explanation
 ) {
@@ -139,9 +134,9 @@ function fixedBlank(
 }
 
 
-// Student-defined identifier
-function identifierBlank(
-    kind,
+// Student creates a name
+
+function defineName(
     name,
     explanation
 ) {
@@ -150,7 +145,29 @@ function identifierBlank(
 
         type: "blank",
 
-        kind: kind,
+        kind: "define",
+
+        name: name,
+
+        explanation: explanation
+
+    };
+
+}
+
+
+// Student reuses a name
+
+function useName(
+    name,
+    explanation
+) {
+
+    return {
+
+        type: "blank",
+
+        kind: "use",
 
         name: name,
 
@@ -169,6 +186,7 @@ const codeBank = [
 
     // =================================================
     // PROGRAM 1
+    // FITNESS LOG
     // =================================================
 
     {
@@ -181,61 +199,244 @@ const codeBank = [
 
             newline(),
 
-            fixedBlank(
+            fixed(
                 "def",
-                "def begins a Python function definition."
+                "def begins a function definition."
             ),
 
-            text(" "),
+            code(" "),
 
-            identifierBlank(
-                "functionDef",
+            defineName(
                 "functionName",
-                "Choose a valid function name. The same name must be used when the function is called."
+                "Choose a valid name for the function."
             ),
 
-            text("("),
+            code("("),
 
-            identifierBlank(
-                "parameterDef",
+            defineName(
                 "parameterName",
-                "Choose a valid parameter name. The same parameter must be used inside the function."
+                "Choose a valid parameter name."
             ),
 
-            text("):"),
+            code("):"),
 
             newline(),
 
 
             comment(
-                "# Check the score"
+                "# Check the minutes"
             ),
 
             newline(),
 
-            text("    "),
+            code("    "),
 
-            fixedBlank(
-                "if",
-                "if begins the conditional statement."
-            ),
+            keyword("if"),
 
-            text(" "),
+            code(" "),
 
-            identifierBlank(
-                "identifierUse",
+            useName(
                 "parameterName",
-                "Use the parameter name defined in the function header."
+                "Use the parameter name you defined in the function header."
             ),
 
-            text(" "),
+            code(" "),
 
-            fixedBlank(
+            fixed(
                 ">=",
                 ">= means greater than or equal to."
             ),
 
-            text(" 75:"),
+            code(" 30:"),
+
+            newline(),
+
+
+            comment(
+                "# Return the message"
+            ),
+
+            newline(),
+
+            code("        "),
+
+            fixed(
+                "return",
+                "return sends a value back from the function."
+            ),
+
+            code(' "Active"'),
+
+            newline(),
+
+
+            comment(
+                "# Count the sessions"
+            ),
+
+            newline(),
+
+            code("sessions = 3"),
+
+            newline(),
+
+
+            comment(
+                "# Repeat the sessions"
+            ),
+
+            newline(),
+
+            keyword("for"),
+
+            code(" session in "),
+
+            fixed(
+                "range",
+                "range() creates a sequence of numbers."
+            ),
+
+            code("(1, 4):"),
+
+            newline(),
+
+            code('    print("Session:", session)'),
+
+            newline(),
+
+
+            comment(
+                "# Check remaining sessions"
+            ),
+
+            newline(),
+
+            keyword("while"),
+
+            code(" sessions > 0:"),
+
+            newline(),
+
+            code('    print("Training")'),
+
+            newline(),
+
+            code("    sessions = sessions - 1"),
+
+            newline(),
+
+
+            comment(
+                "# Save the workout"
+            ),
+
+            newline(),
+
+            code(
+                'file = open("fitness_log.txt", "a")'
+            ),
+
+            newline(),
+
+            code(
+                'file.write("Workout completed\\n")'
+            ),
+
+            newline(),
+
+            code("file.close()"),
+
+            newline(),
+
+
+            comment(
+                "# Call the function"
+            ),
+
+            newline(),
+
+            code("result = "),
+
+            useName(
+                "functionName",
+                "Use the same function name you created above."
+            ),
+
+            code("(45)"),
+
+            newline(),
+
+            code('print("Result:", result)')
+
+        ]
+
+    },
+
+
+    // =================================================
+    // PROGRAM 2
+    // BOOKSTORE ORDER
+    // =================================================
+
+    {
+
+        parts: [
+
+            comment(
+                "# Define the function"
+            ),
+
+            newline(),
+
+            fixed(
+                "def",
+                "def begins a function definition."
+            ),
+
+            code(" "),
+
+            defineName(
+                "functionName",
+                "Choose a valid name for the function."
+            ),
+
+            code("("),
+
+            defineName(
+                "parameterName",
+                "Choose a valid parameter name."
+            ),
+
+            code("):"),
+
+            newline(),
+
+
+            comment(
+                "# Check the order"
+            ),
+
+            newline(),
+
+            code("    "),
+
+            keyword("if"),
+
+            code(" "),
+
+            useName(
+                "parameterName",
+                "Use the parameter name you defined earlier."
+            ),
+
+            code(" "),
+
+            fixed(
+                ">",
+                "> means greater than."
+            ),
+
+            code(" 0:"),
 
             newline(),
 
@@ -246,43 +447,95 @@ const codeBank = [
 
             newline(),
 
-            text("        "),
+            code("        "),
 
-            fixedBlank(
+            fixed(
                 "return",
                 "return sends a value back from the function."
             ),
 
-            text(' "Ready"'),
+            code(' "Order accepted"'),
 
             newline(),
 
 
             comment(
-                "# Repeat the rounds"
+                "# Count the orders"
             ),
 
             newline(),
 
-            fixedBlank(
-                "for",
-                "for begins a loop that goes through a sequence."
+            code("orders = 3"),
+
+            newline(),
+
+
+            comment(
+                "# Repeat each order"
             ),
 
-            text(" round_number in "),
+            newline(),
 
-            fixedBlank(
+            keyword("for"),
+
+            code(" order_number in "),
+
+            fixed(
                 "range",
-                "range() creates a sequence of numbers."
+                "range() creates a sequence used by the loop."
             ),
 
-            text("(1, 4):"),
+            code("(1, 4):"),
 
             newline(),
 
-            text(
-                '    print("Round:", round_number)'
+            code(
+                '    print("Order:", order_number)'
             ),
+
+            newline(),
+
+
+            comment(
+                "# Check remaining orders"
+            ),
+
+            newline(),
+
+            keyword("while"),
+
+            code(" orders > 0:"),
+
+            newline(),
+
+            code('    print("Processing")'),
+
+            newline(),
+
+            code("    orders = orders - 1"),
+
+            newline(),
+
+
+            comment(
+                "# Save the order"
+            ),
+
+            newline(),
+
+            code(
+                'file = open("orders.txt", "a")'
+            ),
+
+            newline(),
+
+            code(
+                'file.write("Order processed\\n")'
+            ),
+
+            newline(),
+
+            code("file.close()"),
 
             newline(),
 
@@ -293,201 +546,18 @@ const codeBank = [
 
             newline(),
 
-            text("result = "),
+            code("message = "),
 
-            identifierBlank(
-                "identifierUse",
+            useName(
                 "functionName",
-                "Use the same function name that you created earlier."
+                "Use the same function name you created above."
             ),
 
-            text("(85)"),
+            code("(2)"),
 
             newline(),
 
-            text(
-                'print("Result:", result)'
-            )
-
-        ]
-
-    },
-
-
-    // =================================================
-    // PROGRAM 2
-    // =================================================
-
-    {
-
-        parts: [
-
-            comment(
-                "# Define the function"
-            ),
-
-            newline(),
-
-            fixedBlank(
-                "def",
-                "def begins a Python function definition."
-            ),
-
-            text(" "),
-
-            identifierBlank(
-                "functionDef",
-                "functionName",
-                "Choose a valid function name. The same name must be used when the function is called."
-            ),
-
-            text("("),
-
-            identifierBlank(
-                "parameterDef",
-                "parameterName",
-                "Choose a valid parameter name."
-            ),
-
-            text("):"),
-
-            newline(),
-
-
-            comment(
-                "# Check the balance"
-            ),
-
-            newline(),
-
-            text("    "),
-
-            fixedBlank(
-                "if",
-                "if begins the conditional statement."
-            ),
-
-            text(" "),
-
-            identifierBlank(
-                "identifierUse",
-                "parameterName",
-                "Use the parameter name you defined above."
-            ),
-
-            text(" "),
-
-            fixedBlank(
-                "==",
-                "== checks whether two values are equal."
-            ),
-
-            text(" 0:"),
-
-            newline(),
-
-
-            comment(
-                "# Give the result"
-            ),
-
-            newline(),
-
-            text("        return "),
-
-            string(
-                '"Empty"'
-            ),
-
-            newline(),
-
-
-            comment(
-                "# Set the number of attempts"
-            ),
-
-            newline(),
-
-            text(""),
-
-            identifierBlank(
-                "variableDef",
-                "counterName",
-                "Choose a valid variable name for the counter."
-            ),
-
-            text(" = 3"),
-
-            newline(),
-
-
-            comment(
-                "# Repeat while attempts remain"
-            ),
-
-            newline(),
-
-            fixedBlank(
-                "while",
-                "while repeats code while its condition is true."
-            ),
-
-            text(" "),
-
-            identifierBlank(
-                "identifierUse",
-                "counterName",
-                "Use the same counter variable that you defined above."
-            ),
-
-            text(" > 0:"),
-
-            newline(),
-
-            text(
-                '    print("Checking")'
-            ),
-
-            newline(),
-
-            text(
-                "    "
-            ),
-
-            identifierBlank(
-                "identifierUse",
-                "counterName",
-                "Use the same counter variable consistently."
-            ),
-
-            text(" = "),
-
-            identifierBlank(
-                "identifierUse",
-                "counterName",
-                "Use the same counter variable consistently."
-            ),
-
-            text(" - 1"),
-
-            newline(),
-
-
-            comment(
-                "# Call the function"
-            ),
-
-            newline(),
-
-            text("message = "),
-
-            identifierBlank(
-                "identifierUse",
-                "functionName",
-                "Use the function name that you defined earlier."
-            ),
-
-            text("(0)")
+            code("print(message)")
 
         ]
 
@@ -496,6 +566,7 @@ const codeBank = [
 
     // =================================================
     // PROGRAM 3
+    // PLANT CARE
     // =================================================
 
     {
@@ -508,138 +579,154 @@ const codeBank = [
 
             newline(),
 
-            fixedBlank(
+            fixed(
                 "def",
-                "def begins a Python function definition."
+                "def begins a function definition."
             ),
 
-            text(" "),
+            code(" "),
 
-            identifierBlank(
-                "functionDef",
+            defineName(
                 "functionName",
                 "Choose a valid function name."
             ),
 
-            text("("),
+            code("("),
 
-            identifierBlank(
-                "parameterDef",
+            defineName(
                 "parameterName",
                 "Choose a valid parameter name."
             ),
 
-            text("):"),
+            code("):"),
 
             newline(),
 
 
             comment(
-                "# Check the quantity"
+                "# Check the water level"
             ),
 
             newline(),
 
-            text("    "),
+            code("    "),
 
-            fixedBlank(
-                "if",
-                "if begins the conditional statement."
-            ),
+            keyword("if"),
 
-            text(" "),
+            code(" "),
 
-            identifierBlank(
-                "identifierUse",
+            useName(
                 "parameterName",
-                "Use the parameter name you defined above."
+                "Use the parameter name defined above."
             ),
 
-            text(" "),
+            code(" "),
 
-            fixedBlank(
-                ">",
-                "> means greater than."
+            fixed(
+                "<",
+                "< means less than."
             ),
 
-            text(" 0:"),
+            code(" 20:"),
 
             newline(),
 
 
             comment(
-                "# Open the CSV file"
+                "# Return the message"
             ),
 
             newline(),
 
-            text(
-                '        file = '
+            code("        "),
+
+            fixed(
+                "return",
+                "return sends a value back from the function."
             ),
 
-            fixedBlank(
-                "open",
-                "open() opens or creates a file."
-            ),
-
-            text(
-                '("attendance.csv", "a")'
-            ),
+            code(' "Water needed"'),
 
             newline(),
 
 
             comment(
-                "# Save the record"
+                "# Count the plants"
             ),
 
             newline(),
 
-            text(
-                '        file.write(name + ",Present\\n")'
-            ),
-
-            newline(),
-
-
-            comment(
-                "# Close the file"
-            ),
-
-            newline(),
-
-            text(
-                "        file.close()"
-            ),
+            code("plants = 3"),
 
             newline(),
 
 
             comment(
-                "# Repeat the records"
+                "# Visit each plant"
             ),
 
             newline(),
 
-            fixedBlank(
-                "for",
-                "for begins a loop."
-            ),
+            keyword("for"),
 
-            text(" record in "),
+            code(" plant in "),
 
-            fixedBlank(
+            fixed(
                 "range",
-                "range() creates the sequence of record numbers."
+                "range() creates a sequence of numbers."
             ),
 
-            text("(1, 4):"),
+            code("(1, 4):"),
 
             newline(),
 
-            text(
-                '    print("Record:", record)'
+            code(
+                '    print("Plant:", plant)'
             ),
+
+            newline(),
+
+
+            comment(
+                "# Check remaining plants"
+            ),
+
+            newline(),
+
+            keyword("while"),
+
+            code(" plants > 0:"),
+
+            newline(),
+
+            code('    print("Checking")'),
+
+            newline(),
+
+            code("    plants = plants - 1"),
+
+            newline(),
+
+
+            comment(
+                "# Save the plant record"
+            ),
+
+            newline(),
+
+            code(
+                'file = open("plant_log.txt", "a")'
+            ),
+
+            newline(),
+
+            code(
+                'file.write("Plant checked\\n")'
+            ),
+
+            newline(),
+
+            code("file.close()"),
 
             newline(),
 
@@ -650,21 +737,18 @@ const codeBank = [
 
             newline(),
 
-            text("result = "),
+            code("status = "),
 
-            identifierBlank(
-                "identifierUse",
+            useName(
                 "functionName",
-                "Use the function name you created earlier."
+                "Use the function name you created above."
             ),
 
-            text('("Ana")'),
+            code("(15)"),
 
             newline(),
 
-            text(
-                'print("Saved:", result)'
-            )
+            code('print("Status:", status)')
 
         ]
 
@@ -673,6 +757,7 @@ const codeBank = [
 
     // =================================================
     // PROGRAM 4
+    // TRAVEL BUDGET
     // =================================================
 
     {
@@ -685,141 +770,152 @@ const codeBank = [
 
             newline(),
 
-            fixedBlank(
+            fixed(
                 "def",
-                "def begins a Python function definition."
+                "def begins a function definition."
             ),
 
-            text(" "),
+            code(" "),
 
-            identifierBlank(
-                "functionDef",
+            defineName(
                 "functionName",
-                "Choose a valid function name."
+                "Choose a valid name for the function."
             ),
 
-            text("("),
+            code("("),
 
-            identifierBlank(
-                "parameterDef",
+            defineName(
                 "parameterName",
                 "Choose a valid parameter name."
             ),
 
-            text("):"),
+            code("):"),
 
             newline(),
 
 
             comment(
-                "# Check the activity time"
+                "# Check the budget"
             ),
 
             newline(),
 
-            text("    "),
+            code("    "),
 
-            fixedBlank(
-                "if",
-                "if begins the conditional statement."
-            ),
+            keyword("if"),
 
-            text(" "),
+            code(" "),
 
-            identifierBlank(
-                "identifierUse",
+            useName(
                 "parameterName",
-                "Use the parameter name you defined above."
+                "Use the parameter name defined above."
             ),
 
-            text(" "),
+            code(" "),
 
-            fixedBlank(
-                "<=",
-                "<= means less than or equal to."
+            fixed(
+                ">=",
+                ">= means greater than or equal to."
             ),
 
-            text(" 15:"),
+            code(" 1000:"),
 
             newline(),
 
 
             comment(
-                "# Give the result"
+                "# Return the result"
             ),
 
             newline(),
 
-            text(
-                '        return "Short Session"'
+            code("        "),
+
+            fixed(
+                "return",
+                "return sends a result back from the function."
             ),
 
-            newline(),
-
-
-            comment(
-                "# Set the number of checks"
-            ),
-
-            newline(),
-
-            identifierBlank(
-                "variableDef",
-                "checkCount",
-                "Choose a valid variable name."
-            ),
-
-            text(" = 3"),
+            code(' "Trip approved"'),
 
             newline(),
 
 
             comment(
-                "# Repeat while checks remain"
+                "# Count the travel days"
             ),
 
             newline(),
 
-            fixedBlank(
-                "while",
-                "while repeats code while its condition is true."
-            ),
-
-            text(" "),
-
-            identifierBlank(
-                "identifierUse",
-                "checkCount",
-                "Use the same variable you defined above."
-            ),
-
-            text(" > 0:"),
+            code("days = 3"),
 
             newline(),
 
-            text(
-                '    print("Checking activity")'
+
+            comment(
+                "# Display each day"
             ),
 
             newline(),
 
-            text("    "),
+            keyword("for"),
 
-            identifierBlank(
-                "identifierUse",
-                "checkCount",
-                "Use the same counter variable consistently."
+            code(" day in "),
+
+            fixed(
+                "range",
+                "range() creates a sequence for the loop."
             ),
 
-            text(" = "),
+            code("(1, 4):"),
 
-            identifierBlank(
-                "identifierUse",
-                "checkCount",
-                "Use the same counter variable consistently."
+            newline(),
+
+            code('    print("Day:", day)'),
+
+            newline(),
+
+
+            comment(
+                "# Check remaining days"
             ),
 
-            text(" - 1"),
+            newline(),
+
+            keyword("while"),
+
+            code(" days > 0:"),
+
+            newline(),
+
+            code('    print("Planning")'),
+
+            newline(),
+
+            code("    days = days - 1"),
+
+            newline(),
+
+
+            comment(
+                "# Save the travel plan"
+            ),
+
+            newline(),
+
+            code(
+                'file = open("travel_plan.txt", "a")'
+            ),
+
+            newline(),
+
+            code(
+                'file.write("Trip planned\\n")'
+            ),
+
+            newline(),
+
+            code("file.close()"),
 
             newline(),
 
@@ -830,21 +926,18 @@ const codeBank = [
 
             newline(),
 
-            text("result = "),
+            code("decision = "),
 
-            identifierBlank(
-                "identifierUse",
+            useName(
                 "functionName",
-                "Use the function name you created earlier."
+                "Use the same function name you defined above."
             ),
 
-            text("(10)"),
+            code("(1500)"),
 
             newline(),
 
-            text(
-                'print("Result:", result)'
-            )
+            code('print("Decision:", decision)')
 
         ]
 
@@ -853,6 +946,7 @@ const codeBank = [
 
     // =================================================
     // PROGRAM 5
+    // SCHOOL EVENT
     // =================================================
 
     {
@@ -865,133 +959,154 @@ const codeBank = [
 
             newline(),
 
-            fixedBlank(
+            fixed(
                 "def",
-                "def begins a Python function definition."
+                "def begins a function definition."
             ),
 
-            text(" "),
+            code(" "),
 
-            identifierBlank(
-                "functionDef",
+            defineName(
                 "functionName",
                 "Choose a valid function name."
             ),
 
-            text("("),
+            code("("),
 
-            identifierBlank(
-                "parameterDef",
+            defineName(
                 "parameterName",
                 "Choose a valid parameter name."
             ),
 
-            text("):"),
+            code("):"),
 
             newline(),
 
 
             comment(
-                "# Check the points"
+                "# Check the number of guests"
             ),
 
             newline(),
 
-            text("    "),
+            code("    "),
 
-            fixedBlank(
-                "if",
-                "if begins the conditional statement."
-            ),
+            keyword("if"),
 
-            text(" "),
+            code(" "),
 
-            identifierBlank(
-                "identifierUse",
+            useName(
                 "parameterName",
-                "Use the parameter name you defined above."
+                "Use the parameter name defined in the function header."
             ),
 
-            text(" "),
+            code(" "),
 
-            fixedBlank(
-                "!=",
-                "!= means not equal to."
+            fixed(
+                ">",
+                "> means greater than."
             ),
 
-            text(" 0:"),
+            code(" 50:"),
 
             newline(),
 
 
             comment(
-                "# Return the status"
+                "# Return the result"
             ),
 
             newline(),
 
-            text("        "),
+            code("        "),
 
-            fixedBlank(
+            fixed(
                 "return",
                 "return sends a value back from the function."
             ),
 
-            text(' "Active"'),
+            code(' "Large Event"'),
 
             newline(),
 
 
             comment(
-                "# Save the progress"
+                "# Count the activities"
             ),
 
             newline(),
 
-            text(
-                'file = open("progress.txt", "w")'
-            ),
-
-            newline(),
-
-            text(
-                'file.write("Progress recorded\\n")'
-            ),
-
-            newline(),
-
-            text(
-                "file.close()"
-            ),
+            code("activities = 3"),
 
             newline(),
 
 
             comment(
-                "# Repeat the days"
+                "# Repeat the activities"
             ),
 
             newline(),
 
-            fixedBlank(
-                "for",
-                "for begins a loop."
-            ),
+            keyword("for"),
 
-            text(" day in "),
+            code(" activity in "),
 
-            fixedBlank(
+            fixed(
                 "range",
                 "range() creates a sequence of numbers."
             ),
 
-            text("(1, 4):"),
+            code("(1, 4):"),
 
             newline(),
 
-            text(
-                '    print("Day:", day)'
+            code(
+                '    print("Activity:", activity)'
             ),
+
+            newline(),
+
+
+            comment(
+                "# Check remaining activities"
+            ),
+
+            newline(),
+
+            keyword("while"),
+
+            code(" activities > 0:"),
+
+            newline(),
+
+            code('    print("Preparing")'),
+
+            newline(),
+
+            code("    activities = activities - 1"),
+
+            newline(),
+
+
+            comment(
+                "# Save the event record"
+            ),
+
+            newline(),
+
+            code(
+                'file = open("event_log.txt", "a")'
+            ),
+
+            newline(),
+
+            code(
+                'file.write("Event prepared\\n")'
+            ),
+
+            newline(),
+
+            code("file.close()"),
 
             newline(),
 
@@ -1002,21 +1117,18 @@ const codeBank = [
 
             newline(),
 
-            text("result = "),
+            code("result = "),
 
-            identifierBlank(
-                "identifierUse",
+            useName(
                 "functionName",
-                "Use the function name you created earlier."
+                "Use the same function name you created above."
             ),
 
-            text("(20)"),
+            code("(65)"),
 
             newline(),
 
-            text(
-                'print("Status:", result)'
-            )
+            code('print("Result:", result)')
 
         ]
 
@@ -1076,9 +1188,9 @@ function shuffle(array) {
 // COUNT BLANKS
 // =====================================================
 
-function countBlanks(code) {
+function countBlanks(program) {
 
-    return code.parts.filter(
+    return program.parts.filter(
         part =>
             part.type === "blank"
     ).length;
@@ -1087,30 +1199,31 @@ function countBlanks(code) {
 
 
 // =====================================================
-// VALIDATE QUESTION BANK
+// CHECK ALL PROGRAMS
 // =====================================================
 
-function validateQuestionBank() {
+function validatePrograms() {
 
     let valid = true;
 
 
     codeBank.forEach(
         (
-            code,
+            program,
             index
         ) => {
 
             const count =
-                countBlanks(code);
+                countBlanks(
+                    program
+                );
 
 
             console.log(
                 "Program " +
                 (index + 1) +
-                ": " +
-                count +
-                " blanks"
+                " blanks:",
+                count
             );
 
 
@@ -1121,7 +1234,7 @@ function validateQuestionBank() {
                 console.error(
                     "Program " +
                     (index + 1) +
-                    " does not have exactly 10 blanks."
+                    " must contain exactly 10 blanks."
                 );
 
 
@@ -1139,31 +1252,18 @@ function validateQuestionBank() {
 
 
 // =====================================================
-// START TEST II
+// START TEST
 // =====================================================
 
 function startTest2() {
 
-    validateQuestionBank();
+    validatePrograms();
 
 
     selectedCode =
         shuffle(
             [...codeBank]
         )[0];
-
-
-    console.log(
-        "Test II program selected."
-    );
-
-
-    console.log(
-        "Blanks:",
-        countBlanks(
-            selectedCode
-        )
-    );
 
 
     studentAnswers = [];
@@ -1173,16 +1273,68 @@ function startTest2() {
     testSubmitted = false;
 
 
+    console.log(
+        "Selected Test II program."
+    );
+
+
+    console.log(
+        "Number of blanks:",
+        countBlanks(
+            selectedCode
+        )
+    );
+
+
     displayQuestions();
 
 }
 
 
 // =====================================================
-// CREATE CODE SPAN
+// VALID IDENTIFIER
 // =====================================================
 
-function createCodeSpan(
+function isValidIdentifier(
+    value
+) {
+
+    const pattern =
+        /^[A-Za-z_][A-Za-z0-9_]*$/;
+
+
+    if (
+        !pattern.test(
+            value
+        )
+    ) {
+
+        return false;
+
+    }
+
+
+    if (
+        pythonKeywords.has(
+            value
+        )
+    ) {
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+// =====================================================
+// CREATE PYTHON SPAN
+// =====================================================
+
+function createPythonSpan(
     type,
     value
 ) {
@@ -1232,7 +1384,7 @@ function createCodeSpan(
     else {
 
         span.className =
-            "py-text";
+            "py-code";
 
     }
 
@@ -1250,7 +1402,7 @@ function createCodeSpan(
 // CREATE BLANK
 // =====================================================
 
-function createBlankInput(
+function createBlank(
     part,
     index
 ) {
@@ -1269,48 +1421,19 @@ function createBlankInput(
         "code-blank";
 
 
+    input.dataset.index =
+        index;
+
+
     input.autocomplete =
         "off";
 
 
-    input.dataset.blank =
-        index;
-
-
-    input.dataset.kind =
-        part.kind;
-
-
-    if (
-        part.name
-    ) {
-
-        input.dataset.name =
-            part.name;
-
-    }
-
-
-    // Set width based on answer type.
-
     if (
         part.kind ===
-        "functionDef" ||
+        "define" ||
         part.kind ===
-        "parameterDef" ||
-        part.kind ===
-        "variableDef"
-    ) {
-
-        input.classList.add(
-            "identifier-blank"
-        );
-
-    }
-
-    else if (
-        part.kind ===
-        "identifierUse"
+        "use"
     ) {
 
         input.classList.add(
@@ -1322,7 +1445,7 @@ function createBlankInput(
     else {
 
         input.classList.add(
-            "short-blank"
+            "syntax-blank"
         );
 
     }
@@ -1334,7 +1457,7 @@ function createBlankInput(
 
 
 // =====================================================
-// DISPLAY QUESTIONS
+// DISPLAY PROGRAM
 // =====================================================
 
 function displayQuestions() {
@@ -1404,8 +1527,6 @@ function displayQuestions() {
     selectedCode.parts.forEach(
         part => {
 
-            // New line
-
             if (
                 part.type ===
                 "newline"
@@ -1423,15 +1544,13 @@ function displayQuestions() {
             }
 
 
-            // Blank
-
             if (
                 part.type ===
                 "blank"
             ) {
 
                 const input =
-                    createBlankInput(
+                    createBlank(
                         part,
                         blankIndex
                     );
@@ -1450,10 +1569,8 @@ function displayQuestions() {
             }
 
 
-            // Normal code
-
             codeArea.appendChild(
-                createCodeSpan(
+                createPythonSpan(
                     part.type,
                     part.value
                 )
@@ -1472,62 +1589,73 @@ function displayQuestions() {
         editor
     );
 
+}
 
-    addStyles();
+
+// =====================================================
+// READ ANSWERS
+// =====================================================
+
+function readAnswers() {
+
+    const inputs =
+        document.querySelectorAll(
+            ".code-blank"
+        );
+
+
+    if (
+        inputs.length !== 10
+    ) {
+
+        alert(
+            "There is a problem with this reviewer. Please inform your teacher."
+        );
+
+
+        console.error(
+            "Expected 10 blanks. Found:",
+            inputs.length
+        );
+
+
+        return null;
+
+    }
+
+
+    const answers = [];
+
+
+    inputs.forEach(
+        input => {
+
+            answers.push(
+                input.value.trim()
+            );
+
+        }
+    );
+
+
+    return answers;
 
 }
 
 
 // =====================================================
-// VALIDATE IDENTIFIER
+// EVALUATE ANSWERS
 // =====================================================
 
-function isValidIdentifier(
-    value
+function evaluateAnswers(
+    answers
 ) {
 
-    // Python identifier pattern.
+    const results = [];
 
-    const pattern =
-        /^[A-Za-z_][A-Za-z0-9_]*$/;
-
-
-    if (
-        !pattern.test(
-            value
-        )
-    ) {
-
-        return false;
-
-    }
-
-
-    if (
-        pythonKeywords.has(
-            value
-        )
-    ) {
-
-        return false;
-
-    }
-
-
-    return true;
-
-}
-
-
-// =====================================================
-// CHECK ANSWERS
-// =====================================================
-
-function evaluateAnswers() {
 
     symbolTable = {};
 
-    const results = [];
 
     let blankIndex = 0;
 
@@ -1546,7 +1674,7 @@ function evaluateAnswers() {
 
 
             const studentAnswer =
-                studentAnswers[
+                answers[
                     blankIndex
                 ];
 
@@ -1588,12 +1716,12 @@ function evaluateAnswers() {
 
 
             // -----------------------------------------
-            // FUNCTION NAME
+            // DEFINE NAME
             // -----------------------------------------
 
             else if (
                 part.kind ===
-                "functionDef"
+                "define"
             ) {
 
                 if (
@@ -1611,8 +1739,9 @@ function evaluateAnswers() {
                     correct =
                         true;
 
+
                     feedback =
-                        "Your function name is valid.";
+                        "This is a valid Python identifier.";
 
                 }
 
@@ -1621,8 +1750,9 @@ function evaluateAnswers() {
                     correct =
                         false;
 
+
                     feedback =
-                        "Use a valid Python identifier for the function name.";
+                        "Use a valid Python identifier: no spaces, no hyphens, and do not begin with a number.";
 
                 }
 
@@ -1630,96 +1760,12 @@ function evaluateAnswers() {
 
 
             // -----------------------------------------
-            // PARAMETER NAME
+            // USE NAME
             // -----------------------------------------
 
             else if (
                 part.kind ===
-                "parameterDef"
-            ) {
-
-                if (
-                    isValidIdentifier(
-                        studentAnswer
-                    )
-                ) {
-
-                    symbolTable[
-                        part.name
-                    ] =
-                        studentAnswer;
-
-
-                    correct =
-                        true;
-
-                    feedback =
-                        "Your parameter name is valid.";
-
-                }
-
-                else {
-
-                    correct =
-                        false;
-
-                    feedback =
-                        "Use a valid Python identifier for the parameter.";
-
-                }
-
-            }
-
-
-            // -----------------------------------------
-            // VARIABLE NAME
-            // -----------------------------------------
-
-            else if (
-                part.kind ===
-                "variableDef"
-            ) {
-
-                if (
-                    isValidIdentifier(
-                        studentAnswer
-                    )
-                ) {
-
-                    symbolTable[
-                        part.name
-                    ] =
-                        studentAnswer;
-
-
-                    correct =
-                        true;
-
-                    feedback =
-                        "Your variable name is valid.";
-
-                }
-
-                else {
-
-                    correct =
-                        false;
-
-                    feedback =
-                        "Use a valid Python identifier for the variable.";
-
-                }
-
-            }
-
-
-            // -----------------------------------------
-            // IDENTIFIER USE
-            // -----------------------------------------
-
-            else if (
-                part.kind ===
-                "identifierUse"
+                "use"
             ) {
 
                 const expected =
@@ -1741,6 +1787,7 @@ function evaluateAnswers() {
                     correct =
                         true;
 
+
                     feedback =
                         "The name matches the identifier you defined earlier.";
 
@@ -1757,16 +1804,16 @@ function evaluateAnswers() {
                     ) {
 
                         feedback =
-                            "You defined this identifier earlier as \"" +
+                            'You defined this name earlier as "' +
                             expected +
-                            "\". Use that same name here.";
+                            '". Use the same name here.';
 
                     }
 
                     else {
 
                         feedback =
-                            "Use the identifier you defined earlier in the code.";
+                            "Use the identifier you defined earlier.";
 
                     }
 
@@ -1783,18 +1830,12 @@ function evaluateAnswers() {
                 correct:
                     correct,
 
-                correctAnswer:
-                    part.answer ||
-                    (
-                        part.name
-                            ? symbolTable[
-                                part.name
-                            ]
-                            : ""
-                    ),
-
-                kind:
-                    part.kind,
+                expected:
+                    part.kind === "fixed"
+                        ? part.answer
+                        : symbolTable[
+                            part.name
+                        ] || "",
 
                 explanation:
                     feedback
@@ -1814,57 +1855,26 @@ function evaluateAnswers() {
 
 
 // =====================================================
-// SUBMIT TEST II
+// SUBMIT
 // =====================================================
 
 function submitTest2() {
 
-    const inputs =
-        document.querySelectorAll(
-            ".code-blank"
-        );
+    const answers =
+        readAnswers();
 
-
-    // Make sure there are 10.
 
     if (
-        inputs.length !== 10
+        answers === null
     ) {
-
-        alert(
-            "There is a problem with this reviewer. Please inform your teacher."
-        );
-
-
-        console.error(
-            "Expected 10 blanks but found:",
-            inputs.length
-        );
-
 
         return;
 
     }
 
 
-    studentAnswers = [];
-
-
-    inputs.forEach(
-        input => {
-
-            studentAnswers.push(
-                input.value.trim()
-            );
-
-        }
-    );
-
-
-    // Check empty answers.
-
     const unanswered =
-        studentAnswers.filter(
+        answers.filter(
             answer =>
                 answer === ""
         ).length;
@@ -1897,10 +1907,14 @@ function submitTest2() {
     }
 
 
-    // Evaluate the code.
+    studentAnswers =
+        answers;
+
 
     const results =
-        evaluateAnswers();
+        evaluateAnswers(
+            answers
+        );
 
 
     let score = 0;
@@ -1941,36 +1955,22 @@ function submitTest2() {
     );
 
 
-    const button =
+    const submitButton =
         document.getElementById(
             "submitBtn"
         );
 
 
-    if (button) {
+    if (
+        submitButton
+    ) {
 
-        button.disabled =
+        submitButton.disabled =
             true;
 
 
-        button.textContent =
+        submitButton.textContent =
             "TEST SUBMITTED";
-
-    }
-
-
-    const scoreArea =
-        document.getElementById(
-            "scoreArea"
-        );
-
-
-    if (scoreArea) {
-
-        scoreArea.scrollIntoView({
-            behavior:
-                "smooth"
-        });
 
     }
 
@@ -2002,32 +2002,17 @@ function showScore(
         "block";
 
 
-    const finalScore =
-        document.getElementById(
-            "finalScore"
-        );
-
-
-    if (finalScore) {
-
-        finalScore.textContent =
-            score +
-            " / 10";
-
-    }
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        score +
+        " / 10";
 
 
     const message =
         document.getElementById(
             "scoreMessage"
         );
-
-
-    if (!message) {
-
-        return;
-
-    }
 
 
     if (
@@ -2044,7 +2029,7 @@ function showScore(
     ) {
 
         message.textContent =
-            "Very good. Review the parts that need correction.";
+            "Very good. Review the parts you missed.";
 
     }
 
@@ -2053,7 +2038,7 @@ function showScore(
     ) {
 
         message.textContent =
-            "Good effort. Study the feedback on the incorrect parts.";
+            "Good effort. Study the feedback carefully.";
 
     }
 
@@ -2063,6 +2048,12 @@ function showScore(
             "Keep practicing. Review each correction carefully.";
 
     }
+
+
+    scoreArea.scrollIntoView({
+        behavior:
+            "smooth"
+    });
 
 }
 
@@ -2095,7 +2086,7 @@ function displayResults(
 
 
     instruction.textContent =
-        "Correct answers are green. Click a red answer to review it.";
+        "Correct answers are shown in green. Click a red answer to review it.";
 
 
     container.appendChild(
@@ -2210,7 +2201,7 @@ function displayResults(
 
 
                     answer.title =
-                        "Click to review";
+                        "Click for feedback";
 
 
                     answer.addEventListener(
@@ -2242,7 +2233,7 @@ function displayResults(
 
 
             codeArea.appendChild(
-                createCodeSpan(
+                createPythonSpan(
                     part.type,
                     part.value
                 )
@@ -2265,7 +2256,7 @@ function displayResults(
 
 
 // =====================================================
-// SHOW FEEDBACK
+// FEEDBACK
 // =====================================================
 
 function showExplanation(
@@ -2279,7 +2270,9 @@ function showExplanation(
         );
 
 
-    if (old) {
+    if (
+        old
+    ) {
 
         old.remove();
 
@@ -2314,10 +2307,8 @@ function showExplanation(
         "×";
 
 
-    close.addEventListener(
-        "click",
-        closeExplanation
-    );
+    close.onclick =
+        closeExplanation;
 
 
     box.appendChild(
@@ -2359,24 +2350,24 @@ function showExplanation(
 
 
     if (
-        result.correctAnswer
+        result.expected
     ) {
 
-        const correct =
+        const expected =
             document.createElement(
                 "p"
             );
 
 
-        correct.innerHTML =
+        expected.innerHTML =
             "<strong>Expected here:</strong> " +
             escapeHTML(
-                result.correctAnswer
+                result.expected
             );
 
 
         box.appendChild(
-            correct
+            expected
         );
 
     }
@@ -2420,7 +2411,9 @@ function closeExplanation() {
         );
 
 
-    if (box) {
+    if (
+        box
+    ) {
 
         box.remove();
 
@@ -2551,14 +2544,14 @@ function escapeHTML(
 
 
 // =====================================================
-// STYLES
+// PYTHON IDE STYLES
 // =====================================================
 
-function addStyles() {
+function addTest2Styles() {
 
     if (
         document.getElementById(
-            "test2Styles"
+            "test2IdeStyles"
         )
     ) {
 
@@ -2574,158 +2567,188 @@ function addStyles() {
 
 
     style.id =
-        "test2Styles";
+        "test2IdeStyles";
 
 
     style.textContent = `
 
         .python-editor {
 
-            background: #1e1e1e;
-
-            border-radius: 12px;
-
-            overflow: hidden;
-
             margin-top: 20px;
 
-            border: 1px solid #333;
+            background:
+                #1e1e1e;
+
+            border-radius:
+                12px;
+
+            overflow:
+                hidden;
 
             box-shadow:
-                0 5px 20px rgba(0,0,0,0.15);
+                0 6px 20px
+                rgba(0,0,0,0.18);
 
         }
 
 
         .python-editor-header {
 
-            background: #252526;
+            padding:
+                8px 16px;
 
-            color: #aaa;
+            background:
+                #252526;
 
-            padding: 8px 15px;
+            color:
+                #aaaaaa;
 
             font-family:
                 Consolas,
                 "Courier New",
                 monospace;
 
-            font-size: 12px;
+            font-size:
+                12px;
 
-            letter-spacing: 1px;
+            letter-spacing:
+                1px;
 
         }
 
 
         .python-code {
 
-            padding: 22px;
+            padding:
+                22px;
 
-            color: #d4d4d4;
+            color:
+                #d4d4d4;
 
             font-family:
                 Consolas,
                 "Courier New",
                 monospace;
 
-            font-size: 16px;
+            font-size:
+                16px;
 
-            line-height: 1.85;
+            line-height:
+                1.8;
 
-            white-space: pre-wrap;
+            white-space:
+                pre-wrap;
 
-            overflow-x: auto;
+            overflow-x:
+                auto;
 
         }
 
 
         .py-keyword {
 
-            color: #569cd6;
+            color:
+                #569cd6;
 
         }
 
 
         .py-string {
 
-            color: #ce9178;
+            color:
+                #ce9178;
 
         }
 
 
         .py-number {
 
-            color: #b5cea8;
+            color:
+                #b5cea8;
 
         }
 
 
         .py-comment {
 
-            color: #6a9955;
+            color:
+                #6a9955;
 
         }
 
 
-        .py-text {
+        .py-code {
 
-            color: #d4d4d4;
+            color:
+                #d4d4d4;
 
         }
 
 
         .code-blank {
 
-            height: 28px;
-
-            margin:
-                0 3px;
+            height:
+                29px;
 
             padding:
-                2px 6px;
+                2px 7px;
 
-            border-radius: 5px;
+            margin:
+                0 2px;
+
+            vertical-align:
+                middle;
 
             border:
-                2px solid #777;
+                2px solid
+                #888888;
 
-            background: #ffffff;
+            border-radius:
+                5px;
 
-            color: #111;
+            background:
+                #ffffff;
+
+            color:
+                #111111;
 
             font-family:
                 Consolas,
                 "Courier New",
                 monospace;
 
-            font-size: 14px;
+            font-size:
+                14px;
 
-            text-align: center;
+            text-align:
+                center;
 
-            vertical-align: middle;
-
-            outline: none;
+            outline:
+                none;
 
         }
 
 
         .identifier-blank {
 
-            width: 125px;
+            width:
+                125px;
 
         }
 
 
-        .short-blank {
+        .syntax-blank {
 
-            width: 58px;
+            width:
+                52px;
 
         }
 
 
         .code-blank:focus {
 
-            border-color: #4da3ff;
+            border-color:
+                #4da3ff;
 
             box-shadow:
                 0 0 0 2px
@@ -2736,7 +2759,8 @@ function addStyles() {
 
         .submitted-answer {
 
-            display: inline-block;
+            display:
+                inline-block;
 
             padding:
                 1px 6px;
@@ -2744,106 +2768,123 @@ function addStyles() {
             margin:
                 0 2px;
 
-            border-radius: 4px;
+            border-radius:
+                4px;
 
-            font-weight: bold;
+            font-weight:
+                bold;
 
         }
 
 
         .answer-correct {
 
-            background: #166534;
+            background:
+                #166534;
 
-            color: #dcfce7;
+            color:
+                #dcfce7;
 
         }
 
 
         .answer-wrong {
 
-            background: #991b1b;
+            background:
+                #991b1b;
 
-            color: #fee2e2;
+            color:
+                #fee2e2;
 
-            cursor: pointer;
+            cursor:
+                pointer;
 
         }
 
 
         .answer-wrong:hover {
 
-            background: #dc2626;
+            background:
+                #dc2626;
 
         }
 
 
         .code-explanation {
 
-            position: fixed;
+            position:
+                fixed;
 
-            right: 25px;
+            right:
+                25px;
 
-            bottom: 25px;
+            bottom:
+                25px;
 
-            width: 360px;
+            width:
+                360px;
 
-            max-width: calc(100vw - 40px);
+            max-width:
+                calc(100vw - 40px);
 
-            background: white;
+            background:
+                white;
 
-            color: #222;
+            color:
+                #222222;
 
-            padding: 20px;
+            padding:
+                20px;
 
-            border-radius: 12px;
+            border-radius:
+                12px;
 
             box-shadow:
                 0 8px 30px
                 rgba(0,0,0,0.25);
 
-            z-index: 9999;
+            z-index:
+                9999;
 
         }
 
 
         .close-explanation {
 
-            position: absolute;
+            float:
+                right;
 
-            right: 10px;
+            border:
+                none;
 
-            top: 8px;
+            background:
+                transparent;
 
-            border: none;
+            font-size:
+                22px;
 
-            background: transparent;
-
-            font-size: 22px;
-
-            cursor: pointer;
-
-        }
-
-
-        .code-explanation h3 {
-
-            margin-top: 0;
+            cursor:
+                pointer;
 
         }
 
 
         .explanation-text {
 
-            margin-top: 12px;
+            margin-top:
+                12px;
 
-            padding: 12px;
+            padding:
+                12px;
 
-            background: #eef4ff;
+            background:
+                #eef4ff;
 
-            border-radius: 8px;
+            border-radius:
+                8px;
 
-            line-height: 1.5;
+            line-height:
+                1.5;
 
         }
 
@@ -2854,36 +2895,27 @@ function addStyles() {
 
             .python-code {
 
-                font-size: 13px;
+                font-size:
+                    13px;
 
-                padding: 14px;
+                padding:
+                    14px;
 
             }
 
 
             .identifier-blank {
 
-                width: 100px;
+                width:
+                    100px;
 
             }
 
 
-            .short-blank {
+            .syntax-blank {
 
-                width: 50px;
-
-            }
-
-
-            .code-explanation {
-
-                left: 15px;
-
-                right: 15px;
-
-                bottom: 15px;
-
-                width: auto;
+                width:
+                    45px;
 
             }
 
@@ -2907,11 +2939,11 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        // Add the code-editor styles.
-        addStyles();
+        addTest2Styles();
 
 
-        // Get student information.
+        // Load student information.
+
         const studentName =
             localStorage.getItem(
                 "studentName"
@@ -2924,7 +2956,6 @@ document.addEventListener(
             );
 
 
-        // Display student name.
         const nameElement =
             document.getElementById(
                 "studentName"
@@ -2942,7 +2973,6 @@ document.addEventListener(
         }
 
 
-        // Display student section.
         const sectionElement =
             document.getElementById(
                 "studentSection"
@@ -2960,18 +2990,22 @@ document.addEventListener(
         }
 
 
-        // Start Test II.
+        // Start the reviewer.
+
         startTest2();
 
 
         // Connect submit button.
+
         const submitButton =
             document.getElementById(
                 "submitBtn"
             );
 
 
-        if (submitButton) {
+        if (
+            submitButton
+        ) {
 
             submitButton.addEventListener(
                 "click",
