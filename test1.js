@@ -1,4 +1,23 @@
 // ==========================================
+// STUDENT SESSION
+// ==========================================
+
+const studentName =
+    localStorage.getItem(
+        "studentName"
+    ) || "Student";
+
+const studentSection =
+    localStorage.getItem(
+        "studentSection"
+    ) || "";
+
+const attemptId =
+    localStorage.getItem(
+        "attemptId"
+    ) || "";
+
+// ==========================================
 // TEST I - PYTHON REVIEWER
 // ==========================================
 
@@ -862,6 +881,36 @@ function retakeTest() {
 document.addEventListener(
     "DOMContentLoaded",
     function() {
+
+        // Display student information
+        // in Test I.
+
+        const nameElement =
+            document.getElementById(
+                "studentName"
+            );
+
+        const sectionElement =
+            document.getElementById(
+                "studentSection"
+            );
+
+
+        if (nameElement) {
+
+            nameElement.textContent =
+                studentName;
+
+        }
+
+
+        if (sectionElement) {
+
+            sectionElement.textContent =
+                studentSection;
+
+        }
+
 
         startTest();
 
