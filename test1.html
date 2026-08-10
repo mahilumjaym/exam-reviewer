@@ -1,140 +1,1130 @@
-<!DOCTYPE html>
-<html lang="en">
+// ==========================================
+// TEST I - PYTHON REVIEWER
+// 30-QUESTION BANK / 10 RANDOM QUESTIONS
+// ==========================================
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Test I - Python Reviewer</title>
-
-    <link rel="stylesheet" href="style.css">
-
-</head>
+const QUESTIONS_PER_TEST = 10;
 
 
-<body>
+// ==========================================
+// QUESTION BANK
+// ==========================================
+// The reviewer follows the same competencies
+// as the quarterly exam, but uses different
+// situations, wording, and code examples.
+// ==========================================
 
-<div class="exam-container">
+const questionBank = [
+
+    // ------------------------------------------
+    // VARIABLES / PYTHON SYNTAX
+    // ------------------------------------------
+
+    {
+        question:
+            "A program stores the number of completed orders in completed = 12. Which line would display the value stored in completed rather than the word itself?",
+        options: [
+            "print(completed)",
+            "print('completed')",
+            "display(completed)",
+            "show(completed)"
+        ],
+        answer: 0,
+        topic: "Variables and Output",
+        explanation:
+            "A variable is displayed by placing its name inside print(). Quotation marks would make Python treat the word as text."
+    },
+
+    {
+        question:
+            "Which assignment would make temperature hold the decimal value 28.5?",
+        options: [
+            "temperature == 28.5",
+            "temperature = 28.5",
+            "28.5 = temperature",
+            "temperature : 28.5"
+        ],
+        answer: 1,
+        topic: "Variables",
+        explanation:
+            "The single equal sign assigns a value to a variable. The value 28.5 is a floating-point number."
+    },
+
+    {
+        question:
+            "A student wants one variable to store the text \"Grade 10\". Which statement correctly creates it?",
+        options: [
+            "level = Grade 10",
+            "level = 'Grade 10'",
+            "'level' = 'Grade 10'",
+            "level == 'Grade 10'"
+        ],
+        answer: 1,
+        topic: "Strings and Variables",
+        explanation:
+            "Text values are strings, so the text must be enclosed in quotation marks before being assigned to a variable."
+    },
+
+    {
+        question:
+            "Which statement would cause Python to treat 25 as text instead of a number?",
+        options: [
+            "score = 25",
+            "score = 25.0",
+            "score = '25'",
+            "score = int(25)"
+        ],
+        answer: 2,
+        topic: "Data Types",
+        explanation:
+            "Putting 25 inside quotation marks makes it a string rather than a numeric value."
+    },
+
+    {
+        question:
+            "A programmer changes total = 15 to total = total + 5. What is the value of total afterward?",
+        options: [
+            "5",
+            "15",
+            "20",
+            "25"
+        ],
+        answer: 2,
+        topic: "Variables and Assignment",
+        explanation:
+            "Python first uses the current value of total, 15, adds 5, and assigns the result back to total."
+    },
+
+    {
+        question:
+            "Which name would be the clearest valid identifier for the number of students present?",
+        options: [
+            "number-of-students",
+            "student count",
+            "student_count",
+            "2nd_count"
+        ],
+        answer: 2,
+        topic: "Identifiers",
+        explanation:
+            "student_count is a valid identifier because it uses letters and an underscore and does not begin with a number."
+    },
+
+    {
+        question:
+            "Consider: city = 'Zamboanga'. Which statement displays the value stored in city?",
+        options: [
+            "print(city)",
+            "print('city')",
+            "print(\"'city'\")",
+            "display(city)"
+        ],
+        answer: 0,
+        topic: "Variables and Output",
+        explanation:
+            "print(city) displays the value stored in city. Quotation marks around city would instead display the literal word city."
+    },
+
+    {
+        question:
+            "Which line changes the value of score from 40 to 50?",
+        options: [
+            "score == 50",
+            "score = 50",
+            "50 = score",
+            "score : 50"
+        ],
+        answer: 1,
+        topic: "Assignment",
+        explanation:
+            "The assignment operator = gives a new value to a variable. The == operator is used for comparison."
+    },
 
 
-    <!-- ==========================================
-         HEADER
-         ========================================== -->
+    // ------------------------------------------
+    // CONDITIONALS
+    // ------------------------------------------
 
-    <div class="exam-header">
+    {
+        question:
+            "A program should display 'Eligible' when age is at least 18. Which condition expresses the requirement?",
+        options: [
+            "age < 18",
+            "age > 18",
+            "age >= 18",
+            "age == 18"
+        ],
+        answer: 2,
+        topic: "Conditional Operators",
+        explanation:
+            "At least 18 includes 18 and every value greater than 18, so >= is the appropriate comparison."
+    },
 
-        <div>
+    {
+        question:
+            "A student passes when the grade is 75 or higher. Which condition correctly identifies a grade of 82 as passing?",
+        options: [
+            "grade <= 75",
+            "grade >= 75",
+            "grade < 75",
+            "grade == 75"
+        ],
+        answer: 1,
+        topic: "Conditional Operators",
+        explanation:
+            "A passing grade is 75 or higher, so the condition must accept 75 and values above it."
+    },
 
-            <h1>TEST I</h1>
+    {
+        question:
+            "Which structure is most appropriate when exactly one of two messages should be displayed depending on whether a condition is true or false?",
+        options: [
+            "if only",
+            "if-else",
+            "elif only",
+            "nested loop"
+        ],
+        answer: 1,
+        topic: "Types of Conditionals",
+        explanation:
+            "An if-else structure provides two possible paths: one when the condition is true and another when it is false."
+    },
 
-            <p>Python Fundamentals</p>
+    {
+        question:
+            "A program checks a student's grade. If it is 90 or above it displays 'Excellent'; otherwise, it displays 'Keep practicing'. Which keyword supplies the second case?",
+        options: [
+            "elif",
+            "else",
+            "for",
+            "while"
+        ],
+        answer: 1,
+        topic: "if-else",
+        explanation:
+            "The else block provides the alternative path when the preceding if condition is false."
+    },
 
-        </div>
+    {
+        question:
+            "What happens when Python reaches an elif after the preceding if condition was false?",
+        options: [
+            "It repeats the program from the beginning.",
+            "It tests the elif condition.",
+            "It automatically stops the program.",
+            "It ignores all following code."
+        ],
+        answer: 1,
+        topic: "elif",
+        explanation:
+            "An elif gives Python another condition to test when the preceding condition was false."
+    },
 
+    {
+        question:
+            "Which comparison asks whether score is exactly 100?",
+        options: [
+            "score = 100",
+            "score == 100",
+            "score >= 100",
+            "score != 100"
+        ],
+        answer: 1,
+        topic: "Comparison Operators",
+        explanation:
+            "The double equal sign == checks whether two values are equal. A single = is used for assignment."
+    },
 
-        <div class="student-info">
+    {
+        question:
+            "A password should be accepted only when attempts is less than 3. Which condition represents this rule?",
+        options: [
+            "attempts > 3",
+            "attempts <= 3",
+            "attempts < 3",
+            "attempts == 3"
+        ],
+        answer: 2,
+        topic: "Conditional Operators",
+        explanation:
+            "The less-than operator < accepts values below 3, such as 0, 1, and 2."
+    },
 
-            <span id="studentName">
-                Student
-            </span>
-
-            <span id="studentSection">
-                Section
-            </span>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- ==========================================
-         TEST DIRECTIONS
-         ========================================== -->
-
-    <div class="test-intro">
-
-        <h2>Test I</h2>
-
-        <p>
-            <strong>Directions:</strong>
-            Select the best answer for each item.
-        </p>
-
-    </div>
-
-
-
-    <!-- ==========================================
-         SCORE
-         Hidden until the student submits
-         ========================================== -->
-
-    <div id="scoreArea" class="score-area">
-
-        <div class="score-label">
-            YOUR SCORE
-        </div>
-
-
-        <div id="finalScore"
-             class="final-score">
-
-            0 / 10
-
-        </div>
-
-
-        <p id="scoreMessage"></p>
-
-    </div>
-
-
-
-    <!-- ==========================================
-         QUESTIONS
-         JavaScript will create the 10 questions
-         ========================================== -->
-
-    <div id="questionsContainer">
-
-        <!-- Questions appear here -->
-
-    </div>
-
-
-
-    <!-- ==========================================
-         SUBMIT BUTTON
-         ========================================== -->
-
-    <div class="submit-area">
-
-        <button
-            id="submitBtn"
-            class="submit-btn"
-            onclick="submitTest()">
-
-            SUBMIT TEST
-
-        </button>
-
-    </div>
+    {
+        question:
+            "Which statement is true about a nested conditional?",
+        options: [
+            "It places a conditional statement inside another conditional block.",
+            "It places a loop inside a list.",
+            "It repeats an if statement automatically.",
+            "It is another name for an else statement."
+        ],
+        answer: 0,
+        topic: "Nested Conditionals",
+        explanation:
+            "A nested conditional is a conditional placed inside another conditional block."
+    },
 
 
-</div>
+    // ------------------------------------------
+    // LOOPS AND ITERATION
+    // ------------------------------------------
+
+    {
+        question:
+            "A program needs to display the names of five students stored in a list. Which approach is designed to process each item in the list?",
+        options: [
+            "for loop",
+            "if statement",
+            "assignment statement",
+            "dictionary key"
+        ],
+        answer: 0,
+        topic: "for Loop",
+        explanation:
+            "A for loop is designed to go through the items in a sequence such as a list."
+    },
+
+    {
+        question:
+            "What is the purpose of range(2, 7) when used in a for loop?",
+        options: [
+            "It produces 2 through 7, including 7.",
+            "It produces 2 through 6.",
+            "It produces only 7 values.",
+            "It repeats forever."
+        ],
+        answer: 1,
+        topic: "range()",
+        explanation:
+            "range(2, 7) starts at 2 and stops before 7, producing 2, 3, 4, 5, and 6."
+    },
+
+    {
+        question:
+            "Which loop is more suitable when the program should continue asking for a value while a condition remains true?",
+        options: [
+            "for",
+            "while",
+            "if",
+            "elif"
+        ],
+        answer: 1,
+        topic: "while Loop",
+        explanation:
+            "A while loop is useful when repetition depends on a condition remaining true."
+    },
+
+    {
+        question:
+            "How many values are produced by range(3, 8)?",
+        options: [
+            "4",
+            "5",
+            "6",
+            "8"
+        ],
+        answer: 1,
+        topic: "range()",
+        explanation:
+            "The values are 3, 4, 5, 6, and 7. The stopping value 8 is not included."
+    },
+
+    {
+        question:
+            "A loop begins with for item in colors:. What does item represent during each iteration?",
+        options: [
+            "The number of colors in the list",
+            "The current value being processed",
+            "The name of the list itself",
+            "The final value only"
+        ],
+        answer: 1,
+        topic: "for Loop",
+        explanation:
+            "During each iteration, the loop variable receives the next value from the sequence."
+    },
+
+    {
+        question:
+            "Which situation is most naturally handled by a while loop?",
+        options: [
+            "Repeat exactly five times",
+            "Visit every item in a known list",
+            "Keep asking until the user enters 'yes'",
+            "Create a new variable"
+        ],
+        answer: 2,
+        topic: "while Loop",
+        explanation:
+            "A while loop is appropriate when repetition should continue until a condition changes."
+    },
+
+    {
+        question:
+            "If for n in range(1, 4): print(n) runs, what is displayed?",
+        options: [
+            "0 1 2",
+            "1 2 3",
+            "1 2 3 4",
+            "0 1 2 3"
+        ],
+        answer: 1,
+        topic: "for Loop and range()",
+        explanation:
+            "range(1, 4) produces 1, 2, and 3. The ending value 4 is excluded."
+    },
 
 
+    // ------------------------------------------
+    // LISTS
+    // ------------------------------------------
 
-<!-- ==========================================
-     JAVASCRIPT
-     ========================================== -->
+    {
+        question:
+            "A teacher stores the ordered names Ana, Ben, and Carlo in a list. Which expression retrieves Ben?",
+        options: [
+            "students[0]",
+            "students[1]",
+            "students[2]",
+            "students['Ben']"
+        ],
+        answer: 1,
+        topic: "List Indexing",
+        explanation:
+            "Python list indexes begin at 0. Therefore, the second item is at index 1."
+    },
 
-<script src="test1.js"></script>
+    {
+        question:
+            "If items = ['pen', 'paper', 'book'], what does items[0] refer to?",
+        options: [
+            "pen",
+            "paper",
+            "book",
+            "the number of items"
+        ],
+        answer: 0,
+        topic: "List Indexing",
+        explanation:
+            "The first item in a Python list has index 0."
+    },
 
-</body>
+    {
+        question:
+            "Which operation would add one new item to the end of a list named tasks?",
+        options: [
+            "tasks.add('Review')",
+            "tasks.append('Review')",
+            "tasks.insert('Review')",
+            "append.tasks('Review')"
+        ],
+        answer: 1,
+        topic: "List Methods",
+        explanation:
+            "The append() method adds one item to the end of an existing list."
+    },
 
-</html>
+
+    // ------------------------------------------
+    // DICTIONARIES
+    // ------------------------------------------
+
+    {
+        question:
+            "A dictionary contains student = {'name':'Mia', 'age':15}. Which expression retrieves the value associated with age?",
+        options: [
+            "student[0]",
+            "student['age']",
+            "student.age",
+            "student['15']"
+        ],
+        answer: 1,
+        topic: "Dictionary Keys",
+        explanation:
+            "Dictionary values are retrieved through their keys. Here, 'age' is the key."
+    },
+
+    {
+        question:
+            "What makes a dictionary different from a list when accessing stored information?",
+        options: [
+            "A dictionary uses keys, while a list commonly uses numeric indexes.",
+            "A dictionary can store only text.",
+            "A list requires keys for every item.",
+            "A dictionary cannot store numbers."
+        ],
+        answer: 0,
+        topic: "Lists vs. Dictionaries",
+        explanation:
+            "Lists normally use numeric indexes based on position, while dictionaries use keys to identify values."
+    },
+
+    {
+        question:
+            "Consider scores = {'Ana': 90, 'Ben': 85}. Which expression retrieves Ana's score?",
+        options: [
+            "scores[0]",
+            "scores['Ana']",
+            "scores.Ana",
+            "scores['90']"
+        ],
+        answer: 1,
+        topic: "Dictionary Access",
+        explanation:
+            "The key 'Ana' identifies the value 90, so scores['Ana'] retrieves that value."
+    },
+
+    {
+        question:
+            "A program needs to store each product name together with its price. Which structure best matches that requirement?",
+        options: [
+            "List of unrelated values",
+            "Dictionary of key-value pairs",
+            "Single string",
+            "Conditional statement"
+        ],
+        answer: 1,
+        topic: "Dictionaries",
+        explanation:
+            "A dictionary is appropriate when each piece of information is associated with a key, such as a product name and its price."
+    }
+
+];
+
+
+// ==========================================
+// TEST VARIABLES
+// ==========================================
+
+let selectedQuestions = [];
+let displayedOptions = [];
+let studentAnswers = [];
+let testSubmitted = false;
+
+
+// ==========================================
+// SHUFFLE
+// ==========================================
+
+function shuffleArray(array) {
+
+    for (let i = array.length - 1; i > 0; i--) {
+
+        const j =
+            Math.floor(Math.random() * (i + 1));
+
+        [array[i], array[j]] =
+            [array[j], array[i]];
+    }
+
+    return array;
+}
+
+
+// ==========================================
+// START TEST
+// ==========================================
+
+function startTest() {
+
+    // Randomize the 30-question bank
+    const shuffledQuestions =
+        shuffleArray([...questionBank]);
+
+    // Select only 10 questions
+    selectedQuestions =
+        shuffledQuestions.slice(
+            0,
+            QUESTIONS_PER_TEST
+        );
+
+    // Randomize the choices for every
+    // selected question independently.
+    displayedOptions =
+        selectedQuestions.map(question => {
+
+            const options =
+                question.options.map(
+                    (text, index) => ({
+                        text: text,
+                        correct:
+                            index === question.answer
+                    })
+                );
+
+            return shuffleArray(options);
+
+        });
+
+    studentAnswers =
+        new Array(QUESTIONS_PER_TEST)
+            .fill(null);
+
+    testSubmitted = false;
+
+    displayAllQuestions();
+
+}
+
+
+// ==========================================
+// DISPLAY ALL 10 QUESTIONS
+// ==========================================
+
+function displayAllQuestions() {
+
+    const container =
+        document.getElementById(
+            "questionsContainer"
+        );
+
+    container.innerHTML = "";
+
+
+    selectedQuestions.forEach(
+        (question, questionIndex) => {
+
+            const questionCard =
+                document.createElement("div");
+
+            questionCard.className =
+                "question-card";
+
+
+            // QUESTION NUMBER
+
+            const number =
+                document.createElement("div");
+
+            number.className =
+                "question-number";
+
+            number.textContent =
+                "Question " +
+                (questionIndex + 1);
+
+
+            // TOPIC
+
+            const topic =
+                document.createElement("div");
+
+            topic.className =
+                "question-topic";
+
+            topic.textContent =
+                question.topic;
+
+
+            // QUESTION TEXT
+
+            const questionText =
+                document.createElement("h3");
+
+            questionText.textContent =
+                question.question;
+
+
+            // ANSWERS
+
+            const answers =
+                document.createElement("div");
+
+            answers.className =
+                "answers-grid";
+
+
+            displayedOptions[questionIndex]
+                .forEach(
+                    (option, optionIndex) => {
+
+                        const label =
+                            document.createElement("label");
+
+                        label.className =
+                            "answer-option";
+
+
+                        const radio =
+                            document.createElement("input");
+
+                        radio.type = "radio";
+
+                        radio.name =
+                            "question_" +
+                            questionIndex;
+
+                        radio.value =
+                            optionIndex;
+
+
+                        radio.addEventListener(
+                            "change",
+                            function() {
+
+                                studentAnswers[
+                                    questionIndex
+                                ] =
+                                    parseInt(
+                                        this.value
+                                    );
+
+                            }
+                        );
+
+
+                        const text =
+                            document.createElement("span");
+
+                        text.textContent =
+                            String.fromCharCode(
+                                65 + optionIndex
+                            ) +
+                            ". " +
+                            option.text;
+
+
+                        label.appendChild(radio);
+
+                        label.appendChild(text);
+
+                        answers.appendChild(label);
+
+                    }
+                );
+
+
+            questionCard.appendChild(number);
+
+            questionCard.appendChild(topic);
+
+            questionCard.appendChild(questionText);
+
+            questionCard.appendChild(answers);
+
+            container.appendChild(
+                questionCard
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// SUBMIT TEST
+// ==========================================
+
+function submitTest() {
+
+    const unanswered =
+        studentAnswers.filter(
+            answer => answer === null
+        ).length;
+
+
+    if (unanswered > 0) {
+
+        alert(
+            "Please answer all 10 questions before submitting."
+        );
+
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to submit Test I?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    // Calculate score using the randomized
+    // answer choices.
+    let score = 0;
+
+
+    selectedQuestions.forEach(
+        (question, index) => {
+
+            const selectedOption =
+                displayedOptions[index]
+                    [studentAnswers[index]];
+
+            if (selectedOption.correct) {
+                score++;
+            }
+
+        }
+    );
+
+
+    testSubmitted = true;
+
+
+    saveTestResult(score);
+
+
+    // SHOW SCORE
+
+    const scoreArea =
+        document.getElementById(
+            "scoreArea"
+        );
+
+    scoreArea.style.display =
+        "block";
+
+
+    document.getElementById("finalScore")
+        .textContent =
+        score + " / " + QUESTIONS_PER_TEST;
+
+
+    let message;
+
+
+    if (score === 10) {
+
+        message =
+            "Excellent! Perfect score.";
+
+    }
+    else if (score >= 8) {
+
+        message =
+            "Very good work!";
+
+    }
+    else if (score >= 5) {
+
+        message =
+            "Good effort. Review the items you missed.";
+
+    }
+    else {
+
+        message =
+            "Keep practicing and review the concepts.";
+
+    }
+
+
+    document.getElementById("scoreMessage")
+        .textContent = message;
+
+
+    // SHOW REVIEW MODE
+
+    displayReviewMode();
+
+
+    // DISABLE SUBMIT
+
+    const submitButton =
+        document.getElementById("submitBtn");
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+        "TEST SUBMITTED";
+
+
+    scoreArea.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+// ==========================================
+// REVIEW MODE
+// ==========================================
+
+function displayReviewMode() {
+
+    const container =
+        document.getElementById(
+            "questionsContainer"
+        );
+
+
+    container.innerHTML = "";
+
+
+    selectedQuestions.forEach(
+        (question, questionIndex) => {
+
+            const studentAnswerIndex =
+                studentAnswers[questionIndex];
+
+            const options =
+                displayedOptions[questionIndex];
+
+            const studentOption =
+                options[studentAnswerIndex];
+
+            const correctOptionIndex =
+                options.findIndex(
+                    option => option.correct
+                );
+
+            const correctOption =
+                options[correctOptionIndex];
+
+            const isCorrect =
+                studentOption.correct;
+
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "review-question";
+
+
+            if (isCorrect) {
+
+                card.classList.add(
+                    "correct-question"
+                );
+
+            }
+            else {
+
+                card.classList.add(
+                    "wrong-question"
+                );
+
+            }
+
+
+            // ----------------------------------
+            // QUESTION HEADER
+            // ----------------------------------
+
+            const header =
+                document.createElement("button");
+
+            header.className =
+                "review-question-header";
+
+            header.type =
+                "button";
+
+
+            const status =
+                isCorrect ? "✓" : "✗";
+
+
+            header.innerHTML = `
+                <span class="review-status">
+                    ${status}
+                </span>
+
+                <span>
+                    Question ${questionIndex + 1}
+                </span>
+
+                <span class="review-arrow">
+                    ${isCorrect ? "" : "›"}
+                </span>
+            `;
+
+
+            card.appendChild(header);
+
+
+            // ----------------------------------
+            // WRONG QUESTION DETAILS
+            // ----------------------------------
+
+            if (!isCorrect) {
+
+                const details =
+                    document.createElement("div");
+
+                details.className =
+                    "review-details";
+
+
+                const studentAnswerText =
+                    document.createElement("p");
+
+                studentAnswerText.innerHTML = `
+                    <strong>Your answer:</strong>
+                    ${String.fromCharCode(
+                        65 + studentAnswerIndex
+                    )}.
+                    ${escapeHTML(studentOption.text)}
+                `;
+
+
+                const correctAnswerText =
+                    document.createElement("p");
+
+                correctAnswerText.innerHTML = `
+                    <strong>Correct answer:</strong>
+                    ${String.fromCharCode(
+                        65 + correctOptionIndex
+                    )}.
+                    ${escapeHTML(correctOption.text)}
+                `;
+
+
+                const explanation =
+                    document.createElement("div");
+
+                explanation.className =
+                    "review-explanation";
+
+
+                explanation.innerHTML = `
+                    <strong>💡 Quick Review</strong>
+
+                    <p>
+                        ${escapeHTML(question.explanation)}
+                    </p>
+                `;
+
+
+                details.appendChild(
+                    studentAnswerText
+                );
+
+                details.appendChild(
+                    correctAnswerText
+                );
+
+                details.appendChild(
+                    explanation
+                );
+
+
+                card.appendChild(details);
+
+
+                header.addEventListener(
+                    "click",
+                    function() {
+
+                        card.classList.toggle(
+                            "open"
+                        );
+
+                    }
+                );
+
+            }
+
+
+            container.appendChild(card);
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// SAVE RESULT
+// ==========================================
+
+function saveTestResult(score) {
+
+    const result = {
+
+        date:
+            new Date().toLocaleString(),
+
+        score:
+            score,
+
+        total:
+            QUESTIONS_PER_TEST,
+
+        questions:
+            selectedQuestions.map(
+                (question, index) => {
+
+                    const options =
+                        displayedOptions[index];
+
+                    const selected =
+                        options[
+                            studentAnswers[index]
+                        ];
+
+                    const correct =
+                        options.find(
+                            option => option.correct
+                        );
+
+                    return {
+
+                        question:
+                            question.question,
+
+                        topic:
+                            question.topic,
+
+                        selectedAnswer:
+                            selected.text,
+
+                        correctAnswer:
+                            correct.text,
+
+                        explanation:
+                            question.explanation
+
+                    };
+
+                }
+            )
+
+    };
+
+
+    localStorage.setItem(
+        "test1Result",
+        JSON.stringify(result)
+    );
+
+}
+
+
+// ==========================================
+// ESCAPE HTML
+// ==========================================
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+// ==========================================
+// START WHEN PAGE LOADS
+// ==========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        startTest();
+
+    }
+);
