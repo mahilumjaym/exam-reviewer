@@ -1,8 +1,14 @@
 // =====================================================
-// TEST III CODE BANK
+// TEST III - PYTHON CODE TRACING REVIEWER
 // 5 PROGRAMS
 // 1 RANDOM PROGRAM
-// 10 ANALYSIS QUESTIONS PER PROGRAM
+// 10 ANALYSIS QUESTIONS
+// NO SCORE
+// =====================================================
+
+
+// =====================================================
+// CODE BANK
 // =====================================================
 
 const codeBank = [
@@ -83,7 +89,7 @@ const codeBank = [
                     "Python",
 
                 explanation:
-                    "Python is the first item in the list."
+                    "Python is the first item in the list, and Python lists begin at index 0."
             },
 
             {
@@ -105,7 +111,7 @@ const codeBank = [
                     "2",
 
                 explanation:
-                    'The dictionary stores "Science": 2.'
+                    'The dictionary contains "Science": 2, so the function returns 2.'
             },
 
             {
@@ -116,7 +122,7 @@ const codeBank = [
                     "3",
 
                 explanation:
-                    "There are three original books."
+                    "The original books list contains Python, History, and Science."
             },
 
             {
@@ -127,18 +133,18 @@ const codeBank = [
                     "3",
 
                 explanation:
-                    "count is the length of books, which is 3."
+                    "count is the length of books, which is 3. remaining receives that same value."
             },
 
             {
                 question:
-                    "What is the final value of remaining after the while loop?",
+                    "What is the final value of remaining after the while loop finishes?",
 
                 answer:
                     "0",
 
                 explanation:
-                    "The loop subtracts 1 until remaining reaches 0."
+                    "The loop subtracts 1 until remaining is no longer greater than 0."
             },
 
             {
@@ -149,7 +155,7 @@ const codeBank = [
                     "check_days",
 
                 explanation:
-                    'The program calls check_days("Science").'
+                    "The program calls check_days(\"Science\") to obtain the dictionary value."
             },
 
             {
@@ -160,7 +166,7 @@ const codeBank = [
                     "Art",
 
                 explanation:
-                    'books.append("Art") adds Art.'
+                    'books.append("Art") adds Art to the end of the list.'
             },
 
             {
@@ -171,7 +177,7 @@ const codeBank = [
                     "4",
 
                 explanation:
-                    "Three original books plus Art makes four."
+                    "The list begins with 3 items and Art is added, making 4."
             },
 
             {
@@ -182,7 +188,7 @@ const codeBank = [
                     "4",
 
                 explanation:
-                    "The value 4 is appended to days."
+                    "The value 4 is appended to days, making it [3, 5, 2, 4]."
             }
 
         ]
@@ -198,6 +204,7 @@ const codeBank = [
         title: "Cafeteria Order Record",
 
         code: [
+
             "# Store the food items",
             'items = ["Rice", "Chicken", "Juice"]',
 
@@ -268,7 +275,7 @@ const codeBank = [
                     "Rice",
 
                 explanation:
-                    "Rice is the first item."
+                    "Rice is the first item in the list."
             },
 
             {
@@ -279,7 +286,7 @@ const codeBank = [
                     "20",
 
                 explanation:
-                    "The prices list is [25, 60, 20]."
+                    "The prices list is [25, 60, 20], so index 2 contains 20."
             },
 
             {
@@ -323,7 +330,7 @@ const codeBank = [
                     "get_price",
 
                 explanation:
-                    "The program calls get_price."
+                    "The program calls get_price(\"Chicken\")."
             },
 
             {
@@ -334,7 +341,7 @@ const codeBank = [
                     "Water",
 
                 explanation:
-                    'items.append("Water") adds Water.'
+                    'items.append("Water") adds Water to the list.'
             },
 
             {
@@ -345,7 +352,7 @@ const codeBank = [
                     "15",
 
                 explanation:
-                    "The program appends 15."
+                    "The program appends the number 15 to prices."
             },
 
             {
@@ -356,7 +363,7 @@ const codeBank = [
                     "4",
 
                 explanation:
-                    "Three original items plus Water makes four."
+                    "Three original items plus Water gives four items."
             },
 
             {
@@ -367,7 +374,7 @@ const codeBank = [
                     "Water",
 
                 explanation:
-                    "Water becomes the fourth item."
+                    "Water is appended to the end, which becomes index 3."
             }
 
         ]
@@ -383,6 +390,7 @@ const codeBank = [
         title: "Sports Equipment Checker",
 
         code: [
+
             "# Store equipment",
             'equipment = ["Ball", "Net", "Whistle"]',
 
@@ -486,7 +494,7 @@ const codeBank = [
                     "3",
 
                 explanation:
-                    "There are three equipment items."
+                    "There are three items in equipment before Cone is added."
             },
 
             {
@@ -497,18 +505,18 @@ const codeBank = [
                     "0",
 
                 explanation:
-                    "The while loop decreases check to zero."
+                    "The while loop decreases check until it reaches zero."
             },
 
             {
                 question:
-                    "What function retrieves a stock value?",
+                    "What function retrieves a stock value from the dictionary?",
 
                 answer:
                     "get_stock",
 
                 explanation:
-                    "get_stock returns the dictionary value."
+                    "The function receives an item name and returns stock[item]."
             },
 
             {
@@ -519,7 +527,7 @@ const codeBank = [
                     "Cone",
 
                 explanation:
-                    'equipment.append("Cone") adds Cone.'
+                    'equipment.append("Cone") adds Cone to the list.'
             },
 
             {
@@ -530,7 +538,7 @@ const codeBank = [
                     "6",
 
                 explanation:
-                    "The program appends 6."
+                    "The program appends 6 to quantities."
             },
 
             {
@@ -541,7 +549,7 @@ const codeBank = [
                     "Cone",
 
                 explanation:
-                    "Cone becomes the fourth item."
+                    "Cone becomes the fourth item, which is index 3."
             },
 
             {
@@ -552,7 +560,7 @@ const codeBank = [
                     "4",
 
                 explanation:
-                    "Three original items plus Cone makes four."
+                    "Three original items plus Cone gives four items."
             }
 
         ]
@@ -568,6 +576,7 @@ const codeBank = [
         title: "School Club Members",
 
         code: [
+
             "# Store member names",
             'members = ["Ana", "Ben", "Cara"]',
 
@@ -638,7 +647,7 @@ const codeBank = [
                     "Ana",
 
                 explanation:
-                    "Ana is the first item."
+                    "Ana is the first item in the list."
             },
 
             {
@@ -660,7 +669,7 @@ const codeBank = [
                     "Treasurer",
 
                 explanation:
-                    'Ben has the role "Treasurer".'
+                    'The roles dictionary stores "Ben": "Treasurer".'
             },
 
             {
@@ -682,7 +691,7 @@ const codeBank = [
                     "0",
 
                 explanation:
-                    "The while loop decreases check to zero."
+                    "The while loop decreases check until it reaches zero."
             },
 
             {
@@ -693,7 +702,7 @@ const codeBank = [
                     "get_role",
 
                 explanation:
-                    "get_role returns the corresponding dictionary value."
+                    "get_role(name) returns the corresponding dictionary value."
             },
 
             {
@@ -704,7 +713,7 @@ const codeBank = [
                     "Dan",
 
                 explanation:
-                    "Dan is appended to the members list."
+                    'Dan is appended to the members list.'
             },
 
             {
@@ -715,7 +724,7 @@ const codeBank = [
                     "1",
 
                 explanation:
-                    "The program appends 1."
+                    "The program appends 1 to attendance."
             },
 
             {
@@ -726,7 +735,7 @@ const codeBank = [
                     "Member",
 
                 explanation:
-                    'roles["Dan"] is assigned Member.'
+                    'roles["Dan"] is assigned the value "Member".'
             },
 
             {
@@ -737,7 +746,7 @@ const codeBank = [
                     "4",
 
                 explanation:
-                    "Three original members plus Dan makes four."
+                    "The original three members plus Dan makes four."
             }
 
         ]
@@ -753,6 +762,7 @@ const codeBank = [
         title: "Art Supply Inventory",
 
         code: [
+
             "# Store supply names",
             'supplies = ["Paper", "Paint", "Brush"]',
 
@@ -823,7 +833,7 @@ const codeBank = [
                     "Paper",
 
                 explanation:
-                    "Paper is the first supply."
+                    "Paper is the first item in the supplies list."
             },
 
             {
@@ -856,7 +866,7 @@ const codeBank = [
                     "3",
 
                 explanation:
-                    "There are three original supplies."
+                    "There are three supplies before Marker is added."
             },
 
             {
@@ -878,7 +888,7 @@ const codeBank = [
                     "get_price",
 
                 explanation:
-                    "get_price retrieves the dictionary value."
+                    "The function retrieves a value from the prices dictionary."
             },
 
             {
@@ -889,7 +899,7 @@ const codeBank = [
                     "Marker",
 
                 explanation:
-                    "Marker is appended to supplies."
+                    'Marker is appended to supplies.'
             },
 
             {
@@ -911,7 +921,7 @@ const codeBank = [
                     "12",
 
                 explanation:
-                    'prices["Marker"] = 12.'
+                    'prices["Marker"] = 12 stores 12 under the Marker key.'
             },
 
             {
@@ -922,13 +932,14 @@ const codeBank = [
                     "4",
 
                 explanation:
-                    "Three original supplies plus Marker makes four."
+                    "Three original supplies plus Marker gives four."
             }
 
         ]
     }
 
 ];
+
 // =====================================================
 // VARIABLES
 // =====================================================
