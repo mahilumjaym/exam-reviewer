@@ -1919,11 +1919,10 @@ function displayResults(results) {
     );
 
 
-    card.appendChild(codeBox);
+card.appendChild(codeBox);
 
-    container.appendChild(card);
+container.appendChild(card);
 
-}
 
 // ---------------------------------------------
 // PROCEED TO TEST III BUTTON
@@ -1961,6 +1960,10 @@ nextArea.appendChild(
 container.appendChild(
     nextArea
 );
+
+}
+
+
 // =====================================================
 // GET LINKED VALUE
 // =====================================================
