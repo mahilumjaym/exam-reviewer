@@ -1,23 +1,4 @@
 // ==========================================
-// STUDENT SESSION
-// ==========================================
-
-const studentName =
-    localStorage.getItem(
-        "studentName"
-    ) || "Student";
-
-const studentSection =
-    localStorage.getItem(
-        "studentSection"
-    ) || "";
-
-const attemptId =
-    localStorage.getItem(
-        "attemptId"
-    ) || "";
-
-// ==========================================
 // TEST I - PYTHON REVIEWER
 // ==========================================
 
@@ -31,227 +12,452 @@ const QUESTIONS_PER_TEST = 10;
 const questionBank = [
 
     {
-        question: "Which programming language are we learning?",
+        question:
+            "A program stores the word Zamboanga in a variable called city. Which line correctly displays the value stored in city?",
         options: [
-            "Java",
-            "Python",
-            "HTML",
-            "C++"
+            'print("city")',
+            "print(city)",
+            'display("city")',
+            "show(city)"
         ],
         answer: 1,
-        topic: "Python Basics",
         explanation:
-            "Python is the programming language used in this course."
+            "Using city without quotation marks displays the value stored in the variable."
     },
+
 
     {
         question:
-            "Which symbol is used to assign a value to a variable in Python?",
+            "A teacher wants a variable called total to begin with the value 45. Which line correctly gives total that value?",
         options: [
-            "==",
-            "=",
+            "total == 45",
+            "45 = total",
+            "total = 45",
+            "total : 45"
+        ],
+        answer: 2,
+        explanation:
+            "The assignment operator = places the value 45 into total."
+    },
+
+
+    {
+        question:
+            "Which variable name could be used to store the number of students in a class?",
+        options: [
+            "student-count",
+            "2nd_count",
+            "student_count",
+            "student count"
+        ],
+        answer: 2,
+        explanation:
+            "student_count uses letters and an underscore and does not begin with a number."
+    },
+
+
+    {
+        question:
+            "Consider this code: city = \"Zamboanga\". Which statement displays the text Zamboanga?",
+        options: [
+            'print("city")',
+            "print(city)",
+            "display(city)",
+            "show(\"city\")"
+        ],
+        answer: 1,
+        explanation:
+            "city refers to the variable, whose stored value is Zamboanga."
+    },
+
+
+    {
+        question:
+            "Which line stores the text Python Programming in a variable named subject?",
+        options: [
+            'subject = Python Programming',
+            'subject == "Python Programming"',
+            'subject = "Python Programming"',
+            'subject : "Python Programming"'
+        ],
+        answer: 2,
+        explanation:
+            "Text must be enclosed in quotation marks when assigned to a variable."
+    },
+
+
+    {
+        question:
+            "A program contains score = 90. What value will be displayed by print(score)?",
+        options: [
+            "score",
+            "90",
+            '"score"',
+            "None"
+        ],
+        answer: 1,
+        explanation:
+            "print(score) displays the value stored in score, which is 90."
+    },
+
+
+    {
+        question:
+            "Which statement would store the number 25 rather than the text 25?",
+        options: [
+            'number = "25"',
+            "number = 25",
+            "number == 25",
+            'number = "twenty-five"'
+        ],
+        answer: 1,
+        explanation:
+            "Without quotation marks, 25 is treated as a number."
+    },
+
+
+    {
+        question:
+            "A student wants a variable for a final grade. Which name follows Python's identifier rules?",
+        options: [
+            "final grade",
+            "final-grade",
+            "final_grade",
+            "1final_grade"
+        ],
+        answer: 2,
+        explanation:
+            "final_grade is valid because it contains letters and an underscore and does not begin with a number."
+    },
+
+
+    {
+        question:
+            "What will the following code display?\n\nitems = 8\nprint(items)",
+        options: [
+            "items",
+            '"items"',
+            "8",
+            "print(items)"
+        ],
+        answer: 2,
+        explanation:
+            "The variable items contains 8, so print(items) displays 8."
+    },
+
+
+    {
+        question:
+            "A program should display the word Welcome exactly as text. Which statement is appropriate?",
+        options: [
+            "print(Welcome)",
+            'print("Welcome")',
+            "display(Welcome)",
+            'show("Welcome")'
+        ],
+        answer: 1,
+        explanation:
+            "Text written directly in a print statement should be enclosed in quotation marks."
+    },
+
+
+    {
+        question:
+            "A school system should allow registration when age is 12 or older. Which condition expresses that requirement?",
+        options: [
+            "age > 12",
+            "age >= 12",
+            "age < 12",
+            "age == 12"
+        ],
+        answer: 1,
+        explanation:
+            ">= includes both 12 and values greater than 12."
+    },
+
+
+    {
+        question:
+            "A game should display Winner only when points are greater than 100. Which condition is appropriate?",
+        options: [
+            "points >= 100",
+            "points < 100",
+            "points > 100",
+            "points == 100"
+        ],
+        answer: 2,
+        explanation:
+            "The > operator requires points to be greater than 100."
+    },
+
+
+    {
+        question:
+            "Which line correctly completes this conditional statement?\n\nif temperature > 30 ___",
+        options: [
+            ";",
+            ".",
             ":",
-            "=>"
+            ","
         ],
-        answer: 1,
-        topic: "Variables",
+        answer: 2,
         explanation:
-            "The equal sign = is used to assign a value to a variable."
+            "A colon marks the beginning of the indented block after an if condition."
     },
+
 
     {
         question:
-            "Which of the following is an integer?",
+            "A program should display Hot when temperature is 35 and Cool for lower values. Which structure is most appropriate?",
         options: [
-            "\"15\"",
-            "15",
-            "15.5",
-            "\"Python\""
+            "if only",
+            "if-else",
+            "for loop",
+            "while loop"
         ],
         answer: 1,
-        topic: "Data Types",
         explanation:
-            "An integer is a whole number without a decimal part."
+            "if-else provides one path when the condition is true and another when it is false."
     },
+
 
     {
         question:
-            "Which function displays output on the screen?",
+            "A grading program needs to check three possible results: Excellent, Passed, or Needs Improvement. Which structure is most suitable?",
         options: [
-            "input()",
-            "print()",
-            "output()",
-            "display()"
+            "if only",
+            "if-else",
+            "if-elif-else",
+            "while"
         ],
-        answer: 1,
-        topic: "print()",
+        answer: 2,
         explanation:
-            "The print() function displays information on the screen."
+            "if-elif-else allows a program to test multiple conditions and provide a final alternative."
     },
+
 
     {
         question:
-            "Which function is used to receive information from the user?",
+            "What happens when the first if condition is false and the elif condition is true?",
         options: [
-            "print()",
-            "input()",
-            "get()",
-            "read()"
+            "The elif block can execute.",
+            "The program automatically stops.",
+            "The else block must execute first.",
+            "The if block executes again."
         ],
-        answer: 1,
-        topic: "input()",
+        answer: 0,
         explanation:
-            "The input() function allows a program to receive information from the user."
+            "An elif condition is checked when the preceding if condition is false."
     },
+
 
     {
         question:
-            "Which keyword begins a conditional statement in Python?",
+            "Which condition means that a student's score is exactly 100?",
         options: [
-            "when",
-            "check",
+            "score = 100",
+            "score == 100",
+            "score >= 100",
+            "score != 100"
+        ],
+        answer: 1,
+        explanation:
+            "The == operator checks whether two values are equal."
+    },
+
+
+    {
+        question:
+            "A program should give a message only when attempts are less than 3. Which condition should be used?",
+        options: [
+            "attempts > 3",
+            "attempts >= 3",
+            "attempts < 3",
+            "attempts == 3"
+        ],
+        answer: 2,
+        explanation:
+            "The < operator checks whether attempts is less than 3."
+    },
+
+
+    {
+        question:
+            "Which statement describes iteration in a program?",
+        options: [
+            "Giving a variable its first value",
+            "Repeating instructions according to a condition or sequence",
+            "Storing information in a dictionary",
+            "Displaying one message"
+        ],
+        answer: 1,
+        explanation:
+            "Iteration means repeating instructions."
+    },
+
+
+    {
+        question:
+            "A program needs to display the numbers 1 through 5. Which loop structure is appropriate?",
+        options: [
             "if",
-            "condition"
-        ],
-        answer: 2,
-        topic: "if Statement",
-        explanation:
-            "The if keyword is used to begin a conditional statement."
-    },
-
-    {
-        question:
-            "What does elif mean in Python?",
-        options: [
-            "End if",
-            "Else if",
-            "Exit loop",
-            "Extra loop"
-        ],
-        answer: 1,
-        topic: "elif",
-        explanation:
-            "elif means 'else if' and is used to check another condition."
-    },
-
-    {
-        question:
-            "Which keyword provides an alternative when an if condition is false?",
-        options: [
-            "otherwise",
-            "else",
-            "elif",
-            "alternative"
-        ],
-        answer: 1,
-        topic: "if-else",
-        explanation:
-            "The else block runs when the preceding if condition is false."
-    },
-
-    {
-        question:
-            "What is a nested if statement?",
-        options: [
-            "An if statement inside another if statement",
-            "An if statement without a condition",
-            "Two unrelated if statements",
-            "An if statement inside a comment"
-        ],
-        answer: 0,
-        topic: "Nested if",
-        explanation:
-            "A nested if is an if statement placed inside another conditional block."
-    },
-
-    {
-        question:
-            "Which keyword creates a for loop?",
-        options: [
-            "repeat",
             "for",
-            "loop",
-            "iterate"
+            "else",
+            "def"
         ],
         answer: 1,
-        topic: "for Loop",
         explanation:
-            "The for keyword is used to create a for loop."
+            "A for loop is commonly used when processing a known sequence of values."
     },
+
 
     {
         question:
-            "What is the main purpose of a while loop?",
+            "Which line correctly repeats a block using the numbers 0 through 4?",
         options: [
-            "Create a list",
-            "Repeat while a condition is true",
-            "Define a function",
-            "Display text"
-        ],
-        answer: 1,
-        topic: "while Loop",
-        explanation:
-            "A while loop repeats its instructions while its condition is true."
-    },
-
-    {
-        question:
-            "Which brackets are used to create a Python list?",
-        options: [
-            "()",
-            "{}",
-            "[]",
-            "<>"
-        ],
-        answer: 2,
-        topic: "Lists",
-        explanation:
-            "Python lists are created using square brackets []."
-    },
-
-    {
-        question:
-            "What does a Python dictionary store?",
-        options: [
-            "Key-value pairs",
-            "Only numbers",
-            "Only strings",
-            "Only functions"
+            "for x in range(5):",
+            "for x from 1 to 5:",
+            "for(x = 0; x < 5; x++):",
+            "repeat x in 5:"
         ],
         answer: 0,
-        topic: "Dictionaries",
         explanation:
-            "A dictionary stores information as key-value pairs."
+            "range(5) produces 0, 1, 2, 3, and 4."
     },
+
 
     {
         question:
-            "Which keyword is used to define a function?",
+            "A program keeps checking a condition until it becomes false. Which loop is designed for this situation?",
         options: [
-            "function",
-            "func",
-            "def",
-            "define"
-        ],
-        answer: 2,
-        topic: "Functions",
-        explanation:
-            "The def keyword is used to define a function in Python."
-    },
-
-    {
-        question:
-            "Which function is commonly used to open a file in Python?",
-        options: [
-            "file()",
-            "open()",
-            "readfile()",
-            "save()"
+            "for",
+            "while",
+            "if",
+            "elif"
         ],
         answer: 1,
-        topic: "File Handling",
         explanation:
-            "The open() function is used to open a file."
+            "A while loop continues as long as its condition remains true."
+    },
+
+
+    {
+        question:
+            "Consider the code below:\n\ncount = 3\nwhile count > 0:\n    count = count - 1\n\nWhat value does count have when the loop ends?",
+        options: [
+            "3",
+            "2",
+            "1",
+            "0"
+        ],
+        answer: 3,
+        explanation:
+            "The loop decreases count until the condition count > 0 becomes false, leaving 0."
+    },
+
+
+    {
+        question:
+            "Which statement creates a list containing three fruit names?",
+        options: [
+            'fruits = ("Apple", "Mango", "Banana")',
+            'fruits = ["Apple", "Mango", "Banana"]',
+            'fruits = {"Apple", "Mango", "Banana"}',
+            'fruits = "Apple", "Mango", "Banana"'
+        ],
+        answer: 1,
+        explanation:
+            "Square brackets are used to create a Python list."
+    },
+
+
+    {
+        question:
+            "Consider this list:\n\ncolors = [\"red\", \"blue\", \"green\"]\n\nWhich expression retrieves blue?",
+        options: [
+            'colors[0]',
+            'colors[1]',
+            'colors[2]',
+            'colors["blue"]'
+        ],
+        answer: 1,
+        explanation:
+            "Python list indexing starts at 0, so blue is at index 1."
+    },
+
+
+    {
+        question:
+            "A list contains [10, 20, 30, 40]. Which expression retrieves the first value?",
+        options: [
+            "numbers[0]",
+            "numbers[1]",
+            "numbers[first]",
+            "numbers[-0]"
+        ],
+        answer: 0,
+        explanation:
+            "The first item in a Python list is stored at index 0."
+    },
+
+
+    {
+        question:
+            "Which structure is most suitable when each piece of information needs a label?",
+        options: [
+            "List",
+            "Dictionary",
+            "String",
+            "Integer"
+        ],
+        answer: 1,
+        explanation:
+            "A dictionary stores information using key-value pairs."
+    },
+
+
+    {
+        question:
+            "Consider this dictionary:\n\nstudent = {\"name\": \"Ana\", \"grade\": 90}\n\nWhich expression retrieves Ana?",
+        options: [
+            'student[0]',
+            'student["name"]',
+            "student[name]",
+            'student["Ana"]'
+        ],
+        answer: 1,
+        explanation:
+            "The value Ana is associated with the key name."
+    },
+
+
+    {
+        question:
+            "A dictionary contains {\"Math\": 90, \"Science\": 88}. What is Math in this dictionary?",
+        options: [
+            "A list index",
+            "A value",
+            "A key",
+            "A variable"
+        ],
+        answer: 2,
+        explanation:
+            "Math is a key that identifies the value 90."
+    },
+
+
+    {
+        question:
+            "Which statement correctly accesses the value associated with the key city?",
+        options: [
+            "data.city",
+            "data[city]",
+            'data["city"]',
+            "data( city )"
+        ],
+        answer: 2,
+        explanation:
+            "Dictionary keys written as strings are accessed using quotation marks inside square brackets."
     }
 
 ];
@@ -267,8 +473,6 @@ let studentAnswers = [];
 
 let testSubmitted = false;
 
-let retakeUsed = false;
-
 
 // ==========================================
 // SHUFFLE
@@ -276,16 +480,30 @@ let retakeUsed = false;
 
 function shuffleArray(array) {
 
-    for (let i = array.length - 1; i > 0; i--) {
+    for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ) {
 
         const j =
-            Math.floor(Math.random() * (i + 1));
+            Math.floor(
+                Math.random() * (i + 1)
+            );
 
-        [array[i], array[j]] =
-            [array[j], array[i]];
+        [
+            array[i],
+            array[j]
+        ] =
+        [
+            array[j],
+            array[i]
+        ];
+
     }
 
     return array;
+
 }
 
 
@@ -298,7 +516,10 @@ function startTest() {
     let shuffledQuestions =
         [...questionBank];
 
-    shuffleArray(shuffledQuestions);
+
+    shuffleArray(
+        shuffledQuestions
+    );
 
 
     selectedQuestions =
@@ -309,11 +530,13 @@ function startTest() {
 
 
     studentAnswers =
-        new Array(QUESTIONS_PER_TEST)
-            .fill(null);
+        new Array(
+            QUESTIONS_PER_TEST
+        ).fill(null);
 
 
-    testSubmitted = false;
+    testSubmitted =
+        false;
 
 
     displayAllQuestions();
@@ -322,7 +545,7 @@ function startTest() {
 
 
 // ==========================================
-// DISPLAY ALL 10 QUESTIONS
+// DISPLAY QUESTIONS
 // ==========================================
 
 function displayAllQuestions() {
@@ -333,15 +556,32 @@ function displayAllQuestions() {
         );
 
 
+    if (!container) {
+
+        console.error(
+            "questionsContainer was not found."
+        );
+
+        return;
+
+    }
+
+
     container.innerHTML = "";
 
 
     selectedQuestions.forEach(
-        (question, questionIndex) => {
+        (
+            question,
+            questionIndex
+        ) => {
 
 
             const questionCard =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             questionCard.className =
                 "question-card";
@@ -350,32 +590,27 @@ function displayAllQuestions() {
             // QUESTION NUMBER
 
             const number =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             number.className =
                 "question-number";
+
 
             number.textContent =
                 "Question " +
                 (questionIndex + 1);
 
 
-            // TOPIC
-
-            const topic =
-                document.createElement("div");
-
-            topic.className =
-                "question-topic";
-
-            topic.textContent =
-                question.topic;
-
-
             // QUESTION TEXT
 
             const questionText =
-                document.createElement("h3");
+                document.createElement(
+                    "h3"
+                );
+
 
             questionText.textContent =
                 question.question;
@@ -384,31 +619,46 @@ function displayAllQuestions() {
             // ANSWERS
 
             const answers =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             answers.className =
                 "answers-grid";
 
 
             question.options.forEach(
-                (option, optionIndex) => {
+                (
+                    option,
+                    optionIndex
+                ) => {
 
 
                     const label =
-                        document.createElement("label");
+                        document.createElement(
+                            "label"
+                        );
+
 
                     label.className =
                         "answer-option";
 
 
                     const radio =
-                        document.createElement("input");
+                        document.createElement(
+                            "input"
+                        );
 
-                    radio.type = "radio";
+
+                    radio.type =
+                        "radio";
+
 
                     radio.name =
                         "question_" +
                         questionIndex;
+
 
                     radio.value =
                         optionIndex;
@@ -430,33 +680,51 @@ function displayAllQuestions() {
 
 
                     const text =
-                        document.createElement("span");
+                        document.createElement(
+                            "span"
+                        );
+
 
                     text.textContent =
                         String.fromCharCode(
-                            65 + optionIndex
+                            65 +
+                            optionIndex
                         ) +
                         ". " +
                         option;
 
 
-                    label.appendChild(radio);
+                    label.appendChild(
+                        radio
+                    );
 
-                    label.appendChild(text);
 
-                    answers.appendChild(label);
+                    label.appendChild(
+                        text
+                    );
+
+
+                    answers.appendChild(
+                        label
+                    );
 
                 }
             );
 
 
-            questionCard.appendChild(number);
+            questionCard.appendChild(
+                number
+            );
 
-            questionCard.appendChild(topic);
 
-            questionCard.appendChild(questionText);
+            questionCard.appendChild(
+                questionText
+            );
 
-            questionCard.appendChild(answers);
+
+            questionCard.appendChild(
+                answers
+            );
 
 
             container.appendChild(
@@ -472,41 +740,50 @@ function displayAllQuestions() {
 // ==========================================
 // SUBMIT TEST
 // ==========================================
+
 function submitTest() {
 
-    // Check if all questions are answered
-    const unanswered = studentAnswers.filter(
-        answer => answer === null
-    ).length;
+    const unanswered =
+        studentAnswers.filter(
+            answer =>
+                answer === null
+        ).length;
 
 
-    if (unanswered > 0) {
+    if (
+        unanswered > 0
+    ) {
 
         alert(
             "Please answer all 10 questions before submitting."
         );
 
         return;
+
     }
 
 
-    // Confirm submission
-    const confirmed = confirm(
-        "Are you sure you want to submit Test I?"
-    );
+    const confirmed =
+        confirm(
+            "Are you sure you want to submit Test I?"
+        );
 
 
     if (!confirmed) {
+
         return;
+
     }
 
 
-    // Calculate score
     let score = 0;
 
 
     selectedQuestions.forEach(
-        (question, index) => {
+        (
+            question,
+            index
+        ) => {
 
             if (
                 studentAnswers[index] ===
@@ -521,80 +798,101 @@ function submitTest() {
     );
 
 
-    // Mark test as submitted
-    testSubmitted = true;
+    testSubmitted =
+        true;
 
 
-    // Save the result
-    saveTestResult(score);
+    saveTestResult(
+        score
+    );
 
 
-    // Show score
     const scoreArea =
-        document.getElementById("scoreArea");
-
-    scoreArea.style.display = "block";
-
-
-    document.getElementById("finalScore")
-        .textContent =
-        score + " / " + QUESTIONS_PER_TEST;
+        document.getElementById(
+            "scoreArea"
+        );
 
 
-    // Score message
+    scoreArea.style.display =
+        "block";
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        score +
+        " / " +
+        QUESTIONS_PER_TEST;
+
+
     let message;
 
 
-    if (score === 10) {
+    if (
+        score === 10
+    ) {
 
         message =
             "Excellent! Perfect score.";
 
     }
-    else if (score >= 8) {
+
+    else if (
+        score >= 8
+    ) {
 
         message =
-            "Very good work!";
+            "Very good work! Review the items you missed.";
 
     }
-    else if (score >= 5) {
+
+    else if (
+        score >= 5
+    ) {
 
         message =
             "Good effort. Review the items you missed.";
 
     }
+
     else {
 
         message =
-            "Keep practicing and review the concepts.";
+            "Keep practicing and review the feedback carefully.";
 
     }
 
 
-    document.getElementById("scoreMessage")
-        .textContent = message;
+    document.getElementById(
+        "scoreMessage"
+    ).textContent =
+        message;
 
 
-    // Change questions to review mode
     displayReviewMode();
 
 
-    // Disable submit button
     const submitButton =
-        document.getElementById("submitBtn");
+        document.getElementById(
+            "submitBtn"
+        );
 
-    submitButton.disabled = true;
+
+    submitButton.disabled =
+        true;
+
 
     submitButton.textContent =
         "TEST SUBMITTED";
 
 
-    // Move screen to the score
     scoreArea.scrollIntoView({
-        behavior: "smooth"
+        behavior:
+            "smooth"
     });
 
 }
+
 
 // ==========================================
 // REVIEW MODE
@@ -611,11 +909,38 @@ function displayReviewMode() {
     container.innerHTML = "";
 
 
+    // Review instruction
+
+    const instruction =
+        document.createElement(
+            "div"
+        );
+
+
+    instruction.className =
+        "review-instruction";
+
+
+    instruction.textContent =
+        "Click the red items to review your mistakes.";
+
+
+    container.appendChild(
+        instruction
+    );
+
+
     selectedQuestions.forEach(
-        (question, questionIndex) => {
+        (
+            question,
+            questionIndex
+        ) => {
+
 
             const studentAnswer =
-                studentAnswers[questionIndex];
+                studentAnswers[
+                    questionIndex
+                ];
 
 
             const isCorrect =
@@ -623,9 +948,11 @@ function displayReviewMode() {
                 question.answer;
 
 
-            // Create question review card
             const card =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             card.className =
                 "review-question";
@@ -638,6 +965,7 @@ function displayReviewMode() {
                 );
 
             }
+
             else {
 
                 card.classList.add(
@@ -647,22 +975,26 @@ function displayReviewMode() {
             }
 
 
-            // ----------------------------------
             // QUESTION HEADER
-            // ----------------------------------
 
             const header =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
+
 
             header.className =
                 "review-question-header";
 
 
             const status =
-                isCorrect ? "✓" : "✗";
+                isCorrect
+                    ? "✓"
+                    : "✗";
 
 
             header.innerHTML = `
+
                 <span class="review-status">
                     ${status}
                 </span>
@@ -674,65 +1006,91 @@ function displayReviewMode() {
                 <span class="review-arrow">
                     ${isCorrect ? "" : "›"}
                 </span>
+
             `;
 
 
-            card.appendChild(header);
+            card.appendChild(
+                header
+            );
 
 
-            // ----------------------------------
-            // WRONG QUESTION DETAILS
-            // ----------------------------------
+            // WRONG ANSWER DETAILS
 
             if (!isCorrect) {
 
                 const details =
-                    document.createElement("div");
+                    document.createElement(
+                        "div"
+                    );
+
 
                 details.className =
                     "review-details";
 
 
-                // Student answer
                 const studentAnswerText =
-                    document.createElement("p");
+                    document.createElement(
+                        "p"
+                    );
+
 
                 studentAnswerText.innerHTML = `
+
                     <strong>Your answer:</strong>
                     ${String.fromCharCode(
                         65 + studentAnswer
                     )}.
-                    ${question.options[studentAnswer]}
+                    ${escapeHTML(
+                        question.options[
+                            studentAnswer
+                        ]
+                    )}
+
                 `;
 
 
-                // Correct answer
                 const correctAnswerText =
-                    document.createElement("p");
+                    document.createElement(
+                        "p"
+                    );
+
 
                 correctAnswerText.innerHTML = `
+
                     <strong>Correct answer:</strong>
                     ${String.fromCharCode(
                         65 + question.answer
                     )}.
-                    ${question.options[question.answer]}
+                    ${escapeHTML(
+                        question.options[
+                            question.answer
+                        ]
+                    )}
+
                 `;
 
 
-                // Explanation
                 const explanation =
-                    document.createElement("div");
+                    document.createElement(
+                        "div"
+                    );
+
 
                 explanation.className =
                     "review-explanation";
 
 
                 explanation.innerHTML = `
-                    <strong>💡 Quick Review</strong>
+
+                    <strong>Quick Review</strong>
 
                     <p>
-                        ${question.explanation}
+                        ${escapeHTML(
+                            question.explanation
+                        )}
                     </p>
+
                 `;
 
 
@@ -740,19 +1098,22 @@ function displayReviewMode() {
                     studentAnswerText
                 );
 
+
                 details.appendChild(
                     correctAnswerText
                 );
+
 
                 details.appendChild(
                     explanation
                 );
 
 
-                card.appendChild(details);
+                card.appendChild(
+                    details
+                );
 
 
-                // Click to open
                 header.addEventListener(
                     "click",
                     function() {
@@ -767,65 +1128,67 @@ function displayReviewMode() {
             }
 
 
-                   container.appendChild(card);
+            container.appendChild(
+                card
+            );
 
-    }
+        }
     );
 
 
-    // ==========================================
-    // PROCEED TO TEST II BUTTON
-    // ==========================================
+    // Add the Test II button AFTER review
 
-    const nextArea =
-        document.createElement("div");
+    createTest2Button();
 
-
-    nextArea.className =
-        "next-test-area";
+}
 
 
-    const nextButton =
-        document.createElement("button");
+// ==========================================
+// PROCEED TO TEST II
+// ==========================================
+
+function createTest2Button() {
+
+    const oldButton =
+        document.getElementById(
+            "proceedTest2"
+        );
 
 
-    nextButton.type =
-        "button";
+    if (oldButton) {
+
+        oldButton.remove();
+
+    }
 
 
-    nextButton.className =
+    const button =
+        document.createElement(
+            "button"
+        );
+
+
+    button.id =
+        "proceedTest2";
+
+
+    button.className =
         "submit-btn";
 
 
-    nextButton.textContent =
-        "PROCEED TO TEST II →";
+    button.textContent =
+        "PROCEED TO TEST II";
 
 
-    nextButton.addEventListener(
+    button.addEventListener(
         "click",
-        function () {
+        function() {
 
-            // Make sure Test I has been completed
-            // before allowing the student to continue.
+            localStorage.setItem(
+                "test1Completed",
+                "true"
+            );
 
-            const test1Result =
-                localStorage.getItem(
-                    "test1Result"
-                );
-
-
-            if (!test1Result) {
-
-                alert(
-                    "Please complete Test I first."
-                );
-
-                return;
-
-            }
-
-
-            // Go to Test II
 
             window.location.href =
                 "test2.html";
@@ -834,26 +1197,61 @@ function displayReviewMode() {
     );
 
 
-    nextArea.appendChild(
-        nextButton
-    );
+    const submitArea =
+        document.querySelector(
+            ".submit-area"
+        );
 
 
-    container.appendChild(
-        nextArea
-    );
+    if (submitArea) {
+
+        submitArea.appendChild(
+            button
+        );
+
+    }
 
 }
+
+
 // ==========================================
 // SAVE RESULT
 // ==========================================
 
 function saveTestResult(score) {
 
+    const studentName =
+        localStorage.getItem(
+            "studentName"
+        ) || "";
+
+
+    const studentSection =
+        localStorage.getItem(
+            "studentSection"
+        ) || "";
+
+
+    const attemptId =
+        localStorage.getItem(
+            "attemptId"
+        ) || "";
+
+
     const result = {
 
         date:
-            new Date().toLocaleString(),
+            new Date()
+                .toLocaleString(),
+
+        studentName:
+            studentName,
+
+        studentSection:
+            studentSection,
+
+        attemptId:
+            attemptId,
 
         score:
             score,
@@ -863,16 +1261,18 @@ function saveTestResult(score) {
 
         questions:
             selectedQuestions.map(
-                (question, index) => ({
+                (
+                    question,
+                    index
+                ) => ({
 
                     question:
                         question.question,
 
-                    topic:
-                        question.topic,
-
                     selectedAnswer:
-                        studentAnswers[index],
+                        studentAnswers[
+                            index
+                        ],
 
                     correctAnswer:
                         question.answer,
@@ -888,58 +1288,46 @@ function saveTestResult(score) {
 
     localStorage.setItem(
         "test1Result",
-        JSON.stringify(result)
+        JSON.stringify(
+            result
+        )
     );
 
 }
 
 
 // ==========================================
-// REVIEW TEST
+// ESCAPE HTML
 // ==========================================
 
-function reviewTest() {
+function escapeHTML(value) {
 
-    localStorage.setItem(
-        "test1ReviewMode",
-        "true"
-    );
+    return String(value)
 
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
 
-    window.location.href =
-        "review1.html";
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
 
-}
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
 
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
 
-// ==========================================
-// RETAKE
-// ==========================================
-
-function retakeTest() {
-
-
-    if (retakeUsed) {
-
-        alert(
-            "You have already used your one retake."
+        .replaceAll(
+            "'",
+            "&#039;"
         );
-
-        return;
-
-    }
-
-
-    retakeUsed = true;
-
-
-    document.getElementById(
-        "resultModal"
-    ).style.display =
-        "none";
-
-
-    startTest();
 
 }
 
@@ -951,36 +1339,6 @@ function retakeTest() {
 document.addEventListener(
     "DOMContentLoaded",
     function() {
-
-        // Display student information
-        // in Test I.
-
-        const nameElement =
-            document.getElementById(
-                "studentName"
-            );
-
-        const sectionElement =
-            document.getElementById(
-                "studentSection"
-            );
-
-
-        if (nameElement) {
-
-            nameElement.textContent =
-                studentName;
-
-        }
-
-
-        if (sectionElement) {
-
-            sectionElement.textContent =
-                studentSection;
-
-        }
-
 
         startTest();
 
