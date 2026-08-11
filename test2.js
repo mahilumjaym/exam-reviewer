@@ -1,8 +1,8 @@
-// TEST II: CODE COMPLETION (5 NEW SANITIZED PROGRAM SCENARIOS)
+// TEST II: CODE COMPLETION WITH PYTHON IDE REVIEW & INTERACTIVE FEEDBACK
 let selectedProgram = null;
 let userAnswers = {};
 
-// 1. SANITIZED PROGRAM BANK (5 PROGRAMS, 10 BLANKS EACH)
+// 1. PROGRAM BANK (5 SANITIZED PROGRAM SCENARIOS)
 const test2ProgramBank = [
     {
         id: 1,
@@ -263,11 +263,10 @@ profile_type = [BLANK_10](user_profile)
     }
 ];
 
-// 2. HELPER FUNCTIONS & NORMALIZER
+// HELPER FUNCTIONS
 function normalize(str) {
     if (!str) return "";
     let s = str.trim().toLowerCase();
-    // Allow flexible single/double quotes for string inputs
     if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
         return s.slice(1, -1);
     }
@@ -278,9 +277,8 @@ function isValidPythonIdentifier(name) {
     return /^[A-Za-z_][A-Za-z0-9_]*$/.test(name);
 }
 
-// 3. INITIALIZATION & UI RENDERING
+// INITIALIZATION
 document.addEventListener("DOMContentLoaded", () => {
-    // Route guard check
     if (!localStorage.getItem("studentName")) {
         window.location.href = "index.html";
         return;
@@ -289,13 +287,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function startTest2() {
-    // Select program based on existing selection or pick at random
     const randIndex = Math.floor(Math.random() * test2ProgramBank.length);
     selectedProgram = test2ProgramBank[randIndex];
 
-    // Safe updates to title and description elements across different HTML setups
-    const titleElem = document.getElementById("test2Title") || document.getElementById("test2ProgramTitle") || document.getElementById("programTitle");
-    const descElem = document.getElementById("test2Desc") || document.getElementById("test2ProgramDesc") || document.getElementById("programDesc");
+    const titleElem = document.getElementById("test2Title") || document.getElementById("test2ProgramTitle");
+    const descElem = document.getElementById("test2Desc") || document.getElementById("test2ProgramDesc");
 
     if (titleElem) titleElem.innerText = selectedProgram.title;
     if (descElem) descElem.innerText = selectedProgram.description;
@@ -304,59 +300,44 @@ function startTest2() {
 }
 
 function renderCodeEditor() {
-    // Check for container under common ID naming conventions
-    const container = document.getElementById("codeEditorContainer") || document.getElementById("codeContainer") || document.getElementById("code-editor");
-
-    if (!container) {
-        console.error("Test II Error: Target element container for code editor not found in HTML!");
-        return;
-    }
+    const container = document.getElementById("codeEditorContainer");
+    if (!container) return;
 
     let code = selectedProgram.codeTemplate;
 
-    // Replace [BLANK_X] tags with HTML input elements
     for (let i = 1; i <= 10; i++) {
         const blankKey = `BLANK_${i}`;
         const inputHtml = `<input type="text" class="code-input" id="input_${blankKey}" data-blank="${blankKey}" placeholder="${i}" oninput="handleInputChange('${blankKey}')">`;
         code = code.replace(`[${blankKey}]`, inputHtml);
     }
 
-    container.innerHTML = `<pre class="python-code"><code>${code}</code></pre>`;
+    container.innerHTML = `
+        <div class="ide-window">
+            <div class="ide-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="ide-filename">main.py</span>
+            </div>
+            <div class="ide-body">
+                <pre class="python-code"><code>${code}</code></pre>
+            </div>
+        </div>
+    `;
 }
 
 function handleInputChange(blankKey) {
     const inputElem = document.getElementById(`input_${blankKey}`);
-    userAnswers[blankKey] = inputElem.value;
-    updateVariableReferences();
+    if (inputElem) userAnswers[blankKey] = inputElem.value;
 }
 
-function updateVariableReferences() {
-    // Dynamically mirror variable names typed by student across variable-type blanks
-    const variableBlanks = Object.keys(selectedProgram.blanks).filter(
-        k => selectedProgram.blanks[k].type === "variable"
-    );
-
-    let primaryVarName = "";
-    if (variableBlanks.length > 0 && userAnswers[variableBlanks[0]]) {
-        primaryVarName = userAnswers[variableBlanks[0]];
-    }
-
-    variableBlanks.forEach(key => {
-        const inputElem = document.getElementById(`input_${key}`);
-        if (inputElem && !inputElem.value && primaryVarName) {
-            inputElem.placeholder = primaryVarName;
-        }
-    });
-}
-
-// 4. SUBMISSION, SCORING & GOOGLE SHEETS SYNC
+// SUBMIT & REVIEW IN PYTHON IDE
 function submitTest2() {
     let score = 0;
     const total = 10;
     const results = [];
     let detectedVariable = "";
 
-    // Identify student's defined variable name if applicable
     for (const [key, config] of Object.entries(selectedProgram.blanks)) {
         if (config.type === "variable" && userAnswers[key]) {
             if (isValidPythonIdentifier(userAnswers[key])) {
@@ -366,7 +347,6 @@ function submitTest2() {
         }
     }
 
-    // Evaluate each blank
     for (let i = 1; i <= 10; i++) {
         const key = `BLANK_${i}`;
         const config = selectedProgram.blanks[key];
@@ -390,6 +370,7 @@ function submitTest2() {
 
         results.push({
             blank: key,
+            blankIndex: i,
             userAnswer: rawUserAns,
             expectedAnswer: config.answer,
             isCorrect: isCorrect,
@@ -418,64 +399,79 @@ function saveTest2Result(score, total, results) {
         timestamp: new Date().toISOString()
     };
 
-    // Save locally
     localStorage.setItem("test2Result", JSON.stringify(payload));
     localStorage.setItem("test2Completed", "true");
 
-    // SYNC TO GOOGLE SHEETS API
     if (typeof sendResultToGoogleSheets === "function") {
         sendResultToGoogleSheets(payload);
     }
 
-    renderFeedbackUI(score, total, results);
+    renderIDEReviewUI(score, total, results);
 }
 
-function renderFeedbackUI(score, total, results) {
-    const editorContainer = document.getElementById("codeEditorContainer");
+// RENDER IDE REVIEW WITH CLICKABLE RED/GREEN BLANKS & POPOVERS
+function renderIDEReviewUI(score, total, results) {
     const submitBtn = document.getElementById("submitTest2Btn");
     const nextBtn = document.getElementById("proceedTest3Btn");
+    const container = document.getElementById("codeEditorContainer");
 
     if (submitBtn) submitBtn.style.display = "none";
     if (nextBtn) nextBtn.style.display = "inline-block";
 
-    let feedbackHtml = `
-        <div class="score-card">
-            <h2>Test II Complete!</h2>
-            <p class="score-text">Your Score: <strong>${score} / ${total}</strong> (${((score / total) * 100).toFixed(0)}%)</p>
-        </div>
-        <div class="review-table-container">
-            <table class="review-table">
-                <thead>
-                    <tr>
-                        <th>Blank</th>
-                        <th>Your Input</th>
-                        <th>Status</th>
-                        <th>Correct/Expected Keyword</th>
-                    </tr>
-                </thead>
-                <tbody>
-    `;
+    let code = selectedProgram.codeTemplate;
 
-    results.forEach((r, idx) => {
-        const statusClass = r.isCorrect ? "status-correct" : "status-incorrect";
-        const statusText = r.isCorrect ? "✓ Correct" : "✗ Incorrect";
-        feedbackHtml += `
-            <tr class="${statusClass}">
-                <td>Blank ${idx + 1}</td>
-                <td><code>${escapeHTML(r.userAnswer || "(empty)")}</code></td>
-                <td><span class="badge ${statusClass}">${statusText}</span></td>
-                <td><code>${escapeHTML(r.expectedAnswer)}</code> <small>(${r.hint})</small></td>
-            </tr>
+    // Replace blanks with color-coded inputs & click events
+    results.forEach((r) => {
+        const key = r.blank;
+        const colorClass = r.isCorrect ? "ide-input-correct" : "ide-input-incorrect";
+        const valText = r.userAnswer ? escapeHTML(r.userAnswer) : `Blank ${r.blankIndex}`;
+        
+        const reviewedInputHtml = `
+            <span class="blank-wrapper">
+                <input type="text" class="code-input ${colorClass}" value="${valText}" readonly onclick="toggleFeedbackTooltip('${key}', ${r.isCorrect})">
+                <div class="ide-popover" id="popover_${key}" style="display: none;">
+                    <div class="popover-header ${r.isCorrect ? 'pop-green' : 'pop-red'}">
+                        ${r.isCorrect ? '✓ Correct Answer' : '✗ Incorrect Answer'}
+                    </div>
+                    <div class="popover-body">
+                        <p><strong>Your Input:</strong> <code>${escapeHTML(r.userAnswer || "(empty)")}</code></p>
+                        <p><strong>Expected Answer:</strong> <code>${escapeHTML(r.expectedAnswer)}</code></p>
+                        <p class="pop-hint"><em>Hint:</em> ${escapeHTML(r.hint)}</p>
+                    </div>
+                </div>
+            </span>
         `;
+        code = code.replace(`[${key}]`, reviewedInputHtml);
     });
 
-    feedbackHtml += `
-                </tbody>
-            </table>
+    container.innerHTML = `
+        <div class="score-card-ide">
+            <h2>Test II Complete!</h2>
+            <p class="score-text">Score: <strong>${score} / ${total}</strong> (${((score / total) * 100).toFixed(0)}%)</p>
+            <p class="instruction-text">💡 <em>Click on any <span style="color: #ef4444; font-weight: bold;">RED input box</span> to view the explanation and correct answer inside the IDE!</em></p>
+        </div>
+        <div class="ide-window">
+            <div class="ide-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="ide-filename">main_reviewed.py</span>
+            </div>
+            <div class="ide-body">
+                <pre class="python-code"><code>${code}</code></pre>
+            </div>
         </div>
     `;
+}
 
-    editorContainer.innerHTML = feedbackHtml;
+function toggleFeedbackTooltip(key, isCorrect) {
+    // Hide all popovers first
+    document.querySelectorAll(".ide-popover").forEach(p => p.style.display = "none");
+
+    const popover = document.getElementById(`popover_${key}`);
+    if (popover) {
+        popover.style.display = "block";
+    }
 }
 
 function escapeHTML(str) {
