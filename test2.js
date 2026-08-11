@@ -1,2640 +1,480 @@
-// =====================================================
-// TEST II - PYTHON CODE COMPLETION REVIEWER
-// 5 CODE SETS
-// 1 RANDOM SET
-// EXACTLY 10 BLANKS PER SET
-// =====================================================
+// TEST II: CODE COMPLETION (5 NEW SANITIZED PROGRAM SCENARIOS)
+let selectedProgram = null;
+let userAnswers = {};
 
-
-// =====================================================
-// PYTHON KEYWORDS
-// =====================================================
-
-const pythonKeywords = new Set([
-    "and", "as", "assert", "break", "class", "continue",
-    "def", "del", "elif", "else", "except", "False",
-    "finally", "for", "from", "global", "if", "import",
-    "in", "is", "lambda", "None", "nonlocal", "not",
-    "or", "pass", "raise", "return", "True", "try",
-    "while", "with", "yield"
-]);
-
-
-// =====================================================
-// CODE PART HELPERS
-// =====================================================
-
-function txt(value) {
-    return {
-        type: "text",
-        value: value
-    };
-}
-
-
-function note(value) {
-    return {
-        type: "comment",
-        value: value
-    };
-}
-
-
-function line() {
-    return {
-        type: "newline"
-    };
-}
-
-
-function blank(answer, explanation, width = "short") {
-    return {
-        type: "blank",
-        kind: "fixed",
-        answer: answer,
-        explanation: explanation,
-        width: width
-    };
-}
-
-
-function defineName(name, explanation) {
-    return {
-        type: "blank",
-        kind: "define",
-        name: name,
-        explanation: explanation,
-        width: "name"
-    };
-}
-
-
-function reference(name, defaultText) {
-    return {
-        type: "reference",
-        name: name,
-        defaultText: defaultText
-    };
-}
-
-
-// =====================================================
-// CODE BANK
-// =====================================================
-
-const codeBank = [
-
-    // =================================================
-    // SET 1 - WORKOUT SESSION CHECKER
-    // =================================================
-
+// 1. SANITIZED PROGRAM BANK (5 PROGRAMS, 10 BLANKS EACH)
+const test2ProgramBank = [
     {
-        title: "Workout Session Checker",
+        id: 1,
+        title: "Program 1: E-Commerce Shopping Cart Manager",
+        description: "Manages items in an online shopping cart using list operations and indexing.",
+        codeTemplate: `
+# Initialize shopping cart with three items
+[BLANK_1] = ["Laptop", "Mouse", "Keyboard"]
 
-        parts: [
+# Display all items in the cart
+[BLANK_2](cart)
 
-            note("# Define the function"),
-            line(),
+# Display the first item in the cart
+print(cart[[BLANK_3]])
 
-            txt("def "),
-            defineName(
-                "functionName",
-                "Enter any valid Python function name."
-            ),
-            txt("("),
-            defineName(
-                "parameterName",
-                "Enter any valid parameter name."
-            ),
-            txt("):"),
-            line(),
+# Add a new product to the end of the cart
+cart.[BLANK_4]("Headphones")
 
-            note("# Check the activity time"),
-            line(),
+# Remove the item "Mouse" from the cart
+cart.[BLANK_5]("Mouse")
 
-            txt("    if "),
-            reference(
-                "parameterName",
-                "minutes"
-            ),
-            txt(" "),
-            blank(
-                ">=",
-                "The >= operator checks for a value that is at least the given number."
-            ),
-            txt(" 30:"),
-            line(),
+# Check total number of items remaining
+total_items = [BLANK_6](cart)
 
-            note("# Give the result"),
-            line(),
+# Display updated count
+print("Total items:", total_items)
 
-            txt("        "),
-            blank(
-                "return",
-                "return sends a value back from the function."
-            ),
-            txt(' "Active"'),
-            line(),
+# Display the last item added
+print("Last item:", cart[[BLANK_7]])
 
-            note("# Set the number of sessions"),
-            line(),
+# Clear all items from the cart
+cart.[BLANK_8]()
 
-            txt("sessions = 3"),
-            line(),
-
-            note("# Repeat the sessions"),
-            line(),
-
-            txt("for session in range("),
-            blank(
-                "1",
-                "The range begins with 1."
-            ),
-            txt(", 4):"),
-            line(),
-
-            txt('    print("Session:", session)'),
-            line(),
-
-            note("# Check remaining sessions"),
-            line(),
-
-            txt("while sessions "),
-            blank(
-                ">",
-                "The loop continues while sessions is greater than zero."
-            ),
-            txt(" 0:"),
-            line(),
-
-            txt('    print("Training")'),
-            line(),
-
-            txt("    sessions = sessions - 1"),
-            line(),
-
-            note("# Open the workout file"),
-            line(),
-
-            txt('file = open("workout_log.txt", '),
-            blank(
-                '"a"',
-                "The a mode adds new information without removing the existing contents."
-            ),
-            txt(")"),
-            line(),
-
-            note("# Save the workout"),
-            line(),
-
-            txt("file."),
-            blank(
-                "write",
-                "write() places text into the file."
-            ),
-            txt('("Workout completed\\n")'),
-            line(),
-
-            note("# Close the file"),
-            line(),
-
-            txt("file."),
-            blank(
-                "close",
-                "close() closes the file after saving."
-            ),
-            txt("()"),
-            line(),
-
-            note("# Store the result"),
-            line(),
-
-            txt("result = "),
-            reference(
-                "functionName",
-                "check_workout"
-            ),
-            txt("("),
-            blank(
-                "45",
-                "The function receives a numeric argument."
-            ),
-            txt(")"),
-            line(),
-
-            note("# Display the result"),
-            line(),
-
-            txt("print(result)")
-        ]
+# Check if cart is empty
+if [BLANK_9](cart) == 0:
+    [BLANK_10]("Cart is empty!")
+`.trim(),
+        blanks: {
+            BLANK_1: { answer: "cart", type: "variable", hint: "Variable name for the cart list" },
+            BLANK_2: { answer: "print", type: "fixed", hint: "Built-in function to display output" },
+            BLANK_3: { answer: "0", type: "fixed", hint: "Index for the first item in Python" },
+            BLANK_4: { answer: "append", type: "fixed", hint: "List method to add an item to the end" },
+            BLANK_5: { answer: "remove", type: "fixed", hint: "List method to delete a specific item value" },
+            BLANK_6: { answer: "len", type: "fixed", hint: "Function to calculate length of a sequence" },
+            BLANK_7: { answer: "-1", type: "fixed", hint: "Negative index used to target the last item" },
+            BLANK_8: { answer: "clear", type: "fixed", hint: "List method to remove all elements" },
+            BLANK_9: { answer: "len", type: "fixed", hint: "Function to evaluate item quantity" },
+            BLANK_10: { answer: "print", type: "fixed", hint: "Built-in function to display notice" }
+        }
     },
-
-
-    // =================================================
-    // SET 2 - BOOKSTORE ORDER CHECKER
-    // =================================================
-
     {
-        title: "Bookstore Order Checker",
+        id: 2,
+        title: "Program 2: Academic Performance Evaluator",
+        description: "Evaluates student grades from a dictionary using conditional statements and loops.",
+        codeTemplate: `
+# Dictionary storing student names and numerical grades
+grades = {
+    "Alex": 88,
+    "Bella": 72,
+    "Carlos": 95,
+    "Diana": 68
+}
 
-        parts: [
+# List to store honors students
+[BLANK_1] = []
 
-            note("# Define the function"),
-            line(),
+# Iterate over student names and grades
+for student, mark in grades.[BLANK_2]():
+    # Check if student qualifies for honors (85 or higher)
+    [BLANK_3] mark >= 85:
+        honors_list.[BLANK_4](student)
 
-            txt("def "),
-            defineName(
-                "functionName",
-                "Enter any valid Python function name."
-            ),
-            txt("("),
-            defineName(
-                "parameterName",
-                "Enter any valid parameter name."
-            ),
-            txt("):"),
-            line(),
+# Display honors students
+print("Honors Students:")
+for student [BLANK_5] honors_list:
+    [BLANK_6](student)
 
-            note("# Check the order"),
-            line(),
+# Check specific grade for Carlos
+carlos_grade = grades[[BLANK_7]]
+print("Carlos Grade:", carlos_grade)
 
-            txt("    if "),
-            reference(
-                "parameterName",
-                "quantity"
-            ),
-            txt(" "),
-            blank(
-                ">",
-                "The > operator checks whether the quantity is greater than zero."
-            ),
-            txt(" 0:"),
-            line(),
+# Update Diana's grade to passing (75)
+grades["Diana"] = [BLANK_8]
 
-            note("# Accept the order"),
-            line(),
-
-            txt("        "),
-            blank(
-                "return",
-                "return sends the result back to the function call."
-            ),
-            txt(' "Order accepted"'),
-            line(),
-
-            note("# Set the number of orders"),
-            line(),
-
-            txt("orders = 3"),
-            line(),
-
-            note("# Repeat the orders"),
-            line(),
-
-            txt("for order_number in range("),
-            blank(
-                "1",
-                "The first order is numbered 1."
-            ),
-            txt(", 4):"),
-            line(),
-
-            txt('    print("Order:", order_number)'),
-            line(),
-
-            note("# Check remaining orders"),
-            line(),
-
-            txt("while orders "),
-            blank(
-                ">",
-                "The loop continues while orders is greater than zero."
-            ),
-            txt(" 0:"),
-            line(),
-
-            txt('    print("Processing")'),
-            line(),
-
-            txt("    orders = orders - 1"),
-            line(),
-
-            note("# Open the order file"),
-            line(),
-
-            txt('file = open("orders.csv", '),
-            blank(
-                '"a"',
-                "The a mode adds a new record to the existing file."
-            ),
-            txt(")"),
-            line(),
-
-            note("# Save the order"),
-            line(),
-
-            txt("file."),
-            blank(
-                "write",
-                "write() places the order record into the file."
-            ),
-            txt('("Order processed\\n")'),
-            line(),
-
-            note("# Close the file"),
-            line(),
-
-            txt("file."),
-            blank(
-                "close",
-                "close() closes the file after saving."
-            ),
-            txt("()"),
-            line(),
-
-            note("# Call the function"),
-            line(),
-
-            txt("message = "),
-            reference(
-                "functionName",
-                "check_order"
-            ),
-            txt("("),
-            blank(
-                "2",
-                "The function receives the order quantity."
-            ),
-            txt(")"),
-            line(),
-
-            note("# Display the result"),
-            line(),
-
-            txt("print(message)")
-        ]
+# Calculate total number of recorded students
+total_students = [BLANK_9](grades)
+print("Total Students:", [BLANK_10])
+`.trim(),
+        blanks: {
+            BLANK_1: { answer: "honors_list", type: "variable", hint: "Variable name for the honors list" },
+            BLANK_2: { answer: "items", type: "fixed", hint: "Dictionary method returning key-value pairs" },
+            BLANK_3: { answer: "if", type: "fixed", hint: "Keyword initiating conditional check" },
+            BLANK_4: { answer: "append", type: "fixed", hint: "List method to insert qualifying student" },
+            BLANK_5: { answer: "in", type: "fixed", hint: "Membership keyword used in loops" },
+            BLANK_6: { answer: "print", type: "fixed", hint: "Function to output student name" },
+            BLANK_7: { answer: '"Carlos"', type: "fixed", hint: "Dictionary key string for Carlos (with quotes)" },
+            BLANK_8: { answer: "75", type: "fixed", hint: "Integer value assigned to Diana" },
+            BLANK_9: { answer: "len", type: "fixed", hint: "Function returning total entries" },
+            BLANK_10: { answer: "total_students", type: "fixed", hint: "Variable holding total student count" }
+        }
     },
-
-
-    // =================================================
-    // SET 3 - PLANT WATERING CHECKER
-    // =================================================
-
     {
-        title: "Plant Watering Checker",
+        id: 3,
+        title: "Program 3: Temperature Unit Converter",
+        description: "Defines and calls a custom Python function to convert Celsius temperatures to Fahrenheit.",
+        codeTemplate: `
+# Function definition for unit conversion
+[BLANK_1] convert_to_fahrenheit(celsius):
+    # Conversion formula
+    fahrenheit = (celsius * 9 / 5) + 32
+    [BLANK_2] fahrenheit
 
-        parts: [
+# Initialize temperature in Celsius
+temp_c = 30
 
-            note("# Define the function"),
-            line(),
+# Call conversion function
+temp_f = [BLANK_3](temp_c)
 
-            txt("def "),
-            defineName(
-                "functionName",
-                "Enter any valid Python function name."
-            ),
-            txt("("),
-            defineName(
-                "parameterName",
-                "Enter any valid parameter name."
-            ),
-            txt("):"),
-            line(),
+# Display converted result
+[BLANK_4]("Temperature in Fahrenheit:", temp_f)
 
-            note("# Check the water level"),
-            line(),
+# Evaluate if temperature is hot
+if temp_f [BLANK_5] 80:
+    print("Weather condition: Warm/Hot")
+[BLANK_6]:
+    print("Weather condition: Cool/Moderate")
 
-            txt("    if "),
-            reference(
-                "parameterName",
-                "level"
-            ),
-            txt(" "),
-            blank(
-                "<",
-                "The < operator checks whether the value is below the given level."
-            ),
-            txt(" 20:"),
-            line(),
+# Store weekly temperatures in a list
+weekly_c = [25, 28, 30, 22, 27]
 
-            note("# Give the warning"),
-            line(),
+# Print total days recorded
+print("Days recorded:", [BLANK_7](weekly_c))
 
-            txt("        "),
-            blank(
-                "return",
-                "return sends the warning back from the function."
-            ),
-            txt(' "Water needed"'),
-            line(),
-
-            note("# Set the number of plants"),
-            line(),
-
-            txt("plants = 3"),
-            line(),
-
-            note("# Visit each plant"),
-            line(),
-
-            txt("for plant in range("),
-            blank(
-                "1",
-                "The first plant is numbered 1."
-            ),
-            txt(", 4):"),
-            line(),
-
-            txt('    print("Plant:", plant)'),
-            line(),
-
-            note("# Check remaining plants"),
-            line(),
-
-            txt("while plants "),
-            blank(
-                ">",
-                "The loop continues while plants is greater than zero."
-            ),
-            txt(" 0:"),
-            line(),
-
-            txt('    print("Checking")'),
-            line(),
-
-            txt("    plants = plants - 1"),
-            line(),
-
-            note("# Open the plant file"),
-            line(),
-
-            txt('file = open("plant_log.txt", '),
-            blank(
-                '"a"',
-                "The a mode adds the new record to the file."
-            ),
-            txt(")"),
-            line(),
-
-            note("# Save the record"),
-            line(),
-
-            txt("file."),
-            blank(
-                "write",
-                "write() saves text into the opened file."
-            ),
-            txt('("Plant checked\\n")'),
-            line(),
-
-            note("# Close the file"),
-            line(),
-
-            txt("file."),
-            blank(
-                "close",
-                "close() closes the file after saving."
-            ),
-            txt("()"),
-            line(),
-
-            note("# Call the function"),
-            line(),
-
-            txt("status = "),
-            reference(
-                "functionName",
-                "check_water"
-            ),
-            txt("("),
-            blank(
-                "15",
-                "The function receives the water-level value."
-            ),
-            txt(")"),
-            line(),
-
-            note("# Display the result"),
-            line(),
-
-            txt("print(status)")
-        ]
+# Loop through weekly readings
+for temp [BLANK_8] weekly_c:
+    f_val = convert_to_fahrenheit([BLANK_9])
+    [BLANK_10](f_val)
+`.trim(),
+        blanks: {
+            BLANK_1: { answer: "def", type: "fixed", hint: "Keyword used to declare a function" },
+            BLANK_2: { answer: "return", type: "fixed", hint: "Keyword used to send back calculated value" },
+            BLANK_3: { answer: "convert_to_fahrenheit", type: "fixed", hint: "Function name being executed" },
+            BLANK_4: { answer: "print", type: "fixed", hint: "Function to output results" },
+            BLANK_5: { answer: ">", type: "fixed", hint: "Greater-than comparison operator" },
+            BLANK_6: { answer: "else", type: "fixed", hint: "Fallback conditional branch keyword" },
+            BLANK_7: { answer: "len", type: "fixed", hint: "Function to count list items" },
+            BLANK_8: { answer: "in", type: "fixed", hint: "Iteration keyword" },
+            BLANK_9: { answer: "temp", type: "fixed", hint: "Loop variable passed into converter function" },
+            BLANK_10: { answer: "print", type: "fixed", hint: "Function printing daily converted values" }
+        }
     },
-
-
-    // =================================================
-    // SET 4 - TRAVEL BUDGET CHECKER
-    // =================================================
-
     {
-        title: "Travel Budget Checker",
+        id: 4,
+        title: "Program 4: System Inventory Logger",
+        description: "Filters low stock items from an inventory dictionary and writes them to a text file.",
+        codeTemplate: `
+# Inventory tracking item stock levels
+stock = {
+    "Paper": 12,
+    "Pens": 4,
+    "Pencils": 25,
+    "Folders": 2
+}
 
-        parts: [
+# Open text file in write mode
+log_file = [BLANK_1]("low_stock.txt", [BLANK_2])
 
-            note("# Define the function"),
-            line(),
+# Iterate through items to find low stock (less than 10)
+for item, count in stock.[BLANK_3]():
+    if count [BLANK_4] 10:
+        # Write item name to log file
+        log_file.[BLANK_5](item + "\\n")
 
-            txt("def "),
-            defineName(
-                "functionName",
-                "Enter any valid Python function name."
-            ),
-            txt("("),
-            defineName(
-                "parameterName",
-                "Enter any valid parameter name."
-            ),
-            txt("):"),
-            line(),
+# Close file after operations complete
+log_file.[BLANK_6]()
 
-            note("# Check the budget"),
-            line(),
+# Display confirmation message
+[BLANK_7]("Inventory scan complete.")
 
-            txt("    if "),
-            reference(
-                "parameterName",
-                "budget"
-            ),
-            txt(" "),
-            blank(
-                ">=",
-                "The >= operator checks whether the budget reaches the required amount."
-            ),
-            txt(" 1000:"),
-            line(),
+# Re-open file in read mode
+read_file = open("low_stock.txt", [BLANK_8])
 
-            note("# Approve the trip"),
-            line(),
+# Read entire file contents
+content = read_file.[BLANK_9]()
 
-            txt("        "),
-            blank(
-                "return",
-                "return sends the decision back from the function."
-            ),
-            txt(' "Trip approved"'),
-            line(),
+# Print contents to console
+print(content)
 
-            note("# Set the travel days"),
-            line(),
-
-            txt("days = 3"),
-            line(),
-
-            note("# Display each day"),
-            line(),
-
-            txt("for day in range("),
-            blank(
-                "1",
-                "The first day is numbered 1."
-            ),
-            txt(", 4):"),
-            line(),
-
-            txt('    print("Day:", day)'),
-            line(),
-
-            note("# Check remaining days"),
-            line(),
-
-            txt("while days "),
-            blank(
-                ">",
-                "The loop continues while days is greater than zero."
-            ),
-            txt(" 0:"),
-            line(),
-
-            txt('    print("Planning")'),
-            line(),
-
-            txt("    days = days - 1"),
-            line(),
-
-            note("# Open the travel file"),
-            line(),
-
-            txt('file = open("travel_plan.csv", '),
-            blank(
-                '"a"',
-                "The a mode adds another record to the CSV file."
-            ),
-            txt(")"),
-            line(),
-
-            note("# Save the travel plan"),
-            line(),
-
-            txt("file."),
-            blank(
-                "write",
-                "write() saves text into the file."
-            ),
-            txt('("Trip planned\\n")'),
-            line(),
-
-            note("# Close the file"),
-            line(),
-
-            txt("file."),
-            blank(
-                "close",
-                "close() closes the file after saving."
-            ),
-            txt("()"),
-            line(),
-
-            note("# Call the function"),
-            line(),
-
-            txt("decision = "),
-            reference(
-                "functionName",
-                "check_budget"
-            ),
-            txt("("),
-            blank(
-                "1500",
-                "The function receives the travel budget."
-            ),
-            txt(")"),
-            line(),
-
-            note("# Display the result"),
-            line(),
-
-            txt("print(decision)")
-        ]
+# Close read file stream
+read_file.[BLANK_10]()
+`.trim(),
+        blanks: {
+            BLANK_1: { answer: "open", type: "fixed", hint: "Built-in function to open file stream" },
+            BLANK_2: { answer: '"w"', type: "fixed", hint: "File mode string for writing" },
+            BLANK_3: { answer: "items", type: "fixed", hint: "Dictionary method returning key and value" },
+            BLANK_4: { answer: "<", type: "fixed", hint: "Less-than relational operator" },
+            BLANK_5: { answer: "write", type: "fixed", hint: "File object method to save text string" },
+            BLANK_6: { answer: "close", type: "fixed", hint: "Method to safely save and close file" },
+            BLANK_7: { answer: "print", type: "fixed", hint: "Built-in display function" },
+            BLANK_8: { answer: '"r"', type: "fixed", hint: "File mode string for reading" },
+            BLANK_9: { answer: "read", type: "fixed", hint: "File method returning full file contents" },
+            BLANK_10: { answer: "close", type: "fixed", hint: "Method closing read stream" }
+        }
     },
-
-
-    // =================================================
-    // SET 5 - EVENT SIZE CHECKER
-    // =================================================
-
     {
-        title: "Event Size Checker",
+        id: 5,
+        title: "Program 5: User Profile & Security Manager",
+        description: "Validates user account statuses and updates security access levels dynamically.",
+        codeTemplate: `
+# Initialize default access clearance level
+clearance_level = 1
 
-        parts: [
+# Define user details in dictionary
+[BLANK_1] = {
+    "username": "admin_user",
+    "role": "Administrator",
+    "active": True
+}
 
-            note("# Define the function"),
-            line(),
+# Check if user profile is active
+if user_profile[[BLANK_2]] == [BLANK_3]:
+    [BLANK_4]("Access Granted")
+    clearance_level = 5
+[BLANK_5]:
+    print("Access Denied")
 
-            txt("def "),
-            defineName(
-                "functionName",
-                "Enter any valid Python function name."
-            ),
-            txt("("),
-            defineName(
-                "parameterName",
-                "Enter any valid parameter name."
-            ),
-            txt("):"),
-            line(),
+# Display updated clearance level
+print("Clearance Level:", [BLANK_6])
 
-            note("# Check the number of guests"),
-            line(),
+# Function checking system permission
+def check_permission(level):
+    if level >= 3:
+        [BLANK_7] "Full Access"
+    else:
+        return "Restricted Access"
 
-            txt("    if "),
-            reference(
-                "parameterName",
-                "guests"
-            ),
-            txt(" "),
-            blank(
-                ">",
-                "The > operator checks whether the number of guests is greater than 50."
-            ),
-            txt(" 50:"),
-            line(),
+# Call check_permission function
+status_msg = [BLANK_8](clearance_level)
 
-            note("# Identify the event"),
-            line(),
+# Print final status
+[BLANK_9](status_msg)
 
-            txt("        "),
-            blank(
-                "return",
-                "return sends the result back from the function."
-            ),
-            txt(' "Large Event"'),
-            line(),
-
-            note("# Set the number of activities"),
-            line(),
-
-            txt("activities = 3"),
-            line(),
-
-            note("# Repeat the activities"),
-            line(),
-
-            txt("for activity in range("),
-            blank(
-                "1",
-                "The first activity is numbered 1."
-            ),
-            txt(", 4):"),
-            line(),
-
-            txt('    print("Activity:", activity)'),
-            line(),
-
-            note("# Check remaining activities"),
-            line(),
-
-            txt("while activities "),
-            blank(
-                ">",
-                "The loop continues while activities is greater than zero."
-            ),
-            txt(" 0:"),
-            line(),
-
-            txt('    print("Preparing")'),
-            line(),
-
-            txt("    activities = activities - 1"),
-            line(),
-
-            note("# Open the event file"),
-            line(),
-
-            txt('file = open("event_log.csv", '),
-            blank(
-                '"a"',
-                "The a mode adds another record to the CSV file."
-            ),
-            txt(")"),
-            line(),
-
-            note("# Save the event"),
-            line(),
-
-            txt("file."),
-            blank(
-                "write",
-                "write() places the event record into the file."
-            ),
-            txt('("Event prepared\\n")'),
-            line(),
-
-            note("# Close the file"),
-            line(),
-
-            txt("file."),
-            blank(
-                "close",
-                "close() closes the file after saving."
-            ),
-            txt("()"),
-            line(),
-
-            note("# Call the function"),
-            line(),
-
-            txt("result = "),
-            reference(
-                "functionName",
-                "check_event"
-            ),
-            txt("("),
-            blank(
-                "65",
-                "The function receives the number of guests."
-            ),
-            txt(")"),
-            line(),
-
-            note("# Display the result"),
-            line(),
-
-            txt("print(result)")
-        ]
+# Verify data type of user profile
+profile_type = [BLANK_10](user_profile)
+`.trim(),
+        blanks: {
+            BLANK_1: { answer: "user_profile", type: "variable", hint: "Variable name for dictionary" },
+            BLANK_2: { answer: '"active"', type: "fixed", hint: "Dictionary key string for activity status" },
+            BLANK_3: { answer: "True", type: "fixed", hint: "Boolean constant representing true" },
+            BLANK_4: { answer: "print", type: "fixed", hint: "Display output function" },
+            BLANK_5: { answer: "else", type: "fixed", hint: "Keyword for non-qualifying condition branch" },
+            BLANK_6: { answer: "clearance_level", type: "fixed", hint: "Variable storing updated level integer" },
+            BLANK_7: { answer: "return", type: "fixed", hint: "Keyword outputting result from function" },
+            BLANK_8: { answer: "check_permission", type: "fixed", hint: "Function name being invoked" },
+            BLANK_9: { answer: "print", type: "fixed", hint: "Function printing status message" },
+            BLANK_10: { answer: "type", type: "fixed", hint: "Built-in function returning object data type" }
+        }
     }
-
 ];
 
-
-// =====================================================
-// TEST VARIABLES
-// =====================================================
-
-let selectedCode = null;
-let studentAnswers = [];
-let testSubmitted = false;
-
-
-// =====================================================
-// GET TEST CONTAINER
-// =====================================================
-
-function getTestContainer() {
-
-    let container =
-        document.getElementById(
-            "codeQuestionsContainer"
-        );
-
-    // Backup ID in case the HTML uses this name
-    if (!container) {
-
-        container =
-            document.getElementById(
-                "codeCompletionContainer"
-            );
-
+// 2. HELPER FUNCTIONS & NORMALIZER
+function normalize(str) {
+    if (!str) return "";
+    let s = str.trim().toLowerCase();
+    // Allow flexible single/double quotes for string inputs
+    if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
+        return s.slice(1, -1);
     }
-
-    return container;
+    return s;
 }
 
-
-// =====================================================
-// COUNT BLANKS
-// =====================================================
-
-function countBlanks(program) {
-
-    return program.parts.filter(
-        part =>
-            part.type === "blank"
-    ).length;
-
+function isValidPythonIdentifier(name) {
+    return /^[A-Za-z_][A-Za-z0-9_]*$/.test(name);
 }
 
-
-// =====================================================
-// VALIDATE CODE BANK
-// =====================================================
-
-function validateCodeBank() {
-
-    let valid = true;
-
-    codeBank.forEach(
-        (program, index) => {
-
-            const count =
-                countBlanks(program);
-
-            console.log(
-                "Test II Set " +
-                (index + 1) +
-                ": " +
-                program.title +
-                " = " +
-                count +
-                " blanks"
-            );
-
-            if (count !== 10) {
-
-                console.error(
-                    program.title +
-                    " has " +
-                    count +
-                    " blanks."
-                );
-
-                valid = false;
-
-            }
-
-        }
-    );
-
-    return valid;
-
-}
-
-
-// =====================================================
-// VALID PYTHON NAME
-// =====================================================
-
-function isValidPythonName(value) {
-
-    if (
-        !/^[A-Za-z_][A-Za-z0-9_]*$/.test(
-            value
-        )
-    ) {
-
-        return false;
-
+// 3. INITIALIZATION & UI RENDERING
+document.addEventListener("DOMContentLoaded", () => {
+    // Route guard check
+    if (!localStorage.getItem("studentName")) {
+        window.location.href = "index.html";
+        return;
     }
-
-    if (
-        pythonKeywords.has(
-            value
-        )
-    ) {
-
-        return false;
-
-    }
-
-    return true;
-
-}
-
-
-// =====================================================
-// NORMALIZE ANSWER
-// =====================================================
-
-function normalize(value) {
-
-    return String(value)
-        .trim()
-        .toLowerCase();
-
-}
-
-
-// =====================================================
-// ESCAPE HTML
-// =====================================================
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
-
-}
-
-
-// =====================================================
-// PYTHON SYNTAX COLORING
-// =====================================================
-
-function renderPythonText(value) {
-
-    const fragment =
-        document.createDocumentFragment();
-
-    const pattern =
-        /(#.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|\b(def|if|elif|else|for|while|in|range|return|open|print|input|int|float|write|close)\b|\b(\d+(?:\.\d+)?)\b/g;
-
-    let lastIndex = 0;
-    let match;
-
-    while (
-        (match =
-            pattern.exec(value)) !== null
-    ) {
-
-        if (
-            match.index >
-            lastIndex
-        ) {
-
-            const normal =
-                document.createElement(
-                    "span"
-                );
-
-            normal.className =
-                "py-normal";
-
-            normal.textContent =
-                value.slice(
-                    lastIndex,
-                    match.index
-                );
-
-            fragment.appendChild(
-                normal
-            );
-
-        }
-
-        const token =
-            document.createElement(
-                "span"
-            );
-
-        if (match[1]) {
-
-            token.className =
-                "py-comment";
-
-        }
-        else if (match[2]) {
-
-            token.className =
-                "py-string";
-
-        }
-        else if (match[3]) {
-
-            token.className =
-                "py-keyword";
-
-        }
-        else {
-
-            token.className =
-                "py-number";
-
-        }
-
-        token.textContent =
-            match[0];
-
-        fragment.appendChild(
-            token
-        );
-
-        lastIndex =
-            pattern.lastIndex;
-
-    }
-
-    if (
-        lastIndex <
-        value.length
-    ) {
-
-        const remaining =
-            document.createElement(
-                "span"
-            );
-
-        remaining.className =
-            "py-normal";
-
-        remaining.textContent =
-            value.slice(
-                lastIndex
-            );
-
-        fragment.appendChild(
-            remaining
-        );
-
-    }
-
-    return fragment;
-
-}
-
-
-// =====================================================
-// START TEST II
-// =====================================================
+    startTest2();
+});
 
 function startTest2() {
+    // Select program based on existing selection or pick at random
+    const randIndex = Math.floor(Math.random() * test2ProgramBank.length);
+    selectedProgram = test2ProgramBank[randIndex];
 
-    console.log(
-        "Starting Test II..."
-    );
+    document.getElementById("test2Title").innerText = selectedProgram.title;
+    document.getElementById("test2Desc").innerText = selectedProgram.description;
 
-    const container =
-        getTestContainer();
-
-    if (!container) {
-
-        console.error(
-            "ERROR: Test II container not found."
-        );
-
-        console.error(
-            "The HTML needs id=\"codeQuestionsContainer\"."
-        );
-
-        return;
-
-    }
-
-    if (
-        !validateCodeBank()
-    ) {
-
-        alert(
-            "There is a problem with the Test II reviewer."
-        );
-
-        return;
-
-    }
-
-    const randomIndex =
-        Math.floor(
-            Math.random() *
-            codeBank.length
-        );
-
-    selectedCode =
-        codeBank[randomIndex];
-
-    studentAnswers =
-        new Array(
-            10
-        ).fill("");
-
-    testSubmitted =
-        false;
-
-    console.log(
-        "Selected:",
-        selectedCode.title
-    );
-
-    console.log(
-        "Blanks:",
-        countBlanks(selectedCode)
-    );
-
-    displayProgram();
-
+    renderCodeEditor();
 }
 
+function renderCodeEditor() {
+    const container = document.getElementById("codeEditorContainer");
+    let code = selectedProgram.codeTemplate;
 
-// =====================================================
-// DISPLAY PROGRAM
-// =====================================================
-
-function displayProgram() {
-
-    const container =
-        getTestContainer();
-
-    if (!container) {
-
-        console.error(
-            "Cannot display Test II."
-        );
-
-        return;
-
+    // Replace [BLANK_X] tags with HTML input elements
+    for (let i = 1; i <= 10; i++) {
+        const blankKey = `BLANK_${i}`;
+        const inputHtml = `<input type="text" class="code-input" id="input_${blankKey}" data-blank="${blankKey}" placeholder="${i}" oninput="handleInputChange('${blankKey}')">`;
+        code = code.replace(`[${blankKey}]`, inputHtml);
     }
 
-    container.innerHTML = "";
+    container.innerHTML = `<pre class="python-code"><code>${code}</code></pre>`;
+}
 
-    const card =
-        document.createElement(
-            "div"
-        );
+function handleInputChange(blankKey) {
+    const inputElem = document.getElementById(`input_${blankKey}`);
+    userAnswers[blankKey] = inputElem.value;
+    updateVariableReferences();
+}
 
-    card.className =
-        "code-question-card";
-
-
-    // Title
-
-    const title =
-        document.createElement(
-            "h3"
-        );
-
-    title.textContent =
-        selectedCode.title;
-
-    card.appendChild(
-        title
+function updateVariableReferences() {
+    // Dynamically mirror variable names typed by student across variable-type blanks
+    const variableBlanks = Object.keys(selectedProgram.blanks).filter(
+        k => selectedProgram.blanks[k].type === "variable"
     );
 
+    let primaryVarName = "";
+    if (variableBlanks.length > 0 && userAnswers[variableBlanks[0]]) {
+        primaryVarName = userAnswers[variableBlanks[0]];
+    }
 
-    // Code box
-
-    const codeBox =
-        document.createElement(
-            "div"
-        );
-
-    codeBox.className =
-        "code-box";
-
-
-    let blankIndex = 0;
-
-
-    selectedCode.parts.forEach(
-        part => {
-
-            // New line
-
-            if (
-                part.type ===
-                "newline"
-            ) {
-
-                codeBox.appendChild(
-                    document.createElement(
-                        "br"
-                    )
-                );
-
-                return;
-
-            }
-
-
-            // Normal text or comment
-
-            if (
-                part.type === "text" ||
-                part.type === "comment"
-            ) {
-
-                codeBox.appendChild(
-                    renderPythonText(
-                        part.value
-                    )
-                );
-
-                return;
-
-            }
-
-
-            // Blank
-
-            if (
-                part.type === "blank"
-            ) {
-
-                const input =
-                    document.createElement(
-                        "input"
-                    );
-
-                input.type =
-                    "text";
-
-                input.className =
-                    "code-blank";
-
-                input.autocomplete =
-                    "off";
-
-                input.spellcheck =
-                    false;
-
-                input.dataset.blankIndex =
-                    blankIndex;
-
-
-                if (
-                    part.width ===
-                    "name"
-                ) {
-
-                    input.classList.add(
-                        "name-blank"
-                    );
-
-                }
-                else {
-
-                    input.classList.add(
-                        "short-blank"
-                    );
-
-                }
-
-
-                // Student-defined names
-
-                if (
-                    part.kind ===
-                    "define"
-                ) {
-
-                    input.dataset.role =
-                        part.name;
-
-                    input.addEventListener(
-                        "input",
-                        function() {
-
-                            updateReferences(
-                                part.name,
-                                input.value.trim()
-                            );
-
-                        }
-                    );
-
-                }
-
-
-                codeBox.appendChild(
-                    input
-                );
-
-                blankIndex++;
-
-                return;
-
-            }
-
-
-            // Linked reference
-
-            if (
-                part.type ===
-                "reference"
-            ) {
-
-                const referenceSpan =
-                    document.createElement(
-                        "span"
-                    );
-
-                referenceSpan.className =
-                    "code-reference";
-
-                referenceSpan.dataset.reference =
-                    part.name;
-
-                referenceSpan.dataset.default =
-                    part.defaultText;
-
-                referenceSpan.textContent =
-                    part.defaultText;
-
-                codeBox.appendChild(
-                    referenceSpan
-                );
-
-            }
-
+    variableBlanks.forEach(key => {
+        const inputElem = document.getElementById(`input_${key}`);
+        if (inputElem && !inputElem.value && primaryVarName) {
+            inputElem.placeholder = primaryVarName;
         }
-    );
-
-
-    card.appendChild(
-        codeBox
-    );
-
-    container.appendChild(
-        card
-    );
-
-
-    console.log(
-        "Displayed blanks:",
-        blankIndex
-    );
-
+    });
 }
 
-
-// =====================================================
-// UPDATE LINKED NAMES
-// =====================================================
-
-function updateReferences(
-    name,
-    value
-) {
-
-    const references =
-        document.querySelectorAll(
-            '[data-reference="' +
-            name +
-            '"]'
-        );
-
-    references.forEach(
-        reference => {
-
-            reference.textContent =
-                value ||
-                reference.dataset.default;
-
-        }
-    );
-
-}
-
-
-// =====================================================
-// READ ANSWERS
-// =====================================================
-
-function readAnswers() {
-
-    const inputs =
-        document.querySelectorAll(
-            ".code-blank"
-        );
-
-    console.log(
-        "Answer boxes found:",
-        inputs.length
-    );
-
-    if (
-        inputs.length !== 10
-    ) {
-
-        alert(
-            "The reviewer could not find all 10 blanks."
-        );
-
-        console.error(
-            "Expected 10 blanks but found:",
-            inputs.length
-        );
-
-        return null;
-
-    }
-
-    studentAnswers =
-        Array.from(
-            inputs
-        ).map(
-            input =>
-                input.value.trim()
-        );
-
-    return studentAnswers;
-
-}
-
-
-// =====================================================
-// EVALUATE ANSWERS
-// =====================================================
-
-function evaluateAnswers(
-    answers
-) {
-
-    const results = [];
-
-    let blankIndex = 0;
-
-
-    selectedCode.parts.forEach(
-        part => {
-
-            if (
-                part.type !==
-                "blank"
-            ) {
-
-                return;
-
-            }
-
-
-            const studentAnswer =
-                answers[blankIndex];
-
-
-            let correct =
-                false;
-
-            let correctAnswer =
-                "";
-
-            let explanation =
-                part.explanation;
-
-
-            // Student-created name
-
-            if (
-                part.kind ===
-                "define"
-            ) {
-
-                correct =
-                    isValidPythonName(
-                        studentAnswer
-                    );
-
-
-                if (correct) {
-
-                    correctAnswer =
-                        studentAnswer;
-
-                    explanation =
-                        "Valid Python identifier.";
-
-                }
-                else {
-
-                    correctAnswer =
-                        "Any valid Python identifier";
-
-                    explanation =
-                        "Use a valid Python name. It may contain letters, numbers, and underscores, but it cannot begin with a number or be a Python keyword.";
-
-                }
-
-            }
-
-
-            // Fixed answer
-
-            else {
-
-                correctAnswer =
-                    part.answer;
-
-                correct =
-                    normalize(
-                        studentAnswer
-                    ) ===
-                    normalize(
-                        correctAnswer
-                    );
-
-            }
-
-
-            results.push({
-
-                studentAnswer:
-                    studentAnswer,
-
-                correctAnswer:
-                    correctAnswer,
-
-                correct:
-                    correct,
-
-                explanation:
-                    explanation
-
-            });
-
-
-            blankIndex++;
-
-        }
-    );
-
-
-    return results;
-
-}
-
-
-// =====================================================
-// SUBMIT TEST II
-// =====================================================
-
+// 4. SUBMISSION, SCORING & GOOGLE SHEETS SYNC
 function submitTest2() {
-
-    if (
-        testSubmitted
-    ) {
-
-        return;
-
-    }
-
-
-    const answers =
-        readAnswers();
-
-    if (
-        answers === null
-    ) {
-
-        return;
-
-    }
-
-
-    const unanswered =
-        answers.filter(
-            answer =>
-                answer === ""
-        ).length;
-
-
-    if (
-        unanswered > 0
-    ) {
-
-        alert(
-            "Please complete all 10 blanks before submitting."
-        );
-
-        return;
-
-    }
-
-
-    const confirmed =
-        confirm(
-            "Are you sure you want to submit Test II?"
-        );
-
-
-    if (
-        !confirmed
-    ) {
-
-        return;
-
-    }
-
-
-    const results =
-        evaluateAnswers(
-            answers
-        );
-
-
     let score = 0;
+    const total = 10;
+    const results = [];
+    let detectedVariable = "";
 
-
-    results.forEach(
-        result => {
-
-            if (
-                result.correct
-            ) {
-
-                score++;
-
+    // Identify student's defined variable name if applicable
+    for (const [key, config] of Object.entries(selectedProgram.blanks)) {
+        if (config.type === "variable" && userAnswers[key]) {
+            if (isValidPythonIdentifier(userAnswers[key])) {
+                detectedVariable = userAnswers[key];
+                break;
             }
-
         }
-    );
-
-
-    testSubmitted =
-        true;
-
-
-    saveTest2Result(
-        score,
-        results
-    );
-
-
-    // Show score
-
-    const scoreArea =
-        document.getElementById(
-            "scoreArea"
-        );
-
-    if (
-        scoreArea
-    ) {
-
-        scoreArea.style.display =
-            "block";
-
     }
 
+    // Evaluate each blank
+    for (let i = 1; i <= 10; i++) {
+        const key = `BLANK_${i}`;
+        const config = selectedProgram.blanks[key];
+        const rawUserAns = userAnswers[key] || "";
+        const normUserAns = normalize(rawUserAns);
+        const normExpected = normalize(config.answer);
 
-    const finalScore =
-        document.getElementById(
-            "finalScore"
-        );
+        let isCorrect = false;
 
-    if (
-        finalScore
-    ) {
-
-        finalScore.textContent =
-            score +
-            " / 10";
-
-    }
-
-
-    const scoreMessage =
-        document.getElementById(
-            "scoreMessage"
-        );
-
-
-    if (
-        scoreMessage
-    ) {
-
-        if (
-            score === 10
-        ) {
-
-            scoreMessage.textContent =
-                "Excellent! All 10 code completions are correct.";
-
-        }
-        else if (
-            score >= 8
-        ) {
-
-            scoreMessage.textContent =
-                "Very good work. Review the items you missed.";
-
-        }
-        else if (
-            score >= 5
-        ) {
-
-            scoreMessage.textContent =
-                "Good effort. Study the feedback on the incorrect items.";
-
-        }
-        else {
-
-            scoreMessage.textContent =
-                "Keep practicing. Review each correction carefully.";
-
+        if (config.type === "fixed") {
+            isCorrect = (normUserAns === normExpected);
+        } else if (config.type === "variable") {
+            if (detectedVariable) {
+                isCorrect = (normUserAns === normalize(detectedVariable));
+            } else {
+                isCorrect = isValidPythonIdentifier(rawUserAns);
+            }
         }
 
-    }
+        if (isCorrect) score++;
 
-
-    // Show feedback
-
-    displayResults(
-        results
-    );
-
-
-    const submitButton =
-        document.getElementById(
-            "submitBtn"
-        );
-
-
-    if (
-        submitButton
-    ) {
-
-        submitButton.disabled =
-            true;
-
-        submitButton.textContent =
-            "TEST SUBMITTED";
-
-    }
-
-
-    if (
-        scoreArea
-    ) {
-
-        scoreArea.scrollIntoView({
-            behavior:
-                "smooth"
+        results.push({
+            blank: key,
+            userAnswer: rawUserAns,
+            expectedAnswer: config.answer,
+            isCorrect: isCorrect,
+            hint: config.hint
         });
-
     }
 
+    saveTest2Result(score, total, results);
 }
 
-
-// =====================================================
-// DISPLAY RESULTS
-// =====================================================
-
-function displayResults(
-    results
-) {
-
-    const container =
-        getTestContainer();
-
-
-    if (
-        !container
-    ) {
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        "";
-
-
-    const card =
-        document.createElement(
-            "div"
-        );
-
-    card.className =
-        "code-question-card";
-
-
-    // Title
-
-    const title =
-        document.createElement(
-            "h3"
-        );
-
-    title.textContent =
-        selectedCode.title;
-
-    card.appendChild(
-        title
-    );
-
-
-    // Instructions
-
-    const instruction =
-        document.createElement(
-            "div"
-        );
-
-    instruction.className =
-        "review-instruction";
-
-    instruction.textContent =
-        "Correct answers are shown in green. Click a red answer to review it.";
-
-    card.appendChild(
-        instruction
-    );
-
-
-    // Code box
-
-    const codeBox =
-        document.createElement(
-            "div"
-        );
-
-    codeBox.className =
-        "code-box submitted-code";
-
-
-    let blankIndex = 0;
-
-
-    selectedCode.parts.forEach(
-        part => {
-
-            if (
-                part.type ===
-                "newline"
-            ) {
-
-                codeBox.appendChild(
-                    document.createElement(
-                        "br"
-                    )
-                );
-
-                return;
-
-            }
-
-
-            if (
-                part.type === "text" ||
-                part.type === "comment"
-            ) {
-
-                codeBox.appendChild(
-                    renderPythonText(
-                        part.value
-                    )
-                );
-
-                return;
-
-            }
-
-
-            if (
-                part.type ===
-                "reference"
-            ) {
-
-                const referenceSpan =
-                    document.createElement(
-                        "span"
-                    );
-
-                referenceSpan.className =
-                    "code-reference";
-
-                referenceSpan.textContent =
-                    getReferenceValue(
-                        part.name
-                    );
-
-                codeBox.appendChild(
-                    referenceSpan
-                );
-
-                return;
-
-            }
-
-
-            if (
-                part.type ===
-                "blank"
-            ) {
-
-                const result =
-                    results[
-                        blankIndex
-                    ];
-
-
-                const answerSpan =
-                    document.createElement(
-                        "span"
-                    );
-
-                answerSpan.className =
-                    "submitted-answer";
-
-                answerSpan.textContent =
-                    result.studentAnswer;
-
-
-                if (
-                    result.correct
-                ) {
-
-                    answerSpan.classList.add(
-                        "answer-correct"
-                    );
-
-                }
-                else {
-
-                    answerSpan.classList.add(
-                        "answer-wrong"
-                    );
-
-                    answerSpan.title =
-                        "Click to review";
-
-                    answerSpan.addEventListener(
-                        "click",
-                        function() {
-
-                            showExplanation(
-                                result
-                            );
-
-                        }
-                    );
-
-                }
-
-
-                codeBox.appendChild(
-                    answerSpan
-                );
-
-                blankIndex++;
-
-            }
-
-        }
-    );
-
-
-    card.appendChild(
-        codeBox
-    );
-
-    container.appendChild(
-        card
-    );
-
-
-    // =================================================
-    // PROCEED TO TEST III
-    // =================================================
-
-    const nextArea =
-        document.createElement(
-            "div"
-        );
-
-    nextArea.className =
-        "next-test-area";
-
-
-    const nextButton =
-        document.createElement(
-            "button"
-        );
-
-    nextButton.type =
-        "button";
-
-    nextButton.className =
-        "next-test-btn";
-
-    nextButton.textContent =
-        "PROCEED TO TEST III";
-
-
-    nextButton.addEventListener(
-        "click",
-        proceedToTest3
-    );
-
-
-    nextArea.appendChild(
-        nextButton
-    );
-
-    container.appendChild(
-        nextArea
-    );
-
-}
-
-
-// =====================================================
-// GET LINKED VALUE
-// =====================================================
-
-function getReferenceValue(
-    name
-) {
-
-    const input =
-        document.querySelector(
-            '.code-blank[data-role="' +
-            name +
-            '"]'
-        );
-
-
-    if (
-        input
-    ) {
-
-        return (
-            input.value.trim()
-        );
-
-    }
-
-
-    const reference =
-        document.querySelector(
-            '[data-reference="' +
-            name +
-            '"]'
-        );
-
-
-    if (
-        reference
-    ) {
-
-        return (
-            reference.textContent
-        );
-
-    }
-
-
-    return "";
-
-}
-
-
-// =====================================================
-// FEEDBACK
-// =====================================================
-
-function showExplanation(
-    result
-) {
-
-    const old =
-        document.getElementById(
-            "codeExplanation"
-        );
-
-
-    if (
-        old
-    ) {
-
-        old.remove();
-
-    }
-
-
-    const box =
-        document.createElement(
-            "div"
-        );
-
-    box.id =
-        "codeExplanation";
-
-    box.className =
-        "code-explanation";
-
-
-    const close =
-        document.createElement(
-            "button"
-        );
-
-    close.className =
-        "close-explanation";
-
-    close.textContent =
-        "×";
-
-
-    close.addEventListener(
-        "click",
-        function() {
-
-            box.remove();
-
-        }
-    );
-
-
-    box.appendChild(
-        close
-    );
-
-
-    const heading =
-        document.createElement(
-            "h3"
-        );
-
-    heading.textContent =
-        "Quick Review";
-
-    box.appendChild(
-        heading
-    );
-
-
-    const yourAnswer =
-        document.createElement(
-            "p"
-        );
-
-    yourAnswer.innerHTML =
-        "<strong>Your answer:</strong> " +
-        escapeHTML(
-            result.studentAnswer
-        );
-
-    box.appendChild(
-        yourAnswer
-    );
-
-
-    const correctAnswer =
-        document.createElement(
-            "p"
-        );
-
-    correctAnswer.innerHTML =
-        "<strong>Expected answer:</strong> " +
-        escapeHTML(
-            result.correctAnswer
-        );
-
-    box.appendChild(
-        correctAnswer
-    );
-
-
-    const explanation =
-        document.createElement(
-            "div"
-        );
-
-    explanation.className =
-        "explanation-text";
-
-    explanation.textContent =
-        result.explanation;
-
-    box.appendChild(
-        explanation
-    );
-
-
-    document.body.appendChild(
-        box
-    );
-
-}
-
-
-// =====================================================
-// SAVE TEST II RESULT
-// =====================================================
-
-function saveTest2Result(
-    score,
-    results
-) {
-
-    const result = {
-
-        date:
-            new Date()
-                .toLocaleString(),
-
-        studentName:
-            localStorage.getItem(
-                "studentName"
-            ) || "",
-
-        studentSection:
-            localStorage.getItem(
-                "studentSection"
-            ) || "",
-
-        score:
-            score,
-
-        total:
-            10,
-
-        program:
-            selectedCode.title,
-
-        answers:
-            results
-
+function saveTest2Result(score, total, results) {
+    const studentName = localStorage.getItem("studentName") || "Unknown Student";
+    const studentSection = localStorage.getItem("studentSection") || "N/A";
+    const attemptId = localStorage.getItem("attemptId") || Date.now().toString();
+
+    const payload = {
+        attemptId: attemptId,
+        studentName: studentName,
+        studentSection: studentSection,
+        testType: "Test II - Code Completion",
+        programTitle: selectedProgram.title,
+        score: score,
+        total: total,
+        percentage: ((score / total) * 100).toFixed(2) + "%",
+        details: results,
+        timestamp: new Date().toISOString()
     };
 
+    // Save locally
+    localStorage.setItem("test2Result", JSON.stringify(payload));
+    localStorage.setItem("test2Completed", "true");
 
-    localStorage.setItem(
-        "test2Result",
-        JSON.stringify(
-            result
-        )
-    );
-
-}
-
-
-// =====================================================
-// PROCEED TO TEST III
-// =====================================================
-
-function proceedToTest3() {
-
-    localStorage.setItem(
-        "test2Completed",
-        "true"
-    );
-
-
-    window.location.href =
-        "test3.html";
-
-}
-
-
-// =====================================================
-// ADD TEST II STYLES
-// =====================================================
-
-function addTest2Styles() {
-
-    if (
-        document.getElementById(
-            "test2ExtraStyles"
-        )
-    ) {
-
-        return;
-
+    // SYNC TO GOOGLE SHEETS API
+    if (typeof sendResultToGoogleSheets === "function") {
+        sendResultToGoogleSheets(payload);
     }
 
+    renderFeedbackUI(score, total, results);
+}
 
-    const style =
-        document.createElement(
-            "style"
-        );
+function renderFeedbackUI(score, total, results) {
+    const editorContainer = document.getElementById("codeEditorContainer");
+    const submitBtn = document.getElementById("submitTest2Btn");
+    const nextBtn = document.getElementById("proceedTest3Btn");
 
-    style.id =
-        "test2ExtraStyles";
+    if (submitBtn) submitBtn.style.display = "none";
+    if (nextBtn) nextBtn.style.display = "inline-block";
 
-
-    style.textContent = `
-
-        .code-question-card h3 {
-            margin-bottom: 18px;
-        }
-
-        .code-box {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            font-family:
-                Consolas,
-                "Courier New",
-                monospace;
-            font-size: 16px;
-            line-height: 1.9;
-            white-space: pre-wrap;
-            overflow-x: auto;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .py-normal {
-            color: #d4d4d4;
-        }
-
-        .py-comment {
-            color: #6a9955;
-        }
-
-        .py-keyword {
-            color: #569cd6;
-            font-weight: 600;
-        }
-
-        .py-string {
-            color: #ce9178;
-        }
-
-        .py-number {
-            color: #b5cea8;
-        }
-
-        .code-reference {
-            color: #9cdcfe;
-            font-weight: 600;
-        }
-
-        .code-blank {
-            display: inline-block;
-            width: 58px;
-            height: 30px;
-            padding: 2px 7px;
-            margin: 0 3px;
-            vertical-align: middle;
-            border: 2px solid #93c5fd;
-            border-radius: 5px;
-            background: #334155;
-            color: #ffffff;
-            font-family:
-                Consolas,
-                "Courier New",
-                monospace;
-            font-size: 14px;
-            text-align: center;
-            outline: none;
-        }
-
-        .code-blank.name-blank {
-            width: 125px;
-        }
-
-        .code-blank:focus {
-            border-color: #ffffff;
-            background: #475569;
-            box-shadow:
-                0 0 0 2px
-                rgba(147,197,253,0.25);
-        }
-
-        .submitted-answer {
-            display: inline-block;
-            padding: 1px 7px;
-            margin: 0 3px;
-            border-radius: 4px;
-            font-weight: 700;
-        }
-
-        .answer-correct {
-            background: #166534;
-            color: #dcfce7;
-        }
-
-        .answer-wrong {
-            background: #991b1b;
-            color: #fee2e2;
-            cursor: pointer;
-        }
-
-        .answer-wrong:hover {
-            background: #dc2626;
-        }
-
-        .review-instruction {
-            margin-bottom: 15px;
-            padding: 12px;
-            background: #eef4ff;
-            border-radius: 8px;
-        }
-
-        .code-explanation {
-            position: fixed;
-            right: 25px;
-            bottom: 25px;
-            width: 360px;
-            max-width:
-                calc(100vw - 40px);
-            padding: 20px;
-            background: #ffffff;
-            color: #222222;
-            border-radius: 12px;
-            box-shadow:
-                0 8px 30px
-                rgba(0,0,0,0.25);
-            z-index: 9999;
-        }
-
-        .close-explanation {
-            float: right;
-            border: none;
-            background: transparent;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .explanation-text {
-            margin-top: 12px;
-            padding: 12px;
-            background: #eef4ff;
-            border-radius: 8px;
-            line-height: 1.5;
-        }
-
-        .next-test-area {
-            text-align: center;
-            margin-top: 35px;
-            padding: 20px;
-        }
-
-        .next-test-btn {
-            background: #1f4b87;
-            color: white;
-            border: none;
-            padding: 15px 32px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            letter-spacing: 0.5px;
-        }
-
-        .next-test-btn:hover {
-            background: #163b6d;
-        }
-
-        @media (max-width: 650px) {
-
-            .code-box {
-                font-size: 13px;
-                padding: 16px;
-            }
-
-            .code-blank.name-blank {
-                width: 95px;
-            }
-
-            .code-blank {
-                width: 48px;
-            }
-
-        }
-
+    let feedbackHtml = `
+        <div class="score-card">
+            <h2>Test II Complete!</h2>
+            <p class="score-text">Your Score: <strong>${score} / ${total}</strong> (${((score / total) * 100).toFixed(0)}%)</p>
+        </div>
+        <div class="review-table-container">
+            <table class="review-table">
+                <thead>
+                    <tr>
+                        <th>Blank</th>
+                        <th>Your Input</th>
+                        <th>Status</th>
+                        <th>Correct/Expected Keyword</th>
+                    </tr>
+                </thead>
+                <tbody>
     `;
 
+    results.forEach((r, idx) => {
+        const statusClass = r.isCorrect ? "status-correct" : "status-incorrect";
+        const statusText = r.isCorrect ? "✓ Correct" : "✗ Incorrect";
+        feedbackHtml += `
+            <tr class="${statusClass}">
+                <td>Blank ${idx + 1}</td>
+                <td><code>${escapeHTML(r.userAnswer || "(empty)")}</code></td>
+                <td><span class="badge ${statusClass}">${statusText}</span></td>
+                <td><code>${escapeHTML(r.expectedAnswer)}</code> <small>(${r.hint})</small></td>
+            </tr>
+        `;
+    });
 
-    document.head.appendChild(
-        style
-    );
+    feedbackHtml += `
+                </tbody>
+            </table>
+        </div>
+    `;
 
+    editorContainer.innerHTML = feedbackHtml;
 }
 
-
-// =====================================================
-// PAGE LOAD
-// =====================================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        console.log(
-            "Test II JavaScript loaded."
-        );
-
-
-        addTest2Styles();
-
-
-        // Student name
-
-        const studentName =
-            localStorage.getItem(
-                "studentName"
-            );
-
-
-        const studentSection =
-            localStorage.getItem(
-                "studentSection"
-            );
-
-
-        const nameElement =
-            document.getElementById(
-                "studentName"
-            );
-
-
-        if (
-            nameElement &&
-            studentName
-        ) {
-
-            nameElement.textContent =
-                studentName;
-
-        }
-
-
-        const sectionElement =
-            document.getElementById(
-                "studentSection"
-            );
-
-
-        if (
-            sectionElement &&
-            studentSection
-        ) {
-
-            sectionElement.textContent =
-                studentSection;
-
-        }
-
-
-        // Start Test II
-
-        startTest2();
-
-
-        // Submit button
-
-        const submitButton =
-            document.getElementById(
-                "submitBtn"
-            );
-
-
-        if (
-            submitButton
-        ) {
-
-            submitButton.addEventListener(
-                "click",
-                submitTest2
-            );
-
-        }
-        else {
-
-            console.error(
-                "ERROR: submitBtn was not found."
-            );
-
-        }
-
-    }
-);
+function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag)
+    );
+}
