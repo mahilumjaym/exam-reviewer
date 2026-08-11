@@ -4,378 +4,465 @@
 
 const QUESTIONS_PER_TEST = 10;
 
-// NEW SANITIZED QUESTION BANK (30 ITEMS) - TOS ALIGNED WITHOUT EXAM OVERLAP
+
+// ==========================================
+// QUESTION BANK
+// ==========================================
+
 const questionBank = [
-    // --- TOPIC 1: INTRODUCTION TO PYTHON & SYNTAX WITH VARIABLES ---
+
     {
-        id: 1,
-        question: "A library system needs to display a welcome message 'Welcome to the Library System' when initialized. Which line of code will achieve this?",
+        question:
+            "A program stores the word Zamboanga in a variable called city. Which line correctly displays the value stored in city?",
         options: [
-            "echo(\"Welcome to the Library System\")",
-            "print(\"Welcome to the Library System\")",
-            "System.out.println(\"Welcome to the Library System\")",
-            "display(\"Welcome to the Library System\")"
+            'print("city")',
+            "print(city)",
+            'display("city")',
+            "show(city)"
         ],
         answer: 1,
-        explanation: "In Python, the print() function is used to output text or data to the console."
-    },
-    {
-        id: 2,
-        question: "You want to record the total weight of a cargo shipment as 45.5 kilograms in a variable named total_weight. Which assignment statement is correct?",
-        options: [
-            "total_weight == 45.5",
-            "total_weight := 45.5",
-            "total_weight = 45.5",
-            "45.5 = total_weight"
-        ],
-        answer: 2,
-        explanation: "The single equals sign (=) is the assignment operator in Python."
-    },
-    {
-        id: 3,
-        question: "Which of the following identifier names complies with Python variable naming rules?",
-        options: [
-            "3rd_place",
-            "user_item_count",
-            "item-count",
-            "global"
-        ],
-        answer: 1,
-        explanation: "Valid identifiers can contain letters, numbers, and underscores, but cannot start with a digit or use reserved keywords/hyphens."
-    },
-    {
-        id: 4,
-        question: "Examine the following code segment:\n\ntotal_score = 95\nsubject = 'Python'\nprint('total_score')\n\nWhat will be displayed on the screen?",
-        options: [
-            "95",
-            "total_score",
-            "Python",
-            "Error"
-        ],
-        answer: 1,
-        explanation: "Enclosing a name in single quotes makes it a string literal, so Python prints the literal word 'total_score' instead of the variable's value."
-    },
-    {
-        id: 5,
-        question: "A bank system tracks an account balance. The developer wants to initialize the variable active_balance with a value of 2500. Which line is syntactically correct?",
-        options: [
-            "active_balance = 2500",
-            "active_balance == 2500",
-            "2500 -> active_balance",
-            "set active_balance = 2500"
-        ],
-        answer: 0,
-        explanation: "Variable assignment in Python follows the form: variable_name = value."
+        explanation:
+            "Using city without quotation marks displays the value stored in the variable."
     },
 
-    // --- TOPIC 2: CONTROL STRUCTURES (CONDITIONALS) ---
+
     {
-        id: 6,
-        question: "A security system grants entry only if the badge_status variable is set to 'Granted'. Which conditional statement is formatted correctly in Python?",
+        question:
+            "A teacher wants a variable called total to begin with the value 45. Which line correctly gives total that value?",
         options: [
-            "if badge_status == 'Granted':",
-            "if (badge_status == 'Granted') then",
-            "if badge_status = 'Granted'",
-            "if badge_status == 'Granted' then:"
-        ],
-        answer: 0,
-        explanation: "Python conditional statements use the 'if' keyword, comparison operator '==', and end with a colon (:). Python does not use the 'then' keyword."
-    },
-    {
-        id: 7,
-        question: "What is required at the end of an 'elif' or 'else' statement header in Python syntax?",
-        options: [
-            "; (Semicolon)",
-            "{ } (Curly braces)",
-            ": (Colon)",
-            "end (Keyword)"
+            "total == 45",
+            "45 = total",
+            "total = 45",
+            "total : 45"
         ],
         answer: 2,
-        explanation: "In Python, header statements like if, elif, else, for, while, and def must end with a colon (:)."
+        explanation:
+            "The assignment operator = places the value 45 into total."
     },
+
+
     {
-        id: 8,
-        question: "A system evaluates customer membership levels: 'Gold', 'Silver', or 'Standard'. Which structure is best suited for evaluating multiple specific conditions in sequence?",
+        question:
+            "Which variable name could be used to store the number of students in a class?",
         options: [
-            "if",
+            "student-count",
+            "2nd_count",
+            "student_count",
+            "student count"
+        ],
+        answer: 2,
+        explanation:
+            "student_count uses letters and an underscore and does not begin with a number."
+    },
+
+
+    {
+        question:
+            "Consider this code: city = \"Zamboanga\". Which statement displays the text Zamboanga?",
+        options: [
+            'print("city")',
+            "print(city)",
+            "display(city)",
+            "show(\"city\")"
+        ],
+        answer: 1,
+        explanation:
+            "city refers to the variable, whose stored value is Zamboanga."
+    },
+
+
+    {
+        question:
+            "Which line stores the text Python Programming in a variable named subject?",
+        options: [
+            'subject = Python Programming',
+            'subject == "Python Programming"',
+            'subject = "Python Programming"',
+            'subject : "Python Programming"'
+        ],
+        answer: 2,
+        explanation:
+            "Text must be enclosed in quotation marks when assigned to a variable."
+    },
+
+
+    {
+        question:
+            "A program contains score = 90. What value will be displayed by print(score)?",
+        options: [
+            "score",
+            "90",
+            '"score"',
+            "None"
+        ],
+        answer: 1,
+        explanation:
+            "print(score) displays the value stored in score, which is 90."
+    },
+
+
+    {
+        question:
+            "Which statement would store the number 25 rather than the text 25?",
+        options: [
+            'number = "25"',
+            "number = 25",
+            "number == 25",
+            'number = "twenty-five"'
+        ],
+        answer: 1,
+        explanation:
+            "Without quotation marks, 25 is treated as a number."
+    },
+
+
+    {
+        question:
+            "A student wants a variable for a final grade. Which name follows Python's identifier rules?",
+        options: [
+            "final grade",
+            "final-grade",
+            "final_grade",
+            "1final_grade"
+        ],
+        answer: 2,
+        explanation:
+            "final_grade is valid because it contains letters and an underscore and does not begin with a number."
+    },
+
+
+    {
+        question:
+            "What will the following code display?\n\nitems = 8\nprint(items)",
+        options: [
+            "items",
+            '"items"',
+            "8",
+            "print(items)"
+        ],
+        answer: 2,
+        explanation:
+            "The variable items contains 8, so print(items) displays 8."
+    },
+
+
+    {
+        question:
+            "A program should display the word Welcome exactly as text. Which statement is appropriate?",
+        options: [
+            "print(Welcome)",
+            'print("Welcome")',
+            "display(Welcome)",
+            'show("Welcome")'
+        ],
+        answer: 1,
+        explanation:
+            "Text written directly in a print statement should be enclosed in quotation marks."
+    },
+
+
+    {
+        question:
+            "A school system should allow registration when age is 12 or older. Which condition expresses that requirement?",
+        options: [
+            "age > 12",
+            "age >= 12",
+            "age < 12",
+            "age == 12"
+        ],
+        answer: 1,
+        explanation:
+            ">= includes both 12 and values greater than 12."
+    },
+
+
+    {
+        question:
+            "A game should display Winner only when points are greater than 100. Which condition is appropriate?",
+        options: [
+            "points >= 100",
+            "points < 100",
+            "points > 100",
+            "points == 100"
+        ],
+        answer: 2,
+        explanation:
+            "The > operator requires points to be greater than 100."
+    },
+
+
+    {
+        question:
+            "Which line correctly completes this conditional statement?\n\nif temperature > 30 ___",
+        options: [
+            ";",
+            ".",
+            ":",
+            ","
+        ],
+        answer: 2,
+        explanation:
+            "A colon marks the beginning of the indented block after an if condition."
+    },
+
+
+    {
+        question:
+            "A program should display Hot when temperature is 35 and Cool for lower values. Which structure is most appropriate?",
+        options: [
+            "if only",
+            "if-else",
+            "for loop",
+            "while loop"
+        ],
+        answer: 1,
+        explanation:
+            "if-else provides one path when the condition is true and another when it is false."
+    },
+
+
+    {
+        question:
+            "A grading program needs to check three possible results: Excellent, Passed, or Needs Improvement. Which structure is most suitable?",
+        options: [
+            "if only",
             "if-else",
             "if-elif-else",
             "while"
         ],
         answer: 2,
-        explanation: "An if-elif-else chain allows checking multiple conditions sequentially before falling back to a default case."
-    },
-    {
-        id: 9,
-        question: "A shipping module applies discounts based on weight. If package_weight exceeds 20, a discount is granted; otherwise, standard rates apply. Which code block demonstrates correct formatting?",
-        options: [
-            "if package_weight > 20:\n    print('Discount Applied')\nelse:\n    print('Standard Rate')",
-            "if package_weight > 20 then\n    print('Discount Applied')\nelse\n    print('Standard Rate')",
-            "if (package_weight > 20) { print('Discount Applied') }",
-            "if package_weight > 20:\n    print('Discount Applied')\nelse-if:\n    print('Standard Rate')"
-        ],
-        answer: 0,
-        explanation: "Python uses colon syntax and indentation to define code blocks inside if-else branches."
-    },
-    {
-        id: 10,
-        question: "Consider the code:\n\nstatus = 'Pending'\nif status == 'Active':\n    print('System Operational')\n\nWhat will happen when this code runs?",
-        options: [
-            "It prints 'System Operational'.",
-            "It triggers a syntax error.",
-            "It prints nothing and finishes execution.",
-            "It prints 'Pending'."
-        ],
-        answer: 2,
-        explanation: "Since 'Pending' == 'Active' evaluates to False and there is no else branch, the code skips the print statement and finishes without output."
+        explanation:
+            "if-elif-else allows a program to test multiple conditions and provide a final alternative."
     },
 
-    // --- TOPIC 3: LOOPS AND ITERATION ---
+
     {
-        id: 11,
-        question: "Which term describes the repetition of a process or execution of a block of code multiple times in computer programming?",
+        question:
+            "What happens when the first if condition is false and the elif condition is true?",
         options: [
-            "Encapsulation",
-            "Iteration",
-            "Instantiation",
-            "Compilation"
-        ],
-        answer: 1,
-        explanation: "Iteration is the process of repeatedly executing a block of statements until a specific condition is met."
-    },
-    {
-        id: 12,
-        question: "You need to display a batch process header exactly 5 times. Which line of code follows Python's for loop syntax using range?",
-        options: [
-            "for i in range(5):",
-            "for (i = 0; i < 5; i++):",
-            "for i = 1 to 5:",
-            "foreach i in range(5)"
+            "The elif block can execute.",
+            "The program automatically stops.",
+            "The else block must execute first.",
+            "The if block executes again."
         ],
         answer: 0,
-        explanation: "Python's for loop uses the 'for variable in range(limit):' syntax."
-    },
-    {
-        id: 13,
-        question: "A sensor loop must run as long as the temperature parameter remains under 100 degrees. Which line correctly initiates this loop?",
-        options: [
-            "while temperature < 100:",
-            "while (temperature < 100) do:",
-            "while temperature < 100 then",
-            "until temperature >= 100:"
-        ],
-        answer: 0,
-        explanation: "A while loop header consists of 'while', a conditional expression, and a colon."
-    },
-    {
-        id: 14,
-        question: "What values are generated by the expression range(1, 6)?",
-        options: [
-            "1, 2, 3, 4, 5, 6",
-            "1, 2, 3, 4, 5",
-            "0, 1, 2, 3, 4, 5",
-            "1, 6"
-        ],
-        answer: 1,
-        explanation: "range(start, stop) generates integers starting from 'start' up to, but NOT including, 'stop' (1 to 5)."
-    },
-    {
-        id: 15,
-        question: "What will be the output of the following loop?\n\ncount = 3\nwhile count > 0:\n    print(count)\n    count -= 1",
-        options: [
-            "3, 2, 1 (on separate lines)",
-            "3, 2, 1, 0 (on separate lines)",
-            "2, 1, 0 (on separate lines)",
-            "3, 3, 3 (infinite loop)"
-        ],
-        answer: 0,
-        explanation: "The loop starts at 3, prints, decrements by 1 each time, and stops when count reaches 0 (0 > 0 is False)."
+        explanation:
+            "An elif condition is checked when the preceding if condition is false."
     },
 
-    // --- TOPIC 4: WORKING WITH LISTS AND DICTIONARIES ---
+
     {
-        id: 16,
-        question: "Which of the following correctly instantiates a list named hardware_inventory containing three strings?",
+        question:
+            "Which condition means that a student's score is exactly 100?",
         options: [
-            "hardware_inventory = ('CPU', 'RAM', 'SSD')",
-            "hardware_inventory = {'CPU', 'RAM', 'SSD'}",
-            "hardware_inventory = [\"CPU\", \"RAM\", \"SSD\"]",
-            "hardware_inventory = \"CPU\", \"RAM\", \"SSD\""
+            "score = 100",
+            "score == 100",
+            "score >= 100",
+            "score != 100"
+        ],
+        answer: 1,
+        explanation:
+            "The == operator checks whether two values are equal."
+    },
+
+
+    {
+        question:
+            "A program should give a message only when attempts are less than 3. Which condition should be used?",
+        options: [
+            "attempts > 3",
+            "attempts >= 3",
+            "attempts < 3",
+            "attempts == 3"
         ],
         answer: 2,
-        explanation: "Lists in Python are defined using square brackets []."
+        explanation:
+            "The < operator checks whether attempts is less than 3."
     },
+
+
     {
-        id: 17,
-        question: "Given the dictionary:\n\nserver_config = {\n    'host': '192.168.1.1',\n    'port': 8080,\n    'status': 'Online'\n}\n\nWhich code retrieves the value associated with the port?",
+        question:
+            "Which statement describes iteration in a program?",
         options: [
-            "server_config[1]",
-            "server_config['port']",
-            "server_config.port",
-            "server_config.get(1)"
+            "Giving a variable its first value",
+            "Repeating instructions according to a condition or sequence",
+            "Storing information in a dictionary",
+            "Displaying one message"
         ],
         answer: 1,
-        explanation: "Dictionary values are accessed using key indexing with square brackets: dict_name[key]."
+        explanation:
+            "Iteration means repeating instructions."
     },
+
+
     {
-        id: 18,
-        question: "What fundamental structural difference separates a Python List from a Python Dictionary?",
+        question:
+            "A program needs to display the numbers 1 through 5. Which loop structure is appropriate?",
         options: [
-            "Lists store only numbers, whereas dictionaries store only strings.",
-            "Lists use zero-based integer index locations, whereas dictionaries use key-value pairs.",
-            "Lists are enclosed in curly braces, whereas dictionaries use square brackets.",
-            "Lists cannot be modified, whereas dictionaries can be modified."
+            "if",
+            "for",
+            "else",
+            "def"
         ],
         answer: 1,
-        explanation: "Lists are ordered sequences indexed by position integers (0, 1, 2...), while dictionaries store data as key-value lookup pairs."
+        explanation:
+            "A for loop is commonly used when processing a known sequence of values."
     },
+
+
     {
-        id: 19,
-        question: "You want to print every key-value pair stored in a dictionary called student_profile. Which method returns both keys and values during loop iteration?",
+        question:
+            "Which line correctly repeats a block using the numbers 0 through 4?",
         options: [
-            "student_profile.items()",
-            "student_profile.elements()",
-            "student_profile.all()",
-            "student_profile.values_keys()"
+            "for x in range(5):",
+            "for x from 1 to 5:",
+            "for(x = 0; x < 5; x++):",
+            "repeat x in 5:"
         ],
         answer: 0,
-        explanation: "The .items() method returns a sequence of (key, value) tuple pairs for dictionary iteration."
+        explanation:
+            "range(5) produces 0, 1, 2, 3, and 4."
     },
+
+
     {
-        id: 20,
-        question: "Given the list:\n\nprojects = ['Alpha', 'Beta', 'Gamma']\n\nWhich statement accesses the element 'Alpha'?",
+        question:
+            "A program keeps checking a condition until it becomes false. Which loop is designed for this situation?",
         options: [
-            "projects[1]",
-            "projects[0]",
-            "projects['Alpha']",
-            "projects.first()"
+            "for",
+            "while",
+            "if",
+            "elif"
         ],
         answer: 1,
-        explanation: "Python lists use zero-based indexing, so the first element is at index 0."
+        explanation:
+            "A while loop continues as long as its condition remains true."
     },
+
+
     {
-        id: 21,
-        question: "Which method is used to add a new element to the end of an existing Python list?",
+        question:
+            "Consider the code below:\n\ncount = 3\nwhile count > 0:\n    count = count - 1\n\nWhat value does count have when the loop ends?",
         options: [
-            "list.add()",
-            "list.insert_end()",
-            "list.append()",
-            "list.push()"
+            "3",
+            "2",
+            "1",
+            "0"
         ],
-        answer: 2,
-        explanation: "The .append() method attaches an item to the end of an existing list."
+        answer: 3,
+        explanation:
+            "The loop decreases count until the condition count > 0 becomes false, leaving 0."
     },
+
+
     {
-        id: 22,
-        question: "An application needs to store student record data where each item has a unique field label (e.g., 'ID': 101, 'Name': 'Maria', 'GWA': 1.25). Which data structure is most appropriate?",
+        question:
+            "Which statement creates a list containing three fruit names?",
+        options: [
+            'fruits = ("Apple", "Mango", "Banana")',
+            'fruits = ["Apple", "Mango", "Banana"]',
+            'fruits = {"Apple", "Mango", "Banana"}',
+            'fruits = "Apple", "Mango", "Banana"'
+        ],
+        answer: 1,
+        explanation:
+            "Square brackets are used to create a Python list."
+    },
+
+
+    {
+        question:
+            "Consider this list:\n\ncolors = [\"red\", \"blue\", \"green\"]\n\nWhich expression retrieves blue?",
+        options: [
+            'colors[0]',
+            'colors[1]',
+            'colors[2]',
+            'colors["blue"]'
+        ],
+        answer: 1,
+        explanation:
+            "Python list indexing starts at 0, so blue is at index 1."
+    },
+
+
+    {
+        question:
+            "A list contains [10, 20, 30, 40]. Which expression retrieves the first value?",
+        options: [
+            "numbers[0]",
+            "numbers[1]",
+            "numbers[first]",
+            "numbers[-0]"
+        ],
+        answer: 0,
+        explanation:
+            "The first item in a Python list is stored at index 0."
+    },
+
+
+    {
+        question:
+            "Which structure is most suitable when each piece of information needs a label?",
         options: [
             "List",
-            "Tuple",
             "Dictionary",
-            "Set"
+            "String",
+            "Integer"
         ],
-        answer: 2,
-        explanation: "Dictionaries allow mapping specific descriptive field labels (keys) directly to corresponding values."
+        answer: 1,
+        explanation:
+            "A dictionary stores information using key-value pairs."
     },
 
-    // --- TOPIC 5: GRAPHICAL USER INTERFACE USING TKINTER ---
+
     {
-        id: 23,
-        question: "In a Tkinter application, which keyword argument connects a Button widget click event to a function named process_data?",
+        question:
+            "Consider this dictionary:\n\nstudent = {\"name\": \"Ana\", \"grade\": 90}\n\nWhich expression retrieves Ana?",
         options: [
-            "action=process_data",
-            "command=process_data",
-            "click=process_data",
-            "event=process_data"
+            'student[0]',
+            'student["name"]',
+            "student[name]",
+            'student["Ana"]'
         ],
         answer: 1,
-        explanation: "The 'command' option in Tkinter binds a function/callback to a widget action like a button click."
+        explanation:
+            "The value Ana is associated with the key name."
     },
+
+
     {
-        id: 24,
-        question: "When attaching a function callback to a Tkinter Button command option, why must you pass the function name without parentheses (e.g., command=process_data)?",
+        question:
+            "A dictionary contains {\"Math\": 90, \"Science\": 88}. What is Math in this dictionary?",
         options: [
-            "Including parentheses executes the function immediately when the GUI builds rather than when clicked.",
-            "Parentheses trigger a syntax error in Python GUI modules.",
-            "Tkinter automatically converts function names into text strings.",
-            "Parentheses prevent the GUI window from rendering."
-        ],
-        answer: 0,
-        explanation: "Passing function() calls and executes the function immediately upon creation; passing function passes the reference to be called on click."
-    },
-    {
-        id: 25,
-        question: "Which Tkinter layout management manager arranges user interface widgets in a table-like structure of rows and columns?",
-        options: [
-            "pack()",
-            "place()",
-            "grid()",
-            "align()"
+            "A list index",
+            "A value",
+            "A key",
+            "A variable"
         ],
         answer: 2,
-        explanation: "The grid() layout manager organizes widgets into a 2D table composed of rows and columns."
+        explanation:
+            "Math is a key that identifies the value 90."
     },
+
+
     {
-        id: 26,
-        question: "Which Tkinter widget layout manager places elements by specifying absolute x and y pixel coordinates on the screen?",
+        question:
+            "Which statement correctly accesses the value associated with the key city?",
         options: [
-            "grid()",
-            "place()",
-            "pack()",
-            "layer()"
-        ],
-        answer: 1,
-        explanation: "The place() manager enables exact positioning using coordinate specifications like x and y parameters."
-    },
-    {
-        id: 27,
-        question: "In Tkinter, what is the purpose of calling the mainloop() method on the root window object?",
-        options: [
-            "It compiles the Python script into an executable file.",
-            "It initializes default color themes.",
-            "It runs the event listener loop so the application responds to user interactions.",
-            "It destroys the window after execution completes."
+            "data.city",
+            "data[city]",
+            'data["city"]',
+            "data( city )"
         ],
         answer: 2,
-        explanation: "mainloop() starts Tkinter's event loop, keeping the window active and listening for user actions like button clicks and typing."
-    },
-    {
-        id: 28,
-        question: "Which statement correctly imports all classes and functions from the Tkinter library into a Python script?",
-        options: [
-            "import tkinter.all",
-            "from tkinter import *",
-            "using tkinter",
-            "include <tkinter>"
-        ],
-        answer: 1,
-        explanation: "In Python, 'from tkinter import *' imports all items from the tkinter module into the script namespace."
-    },
-    {
-        id: 29,
-        question: "What Tkinter widget is primarily used to display text or images on the screen that users cannot directly edit?",
-        options: [
-            "Entry",
-            "Button",
-            "Label",
-            "Text"
-        ],
-        answer: 2,
-        explanation: "Label widgets are designed to display static text or graphic elements on user interface forms."
-    },
-    {
-        id: 30,
-        question: "Which method is used on a Tkinter Entry widget to retrieve the current text entered by the user?",
-        options: [
-            "Entry.fetch()",
-            "Entry.get()",
-            "Entry.read()",
-            "Entry.text()"
-        ],
-        answer: 1,
-        explanation: "The .get() method retrieves the current string contents typed into an Entry input box."
+        explanation:
+            "Dictionary keys written as strings are accessed using quotation marks inside square brackets."
     }
+
 ];
+
+
 // ==========================================
 // TEST VARIABLES
 // ==========================================
