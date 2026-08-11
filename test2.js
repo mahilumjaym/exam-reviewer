@@ -293,14 +293,25 @@ function startTest2() {
     const randIndex = Math.floor(Math.random() * test2ProgramBank.length);
     selectedProgram = test2ProgramBank[randIndex];
 
-    document.getElementById("test2Title").innerText = selectedProgram.title;
-    document.getElementById("test2Desc").innerText = selectedProgram.description;
+    // Safe updates to title and description elements across different HTML setups
+    const titleElem = document.getElementById("test2Title") || document.getElementById("test2ProgramTitle") || document.getElementById("programTitle");
+    const descElem = document.getElementById("test2Desc") || document.getElementById("test2ProgramDesc") || document.getElementById("programDesc");
+
+    if (titleElem) titleElem.innerText = selectedProgram.title;
+    if (descElem) descElem.innerText = selectedProgram.description;
 
     renderCodeEditor();
 }
 
 function renderCodeEditor() {
-    const container = document.getElementById("codeEditorContainer");
+    // Check for container under common ID naming conventions
+    const container = document.getElementById("codeEditorContainer") || document.getElementById("codeContainer") || document.getElementById("code-editor");
+
+    if (!container) {
+        console.error("Test II Error: Target element container for code editor not found in HTML!");
+        return;
+    }
+
     let code = selectedProgram.codeTemplate;
 
     // Replace [BLANK_X] tags with HTML input elements
